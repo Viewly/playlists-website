@@ -1,6 +1,8 @@
 import React from "react";
 import CSSModules from "react-css-modules";
 import { Link } from "react-router-dom";
+
+import YouTube from "./youtube";
 import styles from '../layout.scss';
 
 const VideoPlayer = ({ playlistUrl }) => (
@@ -10,9 +12,10 @@ const VideoPlayer = ({ playlistUrl }) => (
       <span>playlist</span>
     </div>
 
-    <div>
-
+    <div styleName='video__player__container'>
+      <YouTube />
     </div>
+
     <div styleName='video__player__controls'>
       <div>prev</div>
       <div>pause</div>
