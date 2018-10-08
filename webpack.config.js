@@ -19,6 +19,13 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    port: 3000,
+    publicPath: '/',
+    historyApiFallback: {
+      index: './index.html'
+    }
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",

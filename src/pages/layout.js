@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import HeaderContainer from "../components/container/HeaderContainer/";
 
 class Layout extends Component {
   render() {
@@ -6,7 +7,7 @@ class Layout extends Component {
 
     return (
       <React.Fragment>
-        <div>Header</div>
+        <HeaderContainer />
         <div>{children}</div>
         <div>Footer</div>
       </React.Fragment>

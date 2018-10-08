@@ -3,15 +3,16 @@ import { Route } from 'react-router-dom';
 import { hot } from "react-hot-loader";
 
 import Layout from './pages/layout';
-// import Form from './components/container/FormContainer';
+
 import HomePage from './pages/home';
+import PlaylistPage from './pages/playlist';
 
 class App extends Component {
   render() {
     return(
       <Layout>
-        {/* <Route path='/' component={Form} /> */}
         <Route path='/' component={HomePage} />
+        <Route path='/playlist/:playlistId' component={PlaylistPage} />
       </Layout>
     );
   }
