@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Route, Switch } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 
-import PlaylistSidebar from "./playlist/sidebar";
-import HeaderContainer from "../components/container/HeaderContainer/";
+import PlaylistSidebar from "./playlist/components/sidebar";
+import HeaderContainer from "../components/HeaderContainer/";
 import styles from './layout.scss';
 
 @CSSModules(styles)
