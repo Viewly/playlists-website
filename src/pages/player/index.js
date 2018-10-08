@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import Layout from "./layout";
+import VideoPlayer from "./components/video";
 
 class PlayerPage extends Component {
   render() {
     return (
-      <div>
-        PLAY
-      </div>
+      <Layout>
+        <VideoPlayer playlistUrl='/playlist/1' />
+      </Layout>
     );
   }
 }
