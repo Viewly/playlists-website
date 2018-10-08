@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return(
       <Layout>
-        <Route path='/' component={HomePage} />
+        <Route exact path='/' component={HomePage} />
         <Route path='/playlist/:playlistId' component={PlaylistPage} />
       </Layout>
     );
