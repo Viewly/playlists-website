@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import CSSModules from "react-css-modules";
 import styles from '../layout.scss';
 
-const Video = ({ title, description, videoUrl }) => (
-  <Link to={videoUrl} styleName='video__container'>
-    <img src="https://grpd-wpengine.netdna-ssl.com/wp-content/uploads/2011/04/placeholder.png-498x280.png" />
+const Video = ({ id, title, description, playlistId, thumbnail_url }) => (
+  <Link to={`/player/${playlistId}/${id}`} styleName='video__container'>
+    <img src={thumbnail_url} />
     <div>
       <h5>{title}</h5>
       <p>{description}</p>
@@ -16,8 +16,9 @@ const Video = ({ title, description, videoUrl }) => (
 
 Video.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  videoUrl: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  playlistId: PropTypes.string.isRequired,
+  thumbnail_url: PropTypes.string.isRequired
 };
 
 export default CSSModules(Video, styles);

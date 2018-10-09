@@ -1,39 +1,24 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import Header from "./header";
 import Video from "./video";
 
+@connect((state) => ({
+  playlist: state.playlist
+}))
 export default class PlaylistInfo extends Component {
-  state = {
-    title: "Traktor Pro 2 for beginners",
-    author: "Red Axes",
-    videos: [
-      {
-        title: "Installation and set up",
-        description: "This video covers the process of setting up free demo version of TRAKTOR PRO",
-        thumbnail: "",
-        videoUrl: "/player/1/1abc",
-      },
-      {
-        title: "Installation and set up",
-        description: "This video covers the process of setting up free demo version of TRAKTOR PRO",
-        thumbnail: "",
-        videoUrl: "/player/1/2abc",
-      },
-      {
-        title: "Installation and set up",
-        description: "This video covers the process of setting up free demo version of TRAKTOR PRO",
-        thumbnail: "",
-        videoUrl: "/player/1/3abc",
-      },
-    ]
-  }
-
   render() {
+    const { playlist, match: { params: { playlistId } } } = this.props;
+    const isLoaded = playlist._status === 'LOADED';
+
+    if (!isLoaded) return <div>Loading ...</div>;
+
     return (
       <div>
-        <Header title={this.state.title} author={this.state.author} />
+        <Header title={playlist.title} author={playlist.user_id} />
 
-        {this.state.videos.map((item, idx) => <Video key={`video-${idx}`} {...item} />)}
+        {playlist?.videos.map((item, idx) => <Video key={`video-${idx}`} playlistId={playlistId} {...item} />)}
       </div>
     );
   }
