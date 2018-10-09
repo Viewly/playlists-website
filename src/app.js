@@ -9,11 +9,11 @@ import PlayerPage from './pages/player';
 class App extends Component {
   render() {
     return(
-      <React.Fragment>
+      <>
         <Route exact path='/' component={HomePage} />
         <Route path='/playlist/:playlistId' component={PlaylistPage} />
         <Route path='/player/:playlistId/:videoId' component={PlayerPage} />
-      </React.Fragment>
+      </>
     );
   }
 }
