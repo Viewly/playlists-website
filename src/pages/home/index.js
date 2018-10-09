@@ -1,13 +1,31 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
+import { playlistsFetch } from "../../actions";
+
+import Playlist from "./components/playlist";
+
+@connect((state) => ({
+  playlists: state.playlists
+}), (dispatch) => ({
+  playlistsFetch: () => dispatch(playlistsFetch())
+}))
 class HomePage extends Component {
+  componentDidMount () {
+    const { playlistsFetch } = this.props;
+
+    playlistsFetch();
+  }
+
+
   render() {
+    const { playlists } = this.props;
+
     return (
       <div>
-        Hello home
+        <h2>Welcome to Stitch playlists</h2>
         <br />
-        <Link to='/playlist/1'>Top10 cat videos</Link>
+        <Playlist isLoaded={true} data={playlists.data} />
       </div>
     );
   }
