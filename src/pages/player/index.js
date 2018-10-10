@@ -24,6 +24,12 @@ class PlayerPage extends Component {
     this.setState({ videoId: parseInt(videoId, 10) });
   }
 
+  componentDidUpdate (prevProps) {
+    if (this.props.match.params.videoId !== prevProps.match.params.videoId) {
+      this.setState({ videoId: parseInt(this.props.match.params.videoId, 10) });
+    }
+  }
+
   togglePlaylist = () => {
     this.setState({ showPlaylist: !this.state.showPlaylist });
   }
