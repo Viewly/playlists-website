@@ -6,6 +6,8 @@ import HomePage from './pages/home';
 import PlaylistPage from './pages/playlist';
 import PlayerPage from './pages/player';
 
+import _style from "./styles/global.scss";
+
 class App extends Component {
   render() {
     return(
