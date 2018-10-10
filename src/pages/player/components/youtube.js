@@ -8,6 +8,7 @@ export default class YouTube extends Component {
   }
 
   render() {
+    const { videoId } = this.props;
     const opts = {
       height: '100%',
       width: '100%',
@@ -22,7 +23,7 @@ export default class YouTube extends Component {
 
     return (
       <ReactYouTube
-        videoId="2g811Eo7K8U"
+        videoId={videoId}
         opts={opts}
         onReady={this._onReady}
       />

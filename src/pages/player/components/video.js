@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import YouTube from "./youtube";
 import styles from '../layout.scss';
 
-const VideoPlayer = ({ playlistUrl }) => (
+const VideoPlayer = ({ playlistUrl, video }) => (
   <div styleName='video__player'>
     <div styleName='video__player__top'>
       <Link to={playlistUrl}>&#10005;</Link>
@@ -13,7 +13,7 @@ const VideoPlayer = ({ playlistUrl }) => (
     </div>
 
     <div styleName='video__player__container'>
-      <YouTube />
+      {video && <YouTube videoId={video.video_id} />}
     </div>
 
     <div styleName='video__player__controls'>

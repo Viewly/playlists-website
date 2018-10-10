@@ -18,7 +18,7 @@ export default class PlaylistInfo extends Component {
       <div>
         <Header title={playlist.title} author={playlist.user_id} />
 
-        {playlist?.videos.map((item, idx) => <Video key={`video-${idx}`} playlistId={playlistId} {...item} />)}
+        {playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} playlistId={playlistId} {...item} />)}
       </div>
     );
   }
