@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Layout from "./layout";
 import VideoPlayer from "./components/video";
+import Playlist from "./components/playlist";
 
 import { playlistFetch } from "../../actions";
 
@@ -12,7 +13,8 @@ import { playlistFetch } from "../../actions";
 }))
 class PlayerPage extends Component {
   state = {
-    videoId: null
+    videoId: null,
+    showPlaylist: false
   }
 
   componentDidMount () {
@@ -22,18 +24,21 @@ class PlayerPage extends Component {
     this.setState({ videoId: parseInt(videoId, 10) });
   }
 
+  togglePlaylist = () => {
+    this.setState({ showPlaylist: !this.state.showPlaylist });
+  }
+
   render() {
     const { playlist } = this.props;
     const isLoaded = playlist._status === 'LOADED';
     const currentVideo = isLoaded
       ? playlist.videos.find(item => item.id === this.state.videoId)
       : false;
-    console.log('playlist', playlist);
-    console.log('current video', this.state.videoId, currentVideo);
 
     return (
       <Layout>
-        {isLoaded && <VideoPlayer playlistUrl={`/playlist/${playlist.id}`} video={currentVideo} />}
+        {isLoaded && <VideoPlayer togglePlaylist={this.togglePlaylist} playlistUrl={`/playlist/${playlist.id}`} video={currentVideo} />}
+        {isLoaded && this.state.showPlaylist && <Playlist togglePlaylist={this.togglePlaylist} videos={playlist.videos} />}
       </Layout>
     );
   }

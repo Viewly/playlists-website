@@ -4,21 +4,18 @@ import { Link } from "react-router-dom";
 import CSSModules from "react-css-modules";
 import styles from '../layout.scss';
 
-const Video = ({ id, title, description, playlist_id, thumbnail_url }) => (
-  <Link to={`/player/${playlist_id}/${id}`} styleName='video__container'>
+const PlaylistItem = ({ id, title, description, playlist_id, thumbnail_url }) => (
+  <Link to={`/player/${playlist_id}/${id}`} styleName='playlist__item'>
     <img src={thumbnail_url} />
-    <div>
-      <h5>{title}</h5>
-      <p>{description}</p>
-    </div>
+    <h5>{title}</h5>
   </Link>
 )
 
-Video.propTypes = {
+PlaylistItem.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   playlist_id: PropTypes.string.isRequired,
   thumbnail_url: PropTypes.string.isRequired
 };
 
-export default CSSModules(Video, styles);
+export default CSSModules(PlaylistItem, styles);

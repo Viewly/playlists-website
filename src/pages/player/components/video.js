@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import YouTube from "./youtube";
 import styles from '../layout.scss';
 
-const VideoPlayer = ({ playlistUrl, video }) => (
+const VideoPlayer = ({ playlistUrl, video, togglePlaylist }) => (
   <div styleName='video__player'>
     <div styleName='video__player__top'>
       <Link to={playlistUrl}>&#10005;</Link>
-      <span>playlist</span>
+      <button onClick={togglePlaylist}>playlist</button>
     </div>
 
     <div styleName='video__player__container'>

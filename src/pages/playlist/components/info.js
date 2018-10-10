@@ -9,7 +9,7 @@ import Video from "./video";
 }))
 export default class PlaylistInfo extends Component {
   render() {
-    const { playlist, match: { params: { playlistId } } } = this.props;
+    const { playlist } = this.props;
     const isLoaded = playlist._status === 'LOADED';
 
     if (!isLoaded) return <div>Loading ...</div>;
@@ -18,7 +18,7 @@ export default class PlaylistInfo extends Component {
       <div>
         <Header title={playlist.title} author={playlist.user_id} />
 
-        {playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} playlistId={playlistId} {...item} />)}
+        {playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} {...item} />)}
       </div>
     );
   }
