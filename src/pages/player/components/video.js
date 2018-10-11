@@ -2,7 +2,7 @@ import React from "react";
 import CSSModules from "react-css-modules";
 import { Link } from "react-router-dom";
 
-import YouTube from "./youtube";
+import Plyr from "./plyr";
 import styles from '../layout.scss';
 
 const VideoPlayer = ({ playlistUrl, video, togglePlaylist }) => (
@@ -13,7 +13,7 @@ const VideoPlayer = ({ playlistUrl, video, togglePlaylist }) => (
     </div>
 
     <div styleName='video__player__container'>
-      {video && <YouTube videoId={video.video_id} />}
+      {video && <Plyr videoId={video.video_id} />}
     </div>
 
     <div styleName='video__player__controls'>
