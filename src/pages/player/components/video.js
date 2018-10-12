@@ -13,12 +13,6 @@ const VideoPlayer = ({ playlistUrl, video, togglePlaylist }) => (
     <div className='video__player__container'>
       {video && <Plyr videoId={video.video_id} />}
     </div>
-
-    <div className='video__player__controls'>
-      <div>prev</div>
-      <div>pause</div>
-      <div>next</div>
-    </div>
   </div>
 )
 
