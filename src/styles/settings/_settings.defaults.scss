@@ -6,7 +6,7 @@
 // High-level base settings.
 $global-background-color:               #fff;
 $global-font-family:                    'Roboto', sans-serif;
-$global-font-size:                      16px;
+$global-font-size:                      15px;
 $global-line-height:                    24px;
 $global-link-color:                     darken(#006cff, 5%);
 $global-text-color:                     #1d1d1d;
@@ -32,7 +32,7 @@ $inuit-font-size-h6:                    18px;
 
 // Breakpoints.
 $mq-breakpoints: (
-    medium: 560px,
+    medium: 600px,
     large: 800px,
     extralarge: 1025px
 );

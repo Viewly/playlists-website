@@ -11,6 +11,7 @@
         padding-top: $spacing-unit-large;
     }
 
+    ul,
     p {
         &:not(:last-child) {
             margin-bottom: $spacing-unit;
@@ -27,17 +28,22 @@
         line-height: 1.1;
 
         @include mq(medium) {
-            font-size: 36px;
-        }
-
-        @include mq(large) {
-            font-size: 44px;
+            font-size: 34px;
         }
 
         &:not(:only-child) {
             margin-bottom: $spacing-unit;
         }
     }
+
+    /**
+     * Section intro
+     */
+    .c-section__intro {
+        color: #565656;
+        max-width: 40em;
+    }
+
 
 /**
  * Section gray
