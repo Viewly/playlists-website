@@ -1,0 +1,57 @@
+/*------------------------------------*\
+    #DEFAULT SETTINGS
+\*------------------------------------*/
+
+
+// High-level base settings.
+$global-background-color:               #f4f4f5;
+$global-font-family:                    'Roboto', sans-serif;
+$global-font-size:                      16px;
+$global-line-height:                    24px;
+$global-link-color:                     darken(#006cff, 5%);
+$global-text-color:                     #333;
+$global-border-radius:                  2px;
+$global-transition:                     all .2s ease;
+
+// Inuit settings.
+//
+// Annotation: Some of these settings are later aliased in
+// `_settings.aliases.scss` for easier use in the rest of the project.
+$inuit-global-font-size:                $global-font-size;
+$inuit-global-line-height:              $global-line-height;
+
+$inuit-global-spacing-unit:             20px;
+
+$inuit-font-size-h1:                    48px;
+$inuit-font-size-h2:                    44px;
+$inuit-font-size-h3:                    38px;
+$inuit-font-size-h4:                    24px;
+$inuit-font-size-h5:                    20px;
+$inuit-font-size-h6:                    18px;
+
+
+// Breakpoints.
+$mq-breakpoints: (
+    medium: 560px,
+    large: 800px,
+    extralarge: 1025px
+);
+
+
+// Uncomment the lines below to show debugging tools in the browser.
+// $mq-show-breakpoints: (medium, large, extralarge);
+// body::before { z-index: 9999 !important; }
+
+
+// Colors
+$colors: (
+    'blue': #0048ff,
+    'light-blue': #009eff,
+    'purple': #6e00ff,
+    'grey': #cdcdcd,
+    'light-grey': #e0e0e1,
+
+    // Brand colors
+    'brand-primary': 'blue',
+    'brand-secondary': 'light-blue'
+);
