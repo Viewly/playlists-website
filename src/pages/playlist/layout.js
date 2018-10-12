@@ -9,7 +9,7 @@ class Layout extends Component {
     const { children } = this.props;
 
     return (
-      <div className='wrapper'>
+      <div className='o-wrapper'>
         <Route exact path='/playlist/:playlistId' component={PlaylistSidebar} />
 
         <div className='wrapper__content'>
