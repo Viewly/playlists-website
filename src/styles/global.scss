@@ -1,11 +1,57 @@
-@import 'DELETE_ME.scss';
+/*------------------------------------*\
+    #GLOBAL STYLES
+\*------------------------------------*/
 
-body {
-    margin: 0;
-    background-color: #efefef;
-}
 
-h5 {
-    margin: 0;
-}
+// Settings
+@import 'settings/settings.defaults';
+@import '../../node_modules/inuitcss/settings/settings.core';
+@import 'settings/settings.aliases';
 
+
+// Tools
+@import '../../node_modules/inuitcss/tools/tools.font-size';
+@import '../../node_modules/inuitcss/tools/tools.clearfix';
+@import '../../node_modules/inuitcss/tools/tools.hidden';
+@import '../../node_modules/accoutrement-color/sass/color';
+@import '../../node_modules/sass-mq/mq';
+@import 'tools/tools.functions';
+@import 'tools/tools.mixins';
+@import 'tools/tools.aliases';
+
+
+// Generic
+@import '../../node_modules/inuitcss/generic/generic.normalize';
+@import '../../node_modules/inuitcss/generic/generic.reset';
+@import 'generic/generic.reset';
+@import '../../node_modules/inuitcss/generic/generic.box-sizing';
+
+
+// Elements
+@import '../../node_modules/inuitcss/elements/elements.page';
+@import 'elements/elements.page';
+@import '../../node_modules/inuitcss/elements/elements.headings';
+@import 'elements/elements.headings';
+@import 'elements/elements.links';
+@import '../../node_modules/inuitcss/elements/elements.images';
+
+
+// Objects
+@import '../../node_modules/inuitcss/objects/objects.wrapper';
+@import '../../node_modules/inuitcss/objects/objects.flag';
+@import '../../node_modules/inuit-flexgrid/objects/objects.grid';
+@import 'objects/objects.icons';
+
+
+// Components
+@import 'components/components.buttons';
+
+
+// Utilities
+@import '../../node_modules/inuitcss/utilities/utilities.widths';
+@import '../../node_modules/inuitcss/utilities/utilities.spacings';
+@import 'utilities/utilities.type';
+@import 'utilities/utilities.text';
+@import 'utilities/utilities.helpers';
+@import 'utilities/utilities.shame';
+>>>>>>> Add initial scss files

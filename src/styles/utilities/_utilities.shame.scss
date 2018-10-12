@@ -1,0 +1,14 @@
+/*------------------------------------*\
+    #SHAME
+\*------------------------------------*/
+
+.o-grid--auto {
+    > .o-grid__cell {
+        flex: 0 0 auto;
+        width: auto;
+    }
+}
+
+.o-wrapper {
+    background-color: blue;
+}

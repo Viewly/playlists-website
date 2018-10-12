@@ -1,0 +1,23 @@
+/*------------------------------------*\
+    #PAGE
+\*------------------------------------*/
+
+/**
+ * High-, page-level styling.
+ */
+html {
+    @include font-smoothing;
+    background-color: $global-background-color;
+    color: $global-text-color;
+    font-family: $global-font-family;
+    font-weight: 400;
+}
+
+/**
+ * 1. Prevent elements "bleeding out" of the viewport to create horizontal
+ *    scroll in Chrome and on iOS.
+ */
+body {
+    background-color: inherit;
+    overflow-x: hidden; /* [1] */
+}
