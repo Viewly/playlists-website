@@ -47,7 +47,7 @@ $tweakpoint-thumbnail:          large;
 }
 
     .c-thumbnail__link {
-        background-color: rgba(color('brand-primary'), 0);
+        background-color: rgba(#000, 0);
         border-radius: inherit;
         content: '';
         height: 100%;
@@ -61,7 +61,7 @@ $tweakpoint-thumbnail:          large;
         z-index: 20;
 
         .c-thumbnail:hover & {
-            background-color: rgba(color('brand-primary'), .8);
+            background-color: rgba(#000, .7);
         }
     }
 
@@ -98,10 +98,6 @@ $tweakpoint-thumbnail:          large;
 
         @include mq($tweakpoint-thumbnail) {
             opacity: 0;
-        }
-
-        .c-videos-list & {
-            opacity: .8;
         }
     }
 
