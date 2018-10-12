@@ -18,13 +18,6 @@ $tweakpoint-thumbnail:          large;
     will-change: transform;
     position: relative;
 
-    &::before {
-        content: '';
-        display: block;
-        padding-bottom: (9 / 16) * 100%;
-        width: 100%;
-    }
-
     @include mq($tweakpoint-thumbnail) {
         &:hover {
             text-decoration: none;
@@ -44,10 +37,17 @@ $tweakpoint-thumbnail:          large;
             }
         }
     }
+
+    &::before {
+        content: '';
+        display: block;
+        padding-bottom: (9 / 16) * 100%;
+        width: 100%;
+    }
 }
 
     .c-thumbnail__link {
-        background-color: rgba(color('brand-secondary'), 0);
+        background-color: rgba(color('brand-primary'), 0);
         border-radius: inherit;
         content: '';
         height: 100%;
@@ -61,7 +61,7 @@ $tweakpoint-thumbnail:          large;
         z-index: 20;
 
         .c-thumbnail:hover & {
-            background-color: rgba(color('brand-secondary'), .7);
+            background-color: rgba(color('brand-primary'), .8);
         }
     }
 
@@ -109,7 +109,7 @@ $tweakpoint-thumbnail:          large;
         @include invisible;
         color: #fff;
         display: block;
-        font-size: 44px;
+        font-size: 36px;
         height: 1em;
         line-height: 1;
         pointer-events: none;
@@ -121,18 +121,6 @@ $tweakpoint-thumbnail:          large;
         top: 50%;
         left: 50%;
         z-index: 30;
-
-        @include mq(medium) {
-            font-size: 36px;
-        }
-
-        @include mq(large) {
-            font-size: 40px;
-        }
-
-        @include mq(extralarge) {
-            font-size: 50px;
-        }
     }
 
     .c-thumbnail__edit {

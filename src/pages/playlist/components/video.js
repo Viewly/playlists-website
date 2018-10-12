@@ -7,7 +7,7 @@ const Video = ({ id, title, description, playlist_id, thumbnail_url }) => (
     <Link className='c-video' to={`/player/${playlist_id}/${id}`}>
       <div>
         <div class="c-thumbnail">
-          <div class="c-thumbnail__link" href=""></div>
+          <div class="c-thumbnail__link"></div>
           <img class="c-thumbnail__img js-thumbnail-img" src={thumbnail_url} />
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-poster="" class="c-thumbnail__play-icon"><path fill="currentColor" d="M1.425.35L14.575 8l-13.15 7.65V.35z"></path></svg>
           <span class="c-thumbnail__duration-indicator">6:55</span>
