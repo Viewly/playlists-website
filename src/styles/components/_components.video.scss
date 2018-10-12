@@ -1,0 +1,44 @@
+/*------------------------------------*\
+    #VIDEO
+\*------------------------------------*/
+
+.c-video {
+    display: block;
+    margin-bottom: $spacing-unit-large;
+
+    @include mq(medium) {
+        margin-bottom: $spacing-unit;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+    /**
+     * Video title
+     *
+     * 1. When titles are longer it doesn't look if they go all the way to the
+     *    end of the line. So let's make sure there are some breathing room.
+     */
+    .c-video__title {
+        $font-size: 15px;
+        $line-height: 1.45;
+        $max-number-of-lines: 2;
+        $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
+
+        color: #3a5161;
+        display: block;
+        font-size: $font-size;
+        font-weight: 700;
+        margin-bottom: $spacing-unit-tiny - 2;
+        max-height: round($max-height);
+        overflow: hidden;
+        padding-right: $spacing-unit-tiny; /* [1] */
+        transition: $global-transition;
+
+        &:hover {
+            color: color('brand-secondary');
+            text-decoration: none;
+        }
+    }
