@@ -17,8 +17,13 @@ export default class PlaylistInfo extends Component {
     return (
       <div>
         <Header title={playlist.title} author={playlist.user_id} />
-
-        {playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} {...item} />)}
+        <div className='c-section c-section--gray'>
+          <div className='o-wrapper'>
+            <div className='o-grid'>
+              {playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} {...item} />)}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

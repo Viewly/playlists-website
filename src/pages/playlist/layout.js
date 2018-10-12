@@ -6,13 +6,10 @@ class Layout extends Component {
     const { children } = this.props;
 
     return (
-      <div className='o-wrapper'>
-        <div className='wrapper__content'>
+      <div>
           <HeaderContainer />
-          <div>
+
             {children}
-          </div>
-        </div>
       </div>
     );
   }
