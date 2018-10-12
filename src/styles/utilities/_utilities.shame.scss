@@ -9,6 +9,10 @@
     }
 }
 
+.c-logo {
+    margin-right: $spacing-unit;
+}
+
 .wrapper {
     display: flex;
     height: 100vh;
@@ -18,25 +22,20 @@
     }
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid black;
-    height: 60px;
-
-    &__left {
-        display: flex;
-        width: 160px;
-        justify-content: space-between;
-    }
-
-    &__right {
-        width: 160px;
-        display: flex;
-        justify-content: space-between;
-    }
+.c-header {
+    border-bottom: 1px solid color('grey');
 }
+
+.c-header__wrapper {
+    align-items: center;
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+}
+
+    .c-header-wrapper__right {
+        margin-left: auto;
+    }
 
 
 .video__player {
