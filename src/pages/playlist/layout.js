@@ -7,9 +7,9 @@ class Layout extends Component {
 
     return (
       <div>
-          <HeaderContainer />
+        <HeaderContainer />
 
-            {children}
+        {children}
       </div>
     );
   }

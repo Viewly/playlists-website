@@ -9,6 +9,14 @@
     }
 }
 
+.o-grid {
+
+    & > .o-grid__cell--shrink {
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+}
+
 .c-logo {
     margin-right: $spacing-unit;
 }

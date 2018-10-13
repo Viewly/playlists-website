@@ -8,7 +8,7 @@ const Header = ({ title, author, tags }) => (
         <div className='o-grid__cell u-margin-bottom'>
           <img className='test' src='https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/28272ad2-e6c1-5ae4-9e69-cc12abbc04d8_thumbnail.jpg' />
         </div>
-        <div className='o-grid__cell'>
+        <div className='o-grid__cell o-grid__cell--shrink'>
           <div className='c-section__intro'>
             <h2 className='c-section__title'>{title}</h2>
             <ul className='o-grid o-grid--auto'>
