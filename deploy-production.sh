@@ -1,5 +1,5 @@
 #!/bin/sh
-npm build
+npm run build
 if [ -d "dist" ]; then
   cd dist
   aws s3 sync . s3://viewly-playlists-website
