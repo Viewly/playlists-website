@@ -101,6 +101,18 @@ $tweakpoint-thumbnail:          large;
         }
     }
 
+    .c-thumbnail__progress-bar {
+        background-color: color('brand-primary');
+        display: block;
+        height: 3px;
+        pointer-events: none;
+        transition: inherit;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 30;
+    }
+
     .c-thumbnail__play-icon {
         @include invisible;
         color: #fff;
