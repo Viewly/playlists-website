@@ -45,7 +45,14 @@ dl {
 }
 
 .c-header {
+    background-color: #fff;
     border-bottom: 1px solid color('grey');
+    height: $header-height;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .c-header__wrapper {
