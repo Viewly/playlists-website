@@ -2,7 +2,7 @@ import * as actions from '../actions';
 import { PENDING, LOADED, LOADING } from '../constants/status_types';
 
 const initialState = {
-  config: { apiUrl: 'http://142.93.105.235:3000/v1/api/' },
+  config: { apiUrl: 'https://api.vidflow.io/v1/api' },
   playlists: { _status: PENDING, data: [] },
   playlist: { _status: PENDING }
 };
