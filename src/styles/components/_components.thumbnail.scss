@@ -23,7 +23,8 @@ $tweakpoint-thumbnail:          large;
             text-decoration: none;
 
             .c-thumbnail__img,
-            .c-thumbnail__link {
+            .c-thumbnail__link,
+            .c-thumbnail__progress-bar {
                 transform: scale(1.02);
             }
 
