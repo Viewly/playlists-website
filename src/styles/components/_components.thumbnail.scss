@@ -115,13 +115,14 @@ $tweakpoint-thumbnail:          large;
 
     .c-thumbnail__play-icon {
         @include invisible;
+        background-color: rgba(color('brand-primary'), .6);
+        border-radius: 50%;
         color: #fff;
         display: block;
-        font-size: 36px;
+        font-size: 46px;
         height: 1em;
         line-height: 1;
         pointer-events: none;
-        text-shadow: 2px 2px 2px rgba(#333, .4);
         transform: translate(-50%, -50%);
         transition: inherit;
         width: 1em;
@@ -129,6 +130,15 @@ $tweakpoint-thumbnail:          large;
         top: 50%;
         left: 50%;
         z-index: 30;
+
+        svg {
+            height: 50%;
+            width: auto;
+            transform: translate(-50%, -50%) translateX(2px);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
     }
 
     .c-thumbnail__edit {
