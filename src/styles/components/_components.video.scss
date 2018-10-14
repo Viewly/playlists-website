@@ -4,11 +4,15 @@
 
 .c-video {
     display: block;
-    margin-bottom: $spacing-unit-large;
 
-    @include mq(medium) {
-        margin-bottom: $spacing-unit;
+    &:not(:last-child) {
+        margin-bottom: $spacing-unit-large;
+
+        @include mq(medium) {
+            margin-bottom: $spacing-unit;
+        }
     }
+
 
     &:hover {
         text-decoration: none;
@@ -38,7 +42,7 @@
         transition: $global-transition;
 
         &:hover {
-            color: color('brand-secondary');
+            color: color('brand-primary');
             text-decoration: none;
         }
     }

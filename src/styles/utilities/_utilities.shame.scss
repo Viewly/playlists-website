@@ -112,54 +112,30 @@ dl {
 
 }
 
-.playlist {
-    position: absolute;
+.c-player-playlist {
+    background-color: rgba(#000, .85);
+    height: 100vh;
+    color: #fff;
+    width: 100vw;
+    position: fixed;
     top: 0;
     right: 0;
-    width: 300px;
-    height: 100%;
-    border: 1px solid pink;
-    background-color: darkgray;
-    z-index: 5;
-    overflow-y: scroll;
-
-    &__container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    &__item {
-        display: flex;
-        flex-direction: column;
-
-        img {
-            width: calc(100% - 20px);
-            height: auto;
-        }
-
-        h5 {
-            margin: 5px 0 15px;
-        }
-    }
+    z-index: 900;
 }
 
-
-.video__container {
-    display: flex;
-    cursor: pointer;
-
-    &:hover {
-        background-color: lightgray;
+    .c-player-playlist__content {
+        background-color: rgba(#fff, .85);
+        height: 100%;
+        overflow-y: scroll;
+        padding: $spacing-unit;
+        width: 260px;
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 
-    img {
-        width: 190px;
-        height: 110px;
-        border: 1px solid gray;
-    }
-}
 
-.playlist__item {
+.playlist__item { // temporary code for the homepage
     display: flex;
     width: 800px;
     border: 1px solid black;
@@ -182,4 +158,3 @@ dl {
         flex: 1;
     }
 }
-
