@@ -40,6 +40,30 @@ $player-playlist-content-width:         260px;
         top: 0;
         right: 0;
 
+        /**
+         * Total scrollbar width
+         */
+        &::-webkit-scrollbar {
+            background-color: transparent;
+            width: 6px;
+        }
+
+        /**
+         * Background of the scrollbar except button or resizer
+         */
+        &::-webkit-scrollbar-track {
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+
+        /**
+         * Scrollbar itself
+         */
+        &::-webkit-scrollbar-thumb {
+            background: rgba(#000, .5);
+            border-radius: 10px;
+        }
+
         @at-root {
             @keyframes animate-playlist-content {
                 0% {
