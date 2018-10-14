@@ -2,11 +2,10 @@
     #PLAYER
 \*------------------------------------*/
 
-.c-player {
-
-}
+.c-player {}
 
     .c-player__container {
+        background-color: #000;
         position: absolute;
         top: 0;
         left: 0;
@@ -14,18 +13,46 @@
         bottom: 0;
         width: 100%;
         height: 100%;
-        background-color: black;
 
         .plyr {
             height: 100vh;
-
-            // iframe {
-            //     height: 100vh;
-            // }
         }
 
+        /**
+         * We need to override the way Plyr sets 16:9 aspect ratio because their
+         * approach doesn't allow it to have `max-height`. Defining `max-height`
+         * is needed in order to prevent video being cut off when it's higher
+         * than the viewport.
+         *
+         * 1. Override Plyr default styles. Using `!important` because some of
+         *    the styles are added via js as inline css.
+         * 2. Make sure the video is not cut off when it's higher than the
+         *    viewport.
+         * 3. Vertically center the video within its container.
+         * 4. 16:9 aspect ratio.
+         */
         .plyr__video-wrapper {
-            transform: translateY(-50%);
-            top: 50%;
+            height: auto; /* [1] */
+            max-height: 100vh; /* [2] */
+            padding-bottom: 0 !important; /* [1] */
+            transform: translateY(-50%); /* [3] */
+            position: relative;
+            top: 50%; /* [3] */
+
+            &::before {
+                content: '';
+                display: block;
+                padding-bottom: 56.25%; /* [4] */
+                width: 100%;
+            }
+
+            > iframe {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+            }
         }
     }
