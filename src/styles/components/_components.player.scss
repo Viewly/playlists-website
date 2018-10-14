@@ -1,0 +1,31 @@
+/*------------------------------------*\
+    #PLAYER
+\*------------------------------------*/
+
+.c-player {
+
+}
+
+    .c-player__container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+
+        .plyr {
+            height: 100vh;
+
+            // iframe {
+            //     height: 100vh;
+            // }
+        }
+
+        .plyr__video-wrapper {
+            transform: translateY(-50%);
+            top: 50%;
+        }
+    }

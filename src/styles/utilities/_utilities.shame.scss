@@ -46,41 +46,16 @@ dl {
     z-index: 1000;
 }
 
-.c-header__wrapper {
-    align-items: center;
-    display: flex;
-    height: 60px;
-    justify-content: space-between;
-}
-
-    .c-header-wrapper__right {
-        margin-left: auto;
+    .c-header__wrapper {
+        align-items: center;
+        display: flex;
+        height: 60px;
+        justify-content: space-between;
     }
 
-
-.video__player {
-    // width: 100%;
-    // height: 100%;
-
-    &__container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        background-color: black;
-
-        .plyr {
-            height: 100vh;
-
-            iframe {
-                height: 100vh;
-            }
+        .c-header-wrapper__right {
+            margin-left: auto;
         }
-    }
-}
 
 
 .playlist__item { // temporary code for the homepage
@@ -121,7 +96,7 @@ dl {
     background-color: rgba(#000, .6);
     color: #fff;
     font-size: 24px;
-    padding: $spacing-unit-tiny 8px;
+    padding: $spacing-unit-small 14px;
     position: absolute;
     left: 0;
     top: 0;

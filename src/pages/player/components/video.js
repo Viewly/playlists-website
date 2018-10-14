@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Plyr from "./plyr";
 
 const VideoPlayer = ({ playlistUrl, video, togglePlaylist }) => (
-  <div className='video__player'>
+  <div className='c-player'>
     <div>
       <Link className='c-btn button-back' to={playlistUrl}>&times;  </Link>
       <button className='c-btn show-playlist' onClick={togglePlaylist}>
@@ -16,7 +16,7 @@ const VideoPlayer = ({ playlistUrl, video, togglePlaylist }) => (
       </button>
     </div>
 
-    <div className='video__player__container'>
+    <div className='c-player__container'>
       {video && <Plyr videoId={video.video_id} />}
     </div>
   </div>
