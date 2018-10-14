@@ -11,7 +11,6 @@
 .c-btn {
     @include font-smoothing; /* [1] */
     background: none;
-    border-radius: 20px;
     border: none;
     color: #fff;
     display: inline-block;
@@ -58,6 +57,7 @@
 .c-btn--primary {
     background-color: color('brand-primary');
     border: 1px solid color('brand-primary');
+    border-radius: 20px;
 
     &:not(:disabled) {
         &:hover {
@@ -74,6 +74,7 @@
     background-color: color('grey');
     border: 1px solid color('grey');
     color: color('dark-grey');
+    border-radius: 20px;
 
     &:not(:disabled) {
         &:hover {

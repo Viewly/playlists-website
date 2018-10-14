@@ -4,10 +4,16 @@ import PlaylistItem from "./playlist_item";
 
 const Playlist = ({ videos, togglePlaylist }) => (
   <div className='c-player-playlist'>
-    <button onClick={togglePlaylist}>X</button>
+    <button className='c-btn c-player-playlist__btn-hide' onClick={togglePlaylist}>
+      <svg className='o-icon' width="24" height="18" viewBox="0 0 24 18" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 9H13M23 1H5M23 17H5M5 13l4-4-4-4M9 9H1"/>
+        </g>
+      </svg>
+    </button>
 
     <div className='c-player-playlist__content'>
-    {videos && videos.map((item, idx) => <PlaylistItem key={`video-${idx}`} {...item} />)}
+      {videos && videos.map((item, idx) => <PlaylistItem key={`video-${idx}`} {...item} />)}
     </div>
   </div>
 )

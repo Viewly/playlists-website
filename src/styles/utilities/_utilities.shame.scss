@@ -112,28 +112,6 @@ dl {
 
 }
 
-.c-player-playlist {
-    background-color: rgba(#000, .85);
-    height: 100vh;
-    color: #fff;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 900;
-}
-
-    .c-player-playlist__content {
-        background-color: rgba(#fff, .85);
-        height: 100%;
-        overflow-y: scroll;
-        padding: $spacing-unit;
-        width: 260px;
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
-
 
 .playlist__item { // temporary code for the homepage
     display: flex;
