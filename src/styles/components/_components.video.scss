@@ -13,7 +13,6 @@
         }
     }
 
-
     &:hover {
         text-decoration: none;
     }
@@ -26,7 +25,7 @@
      *    end of the line. So let's make sure there are some breathing room.
      */
     .c-video__title {
-        $font-size: 15px;
+        $font-size: 14px;
         $line-height: 1.45;
         $max-number-of-lines: 2;
         $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
@@ -40,6 +39,10 @@
         overflow: hidden;
         padding-right: $spacing-unit-tiny; /* [1] */
         transition: $global-transition;
+
+        .c-player-playlist & {
+            color: #fff;
+        }
 
         &:hover {
             color: color('brand-primary');

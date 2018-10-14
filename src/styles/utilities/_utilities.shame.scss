@@ -93,20 +93,10 @@ dl {
         position: absolute;
         top: 0;
         width: 100%;
-        height: 60px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        opacity: .5;
         z-index: 2;
-
-        & > * {
-            font-size: 20px;
-            padding: 20px;
-            text-decoration: none;
-            color: white;
-            text-shadow: 2px 2px black;
-        }
     }
 
 
@@ -135,4 +125,13 @@ dl {
     &__info {
         flex: 1;
     }
+}
+
+.show-playlist {
+    background-color: rgba(#000, .6);
+    color: #fff;
+    padding: $spacing-unit-small 1.25em $spacing-unit-small 1em;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
