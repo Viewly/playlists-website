@@ -40,10 +40,6 @@
         padding-right: $spacing-unit-tiny; /* [1] */
         transition: $global-transition;
 
-        .c-player-playlist & {
-            color: #fff;
-        }
-
         &:hover {
             color: color('brand-primary');
             text-decoration: none;

@@ -79,6 +79,10 @@ $tweakpoint-thumbnail:          large;
         bottom: 0;
         left: 0;
         z-index: 10;
+
+        .c-player-playlist & {
+            filter: grayscale(20%);
+        }
     }
 
     .c-thumbnail__duration-indicator {
