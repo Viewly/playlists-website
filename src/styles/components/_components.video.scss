@@ -6,11 +6,7 @@
     display: block;
 
     &:not(:last-child) {
-        margin-bottom: $spacing-unit-large;
-
-        @include mq(medium) {
-            margin-bottom: $spacing-unit;
-        }
+        margin-bottom: $spacing-unit;
     }
 
     &:hover {

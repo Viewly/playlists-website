@@ -9,7 +9,6 @@ $player-playlist-content-width:         260px;
 
 
 .c-player-playlist {
-    background-color: rgba(#000, .8);
     height: 100vh;
     color: #fff;
     width: 100vw;
@@ -17,6 +16,18 @@ $player-playlist-content-width:         260px;
     top: 0;
     right: 0;
     z-index: 900;
+
+    &::before {
+        animation: animate-playlist-overlay .15s ease;
+        background-color: rgba(#000, .8);
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+    }
 }
 
     .c-player-playlist__btn-hide {
@@ -26,10 +37,11 @@ $player-playlist-content-width:         260px;
         position: absolute;
         right: $player-playlist-content-width;
         top: 0;
+        z-index: 200;
     }
 
     .c-player-playlist__content {
-        animation: animate-playlist-content .2s ease;
+        animation: animate-playlist-content .15s ease-out;
         background-color: rgba(#fff, .85);
         height: 100%;
         overflow-y: scroll;
@@ -39,6 +51,7 @@ $player-playlist-content-width:         260px;
         position: absolute;
         top: 0;
         right: 0;
+        z-index: 200;
 
         /**
          * Total scrollbar width
@@ -60,7 +73,7 @@ $player-playlist-content-width:         260px;
          * Scrollbar itself
          */
         &::-webkit-scrollbar-thumb {
-            background: rgba(#000, .5);
+            background: rgba(color('brand-primary'), .9);
             border-radius: 10px;
         }
 
@@ -72,6 +85,17 @@ $player-playlist-content-width:         260px;
 
                 100% {
                     transform: translateX(0);
+                }
+            }
+
+
+            @keyframes animate-playlist-overlay {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
                 }
             }
         }

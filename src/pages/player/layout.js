@@ -5,7 +5,7 @@ class Layout extends Component {
     const { children } = this.props;
 
     return (
-      <div className='wrapper'>
+      <div>
         {children}
       </div>
     );

@@ -35,15 +35,6 @@ dl {
     }
 }
 
-.wrapper {
-    display: flex;
-    height: 100vh;
-
-    &__content {
-        width: 100%;
-    }
-}
-
 .c-header {
     background-color: #fff;
     border-bottom: 1px solid color('grey');
