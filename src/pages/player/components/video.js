@@ -5,8 +5,8 @@ import Plyr from "./plyr";
 
 const VideoPlayer = ({ playlistUrl, video, togglePlaylist }) => (
   <div className='video__player'>
-    <div className='video__player__top'>
-      <Link to={playlistUrl}>&#10005;</Link>
+    <div>
+      <Link className='c-btn button-back' to={playlistUrl}>&times;  </Link>
       <button className='c-btn show-playlist' onClick={togglePlaylist}>
         <svg className='o-icon' width='21' height='18' viewBox='0 0 21 18' xmlns='http://www.w3.org/2000/svg'>
           <g stroke='currentColor' stroke-width='2' fill='none' fill-rule='evenodd' stroke-linecap='round' stroke-linejoin='round'>

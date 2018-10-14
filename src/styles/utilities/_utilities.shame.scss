@@ -74,23 +74,12 @@ dl {
 
         .plyr {
             height: 100vh;
+
             iframe {
                 height: 100vh;
             }
         }
     }
-
-    &__top {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 2;
-    }
-
-
 }
 
 
@@ -125,4 +114,16 @@ dl {
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 800;
+}
+
+.button-back {
+    background-color: rgba(#000, .6);
+    color: #fff;
+    font-size: 24px;
+    padding: $spacing-unit-tiny 8px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 800;
 }
