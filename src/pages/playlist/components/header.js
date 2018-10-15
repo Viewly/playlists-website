@@ -7,7 +7,7 @@ const Header = ({ title, author, tags, poster, description }) => (
       <div className='o-grid o-grid--auto'>
         <div className='o-grid__cell u-margin-bottom'>
           {/* TODO - get URL from env or config */}
-          <img src={`https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/${poster}`} />
+          <img className='test' src={`https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/${poster}`} />
         </div>
         <div className='o-grid__cell o-grid__cell--shrink'>
           <div className='c-section__intro'>
