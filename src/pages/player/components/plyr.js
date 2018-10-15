@@ -1,18 +1,23 @@
 import React from "react";
 import plyr from "plyr";
+import { VIDEO_ENDED } from "../../../constants/youtube_status";
 
 class PlyrComponent extends React.Component {
   componentDidMount() {
     const options = {
       autoplay: true,
-      muted: true
+      invertTime: false,
+      settings: [ 'speed' ],
+      keyboard: { global: true }
     };
 
     this.player = plyr.setup('.plyr-player', options);
+
+    this.player[0].on('timeupdate', this.handleEvent)
+    this.player[0].on('statechange', this.handleEvent)
   }
 
   componentWillUnmount() {
-    console.log('unmount');
     if (this.player.length > 0) {
       for (const playerEl of this.player) {
         playerEl.destroy();
@@ -32,6 +37,25 @@ class PlyrComponent extends React.Component {
         ],
       }
     }
+  }
+
+  handleEvent = (evnt) => {
+    const { onVideoEnd } = this.props;
+
+    switch (evnt.type) {
+      case 'statechange':
+        const code = evnt.detail.code;
+        code === VIDEO_ENDED && onVideoEnd();
+        break;
+      case 'timeupdate':
+        const percentage = this.calculatePercentage(this.player[0].currentTime, this.player[0].duration);
+        console.log('timeupdate', `${percentage}%`); // TODO
+        break;
+    }
+  }
+
+  calculatePercentage = (current, max) => {
+    return Math.round((current * 100) / max);
   }
 
   render() {
