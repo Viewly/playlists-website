@@ -41,10 +41,14 @@
 @import '../../node_modules/inuitcss/objects/objects.flag';
 @import '../../node_modules/inuit-flexgrid/objects/objects.grid';
 @import 'objects/objects.icons';
+@import 'objects/objects.avatars';
 
 
 // Components
 @import 'components/components.buttons';
+@import 'components/components.thumbnail';
+@import 'components/components.video';
+@import 'components/components.sections';
 
 
 // Utilities

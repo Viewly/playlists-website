@@ -4,12 +4,12 @@
 
 
 // High-level base settings.
-$global-background-color:               #f4f4f5;
+$global-background-color:               #fff;
 $global-font-family:                    'Roboto', sans-serif;
-$global-font-size:                      16px;
+$global-font-size:                      15px;
 $global-line-height:                    24px;
 $global-link-color:                     darken(#006cff, 5%);
-$global-text-color:                     #333;
+$global-text-color:                     #1d1d1d;
 $global-border-radius:                  2px;
 $global-transition:                     all .2s ease;
 
@@ -32,7 +32,7 @@ $inuit-font-size-h6:                    18px;
 
 // Breakpoints.
 $mq-breakpoints: (
-    medium: 560px,
+    medium: 600px,
     large: 800px,
     extralarge: 1025px
 );
@@ -47,11 +47,16 @@ $mq-breakpoints: (
 $colors: (
     'blue': #0048ff,
     'light-blue': #009eff,
-    'purple': #6e00ff,
-    'grey': #cdcdcd,
-    'light-grey': #e0e0e1,
+    'orange': #fba311,
+    'grey': #e5e5e5,
+    'light-grey': #f8f8f8,
+    'dark-grey': #8a8a8a,
 
     // Brand colors
-    'brand-primary': 'blue',
+    'brand-primary': 'orange',
     'brand-secondary': 'light-blue'
 );
+
+
+// Header
+$header-height:                            60px;

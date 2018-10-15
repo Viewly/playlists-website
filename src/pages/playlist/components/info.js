@@ -17,8 +17,22 @@ export default class PlaylistInfo extends Component {
     return (
       <div>
         <Header title={playlist.title} author={playlist.user_id} />
-
-        {playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} {...item} />)}
+        <div className='c-section c-section--grey'>
+          <div className='o-wrapper'>
+            <div className='o-grid o-grid--auto o-grid--middle o-grid--between'>
+              <div className='o-grid__cell u-margin-bottom'>
+                <span><b>7 videos</b></span>
+              </div>
+              <div className='o-grid__cell u-margin-bottom'>
+                <a href='#' className='c-btn c-btn--secondary'>Suggest a video</a>
+                <a href='#' className='c-btn c-btn--primary u-margin-left-small'>Play all</a>
+              </div>
+            </div>
+            <div className='o-grid'>
+              {playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} {...item} />)}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

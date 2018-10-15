@@ -1,0 +1,176 @@
+/*------------------------------------*\
+    #THUMBNAIL
+\*------------------------------------*/
+
+$tweakpoint-thumbnail:          large;
+
+
+
+
+
+.c-thumbnail {
+    background-color: darken($global-background-color, 10%);
+    border-radius: 2px;
+    display: block;
+    margin-bottom: $spacing-unit-tiny;
+    transform-origin: 50% 100%;
+    transition: $global-transition;
+    will-change: transform;
+    position: relative;
+
+    @include mq($tweakpoint-thumbnail) {
+        &:hover {
+            text-decoration: none;
+
+            .c-thumbnail__img,
+            .c-thumbnail__link,
+            .c-thumbnail__progress-bar {
+                transform: scale(1.02);
+            }
+
+            .c-thumbnail__play-icon,
+            .c-thumbnail__edit {
+                @include visible;
+            }
+
+            .c-thumbnail__duration-indicator {
+                opacity: 1;
+            }
+        }
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        padding-bottom: (9 / 16) * 100%;
+        width: 100%;
+    }
+}
+
+    .c-thumbnail__link {
+        background-color: rgba(#000, 0);
+        border-radius: inherit;
+        content: '';
+        height: 100%;
+        transform-origin: inherit;
+        transition: inherit;
+        will-change: inherit;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 20;
+
+        .c-thumbnail:hover & {
+            background-color: rgba(#000, .7);
+        }
+    }
+
+    .c-thumbnail__img {
+        border-radius: inherit;
+        display: block;
+        height: 100%;
+        transform-origin: inherit;
+        transition: inherit;
+        width: 100%;
+        will-change: inherit;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    .c-thumbnail__duration-indicator {
+        background-color: #333;
+        border-radius: 2px;
+        color: #fff;
+        display: block;
+        font-size: 12px;
+        line-height: 1.2;
+        opacity: .8;
+        padding: 2px 4px;
+        pointer-events: none;
+        transition: inherit;
+        position: absolute;
+        bottom: $spacing-unit-tiny;
+        right: $spacing-unit-tiny;
+        z-index: 30;
+
+        @include mq($tweakpoint-thumbnail) {
+            opacity: 0;
+        }
+    }
+
+    .c-thumbnail__progress-bar {
+        background-color: color('brand-primary');
+        display: block;
+        height: 3px;
+        pointer-events: none;
+        transition: inherit;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 30;
+    }
+
+    .c-thumbnail__play-icon {
+        @include invisible;
+        background-color: rgba(color('brand-primary'), .6);
+        border-radius: 50%;
+        color: #fff;
+        display: block;
+        font-size: 46px;
+        height: 1em;
+        line-height: 1;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: inherit;
+        width: 1em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 30;
+
+        svg {
+            height: 50%;
+            width: auto;
+            transform: translate(-50%, -50%) translateX(2px);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+    }
+
+    .c-thumbnail__edit {
+        background-color: #fff;
+        border-radius: 2px;
+        color: color('brand-secondary');
+        display: block;
+        height: 22px;
+        transition: inherit;
+        width: 24px;
+        position: absolute;
+        top: $spacing-unit-tiny;
+        right: $spacing-unit-tiny;
+        z-index: 40;
+
+        @include mq($tweakpoint-thumbnail) {
+            @include invisible;
+        }
+
+        &:hover {
+            background-color: color('brand-secondary');
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .o-icon {
+            font-size: 14px;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+    }

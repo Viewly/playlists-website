@@ -1,0 +1,53 @@
+/*------------------------------------*\
+    #SECTIONS
+\*------------------------------------*/
+
+.c-section {
+    padding-bottom: $spacing-unit;
+    padding-top: $spacing-unit;
+
+    @include mq(medium) {
+        padding-bottom: $spacing-unit-large;
+        padding-top: $spacing-unit-large;
+    }
+
+    ul,
+    p {
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit;
+        }
+    }
+}
+
+    /**
+     * Section title
+     */
+    .c-section__title {
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.1;
+
+        @include mq(medium) {
+            font-size: 34px;
+        }
+
+        &:not(:only-child) {
+            margin-bottom: $spacing-unit;
+        }
+    }
+
+    /**
+     * Section intro
+     */
+    .c-section__intro {
+        color: #565656;
+        max-width: 40em;
+    }
+
+
+/**
+ * Section gray
+ */
+.c-section--grey {
+    background-color: color('light-grey');
+}
