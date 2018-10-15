@@ -15,7 +15,7 @@ const Video = ({ id, title, description, playlist_id, thumbnail_url }) => (
           <img className='c-thumbnail__img js-thumbnail-img' src={thumbnail_url} />
           <div className='c-thumbnail__play-icon'>
             <svg  width='16' height='22' viewBox='0 0 16 22' xmlns='http://www.w3.org/2000/svg'>
-              <path d='M14.837 11.818L1.575 21.142A1 1 0 0 1 0 20.324V1.676A1 1 0 0 1 1.575.858l13.262 9.324a1 1 0 0 1 0 1.636z' fill='currentColor' fill-rule='evenodd'/>
+              <path d='M14.837 11.818L1.575 21.142A1 1 0 0 1 0 20.324V1.676A1 1 0 0 1 1.575.858l13.262 9.324a1 1 0 0 1 0 1.636z' fill='currentColor' fillRule='evenodd'/>
             </svg>
           </div>
           <span className='c-thumbnail__progress-bar' style={progressBarWidth }></span>
