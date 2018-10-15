@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Header = ({ title, author, tags }) => (
+const Header = ({ title, author, tags, poster, description }) => (
   <div className='c-section'>
     <div className='o-wrapper'>
       <div className='o-grid o-grid--auto'>
         <div className='o-grid__cell u-margin-bottom'>
-          <img className='test' src='https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/28272ad2-e6c1-5ae4-9e69-cc12abbc04d8_thumbnail.jpg' />
+          {/* TODO - get URL from env or config */}
+          <img src={`https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/${poster}`} />
         </div>
         <div className='o-grid__cell o-grid__cell--shrink'>
           <div className='c-section__intro'>
@@ -36,11 +37,11 @@ const Header = ({ title, author, tags }) => (
               <li className='o-grid__cell'>
                 <dl>
                   <dt>Category</dt>
-                  <dd>Music</dd>
+                  <dd>{tags[0]}</dd>
                 </dl>
               </li>
             </ul>
-            <p>Created in collaboration with Digital DJ Tips, the following step-by-step TRAKTOR tutorials cover everything from getting TRAKTOR set up and how your music files are imported, to cueing, EQ, loops, and more.</p>
+            <p>{description}</p>
           </div>
         </div>
       </div>
@@ -51,6 +52,8 @@ const Header = ({ title, author, tags }) => (
 Header.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  poster: PropTypes.string,
+  description: PropTypes.string,
   tags: PropTypes.array
 };
 
