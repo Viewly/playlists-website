@@ -1,0 +1,102 @@
+/*------------------------------------*\
+    #PLAYER PLAYLIST
+\*------------------------------------*/
+
+$player-playlist-content-width:         260px;
+
+
+
+
+
+.c-player-playlist {
+    height: 100vh;
+    color: #fff;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 900;
+
+    &::before {
+        animation: animate-playlist-overlay .15s ease;
+        background-color: rgba(#000, .8);
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+    }
+}
+
+    .c-player-playlist__btn-hide {
+        background-color: rgba(#000, .5);
+        color: #fff;
+        padding: $spacing-unit-small 1.25em $spacing-unit-small 1em;
+        position: absolute;
+        right: $player-playlist-content-width;
+        top: 0;
+        z-index: 200;
+    }
+
+    .c-player-playlist__content {
+        animation: animate-playlist-content .15s ease-out;
+        background-color: rgba(#fff, .85);
+        height: 100%;
+        overflow-y: scroll;
+        padding: $spacing-unit;
+        will-change: transform;
+        width: $player-playlist-content-width;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 200;
+
+        /**
+         * Total scrollbar width
+         */
+        &::-webkit-scrollbar {
+            background-color: transparent;
+            width: 6px;
+        }
+
+        /**
+         * Background of the scrollbar except button or resizer
+         */
+        &::-webkit-scrollbar-track {
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+
+        /**
+         * Scrollbar itself
+         */
+        &::-webkit-scrollbar-thumb {
+            background: rgba(color('brand-primary'), .9);
+            border-radius: 10px;
+        }
+
+        @at-root {
+            @keyframes animate-playlist-content {
+                0% {
+                    transform: translateX(100%);
+                }
+
+                100% {
+                    transform: translateX(0);
+                }
+            }
+
+
+            @keyframes animate-playlist-overlay {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+        }
+    }

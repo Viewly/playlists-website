@@ -4,9 +4,8 @@
 
 .c-video {
     display: block;
-    margin-bottom: $spacing-unit-large;
 
-    @include mq(medium) {
+    &:not(:last-child) {
         margin-bottom: $spacing-unit;
     }
 
@@ -22,7 +21,7 @@
      *    end of the line. So let's make sure there are some breathing room.
      */
     .c-video__title {
-        $font-size: 15px;
+        $font-size: 14px;
         $line-height: 1.45;
         $max-number-of-lines: 2;
         $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
@@ -38,7 +37,7 @@
         transition: $global-transition;
 
         &:hover {
-            color: color('brand-secondary');
+            color: color('brand-primary');
             text-decoration: none;
         }
     }
