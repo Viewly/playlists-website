@@ -2,9 +2,10 @@
     #THUMBNAIL
 \*------------------------------------*/
 
-$tweakpoint-thumbnail:          large;
+$tweakpoint-thumbnail:              large;
 
-$thumbnail-border-radius:       4px;
+$thumbnail-border-radius:           4px;
+$thumbnail-progress-bar-height:     3px;
 
 
 
@@ -99,7 +100,7 @@ $thumbnail-border-radius:       4px;
         pointer-events: none;
         transition: inherit;
         position: absolute;
-        bottom: $spacing-unit-tiny;
+        bottom: $spacing-unit-tiny + $thumbnail-progress-bar-height;
         right: $spacing-unit-tiny;
         z-index: 30;
 
@@ -116,7 +117,7 @@ $thumbnail-border-radius:       4px;
         border-bottom-left-radius: $thumbnail-border-radius;
         border-bottom-right-radius: $thumbnail-border-radius;
         display: block;
-        height: 4px;
+        height: $thumbnail-progress-bar-height;
         overflow: hidden; /*[1] */
         pointer-events: none;
         transition: inherit;
