@@ -2,15 +2,22 @@
     #PLAYER PLAYLIST
 \*------------------------------------*/
 
-$player-playlist-content-width:         260px;
+$player-playlist-content-transition:        all .15s ease-out;
+$player-playlist-content-width:             260px;
 
 
 
 
-
+/**
+ * 1. Since playlist overlay takes over the entire screen, when it's not visible
+ *    prevent it from blocking video player interactions.
+ * 2. Bring back defult styles when playlist is visible, so that playlist can be
+ *    interacted with.
+ */
 .c-player-playlist {
-    height: 100vh;
     color: #fff;
+    height: 100vh;
+    pointer-events: none; /* [1] */
     width: 100vw;
     position: fixed;
     top: 0;
@@ -18,9 +25,11 @@ $player-playlist-content-width:         260px;
     z-index: 900;
 
     &::before {
-        animation: animate-playlist-overlay .15s ease;
+        @include invisible;
         background-color: rgba(#000, .8);
         content: '';
+        transition: all .15s ease;
+        will-change: opacity, visibility;
         position: absolute;
         top: 0;
         left: 0;
@@ -29,33 +38,73 @@ $player-playlist-content-width:         260px;
         z-index: 100;
     }
 
-    &--hidden {
-        display: none;
+    &.is-visible {
+        pointer-events: auto; /* [2] */
+
+        &::before {
+            @include visible;
+        }
     }
 }
 
+
+    /**
+     * 1. Since we prevent the playlist from blocking video player interactions
+     *    via `pointer-events: none`, here we need to make sure the button is
+     *    clickable.
+     */
     .c-player-playlist__btn-hide {
         background-color: rgba(#000, .5);
         color: #fff;
         padding: $spacing-unit-small 1.25em $spacing-unit-small 1em;
+        transition: $player-playlist-content-transition;
+        pointer-events: auto; /* [1] */
+        will-change: transform;
         position: absolute;
-        right: $player-playlist-content-width;
+        right: 0;
         top: 0;
         z-index: 200;
+
+        .o-icon {
+            transition: transform .2s ease;
+            will-change: transform;
+        }
+
+        &:hover {
+            background-color: rgba(#000, .65);
+
+            .o-icon {
+                transform: translateX(-1px);
+            }
+        }
+
+        .c-player-playlist.is-visible & {
+            transform: translateX(-$player-playlist-content-width);
+
+            .o-icon {
+                transform: rotate(180deg);
+            }
+        }
+
     }
 
     .c-player-playlist__content {
-        animation: animate-playlist-content .15s ease-out;
         background-color: rgba(#fff, .95);
         height: 100%;
         overflow-y: scroll;
         padding: $spacing-unit;
+        transform: translateX(100%);
+        transition: $player-playlist-content-transition;
         will-change: transform;
         width: $player-playlist-content-width;
         position: absolute;
         top: 0;
         right: 0;
         z-index: 200;
+
+        .c-player-playlist.is-visible & {
+            transform: translateX(0);
+        }
 
         /**
          * Total scrollbar width
@@ -79,28 +128,5 @@ $player-playlist-content-width:         260px;
         &::-webkit-scrollbar-thumb {
             background: rgba(color('brand-primary'), .9);
             border-radius: 10px;
-        }
-
-        @at-root {
-            @keyframes animate-playlist-content {
-                0% {
-                    transform: translateX(100%);
-                }
-
-                100% {
-                    transform: translateX(0);
-                }
-            }
-
-
-            @keyframes animate-playlist-overlay {
-                0% {
-                    opacity: 0;
-                }
-
-                100% {
-                    opacity: 1;
-                }
-            }
         }
     }
