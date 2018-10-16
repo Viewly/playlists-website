@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PlaylistItem from "./playlist_item";
 
-const Playlist = ({ videos, togglePlaylist, isVisible, onClick }) => (
+const Playlist = ({ title, videos, togglePlaylist, isVisible, percentage, onClick }) => (
   <div onClick={onClick} className={`c-player-playlist ${isVisible ? 'is-visible' : ''}`}>
 
     <button className='c-btn c-player-playlist__btn-hide' onClick={togglePlaylist}>
@@ -13,6 +12,8 @@ const Playlist = ({ videos, togglePlaylist, isVisible, onClick }) => (
       </svg>
     </button>
     <div className='c-player-playlist__content'>
+      <h5>{title}</h5>
+      <p style={{ color: 'orange' }}>{percentage}% completed</p>
       {videos && videos.map((item, idx) => <PlaylistItem key={`video-${idx}`} onPlayNext={togglePlaylist} {...item} />)}
     </div>
   </div>
