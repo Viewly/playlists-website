@@ -1,3 +1,13 @@
+import moment from 'moment';
+import 'moment-duration-format';
+
+export function convertYoutubeDuration (duration) {
+  return moment
+    .duration(duration)
+    .format('h:mm:ss')
+    .padStart(4, '0:0');
+}
+
 export function getPlaylistProgress(playlistId) {
   const storageKey = `progress-${playlistId}`;
   const playlist = JSON.parse(localStorage.getItem(storageKey)) || {};
