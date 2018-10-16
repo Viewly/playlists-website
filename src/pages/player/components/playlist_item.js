@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const PlaylistItem = ({ id, title, playlist_id, thumbnail_url, percentage, onPlayNext }) => (
-  <Link onClick={onPlayNext} className='c-video' to={`/player/${playlist_id}/${id}`}>
+const PlaylistItem = ({ id, title, playlist_id, thumbnail_url, percentage, onPlayNext, isCurrent }) => (
+  <Link onClick={onPlayNext} className={`c-video ${isCurrent ? 'is-current' : ''}`} to={`/player/${playlist_id}/${id}`}>
     <div>
       <div className='c-thumbnail'>
         <div className='c-thumbnail__link'></div>
