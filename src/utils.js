@@ -16,7 +16,7 @@ export function updateVideosWithProgresses(videos, progresses) {
   if (keys.length) {
     videos.map(item => {
       if (keys.includes("" + item.id)) { // this converts id to string, because keys are strings
-        item.progress = progresses[item.id];
+        item.percentage = progresses[item.id];
       }
 
       return item;

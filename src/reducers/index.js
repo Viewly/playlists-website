@@ -21,6 +21,11 @@ const rootReducer = (state = initialState, action) => {
 
         return item;
       });
+
+      const watchedVideosToUpdate = videos.filter(item => item.percentage > 0);
+      const sumProgressesToUpdate = watchedVideosToUpdate.reduce((acc, curr) => (acc + curr.percentage), 0);
+      state.playlist.percentage = Math.round(sumProgressesToUpdate / videos.length);
+
       return { ...state, playlist: { ...state.playlist, videos } };
 
     case actions.PLAYLIST_FETCH_START:
@@ -28,6 +33,9 @@ const rootReducer = (state = initialState, action) => {
     case actions.PLAYLIST_FETCH_SUCCESS:
       const playlist = getPlaylistProgress(action.data.id);
       action.data.videos = updateVideosWithProgresses(action.data.videos, playlist);
+      const watchedVideos = action.data.videos.filter(item => item.percentage > 0);
+      const sumProgresses = watchedVideos.reduce((acc, curr) => (acc + curr.percentage), 0);
+      action.data.percentage = Math.round(sumProgresses / action.data.videos.length);
 
       return { ...state, playlist: { _status: LOADED, ...action.data } };
 

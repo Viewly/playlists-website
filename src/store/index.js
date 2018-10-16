@@ -5,14 +5,14 @@ import thunk from 'redux-thunk';
 
 const logger = createLogger({
   collapsed: true,
-  predicate: (getState, action) => {
-    // don't log actions that starts with PERCENTAGE/
-    if (action.type.startsWith('PERCENTAGE/')) {
-      return false;
-    }
+  // predicate: (getState, action) => {
+  //   // don't log actions that starts with PERCENTAGE/
+  //   if (action.type.startsWith('PERCENTAGE/')) {
+  //     return false;
+  //   }
 
-    return true;
-  }
+  //   return true;
+  // }
 });
 
 const store = createStore(
