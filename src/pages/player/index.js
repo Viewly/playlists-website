@@ -4,12 +4,13 @@ import Layout from "./layout";
 import VideoPlayer from "./components/video";
 import Playlist from "./components/playlist";
 
-import { playlistFetch } from "../../actions";
+import { playlistFetch, updatePercentage } from "../../actions";
 
 @connect((state) => ({
   playlist: state.playlist
 }), (dispatch) => ({
-  playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId }))
+  playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
+  updatePercentage: (playlistId, videoId, percentage) => dispatch(updatePercentage({ playlistId, videoId, percentage }))
 }))
 class PlayerPage extends Component {
   state = {
@@ -58,6 +59,15 @@ class PlayerPage extends Component {
     }
   }
 
+  onPercentage = (percentage) => {
+    const { playlist, updatePercentage } = this.props;
+    const currentVideo = playlist.videos.find(item => item.id === this.state.videoId);
+
+    if (percentage > (currentVideo.percentage || 0)) {
+      updatePercentage(playlist.id, this.state.videoId, percentage);
+    }
+  }
+
   render() {
     const { playlist } = this.props;
     const isLoaded = playlist._status === 'LOADED';
@@ -67,7 +77,7 @@ class PlayerPage extends Component {
 
     return (
       <Layout>
-        {isLoaded && <VideoPlayer togglePlaylist={this.togglePlaylist} playlistUrl={`/playlist/${playlist.id}`} video={currentVideo} onVideoEnd={this.onVideoEnd} />}
+        {isLoaded && <VideoPlayer togglePlaylist={this.togglePlaylist} playlistUrl={`/playlist/${playlist.id}`} video={currentVideo} onVideoEnd={this.onVideoEnd} onPercentage={this.onPercentage} />}
         {isLoaded && this.state.showPlaylist && <Playlist togglePlaylist={this.togglePlaylist} videos={playlist.videos} />}
       </Layout>
     );
