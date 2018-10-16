@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PlaylistItem from "./playlist_item";
 
-const Playlist = ({ videos, togglePlaylist, isVisible }) => (
-  <div className={`c-player-playlist ${isVisible ? 'is-visible' : ''}`}>
+const Playlist = ({ videos, togglePlaylist, isVisible, onClick }) => (
+  <div onClick={onClick} className={`c-player-playlist ${isVisible ? 'is-visible' : ''}`}>
 
     <button className='c-btn c-player-playlist__btn-hide' onClick={togglePlaylist}>
       <svg className='o-icon' width='21' height='18' viewBox='0 0 21 18' xmlns='http://www.w3.org/2000/svg'>

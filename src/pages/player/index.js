@@ -68,6 +68,11 @@ class PlayerPage extends Component {
     }
   }
 
+  onPlaylistClick = (evnt) => {
+    const classes = evnt.target.getAttribute('class') && evnt.target.getAttribute('class').split(' ') || [];
+    classes.includes('c-player-playlist') && this.togglePlaylist();
+  }
+
   render() {
     const { playlist } = this.props;
     const isLoaded = playlist._status === 'LOADED';
@@ -78,7 +83,7 @@ class PlayerPage extends Component {
     return (
       <Layout>
         {isLoaded && <VideoPlayer togglePlaylist={this.togglePlaylist} playlistUrl={`/playlist/${playlist.id}`} video={currentVideo} onVideoEnd={this.onVideoEnd} onPercentage={this.onPercentage} />}
-        {isLoaded && <Playlist isVisible={this.state.showPlaylist} togglePlaylist={this.togglePlaylist} videos={playlist.videos} />}
+        {isLoaded && <Playlist onClick={this.onPlaylistClick} isVisible={this.state.showPlaylist} togglePlaylist={this.togglePlaylist} videos={playlist.videos} />}
       </Layout>
     );
   }
