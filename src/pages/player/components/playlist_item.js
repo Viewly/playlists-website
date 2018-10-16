@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { convertYoutubeDuration } from "../../../utils"
 
-const PlaylistItem = ({ id, title, playlist_id, thumbnail_url, duration, percentage, onPlayNext, isCurrent }) => (
-  <Link onClick={onPlayNext} className={`c-video ${isCurrent ? 'is-current' : ''}`} to={`/player/${playlist_id}/${id}`}>
+const PlaylistItem = ({ id, title, duration, playlist_id, thumbnail_url, percentage, onPlayNext, isCurrent }) => (
+  <Link onClick={onPlayNext} className={`c-video ${isCurrent ? 'is-current' : ''} ${percentage === 100 ? 'is-watched' : ''}`} to={`/player/${playlist_id}/${id}`}>
     <div>
       <div className='c-thumbnail'>
         <div className='c-thumbnail__link'></div>

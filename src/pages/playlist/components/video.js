@@ -5,7 +5,7 @@ import { convertYoutubeDuration } from "../../../utils"
 
 const Video = ({ id, title, duration, playlist_id, thumbnail_url, percentage }) => (
   <div className='o-grid__cell u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom'>
-    <Link className='c-video' to={`/player/${playlist_id}/${id}`}>
+    <Link className={`c-video ${percentage === 100 ? 'is-watched' : ''}`} to={`/player/${playlist_id}/${id}`}>
       <div>
         <div className='c-thumbnail'>
           <div className='c-thumbnail__link'></div>
