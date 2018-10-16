@@ -6,16 +6,18 @@ const THUMBNAIL_ROOT = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-e
 const NO_THUMBNAIL = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/a6a9391c-2f46-3e9c-d3ef-7af0ea2297a9_thumbnail.png';
 
 const PlaylistItem = ({ id, title, description, playlist_thumbnail_url }) => (
-  <Link className='playlist__item' to={`/playlist/${id}`}>
-    {playlist_thumbnail_url
-      ? <img src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
-      : <img src={NO_THUMBNAIL} />
-    }
-    <div className='playlist__item__info'>
-      <h4>{title}</h4>
-      <p>{description}</p>
-    </div>
-  </Link>
+  <div className='o-grid__cell u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom'>
+    <Link className='playlist__item' to={`/playlist/${id}`}>
+      {playlist_thumbnail_url
+        ? <img src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
+        : <img src={NO_THUMBNAIL} />
+      }
+      <div className='playlist__item__info'>
+        <h4>{title}</h4>
+        <p>{description}</p>
+      </div>
+    </Link>
+  </div>
 );
 
 

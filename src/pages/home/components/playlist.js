@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import PlaylistItem from "./playlist_item";
 
 const Playlist = ({ isLoaded, data }) => (
-  <div>
+  <div class='o-grid'>
     {isLoaded && data.map((item, idx) => <PlaylistItem key={`playlistitem-${idx}`} {...item} />)}
     {!isLoaded && <div>LOADING</div>}
   </div>
