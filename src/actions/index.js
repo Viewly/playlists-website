@@ -1,5 +1,6 @@
-import { makeApiCall } from '../api/request';
+import { makeApiCall, makeFunctionCall } from '../api/request';
 import * as playlistApi from '../api/playlist';
+import * as localstorageApi from '../api/localstorage';
 
 export const PLAYLISTS_FETCH_START = 'PLAYLIST/PLAYLISTS_FETCH_START';
 export const PLAYLISTS_FETCH_SUCCESS = 'PLAYLIST/PLAYLISTS_FETCH_SUCCESS';
@@ -10,3 +11,8 @@ export const PLAYLIST_FETCH_START = 'PLAYLIST/PLAYLIST_FETCH_START';
 export const PLAYLIST_FETCH_SUCCESS = 'PLAYLIST/PLAYLIST_FETCH_SUCCESS';
 export const PLAYLIST_FETCH_ERROR = 'PLAYLIST/PLAYLIST_FETCH_ERROR';
 export const playlistFetch = makeApiCall(playlistApi.playlistFetch, PLAYLIST_FETCH_START, PLAYLIST_FETCH_SUCCESS, PLAYLIST_FETCH_ERROR);
+
+export const PERCENTAGE_UPDATE_START = 'PERCENTAGE/PERCENTAGE_UPDATE_START';
+export const PERCENTAGE_UPDATE_SUCCESS = 'PERCENTAGE/PERCENTAGE_UPDATE_SUCCESS';
+export const PERCENTAGE_UPDATE_ERROR = 'PERCENTAGE/PERCENTAGE_UPDATE_ERROR';
+export const updatePercentage = makeFunctionCall(localstorageApi.updatePercentage, PERCENTAGE_UPDATE_START, PERCENTAGE_UPDATE_SUCCESS, PERCENTAGE_UPDATE_ERROR)

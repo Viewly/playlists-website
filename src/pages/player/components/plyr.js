@@ -40,7 +40,7 @@ class PlyrComponent extends React.Component {
   }
 
   handleEvent = (evnt) => {
-    const { onVideoEnd } = this.props;
+    const { onVideoEnd, onPercentage, videoId } = this.props;
 
     switch (evnt.type) {
       case 'statechange':
@@ -49,7 +49,7 @@ class PlyrComponent extends React.Component {
         break;
       case 'timeupdate':
         const percentage = this.calculatePercentage(this.player[0].currentTime, this.player[0].duration);
-        console.log('timeupdate', `${percentage}%`); // TODO
+        onPercentage(percentage, videoId)
         break;
     }
   }

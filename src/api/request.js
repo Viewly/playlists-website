@@ -36,3 +36,20 @@ export function makeApiCall (_apiCall, startActionType, successActionType, error
     };
   };
 }
+
+
+export function makeFunctionCall (func, startActionType, successActionType, errorActionType) {
+  return function (params) {
+    return async (dispatch, getState) => {
+      dispatch({ ...params, type: startActionType });
+      try {
+        const data = await func(params);
+        dispatch({ ...params, data, type: successActionType });
+        return data;
+      } catch (error) {
+        dispatch({ ...params, error, type: errorActionType });
+        throw error;
+      }
+    };
+  };
+}
