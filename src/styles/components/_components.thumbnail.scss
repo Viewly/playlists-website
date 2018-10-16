@@ -4,13 +4,15 @@
 
 $tweakpoint-thumbnail:          large;
 
+$thumbnail-border-radius:       4px;
+
 
 
 
 
 .c-thumbnail {
     background-color: lighten(#000, 10%);
-    border-radius: 4px;
+    border-radius: $thumbnail-border-radius;
     display: block;
     margin-bottom: $spacing-unit-tiny;
     transform-origin: 50% 100%;
@@ -106,17 +108,32 @@ $tweakpoint-thumbnail:          large;
         }
     }
 
+    /**
+     * 1. Hide progress line so it's clipped to the border radius.
+     */
     .c-thumbnail__progress-bar {
-        background-color: color('brand-primary');
+        background-color: color('grey');
+        border-bottom-left-radius: $thumbnail-border-radius;
+        border-bottom-right-radius: $thumbnail-border-radius;
         display: block;
-        height: 3px;
+        height: 4px;
+        overflow: hidden; /*[1] */
         pointer-events: none;
         transition: inherit;
         position: absolute;
         bottom: 0;
         left: 0;
+        right: 0;
         z-index: 30;
     }
+
+        .c-thumbnail__progress-bar__line {
+            background-color: color('brand-primary');
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+        }
 
     .c-thumbnail__play-icon {
         @include invisible;

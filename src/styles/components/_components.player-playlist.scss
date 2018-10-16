@@ -111,6 +111,7 @@ $player-playlist-content-width:             260px;
          */
         &::-webkit-scrollbar {
             background-color: transparent;
+            background: rgba(color('grey'), .9);
             width: 6px;
         }
 
@@ -126,7 +127,7 @@ $player-playlist-content-width:             260px;
          * Scrollbar itself
          */
         &::-webkit-scrollbar-thumb {
-            background: rgba(color('brand-primary'), .9);
+            background: rgba(color('dark-grey'), .9);
             border-radius: 10px;
         }
     }
