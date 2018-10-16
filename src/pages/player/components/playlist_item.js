@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const PlaylistItem = ({ id, title, playlist_id, thumbnail_url, progress }) => (
-  <Link className='c-video' to={`/player/${playlist_id}/${id}`}>
+const PlaylistItem = ({ id, title, playlist_id, thumbnail_url, progress, onPlayNext }) => (
+  <Link onClick={onPlayNext} className='c-video' to={`/player/${playlist_id}/${id}`}>
     <div>
       <div className='c-thumbnail'>
         <div className='c-thumbnail__link'></div>
@@ -24,7 +24,8 @@ const PlaylistItem = ({ id, title, playlist_id, thumbnail_url, progress }) => (
 PlaylistItem.propTypes = {
   title: PropTypes.string.isRequired,
   playlist_id: PropTypes.string.isRequired,
-  thumbnail_url: PropTypes.string.isRequired
+  thumbnail_url: PropTypes.string.isRequired,
+  onPlayNext: PropTypes.func.isRequired
 };
 
 export default PlaylistItem;

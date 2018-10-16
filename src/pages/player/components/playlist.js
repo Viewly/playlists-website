@@ -13,7 +13,7 @@ const Playlist = ({ videos, togglePlaylist, isVisible, onClick }) => (
       </svg>
     </button>
     <div className='c-player-playlist__content'>
-      {videos && videos.map((item, idx) => <PlaylistItem key={`video-${idx}`} {...item} />)}
+      {videos && videos.map((item, idx) => <PlaylistItem key={`video-${idx}`} onPlayNext={togglePlaylist} {...item} />)}
     </div>
   </div>
 )
