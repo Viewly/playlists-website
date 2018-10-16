@@ -18,14 +18,14 @@ class PlayerPage extends Component {
     showPlaylist: false
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const { playlist, playlistFetch, match: { params: { playlistId, videoId } } } = this.props;
 
     playlist.id !== playlistId && playlistFetch(playlistId);
     this.setState({ videoId: parseInt(videoId, 10) });
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (this.props.match.params.videoId !== prevProps.match.params.videoId) {
       this.setState({ videoId: parseInt(this.props.match.params.videoId, 10) });
     }
@@ -82,8 +82,24 @@ class PlayerPage extends Component {
 
     return (
       <Layout>
-        {isLoaded && <VideoPlayer togglePlaylist={this.togglePlaylist} playlistUrl={`/playlist/${playlist.id}`} video={currentVideo} onVideoEnd={this.onVideoEnd} onPercentage={this.onPercentage} />}
-        {isLoaded && <Playlist onClick={this.onPlaylistClick} isVisible={this.state.showPlaylist} togglePlaylist={this.togglePlaylist} title={playlist.title} percentage={playlist.percentage} videos={playlist.videos} />}
+        {isLoaded && (
+          <VideoPlayer
+            togglePlaylist={this.togglePlaylist}
+            playlistUrl={`/playlist/${playlist.id}`}
+            video={currentVideo}
+            onVideoEnd={this.onVideoEnd}
+            onPercentage={this.onPercentage} />
+        )}
+        {isLoaded && (
+          <Playlist
+            onClick={this.onPlaylistClick}
+            isVisible={this.state.showPlaylist}
+            videoId={this.state.videoId}
+            togglePlaylist={this.togglePlaylist}
+            title={playlist.title}
+            percentage={playlist.percentage}
+            videos={playlist.videos} />
+        )}
       </Layout>
     );
   }
