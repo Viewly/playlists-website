@@ -28,6 +28,10 @@ $player-playlist-content-width:         260px;
         bottom: 0;
         z-index: 100;
     }
+
+    &--hidden {
+        display: none;
+    }
 }
 
     .c-player-playlist__btn-hide {
