@@ -78,7 +78,7 @@ class PlayerPage extends Component {
     return (
       <Layout>
         {isLoaded && <VideoPlayer togglePlaylist={this.togglePlaylist} playlistUrl={`/playlist/${playlist.id}`} video={currentVideo} onVideoEnd={this.onVideoEnd} onPercentage={this.onPercentage} />}
-        {isLoaded && this.state.showPlaylist && <Playlist togglePlaylist={this.togglePlaylist} videos={playlist.videos} />}
+        {isLoaded && <Playlist isVisible={this.state.showPlaylist} togglePlaylist={this.togglePlaylist} videos={playlist.videos} />}
       </Layout>
     );
   }
