@@ -1,5 +1,6 @@
 import * as actions from '../actions';
 import { PENDING, LOADED, LOADING } from '../constants/status_types';
+import { getPlaylistProgress, updateVideosWithProgresses } from "../utils";
 
 const initialState = {
   config: { apiUrl: 'https://api.vidflow.io/v1/api' },
@@ -25,6 +26,9 @@ const rootReducer = (state = initialState, action) => {
     case actions.PLAYLIST_FETCH_START:
       return { ...state, playlist: { _status: LOADING } };
     case actions.PLAYLIST_FETCH_SUCCESS:
+      const playlist = getPlaylistProgress(action.data.id);
+      action.data.videos = updateVideosWithProgresses(action.data.videos, playlist);
+
       return { ...state, playlist: { _status: LOADED, ...action.data } };
 
     default:

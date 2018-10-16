@@ -1,9 +1,10 @@
+import { getPlaylistProgress, savePlaylistProgress } from "../utils";
+
 export async function updatePercentage ({ playlistId, videoId, percentage }) {
-  const storageKey = `progress-${playlistId}`;
-  const playlist = JSON.parse(localStorage.getItem(storageKey)) || {};
+  const playlist = getPlaylistProgress(playlistId);
 
   playlist[videoId] = percentage;
-  localStorage.setItem(storageKey, JSON.stringify(playlist));
+  savePlaylistProgress(playlistId, playlist);
 
   return { playlistId, videoId, percentage };
 }

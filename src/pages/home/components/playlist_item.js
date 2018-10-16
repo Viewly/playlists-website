@@ -22,7 +22,7 @@ const PlaylistItem = ({ id, title, description, playlist_thumbnail_url }) => (
 PlaylistItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   playlist_thumbnail_url: PropTypes.string,
 };
 
