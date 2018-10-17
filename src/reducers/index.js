@@ -16,7 +16,8 @@ const rootReducer = (state = initialState, action) => {
     case actions.PERCENTAGE_UPDATE_SUCCESS:
       const videos = state.playlist.videos.map(item => {
         if (item.id === action.data.videoId) {
-          item.percentage = action.data.percentage
+          item.percentage = action.data.percentage;
+          item.currentTime = action.data.currentTime;
         }
 
         return item;

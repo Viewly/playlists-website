@@ -10,7 +10,7 @@ import { playlistFetch, updatePercentage } from "../../actions";
   playlist: state.playlist
 }), (dispatch) => ({
   playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
-  updatePercentage: (playlistId, videoId, percentage) => dispatch(updatePercentage({ playlistId, videoId, percentage }))
+  updatePercentage: (playlistId, videoId, percentage, currentTime) => dispatch(updatePercentage({ playlistId, videoId, percentage, currentTime }))
 }))
 class PlayerPage extends Component {
   state = {
@@ -55,16 +55,16 @@ class PlayerPage extends Component {
     if (nextVideoId === -1) {
       history.push(`/playlist/${playlist.id}`);
     } else {
-      this.setState({ videoId: nextVideoId });
+      history.push(`/player/${playlist.id}/${nextVideoId}`);
     }
   }
 
-  onPercentage = (percentage) => {
+  onPercentage = (percentage, currentTime) => {
     const { playlist, updatePercentage } = this.props;
     const currentVideo = playlist.videos.find(item => item.id === this.state.videoId);
 
-    if (percentage > (currentVideo.percentage || 0)) {
-      updatePercentage(playlist.id, this.state.videoId, percentage);
+    if ((percentage !== currentVideo.percentage) && (currentVideo.percentage !== 100)) {
+      updatePercentage(playlist.id, this.state.videoId, percentage, currentTime);
     }
   }
 
