@@ -66,6 +66,10 @@ $thumbnail-progress-bar-height:     3px;
         left: 0;
         z-index: 20;
 
+        .c-video.is-watched & {
+            background-color: rgba(#000, .8);
+        }
+
         .c-thumbnail:hover & {
             background-color: rgba(#000, .8);
         }
@@ -87,6 +91,10 @@ $thumbnail-progress-bar-height:     3px;
 
         .c-player-playlist & {
             filter: grayscale(20%);
+        }
+
+        .c-video.is-watched & {
+            filter: grayscale(100%);
         }
     }
 
