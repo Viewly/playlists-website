@@ -22,7 +22,7 @@ class HomePage extends Component {
     const { playlists } = this.props;
 
     return (
-      <div class='o-wrapper'>
+      <div className='o-wrapper'>
         <Playlist isLoaded={true} data={playlists.data} />
       </div>
     );
