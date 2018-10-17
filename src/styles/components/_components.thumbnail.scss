@@ -155,6 +155,19 @@ $thumbnail-progress-bar-height:     3px;
             left: 0;
         }
 
+    .c-thumbnail__checkmark {
+        color: color('green');
+        display: block;
+        font-size: 22px;
+        line-height: 1.2;
+        pointer-events: none;
+        transition: inherit;
+        position: absolute;
+        bottom: $spacing-unit-tiny;
+        left: $spacing-unit-small;
+        z-index: 30;
+    }
+
     .c-thumbnail__play-icon {
         @include invisible;
         background-color: rgba(color('brand-primary'), .6);
