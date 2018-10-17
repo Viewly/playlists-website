@@ -63,7 +63,7 @@ class PlayerPage extends Component {
     const { playlist, updatePercentage } = this.props;
     const currentVideo = playlist.videos.find(item => item.id === this.state.videoId);
 
-    if (percentage > (currentVideo.percentage || 0)) {
+    if ((percentage !== currentVideo.percentage) && (currentVideo.percentage !== 100)) {
       updatePercentage(playlist.id, this.state.videoId, percentage, currentTime);
     }
   }
