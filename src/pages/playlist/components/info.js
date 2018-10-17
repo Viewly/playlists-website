@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Header from "./header";
 import Video from "./video";
+import SharePlaylist from "./share";
 
 import { sumVideoDurations } from "../../../utils";
 
@@ -33,6 +34,7 @@ export default class PlaylistInfo extends Component {
                 <span><b>{playlist.videos.length} videos</b></span>
               </div>
               <div className='o-grid__cell u-margin-bottom'>
+                <SharePlaylist playlist={playlist} />
                 <a href='#' className='c-btn c-btn--secondary'>Suggest a video</a>
                 <a href='#' className='c-btn c-btn--primary u-margin-left-small'>Play all</a>
               </div>
