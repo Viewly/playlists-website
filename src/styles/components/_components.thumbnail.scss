@@ -78,6 +78,7 @@ $thumbnail-progress-bar-height:     3px;
     .c-thumbnail__img {
         border-radius: inherit;
         display: block;
+        filter: grayscale(20%);
         height: 100%;
         transform-origin: inherit;
         transition: inherit;
@@ -88,10 +89,6 @@ $thumbnail-progress-bar-height:     3px;
         bottom: 0;
         left: 0;
         z-index: 10;
-
-        .c-player-playlist & {
-            filter: grayscale(20%);
-        }
 
         .c-video.is-watched & {
             filter: grayscale(100%);
