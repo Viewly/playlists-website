@@ -54,6 +54,18 @@
         }
     }
 
+    .c-video__title--large {
+        $font-size: 16px;
+        $line-height: 1.45;
+        $max-number-of-lines: 2;
+        $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
+
+        font-size: $font-size;
+        margin-bottom: $spacing-unit-tiny - 2;
+        max-height: round($max-height);
+        overflow: hidden;
+    }
+
     /**
      * Video description
      */
@@ -67,4 +79,17 @@
         font-size: $font-size;
         max-height: round($max-height);
         overflow: hidden;
+    }
+
+    /**
+     * Video category
+     */
+    .c-video__category {
+        color: #afb1b3;
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 3px;
+        margin-top: $spacing-unit-small;
+        text-transform: uppercase;
     }

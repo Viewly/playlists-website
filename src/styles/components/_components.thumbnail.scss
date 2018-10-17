@@ -31,12 +31,12 @@ $thumbnail-progress-bar-height:     3px;
                 transform: scale(1.02);
             }
 
+            .c-thumbnail__description,
             .c-thumbnail__play-icon,
             .c-thumbnail__edit {
                 @include visible;
             }
 
-            .c-thumbnail__description,
             .c-thumbnail__total-videos,
             .c-thumbnail__duration-indicator {
                 opacity: 1;
