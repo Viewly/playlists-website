@@ -111,7 +111,7 @@ $player-playlist-content-width:             260px;
          */
         &::-webkit-scrollbar {
             background-color: transparent;
-            background: rgba(color('grey'), .9);
+            background: color('grey');
             width: 6px;
         }
 

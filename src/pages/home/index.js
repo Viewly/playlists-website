@@ -22,9 +22,7 @@ class HomePage extends Component {
     const { playlists } = this.props;
 
     return (
-      <div>
-        <h2>Welcome to Stitch playlists</h2>
-        <br />
+      <div class='o-wrapper'>
         <Playlist isLoaded={true} data={playlists.data} />
       </div>
     );

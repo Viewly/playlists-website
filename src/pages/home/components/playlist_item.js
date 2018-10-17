@@ -6,16 +6,25 @@ const THUMBNAIL_ROOT = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-e
 const NO_THUMBNAIL = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/a6a9391c-2f46-3e9c-d3ef-7af0ea2297a9_thumbnail.png';
 
 const PlaylistItem = ({ id, title, description, playlist_thumbnail_url }) => (
-  <Link className='playlist__item' to={`/playlist/${id}`}>
-    {playlist_thumbnail_url
-      ? <img src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
-      : <img src={NO_THUMBNAIL} />
-    }
-    <div className='playlist__item__info'>
-      <h4>{title}</h4>
-      <p>{description}</p>
+  <div className='o-grid__cell u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom-large'>
+
+    <div className='c-video'>
+      <div className='c-thumbnail'>
+        <Link className='c-thumbnail__link' to={`/playlist/${id}`}></Link>
+        {playlist_thumbnail_url
+          ? <img className='c-thumbnail__img' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
+          : <img className='c-thumbnail__img' src={NO_THUMBNAIL} />
+        }
+        <p className='c-thumbnail__description c-video__description'>{description}</p>
+        <span className='c-thumbnail__total-videos'>6 videos</span>
+        <span className='c-thumbnail__duration-indicator'>6:55</span>
+      </div>
+      <span class="c-video__category">Film &amp; Animation</span>
+      <h4 className='c-video__title c-video__title--large'><Link to={`/playlist/${id}`}>{title}</Link></h4>
+      <div className='c-video__footer'>15.4k likes</div>
+
     </div>
-  </Link>
+  </div>
 );
 
 
