@@ -21,6 +21,8 @@ const PlaylistItem = ({ id, title, description, playlist_thumbnail_url }) => (
       </div>
       <span class="c-video__category">Film &amp; Animation</span>
       <h4 className='c-video__title c-video__title--large'><Link to={`/playlist/${id}`}>{title}</Link></h4>
+      <div className='c-video__footer'>15.4k likes</div>
+
     </div>
   </div>
 );
