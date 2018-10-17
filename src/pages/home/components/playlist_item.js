@@ -15,10 +15,10 @@ const PlaylistItem = ({ id, title, description, playlist_thumbnail_url }) => (
             ? <img className='c-thumbnail__img' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
             : <img className='c-thumbnail__img' src={NO_THUMBNAIL} />
           }
+          <p className='c-thumbnail__description c-video__description'>{description}</p>
           <span className='c-thumbnail__duration-indicator'>6:55</span>
         </div>
         <h4 className='c-video__title'>{title}</h4>
-        <p>{description}</p>
       </div>
     </Link>
   </div>

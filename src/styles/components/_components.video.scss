@@ -53,3 +53,18 @@
             text-decoration: none;
         }
     }
+
+    /**
+     * Video description
+     */
+    .c-video__description {
+        $font-size: 13px;
+        $line-height: 1.45;
+        $max-number-of-lines: 2;
+        $max-height: $font-size * ($line-height) * $max-number-of-lines;
+
+        display: block;
+        font-size: $font-size;
+        max-height: round($max-height);
+        overflow: hidden;
+    }

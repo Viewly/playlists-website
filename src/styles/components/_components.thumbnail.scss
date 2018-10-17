@@ -32,6 +32,7 @@ $thumbnail-progress-bar-height:     3px;
             }
 
             .c-thumbnail__play-icon,
+            .c-thumbnail__description,
             .c-thumbnail__edit {
                 @include visible;
             }
@@ -162,6 +163,20 @@ $thumbnail-progress-bar-height:     3px;
             top: 50%;
             left: 50%;
         }
+    }
+
+    .c-thumbnail__description {
+        @include invisible;
+        color: #fff;
+        display: block;
+        padding: 2px 4px;
+        pointer-events: none;
+        transition: inherit;
+        position: absolute;
+        bottom: $spacing-unit * 2;
+        right: $spacing-unit-tiny;
+        left: $spacing-unit-tiny;
+        z-index: 30;
     }
 
     .c-thumbnail__edit {
