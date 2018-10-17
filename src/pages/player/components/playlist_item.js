@@ -23,7 +23,7 @@ const PlaylistItem = ({ id, title, duration, playlist_id, thumbnail_url, percent
       {percentage === 100 &&
         <span className='c-thumbnail__checkmark'>
           <svg className='o-icon o-icon--small' width="11" height="8" viewBox="0 0 11 8" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 1L3.143 7 1 4.818" stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 1L3.143 7 1 4.818" stroke="currentColor" strokeWidth="2" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </span>
       }
