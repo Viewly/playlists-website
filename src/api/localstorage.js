@@ -6,5 +6,5 @@ export async function updatePercentage ({ playlistId, videoId, percentage, curre
   playlist[videoId] = { percentage, currentTime };
   savePlaylistProgress(playlistId, playlist);
 
-  return { playlistId, videoId, percentage };
+  return { playlistId, videoId, percentage, currentTime };
 }
