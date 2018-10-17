@@ -32,11 +32,12 @@ $thumbnail-progress-bar-height:     3px;
             }
 
             .c-thumbnail__play-icon,
-            .c-thumbnail__description,
             .c-thumbnail__edit {
                 @include visible;
             }
 
+            .c-thumbnail__description,
+            .c-thumbnail__total-videos,
             .c-thumbnail__duration-indicator {
                 opacity: 1;
             }
@@ -89,8 +90,10 @@ $thumbnail-progress-bar-height:     3px;
         }
     }
 
+
+    .c-thumbnail__total-videos,
     .c-thumbnail__duration-indicator {
-        background-color: #333;
+        background-color: rgba(#000, .8);
         border-radius: 2px;
         color: #fff;
         display: block;
@@ -102,12 +105,19 @@ $thumbnail-progress-bar-height:     3px;
         transition: inherit;
         position: absolute;
         bottom: $spacing-unit-tiny + $thumbnail-progress-bar-height;
-        right: $spacing-unit-tiny;
         z-index: 30;
 
         @include mq($tweakpoint-thumbnail) {
             opacity: 0;
         }
+    }
+
+    .c-thumbnail__total-videos {
+        left: $spacing-unit-tiny;
+    }
+
+    .c-thumbnail__duration-indicator {
+        right: $spacing-unit-tiny;
     }
 
     /**
