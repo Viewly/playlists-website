@@ -67,7 +67,7 @@ $thumbnail-progress-bar-height:     3px;
         z-index: 20;
 
         .c-video.is-watched & {
-            background-color: rgba(#000, .8);
+            background-color: rgba(#333, .7);
         }
 
         .c-thumbnail:hover & {
@@ -158,14 +158,17 @@ $thumbnail-progress-bar-height:     3px;
     .c-thumbnail__checkmark {
         color: color('green');
         display: block;
-        font-size: 22px;
-        line-height: 1.2;
+        line-height: 1;
         pointer-events: none;
         transition: inherit;
         position: absolute;
-        bottom: $spacing-unit-tiny;
+        bottom: $spacing-unit-tiny + $thumbnail-progress-bar-height;
         left: $spacing-unit-small;
         z-index: 30;
+
+        .o-icon {
+            vertical-align: top;
+        }
     }
 
     .c-thumbnail__play-icon {
