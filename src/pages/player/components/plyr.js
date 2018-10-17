@@ -49,7 +49,7 @@ class PlyrComponent extends React.Component {
         break;
       case 'timeupdate':
         const percentage = this.calculatePercentage(this.player[0].currentTime, this.player[0].duration);
-        onPercentage(percentage, videoId)
+        onPercentage(percentage, this.player[0].currentTime, videoId)
         break;
     }
   }
