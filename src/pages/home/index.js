@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { playlistsFetch } from "../../actions";
 
 import Playlist from "./components/playlist";
+import Recommended from "./components/recommended";
 
 @connect((state) => ({
   playlists: state.playlists
@@ -23,6 +24,7 @@ class HomePage extends Component {
 
     return (
       <div className='o-wrapper'>
+        <Recommended isLoaded={true} data={playlists.data.splice(0,4)} />
         <Playlist isLoaded={true} data={playlists.data} />
       </div>
     );
