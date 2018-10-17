@@ -22,7 +22,10 @@
 }
 
 .test {
-    width: 160px;
+    border-radius: 5px;
+    width: 320px;
+    border: 1px solid rgba(#fff, .6);
+    //box-shadow: 0 2px 2px rgba(#fff, .4);
 }
 
 dl {

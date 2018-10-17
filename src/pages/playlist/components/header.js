@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Header = ({ title, author, duration, tags, poster, description }) => (
-  <div className='c-section'>
+  <div className='c-section c-section--bg'>
+          <img className='fake-bg' src={`https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/${poster}`} />
+
     <div className='o-wrapper'>
       <div className='o-grid o-grid--auto'>
         <div className='o-grid__cell u-margin-bottom'>

@@ -24,7 +24,7 @@
      */
     .c-section__title {
         font-size: 28px;
-        font-weight: 700;
+        font-weight: 500;
         line-height: 1.1;
 
         @include mq(medium) {
@@ -41,6 +41,7 @@
      */
     .c-section__intro {
         color: #565656;
+        color: rgba(#fff, .75);
         max-width: 40em;
     }
 
@@ -50,4 +51,54 @@
  */
 .c-section--grey {
     background-color: color('light-grey');
+}
+
+
+/**
+ * Section background image
+ */
+.c-section--bg {
+    background-color: lighten(#000, 10%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    position: relative;
+    color: #fff !important;
+    overflow: hidden;
+
+    .c-section__title {
+        color: #fff;
+    }
+
+    > * {
+        position: relative;
+        z-index: 300;
+    }
+
+    * {
+        //color: #fff !important;
+    }
+
+    &::before {
+        background-color: rgba(#000, .8);
+        filter: grayscale(100%);
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 200;
+    }
+
+    .fake-bg {
+        filter: grayscale(90%) blur(4px);
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+    }
 }
