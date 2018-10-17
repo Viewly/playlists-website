@@ -55,7 +55,7 @@ class PlayerPage extends Component {
     if (nextVideoId === -1) {
       history.push(`/playlist/${playlist.id}`);
     } else {
-      this.setState({ videoId: nextVideoId });
+      history.push(`/player/${playlist.id}/${nextVideoId}`);
     }
   }
 

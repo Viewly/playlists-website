@@ -7,7 +7,7 @@ class PlyrComponent extends React.Component {
     const options = {
       autoplay: true,
       invertTime: false,
-      settings: [ 'speed' ],
+      settings: ['speed'],
       keyboard: { global: true }
     };
 
@@ -15,6 +15,7 @@ class PlyrComponent extends React.Component {
 
     this.player[0].on('timeupdate', this.handleEvent)
     this.player[0].on('statechange', this.handleEvent)
+    this.player[0].on('ready', this.handleEvent)
   }
 
   componentWillUnmount() {
@@ -40,7 +41,7 @@ class PlyrComponent extends React.Component {
   }
 
   handleEvent = (evnt) => {
-    const { onVideoEnd, onPercentage, videoId } = this.props;
+    const { onVideoEnd, onPercentage, videoId, resumeTime, percentage } = this.props;
 
     switch (evnt.type) {
       case 'statechange':
@@ -48,9 +49,13 @@ class PlyrComponent extends React.Component {
         code === VIDEO_ENDED && onVideoEnd();
         break;
       case 'timeupdate':
-        const percentage = this.calculatePercentage(this.player[0].currentTime, this.player[0].duration);
-        onPercentage(percentage, this.player[0].currentTime, videoId)
+        const calculatedPercentage = this.calculatePercentage(this.player[0].currentTime, this.player[0].duration);
+        onPercentage(calculatedPercentage, this.player[0].currentTime, videoId)
         break;
+      case 'ready':
+        if (resumeTime && percentage !== 100) {
+          this.player[0].currentTime = resumeTime;
+        }
     }
   }
 
