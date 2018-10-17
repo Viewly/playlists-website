@@ -42,6 +42,19 @@
     .c-section__intro {
         color: #565656;
         max-width: 40em;
+
+        @include mq(extralarge) {
+            padding-left: $spacing-unit;
+        }
+    }
+
+    /**
+     * Section thumbnail
+     */
+    .c-section__thumbnail {
+        background-color: lighten(#000, 10%);
+        border-radius: 4px;
+        filter: grayscale(25%);
     }
 
 
