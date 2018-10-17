@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Header = ({ title, author, tags, poster, description }) => (
+const Header = ({ title, author, duration, tags, poster, description }) => (
   <div className='c-section'>
     <div className='o-wrapper'>
       <div className='o-grid o-grid--auto'>
@@ -31,7 +31,7 @@ const Header = ({ title, author, tags, poster, description }) => (
               <li className='o-grid__cell'>
                 <dl>
                   <dt>Length</dt>
-                  <dd>36:50m</dd>
+                  <dd>{duration}</dd>
                 </dl>
               </li>
               <li className='o-grid__cell'>

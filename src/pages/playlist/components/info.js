@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import Header from "./header";
 import Video from "./video";
 
+import { sumVideoDurations } from "../../../utils";
+
 @connect((state) => ({
   playlist: state.playlist
 }))
@@ -19,6 +21,7 @@ export default class PlaylistInfo extends Component {
         <Header
           title={playlist.title}
           author={playlist.user_id}
+          duration={sumVideoDurations(playlist.videos)}
           poster={playlist.playlist_thumbnail_url}
           description={playlist.description}
           tags={[ playlist.category ]} />
