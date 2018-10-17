@@ -66,6 +66,10 @@ $thumbnail-progress-bar-height:     3px;
         left: 0;
         z-index: 20;
 
+        .c-video.is-watched & {
+            background-color: rgba(#000, .75);
+        }
+
         .c-thumbnail:hover & {
             background-color: rgba(#000, .8);
         }
@@ -87,6 +91,10 @@ $thumbnail-progress-bar-height:     3px;
 
         .c-player-playlist & {
             filter: grayscale(20%);
+        }
+
+        .c-video.is-watched & {
+            filter: grayscale(100%);
         }
     }
 
@@ -146,6 +154,22 @@ $thumbnail-progress-bar-height:     3px;
             bottom: 0;
             left: 0;
         }
+
+    .c-thumbnail__checkmark {
+        color: #fff;
+        display: block;
+        line-height: 1;
+        pointer-events: none;
+        transition: inherit;
+        position: absolute;
+        bottom: $spacing-unit-tiny + $thumbnail-progress-bar-height;
+        left: $spacing-unit-small;
+        z-index: 30;
+
+        .o-icon {
+            vertical-align: top;
+        }
+    }
 
     .c-thumbnail__play-icon {
         @include invisible;

@@ -15,9 +15,20 @@ const Video = ({ id, title, duration, playlist_id, thumbnail_url, percentage }) 
             <path d='M14.837 11.818L1.575 21.142A1 1 0 0 1 0 20.324V1.676A1 1 0 0 1 1.575.858l13.262 9.324a1 1 0 0 1 0 1.636z' fill='currentColor' fillRule='evenodd'/>
           </svg>
         </div>
-        <span className='c-thumbnail__progress-bar'>
-          <span className='c-thumbnail__progress-bar__line' style={{ width: `${percentage}%` }}></span>
-        </span>
+        {percentage !== 100 &&
+          <span className='c-thumbnail__progress-bar'>
+            <span className='c-thumbnail__progress-bar__line' style={{ width: `${percentage}%` }}></span>
+          </span>
+        }
+
+        {percentage === 100 &&
+          <span className='c-thumbnail__checkmark'>
+            <svg className='o-icon o-icon--small' width="11" height="8" viewBox="0 0 11 8" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L3.143 7 1 4.818" stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        }
+
         <span className='c-thumbnail__duration-indicator'>{convertYoutubeDuration(duration)}</span>
       </div>
       <h4 className='c-video__title'><Link to={`/player/${playlist_id}/${id}`}>{title}</Link></h4>
