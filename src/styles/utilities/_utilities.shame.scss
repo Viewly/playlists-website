@@ -73,3 +73,20 @@ dl {
     top: 0;
     z-index: 800;
 }
+
+
+.shame-share {
+    display: inline-block;
+
+    &-socials {
+        display: none;
+    }
+
+    &.is-active &-socials {
+        display: block;
+    }
+
+    &-item {
+        display: inline-block;
+    }
+}
