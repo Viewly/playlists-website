@@ -7,22 +7,21 @@ const NO_THUMBNAIL = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1
 
 const PlaylistItem = ({ id, title, description, playlist_thumbnail_url }) => (
   <div className='o-grid__cell u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom-large'>
-    <Link className='c-video' to={`/playlist/${id}`}>
-      <div>
-        <div className='c-thumbnail'>
-          <div className='c-thumbnail__link'></div>
-          {playlist_thumbnail_url
-            ? <img className='c-thumbnail__img' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
-            : <img className='c-thumbnail__img' src={NO_THUMBNAIL} />
-          }
-          <p className='c-thumbnail__description c-video__description'>{description}</p>
-          <span className='c-thumbnail__total-videos'>6 videos</span>
-          <span className='c-thumbnail__duration-indicator'>6:55</span>
-        </div>
-        <span class="c-video__category">Film &amp; Animation</span>
-        <h4 className='c-video__title c-video__title--large'>{title}</h4>
+
+    <div className='c-video'>
+      <div className='c-thumbnail'>
+        <Link className='c-thumbnail__link' to={`/playlist/${id}`}></Link>
+        {playlist_thumbnail_url
+          ? <img className='c-thumbnail__img' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
+          : <img className='c-thumbnail__img' src={NO_THUMBNAIL} />
+        }
+        <p className='c-thumbnail__description c-video__description'>{description}</p>
+        <span className='c-thumbnail__total-videos'>6 videos</span>
+        <span className='c-thumbnail__duration-indicator'>6:55</span>
       </div>
-    </Link>
+      <span class="c-video__category">Film &amp; Animation</span>
+      <h4 className='c-video__title c-video__title--large'><Link to={`/playlist/${id}`}>{title}</Link></h4>
+    </div>
   </div>
 );
 
