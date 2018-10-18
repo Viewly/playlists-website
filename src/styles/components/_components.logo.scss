@@ -1,0 +1,22 @@
+/*------------------------------------*\
+    #LOGO
+\*------------------------------------*/
+
+.c-logo {
+    display: inline-block;
+    height: 30px;
+    transition: $global-transition;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+    .c-logo__img {
+        height: 100%;
+        width: auto;
+    }
