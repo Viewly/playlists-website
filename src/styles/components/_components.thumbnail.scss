@@ -71,7 +71,7 @@ $thumbnail-progress-bar-height:     3px;
         }
 
         .c-thumbnail:hover & {
-            background-color: rgba(#000, .8);
+            background-color: rgba(#000, .6);
         }
     }
 
@@ -170,7 +170,7 @@ $thumbnail-progress-bar-height:     3px;
 
     .c-thumbnail__play-icon {
         @include invisible;
-        background-color: rgba(color('brand-primary'), .6);
+        background-color: rgba(#000, .9);
         border-radius: 50%;
         color: #fff;
         display: block;

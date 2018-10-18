@@ -57,7 +57,6 @@
         &:hover {
             background-color: darken(color('brand-primary'), 6%);
             border-color: darken(color('brand-primary'), 6%);
-            transform: translateY(-1px);
         }
     }
 }
@@ -75,7 +74,6 @@
         &:hover {
             background-color: darken(color('grey'), 4%);
             border-color: darken(color('grey'), 4%);
-            transform: translateY(-1px);
         }
     }
 }
