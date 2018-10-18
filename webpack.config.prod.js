@@ -3,6 +3,8 @@ const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+
 
 module.exports = Object.assign(baseConfig, {
   output: {
@@ -19,6 +21,7 @@ module.exports = Object.assign(baseConfig, {
     new MiniCssExtractPlugin({
       filename: "style-[hash].css",
       chunkFilename: "[id].css"
-    })
+    }),
+    new FaviconsWebpackPlugin('./src/favicons/favicon.png')
   ]
 })
