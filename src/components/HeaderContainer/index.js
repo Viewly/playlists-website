@@ -12,7 +12,7 @@ class HeaderContainer extends Component {
           </div>
 
           <div className='c-header-wrapper__right'>
-            <a href='#' className='c-btn c-btn--primary c-btn--plain'>Create your playlist</a>
+            <Link to='/new' className='c-btn c-btn--primary c-btn--plain'>Create your playlist</Link>
           </div>
         </div>
       </header>
