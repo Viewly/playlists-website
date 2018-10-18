@@ -15,7 +15,7 @@ const Video = ({ id, title, duration, playlist_id, thumbnail_url, percentage }) 
             <path d='M14.837 11.818L1.575 21.142A1 1 0 0 1 0 20.324V1.676A1 1 0 0 1 1.575.858l13.262 9.324a1 1 0 0 1 0 1.636z' fill='currentColor' fillRule='evenodd'/>
           </svg>
         </div>
-        {percentage !== 100 &&
+        {percentage !== 100 && percentage > 0 &&
           <span className='c-thumbnail__progress-bar'>
             <span className='c-thumbnail__progress-bar__line' style={{ width: `${percentage}%` }}></span>
           </span>
