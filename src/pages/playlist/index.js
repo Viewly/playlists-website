@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Route } from 'react-router-dom';
 import Layout from "./layout";
 import PlaylistInfo from "./components/info";
+import PlaylistSuggest from "./components/suggest";
 
 import { playlistFetch } from "../../actions";
 
@@ -18,7 +19,8 @@ class PlaylistPage extends Component {
   render() {
     return (
       <Layout>
-        <Route path='/playlist/:playlistId' component={PlaylistInfo}></Route>
+        <Route exact path='/playlist/:playlistId' component={PlaylistInfo}></Route>
+        <Route path='/playlist/:playlistId/suggest' component={PlaylistSuggest}></Route>
       </Layout>
     )
   }
