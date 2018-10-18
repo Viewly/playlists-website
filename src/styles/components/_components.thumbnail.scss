@@ -12,7 +12,7 @@ $thumbnail-progress-bar-height:     3px;
 
 
 .c-thumbnail {
-    background-color: lighten(#000, 10%);
+    background-color: color('dark-grey');
     border-radius: $thumbnail-border-radius;
     display: block;
     margin-bottom: $spacing-unit-tiny;

@@ -6,7 +6,7 @@ const THUMBNAIL_ROOT = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-e
 const NO_THUMBNAIL = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/a6a9391c-2f46-3e9c-d3ef-7af0ea2297a9_thumbnail.png';
 
 const RecommendedItem = ({ id, title, description, playlist_thumbnail_url, duration, noVideos, category }) => (
-  <div className='o-grid__cell u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom-large'>
+  <div className='o-grid__cell u-1/2@medium u-1/3@large u-margin-bottom-large'>
     <div className='c-video'>
       <div className='c-thumbnail'>
         <Link className='c-thumbnail__link' to={`/playlist/${id}`}></Link>
