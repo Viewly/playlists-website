@@ -24,7 +24,7 @@ class HomePage extends Component {
 
     return (
       <div className='o-wrapper'>
-        <Recommended isLoaded={true} data={playlists.data.splice(0,4)} />
+        <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').sort(() => .5 - Math.random()).splice(0,3)} />
         <Playlist isLoaded={true} data={playlists.data} />
       </div>
     );
