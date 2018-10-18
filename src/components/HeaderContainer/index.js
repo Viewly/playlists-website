@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import SearchInput from "./searchInput";
 
 class HeaderContainer extends Component {
+  state = {
+    searchText: ''
+  }
+
   render() {
     return (
       <header className='c-header'>
         <div className='o-wrapper c-header__wrapper'>
           <div className='c-header-wrapper__left'>
             <Link to='/' className='c-logo'>[LOGO HERE]</Link>
-            <input placeholder="Search playlists" name="" autoComplete="off" value="" readOnly />
+            <SearchInput />
           </div>
 
           <div className='c-header-wrapper__right'>
