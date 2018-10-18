@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Layout from "./layout";
 
 import { playlistsFetch } from "../../actions";
 
@@ -23,10 +24,12 @@ class HomePage extends Component {
     const { playlists } = this.props;
 
     return (
-      <div className='o-wrapper'>
-        <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').sort(() => .5 - Math.random()).splice(0,3)} />
-        <Playlist isLoaded={true} data={playlists.data} />
-      </div>
+      <Layout>
+        <div className='o-wrapper'>
+          <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').sort(() => .5 - Math.random()).splice(0,3)} />
+          <Playlist isLoaded={true} data={playlists.data} />
+        </div>
+      </Layout>
     );
   }
 }
