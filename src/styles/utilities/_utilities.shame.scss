@@ -18,8 +18,17 @@
 }
 
 .c-logo {
-    margin-right: $spacing-unit;
+    &:hover {
+        text-decoration: none;
+    }
 }
+
+    .c-logo__img {
+        display: inline-block;
+        height: 30px;
+        vertical-align: middle;
+        width: auto;
+    }
 
 dl {
     font-size: 13px;
@@ -46,7 +55,7 @@ dl {
     .c-header__wrapper {
         align-items: center;
         display: flex;
-        height: 60px;
+        height: 100%;
         justify-content: space-between;
     }
 
