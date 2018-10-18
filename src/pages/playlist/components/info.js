@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import Header from "./header";
 import Video from "./video";
@@ -35,7 +36,7 @@ export default class PlaylistInfo extends Component {
               </div>
               <div className='o-grid__cell u-margin-bottom'>
                 <SharePlaylist playlist={playlist} />
-                <a href='#' className='c-btn c-btn--secondary'>Suggest a video</a>
+                <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--secondary'>Suggest a video</Link>
                 <a href='#' className='c-btn c-btn--primary u-margin-left-small'>Play all</a>
               </div>
             </div>
