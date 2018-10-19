@@ -2,14 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { playlistSuggestVideo } from "../../../actions";
+
 @connect((state) => ({
   playlist: state.playlist
+}), (dispatch) => ({
+  playlistSuggestVideo: (playlistId, description, url, email) => dispatch(playlistSuggestVideo({ playlistId, description, url, email })),
 }))
 export default class PlaylistInfo extends Component {
   state = {
     link: '',
     description: '',
-    email: ''
+    email: '',
+    suggested: false
   }
 
   handleChange = (evnt) => {
@@ -18,9 +23,12 @@ export default class PlaylistInfo extends Component {
     this.setState({ [field]: evnt.target.value });
   }
 
-  handleSubmit(evnt) {
-    alert('FORM SUBMIT YAY');
+  handleSubmit = async (evnt) => {
+    const { playlistSuggestVideo, playlist } = this.props;
+
     evnt.preventDefault();
+    await playlistSuggestVideo(playlist.id, this.state.description, this.state.link, this.state.email);
+    this.setState({ suggested: true });
   }
 
   render() {
@@ -38,11 +46,16 @@ export default class PlaylistInfo extends Component {
         <div>
           <h2>Suggest video</h2>
 
-          <form onSubmit={this.handleSubmit}>
+          {this.state.suggested && (
+            <div>
+              <h2>Your suggestion has been received</h2>
+            </div>
+          )}
 
+          <form onSubmit={this.handleSubmit}>
             <div>
               <label>Link to video</label>
-              <input type="text" name="link" placeholder="Your video link" value={this.state.link} onChange={this.handleChange} />
+              <input type="text" name="link" placeholder="Your video link" value={this.state.link} onChange={this.handleChange} required />
             </div>
             <div>
               <label>Description</label>
@@ -50,12 +63,11 @@ export default class PlaylistInfo extends Component {
             </div>
             <div>
               <label>Email address</label>
-              <input type="text" name="email" placeholder="Your email" value={this.state.email} onChange={this.handleChange} />
+              <input type="text" name="email" placeholder="Your email" value={this.state.email} onChange={this.handleChange} required />
             </div>
-
             <button>Submit</button>
-
           </form>
+
         </div>
       </div>
     );

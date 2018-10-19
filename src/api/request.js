@@ -10,6 +10,11 @@ export async function put(url, data) {
   return { body: response.data };
 }
 
+export async function post(url, data) {
+  const response = await axios.post(url, data);
+  return { body: response.data };
+}
+
 export async function patch(url, data) {
   const response = await axios.patch(url, data);
   return { body: response.data };
