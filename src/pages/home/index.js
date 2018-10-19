@@ -37,7 +37,7 @@ class HomePage extends Component {
               <div className='o-grid'>
                 <div className='o-grid__cell c-hero__grid__cell u-2/3'>
                   <h1 className="c-hero__title">Collaborative <br />YouTube playlists</h1>
-                  <p>Discover playlists, make your own, and collaborate on others.</p>
+                  <p>Discover playlists, make your own, and contribute to others.</p>
                   <a href='#' className='c-btn c-btn--primary c-btn--large'>Create your playlist</a>
                 </div>
                 <div className='o-grid__cell c-hero__grid__cell u-1/3'>

@@ -26,7 +26,7 @@ $tweakpoint-hero:                520px;
     }
 
     p {
-        color: #333;
+        color: #565656;
         margin-bottom: $spacing-unit;
 
         @include mq($until: $tweakpoint-hero) {
