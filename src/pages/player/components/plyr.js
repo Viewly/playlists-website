@@ -53,6 +53,7 @@ class PlyrComponent extends React.Component {
         onPercentage(calculatedPercentage, this.player[0].currentTime, videoId)
         break;
       case 'ready':
+        this.player[0].play();
         if (resumeTime && percentage !== 100) {
           this.player[0].currentTime = resumeTime;
         }

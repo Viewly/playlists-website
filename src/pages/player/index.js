@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Layout from "./layout";
-// import VideoPlayer from "./components/video";
+import VideoPlayer from "./components/video";
 import Playlist from "./components/playlist";
 
 import { playlistFetch, updatePercentage } from "../../actions";
@@ -82,14 +82,14 @@ class PlayerPage extends Component {
 
     return (
       <Layout>
-        {/* {isLoaded && (
+        {isLoaded && (
           <VideoPlayer
             togglePlaylist={this.togglePlaylist}
             playlistUrl={`/playlist/${playlist.id}`}
             video={currentVideo}
             onVideoEnd={this.onVideoEnd}
             onPercentage={this.onPercentage} />
-        )} */}
+        )}
         {isLoaded && (
           <Playlist
             onClick={this.onPlaylistClick}

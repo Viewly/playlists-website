@@ -23,7 +23,7 @@ export const routes = [
       component: PlaylistPage
     },
     {
-      path: "player/:playlistId/:videoId",
+      path: "/player/:playlistId/:videoId",
       component: PlayerPage
     }
 ];
