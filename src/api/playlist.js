@@ -25,6 +25,7 @@ export async function playlistSuggestVideo (baseUrl, { playlistId, description, 
   const requestUrl = `${baseUrl}/suggestion`;
   const { body } = await post(requestUrl, {
     playlist_id: playlistId,
+    type: 'suggest-video',
     description,
     url,
     email
