@@ -33,3 +33,15 @@ export async function playlistSuggestVideo (baseUrl, { playlistId, description, 
 
   return body;
 }
+
+export async function playlistCreateNew (baseUrl, { title, description, email }) {
+  const requestUrl = `${baseUrl}/suggestion`;
+  const { body } = await post(requestUrl, {
+    type: 'new-playlist',
+    title,
+    description,
+    email
+  });
+
+  return body;
+}
