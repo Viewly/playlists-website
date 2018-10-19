@@ -18,7 +18,7 @@
     font-weight: 700;
     line-height: 1;
     margin: 0; /* [2] */
-    padding: .75em 1.5em;
+    padding: 1em 1.9em;
     text-align: center;
     text-decoration: none;
     text-shadow: none;
@@ -43,6 +43,10 @@
         line-height: 1;
         padding: .5em 1.2em;
     }
+
+    &.c-btn--large {
+        font-size: 15px;
+    }
 }
 
 /**
@@ -51,7 +55,7 @@
 .c-btn--primary {
     background-color: color('brand-primary');
     border: 1px solid color('brand-primary');
-    border-radius: 20px;
+    border-radius: 40px;
 
     &:not(:disabled) {
         &:hover {
@@ -68,7 +72,7 @@
     background-color: color('grey');
     border: 1px solid color('grey');
     color: color('dark-grey');
-    border-radius: 20px;
+    border-radius: 40px;
 
     &:not(:disabled) {
         &:hover {
@@ -106,6 +110,8 @@
 .c-btn--plain {
     background-color: transparent;
     border: none;
+    padding-left: 0;
+    padding-right: 0;
 
     &:not(:disabled) {
         &:hover {
