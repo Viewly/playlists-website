@@ -92,7 +92,7 @@ $player-playlist-content-width:             260px;
         background-color: rgba(#fff, .95);
         height: 100%;
         overflow-y: scroll;
-        padding: $spacing-unit;
+        padding: $player-playlist-content-padding;
         transform: translateX(100%);
         transition: $player-playlist-content-transition;
         will-change: transform;
