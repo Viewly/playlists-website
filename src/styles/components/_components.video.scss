@@ -5,17 +5,21 @@
 .c-video {
     display: block;
 
-    &:not(:last-child) {
-        margin-bottom: $spacing-unit;
+    .c-player-playlist & {
+        padding-top: round($spacing-unit / 2);
+        padding-bottom: round($spacing-unit / 2);
+
+        &.is-current {
+            background-color: rgba(#000, .1);
+            box-sizing: content-box;
+            padding-left: $player-playlist-content-padding;
+            padding-right: $player-playlist-content-padding;
+            width: 100%;
+            position: relative;
+            left: -$player-playlist-content-padding;
+        }
     }
 
-    &.is-current {
-        /* MUCH CSS */
-        /* SUCH STYLES */
-        /* WOW */
-        border: 3px solid pink;
-        background-color: gray;
-    }
 }
 
     /**
@@ -30,21 +34,34 @@
         $max-number-of-lines: 2;
         $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
 
-        color: #3a5161;
+        color: #1d1d1d;
         display: block;
         font-size: $font-size;
         font-weight: 500;
-        margin-bottom: $spacing-unit-tiny - 2;
         max-height: round($max-height);
+        margin-bottom: 0;
         overflow: hidden;
         padding-right: $spacing-unit-tiny; /* [1] */
         transition: $global-transition;
+
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit-tiny - 2;
+        }
 
         a {
             &:hover {
                 color: color('brand-primary');
                 text-decoration: none;
             }
+        }
+
+        .c-player-playlist & {
+            $font-size: 14px;
+            $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
+
+            font-size: $font-size;
+            font-weight: 700;
+            max-height: round($max-height);
         }
 
     }
@@ -56,7 +73,6 @@
         $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
 
         font-size: $font-size;
-        margin-bottom: $spacing-unit-tiny - 2;
         max-height: round($max-height);
         overflow: hidden;
     }

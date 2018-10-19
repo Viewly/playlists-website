@@ -28,8 +28,8 @@ $inuit-font-size-h1:                    36px;
 $inuit-font-size-h2:                    26px;
 $inuit-font-size-h3:                    24px;
 $inuit-font-size-h4:                    20px;
-$inuit-font-size-h5:                    18px;
-$inuit-font-size-h6:                    16px;
+$inuit-font-size-h5:                    16px;
+$inuit-font-size-h6:                    14px;
 
 
 // Breakpoints.
@@ -63,3 +63,7 @@ $colors: (
 
 // Header
 $header-height:                            68px;
+
+
+// Player playlist content
+$player-playlist-content-padding:           $inuit-global-spacing-unit;
