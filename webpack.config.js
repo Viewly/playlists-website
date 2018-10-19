@@ -26,6 +26,17 @@ module.exports = {
         ]
       },
       {
+        test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[name]-[hash:8].[ext]'
+            },
+          },
+        ]
+      },
+      {
         test: /\.css$/,
         loaders: [
           'style-loader?sourceMap',
@@ -39,7 +50,7 @@ module.exports = {
           "css-loader?-url",
           'sass-loader'
         ]
-    }
+      }
     ]
   },
   devServer: {
