@@ -110,6 +110,8 @@
 .c-btn--plain {
     background-color: transparent;
     border: none;
+    padding-left: 0;
+    padding-right: 0;
 
     &:not(:disabled) {
         &:hover {

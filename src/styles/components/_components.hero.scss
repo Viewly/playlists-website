@@ -2,7 +2,10 @@
     #HERO
 \*------------------------------------*/
 
-$tweakpoint-hero:                520px;
+$tweakpoint-hero:                   645px;
+$tweakpoint-hero-medium:            770px;
+$tweakpoint-hero-large:             900px;
+$tweakpoint-hero-extralarge:        1140px;
 
 
 
@@ -29,17 +32,28 @@ $tweakpoint-hero:                520px;
         color: #565656;
         margin-bottom: $spacing-unit;
 
-        @include mq($until: $tweakpoint-hero) {
-            br {
-                display: none;
-            }
-        }
-
         @include mq($tweakpoint-hero) {
             margin-bottom: 34px;
         }
     }
 }
+
+    .c-hero__grid__cell {
+        @include mq($tweakpoint-hero) {
+            width: 50%;
+        }
+    }
+
+    .c-hero__graphic {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include mq($until: $tweakpoint-hero - 1) {
+            margin-top: $spacing-unit-large;
+            width: 80%;
+        }
+    }
 
     /**
      * Hero title
@@ -48,15 +62,15 @@ $tweakpoint-hero:                520px;
         font-size: 32px;
         font-weight: 700;
 
-        @include mq(medium) {
-            font-size: 44px;
+        @include mq($tweakpoint-hero-medium) {
+            font-size: 42px;
         }
 
-        @include mq(large) {
-            font-size: 46px;
+        @include mq($tweakpoint-hero-large) {
+            font-size: 48px;
         }
 
-        @include mq(extralarge) {
+        @include mq($tweakpoint-hero-extralarge) {
             font-size: 64px;
         }
     }
