@@ -31,6 +31,22 @@ class HomePage extends Component {
 
     return (
       <Layout>
+        <div className='c-hero'>
+          <div className='o-wrapper'>
+            <div className="c-hero">
+              <div className='o-grid'>
+                <div className='o-grid__cell c-hero__grid__cell u-2/3'>
+                  <h1 className="c-hero__title">Collaborative <br />YouTube playlists</h1>
+                  <p>Discover playlists, make your own, and collaborate on others.</p>
+                  <a href='#' className='c-btn c-btn--primary c-btn--large'>Create your playlist</a>
+                </div>
+                <div className='o-grid__cell c-hero__grid__cell u-1/3'>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className='o-wrapper'>
           <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').sort(() => .5 - Math.random()).splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
           <Playlist isLoaded={true} data={playlists.data} onPlaylistClick={this.onPlaylistClick} />

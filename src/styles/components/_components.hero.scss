@@ -1,0 +1,62 @@
+/*------------------------------------*\
+    #HERO
+\*------------------------------------*/
+
+$tweakpoint-hero:                520px;
+
+
+
+
+
+.c-hero {
+    font-size: 17px;
+    margin-bottom: $spacing-unit;
+    padding-bottom: $spacing-unit-large;
+    padding-top: $spacing-unit-large;
+    text-align: center;
+
+    @include mq($tweakpoint-hero) {
+        text-align: left;
+    }
+
+    @include mq(medium) {
+        margin-bottom: $spacing-unit-large;
+        padding-top: $spacing-unit-large;
+        padding-bottom: $spacing-unit-large;
+    }
+
+    p {
+        color: #333;
+        margin-bottom: $spacing-unit;
+
+        @include mq($until: $tweakpoint-hero) {
+            br {
+                display: none;
+            }
+        }
+
+        @include mq($tweakpoint-hero) {
+            margin-bottom: 34px;
+        }
+    }
+}
+
+    /**
+     * Hero title
+     */
+    .c-hero__title {
+        font-size: 32px;
+        font-weight: 700;
+
+        @include mq(medium) {
+            font-size: 44px;
+        }
+
+        @include mq(large) {
+            font-size: 46px;
+        }
+
+        @include mq(extralarge) {
+            font-size: 64px;
+        }
+    }
