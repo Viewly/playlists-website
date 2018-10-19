@@ -47,5 +47,9 @@ export function updateVideosWithProgresses(videos, progresses) {
 }
 
 export function isLoaded(item) {
-  return item._status === LOADED;
+  return item && item._status === LOADED;
+}
+
+export function asyncLoad (asyncFunc) {
+  return b => Object.assign(b, { asyncLoad: asyncFunc })
 }

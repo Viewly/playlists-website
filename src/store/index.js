@@ -21,4 +21,11 @@ const store = createStore(
   applyMiddleware(thunk, logger)
 )
 
+// export function createBasicStore (reducers, data) {
+//   return createStore(
+//     reducers,
+//     applyMiddleware(thunk, logger)
+//   )
+// }
+
 export default store;
