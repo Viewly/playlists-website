@@ -1,11 +1,12 @@
 import * as actions from '../actions';
-import { PENDING, LOADED, LOADING } from '../constants/status_types';
+import { PENDING, LOADED, LOADING, ERROR } from '../constants/status_types';
 import { getPlaylistProgress, updateVideosWithProgresses } from "../utils";
 
 const initialState = {
   config: { apiUrl: 'https://api.vidflow.io/v1/api' },
   playlists: { _status: PENDING, data: [] },
-  playlist: { _status: PENDING }
+  playlist: { _status: PENDING },
+  searchedPlaylists: { _status: PENDING, data: [] }
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -39,6 +40,13 @@ const rootReducer = (state = initialState, action) => {
       action.data.percentage = Math.round(sumProgresses / action.data.videos.length);
 
       return { ...state, playlist: { _status: LOADED, ...action.data } };
+
+    case actions.PLAYLIST_SEARCH_START:
+      return { ...state, searchedPlaylists: { _status: LOADING, data: [] } };
+    case actions.PLAYLIST_SEARCH_SUCCESS:
+      return { ...state, searchedPlaylists: { _status: LOADED, data: action.data } };
+    case actions.PLAYLIST_SEARCH_ERROR:
+      return { ...state, searchedPlaylists: { _status: ERROR, data: [] } };
 
     default:
       return state;

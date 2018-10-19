@@ -13,3 +13,10 @@ export async function playlistsFetch (baseUrl) {
 
   return body;
 }
+
+export async function playlistSearch (baseUrl, { query }) {
+  const url = `${baseUrl}/playlists?title=${query}`;
+  const { body } = await get(url);
+
+  return body;
+}
