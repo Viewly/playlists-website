@@ -30,7 +30,7 @@
         $max-number-of-lines: 2;
         $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
 
-        color: #3a5161;
+        color: #1d1d1d;
         display: block;
         font-size: $font-size;
         font-weight: 500;
@@ -45,6 +45,15 @@
                 color: color('brand-primary');
                 text-decoration: none;
             }
+        }
+
+        .c-player-playlist & {
+            $font-size: 14px;
+            $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
+
+            font-size: $font-size;
+            font-weight: 700;
+            max-height: round($max-height);
         }
 
     }
