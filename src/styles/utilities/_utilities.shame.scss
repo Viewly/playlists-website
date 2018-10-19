@@ -54,6 +54,12 @@ dl {
 .plyr__progress--buffer {
     display: none;
 }
+/* HACK - fixes plyr volume buttons misbehaving */
+.plyr__volume {
+    display: flex;
+    align-items: center;
+    max-width: 112px;
+}
 
 .button-back {
     background-color: rgba(#000, .6);
