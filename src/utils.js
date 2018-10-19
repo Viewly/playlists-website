@@ -1,5 +1,6 @@
 import moment from 'moment';
 import 'moment-duration-format';
+import { LOADED } from './constants/status_types';
 
 export function convertYoutubeDuration (duration) {
   return moment
@@ -43,4 +44,8 @@ export function updateVideosWithProgresses(videos, progresses) {
   }
 
   return videos;
+}
+
+export function isLoaded(item) {
+  return item._status === LOADED;
 }
