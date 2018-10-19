@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import SearchInput from "./searchInput";
 
 class HeaderContainer extends Component {
+  state = {
+    searchText: ''
+  }
+
   render() {
     return (
       <header className='c-header'>
@@ -22,6 +27,8 @@ class HeaderContainer extends Component {
                 </g>
               </svg>
             </Link>
+
+            <SearchInput />
           </div>
 
           <div className='c-header-wrapper__right'>
