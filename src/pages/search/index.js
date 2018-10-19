@@ -41,8 +41,10 @@ class SearchPage extends Component {
   }
 
   onPlaylistClick = (playlistId) => (evnt) => {
+    const { history } = this.props;
+
     evnt.preventDefault();
-    console.log('CLICK', playlistId);
+    history.push(`/playlist/${playlistId}`);
   }
 
   render() {
