@@ -13,7 +13,7 @@ const Playlist = ({ title, videos, togglePlaylist, isVisible, percentage, onClic
     </button>
     <div className='c-player-playlist__content'>
       <h2 className='u-h5 u-margin-bottom-tiny'>{title}</h2>
-      <p className='c-progress-highlight u-margin-bottom'>{percentage}% watched</p>
+      <p className='c-progress-highlight u-margin-bottom-small'>{percentage}% watched</p>
       {videos && videos.map((item, idx) => <PlaylistItem key={`video-${idx}`} isCurrent={item.id === videoId} onPlayNext={togglePlaylist} {...item} />)}
     </div>
   </div>
