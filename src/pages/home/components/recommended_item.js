@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 const THUMBNAIL_ROOT = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload';
 const NO_THUMBNAIL = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/a6a9391c-2f46-3e9c-d3ef-7af0ea2297a9_thumbnail.png';
 
-const RecommendedItem = ({ id, title, description, playlist_thumbnail_url, duration, noVideos, category }) => (
+const RecommendedItem = ({ id, title, description, playlist_thumbnail_url, duration, noVideos, category, onPlaylistClick }) => (
   <div className='o-grid__cell u-1/2@medium u-1/3@large u-margin-bottom-large'>
     <div className='c-video'>
       <div className='c-thumbnail'>
-        <Link className='c-thumbnail__link' to={`/playlist/${id}`}></Link>
+        <Link onClick={onPlaylistClick(id)} className='c-thumbnail__link' to={`/playlist/${id}`}></Link>
         {playlist_thumbnail_url
           ? <img className='c-thumbnail__img' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
           : <img className='c-thumbnail__img' src={NO_THUMBNAIL} />
@@ -19,7 +19,7 @@ const RecommendedItem = ({ id, title, description, playlist_thumbnail_url, durat
         <span className='c-thumbnail__duration-indicator'>{duration}</span>
       </div>
       <span className="c-video__category">{category}</span>
-      <h4 className='c-video__title c-video__title--large'><Link to={`/playlist/${id}`}>{title}</Link></h4>
+      <h4 className='c-video__title c-video__title--large'><Link onClick={onPlaylistClick(id)} to={`/playlist/${id}`}>{title}</Link></h4>
     </div>
   </div>
 );
@@ -33,6 +33,7 @@ RecommendedItem.propTypes = {
   category: PropTypes.string,
   noVideos: PropTypes.number,
   duration: PropTypes.string,
+  onPlaylistClick: PropTypes.func,
 };
 
 export default RecommendedItem;

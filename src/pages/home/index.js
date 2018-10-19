@@ -19,6 +19,12 @@ class HomePage extends Component {
     playlistsFetch();
   }
 
+  onPlaylistClick = (playlistId) => (evnt) => {
+    const { history } = this.props;
+
+    evnt.preventDefault();
+    history.push(`/playlist/${playlistId}`);
+  }
 
   render() {
     const { playlists } = this.props;
@@ -26,8 +32,8 @@ class HomePage extends Component {
     return (
       <Layout>
         <div className='o-wrapper'>
-          <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').sort(() => .5 - Math.random()).splice(0,3)} />
-          <Playlist isLoaded={true} data={playlists.data} />
+          <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').sort(() => .5 - Math.random()).splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
+          <Playlist isLoaded={true} data={playlists.data} onPlaylistClick={this.onPlaylistClick} />
         </div>
       </Layout>
     );
