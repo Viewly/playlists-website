@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Layout from "./layout";
 
-import { playlistsFetch } from "../../actions";
+import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
 
 import Playlist from "./components/playlist";
 import Recommended from "./components/recommended";
@@ -11,7 +11,8 @@ import Recommended from "./components/recommended";
 @connect((state) => ({
   playlists: state.playlists
 }), (dispatch) => ({
-  playlistsFetch: () => dispatch(playlistsFetch())
+  playlistsFetch: () => dispatch(playlistsFetch()),
+  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
 }))
 class HomePage extends Component {
   componentDidMount () {
@@ -21,9 +22,11 @@ class HomePage extends Component {
   }
 
   onPlaylistClick = (playlistId) => (evnt) => {
-    const { history } = this.props;
+    const { history, injectPlaylist, playlists } = this.props;
+    const selectedPlaylist = playlists.data.find(item => item.id === playlistId);
 
     evnt.preventDefault();
+    injectPlaylist(selectedPlaylist);
     history.push(`/playlist/${playlistId}`);
   }
 

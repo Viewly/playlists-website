@@ -13,9 +13,9 @@ import { sumVideoDurations } from "../../../utils";
 }))
 export default class PlaylistInfo extends Component {
   render() {
-    const { playlist } = this.props;
-    const isLoaded = playlist._status === 'LOADED';
-
+    const { playlist, match: { params: { playlistId } } } = this.props;
+    const isLoaded = (playlist._status === 'LOADED') || (playlist.id === playlistId);
+    const isLoading = playlist._status === 'LOADING';
     if (!isLoaded) return <div>Loading ...</div>;
 
     return (
@@ -41,7 +41,10 @@ export default class PlaylistInfo extends Component {
               </div>
             </div>
             <div className='o-grid'>
-              {playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} {...item} />)}
+              {!isLoading && playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} {...item} />)}
+              {isLoading && (
+                <div>Loading ...</div>
+              )}
             </div>
           </div>
         </div>
