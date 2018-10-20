@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import Layout from "./layout";
 
 import { playlistsFetch } from "../../actions";
@@ -37,7 +38,7 @@ class HomePage extends Component {
               <div className='o-grid__cell c-hero__grid__cell'>
                 <h1 className="c-hero__title">Collaborative <br />YouTube playlists</h1>
                 <p>Discover playlists, create your own, and contribute to others.</p>
-                <a href='#' className='c-btn c-btn--primary c-btn--large'>Create your playlist</a>
+                <Link to='/new' className='c-btn c-btn--primary c-btn--large'>Create your playlist</Link>
               </div>
               <div className='o-grid__cell c-hero__grid__cell'>
                 <img className='c-hero__graphic' src={require('../../images/hero-illustration.svg')} />
