@@ -39,7 +39,7 @@ dl {
     z-index: 1000;
 }
 
-    .c-header__wrapper {
+    .c-header__grid {
         align-items: center;
         display: flex;
         height: 100%;
@@ -47,7 +47,13 @@ dl {
         max-width: 1400px;
     }
 
-        .c-header-wrapper__right {
+        .c-header__grid__item {
+            &:not(:last-child) {
+                margin-right: $spacing-unit-large;
+            }
+        }
+
+        .c-header__grid__item--right {
             margin-left: auto;
         }
 

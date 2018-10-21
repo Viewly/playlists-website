@@ -56,7 +56,7 @@ export default class PlaylistInfo extends Component {
                 <input className='c-input c-input--primary' type="text" name="link" value={this.state.link} onChange={this.handleChange} required />
               </li>
               <li>
-                <label className='c-form__label'>Why should it be added to the playlist?</label>
+                <label className='c-form__label'>Why should it be added to the playlist? (optional)</label>
                 <textarea className='c-input c-input--primary c-input--textarea' name="description" value={this.state.description} onChange={this.handleChange}></textarea>
                 <small class='c-form__annotation'>Briefly explain why you're suggesting this video.</small>
               </li>
