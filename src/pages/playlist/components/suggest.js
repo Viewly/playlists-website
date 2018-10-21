@@ -39,8 +39,8 @@ export default class PlaylistInfo extends Component {
 
     return (
       <div className='o-wrapper o-wrapper--narrow u-padding-top-huge u-padding-bottom'>
-        <div>
-          <h1 className='u-h4'>Suggest a video for &ldquo;{playlist.title}&rdquo;</h1>
+        <div className='c-form'>
+          <h1 className='c-form__title'>Suggest a video for &ldquo;{playlist.title}&rdquo;</h1>
 
           {this.state.suggested && (
             <div>
@@ -49,20 +49,30 @@ export default class PlaylistInfo extends Component {
           )}
 
           <form onSubmit={this.handleSubmit}>
-            <div>
-              <label>Link to video</label>
-              <input type="text" name="link" placeholder="Your video link" value={this.state.link} onChange={this.handleChange} required />
-            </div>
-            <div>
-              <label>Description</label>
-              <input type="text" name="description" placeholder="Short description" value={this.state.description} onChange={this.handleChange} />
-            </div>
-            <div>
-              <label>Email address</label>
-              <input type="text" name="email" placeholder="Your email" value={this.state.email} onChange={this.handleChange} required />
-            </div>
-            <Link to={`/playlist/${playlist.id}`}>Back to playlist</Link>
-            <button className='c-btn c-btn--primary'>Submit</button>
+            <ul className='c-form__list'>
+              <li>
+                <label className='c-form__label'>Link to video</label>
+                <input type="text" name="link" placeholder="Your video link" value={this.state.link} onChange={this.handleChange} required />
+              </li>
+              <li>
+                <label className='c-form__label'>Description</label>
+                <input type="text" name="description" placeholder="Short description" value={this.state.description} onChange={this.handleChange} />
+              </li>
+              <li>
+                <label className='c-form__label'>Email address</label>
+                <input type="text" name="email" placeholder="Your email" value={this.state.email} onChange={this.handleChange} required />
+              </li>
+              <li>
+                <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
+                  <div className='o-grid__cell'>
+                    <Link to={`/playlist/${playlist.id}`}>&larr; Back to playlist</Link>
+                  </div>
+                  <div className='o-grid__cell'>
+                    <button className='c-btn c-btn--primary'>Submit</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </form>
 
         </div>

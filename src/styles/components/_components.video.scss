@@ -34,7 +34,7 @@
         $max-number-of-lines: 2;
         $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
 
-        color: #1d1d1d;
+        color: $global-text-color;
         display: block;
         font-size: $font-size;
         font-weight: 500;
