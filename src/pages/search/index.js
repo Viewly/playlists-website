@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import queryString from "query-string";
 
 import Layout from "./layout";
@@ -66,7 +67,7 @@ class SearchPage extends Component {
               {!searchedPlaylists.data.length && (
                 <div className='c-no-results'>
                   <img className='c-no-results__img' src={require('../../images/no-results.svg')} />
-                  <p>Try searching again using different keywords.</p>
+                  <p>Try searching again using different keywords, <br />or <Link to='/new'>create your playlist</Link></p>
                 </div>
               )}
 

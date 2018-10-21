@@ -143,24 +143,31 @@ dl {
 
 
 .c-no-results {
-    color: #565656;
+    color: color('dark-grey');
     font-weight: 500;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 80%;
     padding-top: $spacing-unit-large;
     padding-bottom: $spacing-unit-large;
     text-align: center;
 
-    @include mq(medium) {
-        max-width: 400px;
-    }
-
-    @include mq(large) {
-        max-width: 500px;
+    a {
+        color: color('brand-primary');
+        font-weight: 700;
     }
 }
 
     .c-no-results__img {
-        margin-bottom: $spacing-unit-huge;
+        display: block;
+        margin-bottom: $spacing-unit-large;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 80%;
+
+        @include mq(medium) {
+            max-width: 400px;
+        }
+
+        @include mq(large) {
+            max-width: 500px;
+            margin-bottom: $spacing-unit-huge;
+        }
     }
