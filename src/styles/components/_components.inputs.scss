@@ -36,33 +36,30 @@
 }
 
 .c-input--primary {
-    $background-color: #f7f7f7;
-    $color: color('dark-grey');
-
-    background-color: $background-color;
+    background-color: $input-background-color;
     border: 1px solid transparent;
-    border-radius: 4px;
-    color: $color;
+    border-radius: $input-border-radius;
+    color: $input-color;
     font-size: $global-font-size;
     line-height: 1;
-    padding: $spacing-unit-small + 3;
+    padding: $input-padding;
 
     &:not(:disabled) {
         &::placeholder {
-            color: rgba($color, .65);
+            color: rgba($input-color, .65);
         }
 
         &:hover {
-            background-color: lighten($background-color, 1%);
-            border-color: darken($background-color, 3%);
+            background-color: lighten($input-background-color, 1%);
+            border-color: darken($input-background-color, 3%);
 
             &::placeholder {
-                color: rgba($color, .75);
+                color: rgba($input-color, .75);
             }
         }
 
         &:focus {
-            background-color: lighten($background-color, 4%);
+            background-color: lighten($input-background-color, 4%);
             border-color: rgba(color('brand-primary'), .5);
             color: $global-text-color;
         }
