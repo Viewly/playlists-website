@@ -51,6 +51,10 @@ dl {
             margin-left: auto;
         }
 
+.o-wrapper--narrow {
+    max-width: 500px;
+}
+
 /* HACK - fixes plyr tooltip when hovering scrubber by hiding the buffering progress */
 .plyr__progress--buffer {
     display: none;

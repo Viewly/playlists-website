@@ -38,13 +38,9 @@ export default class PlaylistInfo extends Component {
     if (!isLoaded) return <div>Loading ...</div>;
 
     return (
-      <div className='o-wrapper'>
+      <div className='o-wrapper o-wrapper--narrow u-padding-top-huge u-padding-bottom'>
         <div>
-          <Link to={`/playlist/${playlist.id}`}>Back</Link>
-        </div>
-
-        <div>
-          <h2>Suggest video</h2>
+          <h1 className='u-h4'>Suggest a video for &ldquo;{playlist.title}&rdquo;</h1>
 
           {this.state.suggested && (
             <div>
@@ -65,7 +61,8 @@ export default class PlaylistInfo extends Component {
               <label>Email address</label>
               <input type="text" name="email" placeholder="Your email" value={this.state.email} onChange={this.handleChange} required />
             </div>
-            <button>Submit</button>
+            <Link to={`/playlist/${playlist.id}`}>Back to playlist</Link>
+            <button className='c-btn c-btn--primary'>Submit</button>
           </form>
 
         </div>
