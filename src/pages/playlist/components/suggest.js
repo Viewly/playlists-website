@@ -51,16 +51,16 @@ export default class PlaylistInfo extends Component {
           <form onSubmit={this.handleSubmit}>
             <ul className='c-form__list'>
               <li>
-                <label className='c-form__label'>Link to video</label>
-                <input type="text" name="link" placeholder="Your video link" value={this.state.link} onChange={this.handleChange} required />
+                <label className='c-form__label'>Link to the video</label>
+                <input className='c-input c-input--primary' type="text" name="link" placeholder="Your video link" value={this.state.link} onChange={this.handleChange} required />
               </li>
               <li>
-                <label className='c-form__label'>Description</label>
-                <input type="text" name="description" placeholder="Short description" value={this.state.description} onChange={this.handleChange} />
+                <label className='c-form__label'>Why should this video be added to the playlist?</label>
+                <textarea className='c-input c-input--primary c-input--textarea' name="description" placeholder="Short description" value={this.state.description} onChange={this.handleChange}></textarea>
               </li>
               <li>
-                <label className='c-form__label'>Email address</label>
-                <input type="text" name="email" placeholder="Your email" value={this.state.email} onChange={this.handleChange} required />
+                <label className='c-form__label'>Your email address</label>
+                <input className='c-input c-input--primary' type="text" name="email" placeholder="you@rock.com" value={this.state.email} onChange={this.handleChange} required />
               </li>
               <li>
                 <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>

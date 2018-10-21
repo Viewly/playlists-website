@@ -1,0 +1,83 @@
+/*------------------------------------*\
+    #INPUTS
+\*------------------------------------*/
+
+/**
+ * 1. Fonts on OSX will look more consistent with other systems that do not
+ *    render text using sub-pixel anti-aliasing (use with care!).
+ * 2. Removing inner shadow on iOS inputs.
+ * 3. Remove IE clear icon.
+ */
+.c-input {
+    @include font-smoothing; /* [1] */
+    -webkit-appearance: none; /* [2] */
+    background: none;
+    border: none;
+    box-sizing: border-box;
+    display: inline-block;
+    font-family: $global-font-family;
+    font-size: $global-font-size;
+    padding: 0;
+    transition: $global-transition;
+    vertical-align: middle;
+    width: 100%;
+
+    &[readonly] {
+        cursor: text;
+    }
+
+    &::-ms-clear {
+        display: none; /* [3] */
+    }
+
+    &:disabled {
+        cursor: default;
+    }
+}
+
+.c-input--primary {
+    $background-color: #f7f7f7;
+    $color: color('dark-grey');
+
+    background-color: $background-color;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: $color;
+    font-size: $global-font-size;
+    line-height: 1;
+    padding: $spacing-unit-small + 3;
+
+    &:not(:disabled) {
+        &::placeholder {
+            color: rgba($color, .65);
+        }
+
+        &:hover {
+            background-color: lighten($background-color, 1%);
+            border-color: darken($background-color, 3%);
+
+            &::placeholder {
+                color: rgba($color, .75);
+            }
+        }
+
+        &:focus {
+            background-color: lighten($background-color, 4%);
+            border-color: rgba(color('brand-primary'), .5);
+            color: $global-text-color;
+        }
+
+        &.c-input--error {
+            border-color: color('red');
+        }
+    }
+
+    &:disabled {
+        opacity: .5;
+    }
+}
+
+.c-input--textarea {
+    height: 104px;
+    resize: none;
+}
