@@ -91,7 +91,7 @@ dl {
 }
 
 .o-wrapper--narrow {
-    max-width: 520px;
+    max-width: 500px;
 }
 
 .c-form {}
@@ -108,7 +108,7 @@ dl {
 
         li {
             &:not(:last-child) {
-                margin-bottom: $spacing-unit;
+                margin-bottom: $spacing-unit-large;
             }
         }
     }
@@ -117,4 +117,14 @@ dl {
         display: block;
         font-weight: 700;
         margin-bottom: $spacing-unit-tiny;
+    }
+
+    .c-form__annotation {
+        display: block;
+        color: #afb1b3;
+        font-size: 13px;
+        font-weight: 500;
+        margin-top: $spacing-unit-tiny;
+        padding-left: $spacing-unit-tiny;
+        padding-right: $spacing-unit-tiny;
     }

@@ -38,7 +38,7 @@ export default class PlaylistInfo extends Component {
     if (!isLoaded) return <div>Loading ...</div>;
 
     return (
-      <div className='o-wrapper o-wrapper--narrow u-padding-top-huge u-padding-bottom'>
+      <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <div className='c-form'>
           <h1 className='c-form__title'>Suggest a video for &ldquo;{playlist.title}&rdquo;</h1>
 
@@ -52,15 +52,17 @@ export default class PlaylistInfo extends Component {
             <ul className='c-form__list'>
               <li>
                 <label className='c-form__label'>Link to the video</label>
-                <input className='c-input c-input--primary' type="text" name="link" placeholder="Your video link" value={this.state.link} onChange={this.handleChange} required />
+                <input className='c-input c-input--primary' type="text" name="link" value={this.state.link} onChange={this.handleChange} required />
               </li>
               <li>
-                <label className='c-form__label'>Why should this video be added to the playlist?</label>
-                <textarea className='c-input c-input--primary c-input--textarea' name="description" placeholder="Short description" value={this.state.description} onChange={this.handleChange}></textarea>
+                <label className='c-form__label'>Why should it be added to the playlist?</label>
+                <textarea className='c-input c-input--primary c-input--textarea' name="description" value={this.state.description} onChange={this.handleChange}></textarea>
+                <small class='c-form__annotation'>Briefly explain why you're suggesting this video.</small>
               </li>
               <li>
                 <label className='c-form__label'>Your email address</label>
-                <input className='c-input c-input--primary' type="text" name="email" placeholder="you@rock.com" value={this.state.email} onChange={this.handleChange} required />
+                <input className='c-input c-input--primary' type="text" name="email" value={this.state.email} onChange={this.handleChange} required />
+                <small class='c-form__annotation'>We'll use this to notify you when the video is added to the playlist.</small>
               </li>
               <li>
                 <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
