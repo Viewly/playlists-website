@@ -1,0 +1,56 @@
+/*------------------------------------*\
+    #SEARCH FORM
+\*------------------------------------*/
+
+$tweakpoint-search-form:                    640px;
+$tweakpoint-search-form-large:              700px;
+$tweakpoint-search-form-extralarge:         'extralarge';
+
+$search-from-button-width:                  50px;
+
+
+
+
+
+.c-search-form {
+    position: relative;
+
+    .c-header & {
+        width: 220px;
+
+        @include mq($until: $tweakpoint-search-form) {
+            display: none;
+        }
+
+        @include mq($tweakpoint-search-form-large) {
+            margin-left: $spacing-unit;
+            width: 260px;
+        }
+
+        @include mq($tweakpoint-search-form-extralarge) {
+            margin-left: $spacing-unit-huge;
+            width: 320px;
+        }
+    }
+}
+
+    .c-search-form__input {
+        padding-left: $search-from-button-width;
+        width: 100%;
+    }
+
+    .c-search-form__btn {
+        background: none;
+        border-radius: 0;
+        padding: 0;
+        text-align: center;
+        width: $search-from-button-width;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        .o-icon {
+            font-size: 18px;
+        }
+    }
