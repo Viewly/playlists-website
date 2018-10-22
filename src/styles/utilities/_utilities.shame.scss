@@ -85,7 +85,8 @@ dl {
 
 
 .shame-share {
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: row-reverse;
 
     &-socials {
         display: none;

@@ -31,42 +31,42 @@ export default class SharePlaylist extends Component {
 
     return (
       <div className={`shame-share ${this.state.active ? 'is-active' : ''}`}>
-        <button onClick={this.toggleShare}>💩</button>
+        <button className='c-btn c-btn--secondary' onClick={this.toggleShare}>Share</button>
 
         <div className='shame-share-socials'>
           <FacebookShareButton url={shareUrl} quote={shareTitle} className='shame-share-item'>
             <FacebookIcon
-              size={64}
+              size={44}
               round />
-            <span>Facebook</span>
+            {/* <span>Facebook</span> */}
           </FacebookShareButton>
 
           <TwitterShareButton url={shareUrl} title={twitterTitle} className='shame-share-item'>
             <TwitterIcon
-              size={64}
+              size={44}
               round />
-            <span>Twitter</span>
+            {/* <span>Twitter</span> */}
           </TwitterShareButton>
 
           <RedditShareButton url={shareUrl} title={shareTitle} className='shame-share-item'>
             <RedditIcon
-              size={64}
+              size={44}
               round />
-            <span>Reddit</span>
+            {/* <span>Reddit</span> */}
           </RedditShareButton>
 
           <GooglePlusShareButton url={shareUrl} className='shame-share-item'>
             <GooglePlusIcon
-              size={64}
+              size={44}
               round />
-            <span>Google+</span>
+            {/* <span>Google+</span> */}
           </GooglePlusShareButton>
 
           <EmailShareButton url={shareUrl} subject={emailSubject} body={shareTitle} className='shame-share-item'>
             <EmailIcon
-              size={64}
+              size={44}
               round />
-            <span>Email</span>
+            {/* <span>Email</span> */}
           </EmailShareButton>
         </div>
 
