@@ -177,3 +177,34 @@ dl {
             margin-bottom: $spacing-unit-huge;
         }
     }
+
+
+.c-thank-you {
+    color: color('dark-grey');
+    font-weight: 500;
+    padding-top: $spacing-unit;
+    padding-bottom: $spacing-unit;
+    text-align: center;
+
+    a {
+        color: color('brand-primary');
+        font-weight: 700;
+    }
+}
+
+    .c-thank-you__img {
+        display: block;
+        margin-bottom: $spacing-unit-large;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 65%;
+
+        @include mq(medium) {
+            max-width: 300px;
+        }
+
+        @include mq(large) {
+            max-width: 400px;
+            margin-bottom: $spacing-unit-large;
+        }
+    }
