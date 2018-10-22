@@ -25,7 +25,7 @@ class SearchInput extends Component {
   render() {
     return (
       <Fragment>
-        <input placeholder="Search playlists" name="" autoComplete="off" value={this.state.searchText} onChange={(e) => this.setState({ searchText: e.target.value })} onKeyUp={this.handleEnter} />
+        <input className='c-input c-input--primary' placeholder="Search playlists" name="" autoComplete="off" value={this.state.searchText} onChange={(e) => this.setState({ searchText: e.target.value })} onKeyUp={this.handleEnter} />
       </Fragment>
     );
   }
