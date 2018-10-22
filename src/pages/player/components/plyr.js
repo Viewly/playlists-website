@@ -8,7 +8,8 @@ class PlyrComponent extends React.Component {
       autoplay: true,
       invertTime: false,
       settings: ['speed'],
-      keyboard: { global: true }
+      keyboard: { global: true },
+      playsinline: true
     };
 
     this.player = plyr.setup('.plyr-player', options);
