@@ -45,35 +45,35 @@ export default class SharePlaylist extends Component {
         <div className='c-share__socials'>
           <FacebookShareButton url={shareUrl} quote={shareTitle} className='c-share__item'>
             <FacebookIcon
-              size={44}
+              size={36}
               round />
             {/* <span>Facebook</span> */}
           </FacebookShareButton>
 
           <TwitterShareButton url={shareUrl} title={twitterTitle} className='c-share__item'>
             <TwitterIcon
-              size={44}
+              size={36}
               round />
             {/* <span>Twitter</span> */}
           </TwitterShareButton>
 
           <RedditShareButton url={shareUrl} title={shareTitle} className='c-share__item'>
             <RedditIcon
-              size={44}
+              size={36}
               round />
             {/* <span>Reddit</span> */}
           </RedditShareButton>
 
           <GooglePlusShareButton url={shareUrl} className='c-share__item'>
             <GooglePlusIcon
-              size={44}
+              size={36}
               round />
             {/* <span>Google+</span> */}
           </GooglePlusShareButton>
 
           <EmailShareButton url={shareUrl} subject={emailSubject} body={shareTitle} className='c-share__item'>
             <EmailIcon
-              size={44}
+              size={36}
               round />
             {/* <span>Email</span> */}
           </EmailShareButton>

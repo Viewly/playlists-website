@@ -37,7 +37,7 @@ export default class PlaylistInfo extends Component {
               </div>
               <div className='o-grid__cell u-margin-bottom'>
                 <SharePlaylist playlist={playlist} />
-                <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--secondary u-margin-left'>Suggest a video</Link>
+                <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>Suggest a video</Link>
               </div>
             </div>
             <div className='o-grid'>
