@@ -86,22 +86,52 @@ dl {
 }
 
 
-.shame-share {
+.c-share {
     display: inline-flex;
-    flex-direction: row-reverse;
-
-    &-socials {
-        display: none;
-    }
-
-    &.is-active &-socials {
-        display: block;
-    }
-
-    &-item {
-        display: inline-block;
-    }
+    position: relative;
 }
+
+    .c-share__btn {
+        color: color('dark-grey');
+        padding: 0;
+    }
+
+    .c-share__socials {
+        @include invisible;
+        align-items: center;
+        background-color: #fff;
+        border: 1px solid color('grey');
+        border-radius: 4px;
+        display: flex;
+        margin-bottom: $spacing-unit-small;
+        padding: $spacing-unit-tiny;
+        transform: translate(-50%, 5px);
+        transition: $global-transition;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        z-index: 300;
+
+        .c-share.is-active & {
+            @include visible;
+            transform: translate(-50%, 0);
+        }
+    }
+
+    .c-share__item {
+        display: inline-block;
+
+        &:not(:last-child) {
+            margin-right: $spacing-unit-tiny;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+
+
 
 .c-progress-highlight {
     color: color('brand-primary');

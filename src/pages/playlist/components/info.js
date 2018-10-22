@@ -31,14 +31,13 @@ export default class PlaylistInfo extends Component {
 
         <div className='c-section c-section--grey'>
           <div className='o-wrapper'>
-            <div className='o-grid o-grid--auto o-grid--middle o-grid--between'>
+            <div className='o-grid o-grid--small o-grid--auto o-grid--middle o-grid--between'>
               <div className='o-grid__cell u-margin-bottom'>
                 <span><b>{playlist.videos.length} videos</b></span>
               </div>
               <div className='o-grid__cell u-margin-bottom'>
                 <SharePlaylist playlist={playlist} />
-                <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--secondary'>Suggest a video</Link>
-                {firstVideo && <Link to={`/player/${playlist.id}/${firstVideo.id}`} className='c-btn c-btn--primary u-margin-left-small'>Play all</Link>}
+                <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>Suggest a video</Link>
               </div>
             </div>
             <div className='o-grid'>

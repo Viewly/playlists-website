@@ -12,7 +12,6 @@
     @include font-smoothing; /* [1] */
     background: none;
     border: none;
-    color: #fff;
     display: inline-block;
     font-size: 14px;
     font-weight: 700;
@@ -56,6 +55,7 @@
     background-color: color('brand-primary');
     border: 1px solid color('brand-primary');
     border-radius: 40px;
+    color: #fff;
 
     &:not(:disabled) {
         &:hover {
