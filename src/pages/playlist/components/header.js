@@ -17,14 +17,7 @@ const Header = ({ title, author, duration, tags, poster, description }) => (
                 <dl>
                   <dt>Author</dt>
                   <dd>
-                    <span className='o-flag o-flag--tiny'>
-                      <span className='o-flag__img'>
-                        <img className='o-avatar o-avatar--small' src="https://randomuser.me/api/portraits/men/43.jpg" alt="" />
-                      </span>
-                      <span className='o-flag__body'>
-                        {author}
-                      </span>
-                    </span>
+                    {author}
                   </dd>
                 </dl>
               </li>
