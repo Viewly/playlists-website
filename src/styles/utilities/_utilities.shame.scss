@@ -61,6 +61,7 @@ dl {
 .plyr__progress--buffer {
     display: none;
 }
+
 /* HACK - fixes plyr volume buttons misbehaving */
 .plyr__volume {
     display: flex;
@@ -142,4 +143,34 @@ dl {
         margin-top: $spacing-unit-tiny;
         padding-left: $spacing-unit-tiny;
         padding-right: $spacing-unit-tiny;
+    }
+
+.c-no-results {
+    color: color('dark-grey');
+    font-weight: 500;
+    padding-top: $spacing-unit-large;
+    padding-bottom: $spacing-unit-large;
+    text-align: center;
+
+    a {
+        color: color('brand-primary');
+        font-weight: 700;
+    }
+}
+
+    .c-no-results__img {
+        display: block;
+        margin-bottom: $spacing-unit-large;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 80%;
+
+        @include mq(medium) {
+            max-width: 400px;
+        }
+
+        @include mq(large) {
+            max-width: 500px;
+            margin-bottom: $spacing-unit-huge;
+        }
     }
