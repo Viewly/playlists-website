@@ -41,7 +41,6 @@ export default class PlaylistInfo extends Component {
       <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <div className='c-form'>
           <h1 className='u-h4 u-margin-bottom-large'>Suggest a video for &ldquo;{playlist.title}&rdquo;</h1>
-          <p></p>
 
           {this.state.suggested && (
             <div>

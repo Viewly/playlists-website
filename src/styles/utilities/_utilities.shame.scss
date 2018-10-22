@@ -48,6 +48,8 @@ dl {
     }
 
         .c-header__grid__item {
+            flex: 0 0 auto;
+
             &:not(:last-child) {
                 margin-right: $spacing-unit-large;
             }

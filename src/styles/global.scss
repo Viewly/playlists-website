@@ -4,8 +4,8 @@
 
 
 // Settings
-@import 'settings/settings.defaults';
 @import '../../node_modules/inuitcss/settings/settings.core';
+@import 'settings/settings.defaults';
 @import 'settings/settings.aliases';
 
 
@@ -52,6 +52,7 @@
 @import 'components/components.sections';
 @import 'components/components.buttons';
 @import 'components/components.inputs';
+@import 'components/components.select';
 @import 'components/components.player';
 @import 'components/components.player-playlist';
 
