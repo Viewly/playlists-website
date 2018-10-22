@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    #SEARCH FORM
+\*------------------------------------*/
+
+$search-from-button-width:              50px;
+
+
+
+
+
+.c-search-form {
+    margin-left: $spacing-unit-huge;
+    width: 320px;
+    position: relative;
+}
+
+    .c-search-form__input {
+        padding-left: $search-from-button-width;
+        width: 100%;
+    }
+
+    .c-search-form__btn {
+        background: none;
+        border-radius: 0;
+        padding: 0;
+        text-align: center;
+        width: $search-from-button-width;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        .o-icon {
+            font-size: 18px;
+        }
+    }
