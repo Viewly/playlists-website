@@ -86,19 +86,24 @@ dl {
 }
 
 
-.shame-share {
+.c-share {
     display: inline-flex;
     flex-direction: row-reverse;
 
-    &-socials {
+    &__btn {
+        color: color('dark-grey');
+        padding: 0;
+    }
+
+    &__socials {
         display: none;
     }
 
-    &.is-active &-socials {
+    &.is-active &__socials {
         display: block;
     }
 
-    &-item {
+    &__item {
         display: inline-block;
     }
 }
