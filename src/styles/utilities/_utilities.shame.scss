@@ -186,7 +186,7 @@ dl {
     padding-bottom: $spacing-unit;
     text-align: center;
 
-    a {
+    a:not(.c-btn) {
         color: color('brand-primary');
         font-weight: 700;
     }
