@@ -39,45 +39,50 @@ export default class PlaylistInfo extends Component {
 
     return (
       <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <div className='c-form'>
-          <h1 className='u-h4 u-margin-bottom-large'>Suggest a video for &ldquo;{playlist.title}&rdquo;</h1>
 
-          {this.state.suggested && (
-            <div>
-              <h2>Your suggestion has been received</h2>
-            </div>
-          )}
+        {this.state.suggested && (
+          <div className='c-thank-you'>
+            <img className='c-thank-you__img' src={require('../../../images/message-thank-you.svg')} />
+            <h5 className='u-margin-bottom-small'>Thanks for suggesting a video</h5>
+            <p>We've notified the author about your suggestion. You will get an email when the video is added to the playlist.</p>
+            <Link className='c-btn c-btn--primary c-btn--plain' to={`/playlist/${playlist.id}`}>&larr; Go back to the playlist</Link>
+          </div>
+        )}
 
-          <form onSubmit={this.handleSubmit}>
-            <ul className='c-form__list'>
-              <li>
-                <label className='c-form__label'>Link to the video</label>
-                <input className='c-input c-input--primary' type="text" name="link" value={this.state.link} onChange={this.handleChange} required />
-              </li>
-              <li>
-                <label className='c-form__label'>Why should it be added to the playlist? (optional)</label>
-                <textarea className='c-input c-input--primary c-input--textarea' name="description" value={this.state.description} onChange={this.handleChange}></textarea>
-                <small class='c-form__annotation'>Briefly explain why you're suggesting this video.</small>
-              </li>
-              <li>
-                <label className='c-form__label'>Your email address</label>
-                <input className='c-input c-input--primary' type="text" name="email" value={this.state.email} onChange={this.handleChange} required />
-                <small class='c-form__annotation'>We'll use this to notify you when the video is added to the playlist.</small>
-              </li>
-              <li>
-                <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
-                  <div className='o-grid__cell'>
-                    <Link className='c-btn c-btn--secondary c-btn--plain' to={`/playlist/${playlist.id}`}>&larr; Back to playlist</Link>
+        {!this.state.suggested && (
+          <div>
+            <h1 className='u-h4 u-margin-bottom-large'>Suggest a video for &ldquo;{playlist.title}&rdquo;</h1>
+
+            <form className='c-form' onSubmit={this.handleSubmit}>
+              <ul className='c-form__list'>
+                <li>
+                  <label className='c-form__label'>Link to the video</label>
+                  <input className='c-input c-input--primary' type="text" name="link" value={this.state.link} onChange={this.handleChange} required />
+                </li>
+                <li>
+                  <label className='c-form__label'>Why should it be added to the playlist? (optional)</label>
+                  <textarea className='c-input c-input--primary c-input--textarea' name="description" value={this.state.description} onChange={this.handleChange}></textarea>
+                  <small class='c-form__annotation'>Briefly explain why you're suggesting this video.</small>
+                </li>
+                <li>
+                  <label className='c-form__label'>Your email address</label>
+                  <input className='c-input c-input--primary' type="text" name="email" value={this.state.email} onChange={this.handleChange} required />
+                  <small class='c-form__annotation'>We'll use this to notify you when the video is added to the playlist.</small>
+                </li>
+                <li>
+                  <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
+                    <div className='o-grid__cell'>
+                      <Link className='c-btn c-btn--secondary c-btn--plain' to={`/playlist/${playlist.id}`}>&larr; Back to playlist</Link>
+                    </div>
+                    <div className='o-grid__cell'>
+                      <button className='c-btn c-btn--primary'>Submit</button>
+                    </div>
                   </div>
-                  <div className='o-grid__cell'>
-                    <button className='c-btn c-btn--primary'>Submit</button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </form>
-
-        </div>
+                </li>
+              </ul>
+            </form>
+          </div>
+        )}
       </div>
     );
   }
