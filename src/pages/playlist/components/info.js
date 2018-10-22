@@ -17,6 +17,7 @@ export default class PlaylistInfo extends Component {
     const isLoaded = (playlist._status === 'LOADED') || (playlist.id === playlistId);
     const isLoading = playlist._status === 'LOADING';
     if (!isLoaded) return <div>Loading ...</div>;
+    const firstVideo = playlist.videos.find(item => item.position === 0);
 
     return (
       <div>
@@ -37,7 +38,7 @@ export default class PlaylistInfo extends Component {
               <div className='o-grid__cell u-margin-bottom'>
                 <SharePlaylist playlist={playlist} />
                 <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--secondary'>Suggest a video</Link>
-                <a href='#' className='c-btn c-btn--primary u-margin-left-small'>Play all</a>
+                {firstVideo && <Link to={`/player/${playlist.id}/${firstVideo.id}`} className='c-btn c-btn--primary u-margin-left-small'>Play all</Link>}
               </div>
             </div>
             <div className='o-grid'>
