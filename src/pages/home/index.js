@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Layout from "./layout";
 
 import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
 
@@ -34,7 +33,7 @@ class HomePage extends Component {
     const { playlists } = this.props;
 
     return (
-      <Layout>
+      <>
         <div className='c-hero'>
           <div className='o-wrapper'>
             <div className='o-grid o-grid--middle o-grid--large'>
@@ -53,7 +52,7 @@ class HomePage extends Component {
           <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
           <Playlist isLoaded={true} data={playlists.data.filter(i => i.classification !== 'staff_picked')} onPlaylistClick={this.onPlaylistClick} />
         </div>
-      </Layout>
+      </>
     );
   }
 }
