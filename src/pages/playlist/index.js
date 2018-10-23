@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route } from 'react-router-dom';
-import Layout from "./layout";
 import PlaylistInfo from "./components/info";
 import PlaylistSuggest from "./components/suggest";
 
@@ -18,10 +17,10 @@ class PlaylistPage extends Component {
   }
   render() {
     return (
-      <Layout>
+      <>
         <Route exact path='/playlist/:playlistId' component={PlaylistInfo}></Route>
         <Route path='/playlist/:playlistId/suggest' component={PlaylistSuggest}></Route>
-      </Layout>
+      </>
     )
   }
 }

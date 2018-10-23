@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Layout from "./layout";
 import VideoPlayer from "./components/video";
 import Playlist from "./components/playlist";
 
@@ -81,7 +80,7 @@ class PlayerPage extends Component {
       : false;
 
     return (
-      <Layout>
+      <>
         {isLoaded && (
           <VideoPlayer
             togglePlaylist={this.togglePlaylist}
@@ -100,7 +99,7 @@ class PlayerPage extends Component {
             percentage={playlist.percentage}
             videos={playlist.videos} />
         )}
-      </Layout>
+      </>
     );
   }
 }
