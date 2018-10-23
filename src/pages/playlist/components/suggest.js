@@ -57,7 +57,7 @@ export default class PlaylistInfo extends Component {
               <ul className='c-form__list'>
                 <li>
                   <label className='c-form__label'>Link to the video</label>
-                  <input className='c-input c-input--primary' type="text" name="link" value={this.state.link} onChange={this.handleChange} required />
+                  <input className='c-input c-input--primary' type="url" name="link" value={this.state.link} onChange={this.handleChange} required />
                 </li>
                 <li>
                   <label className='c-form__label'>Why should it be added to the playlist? (optional)</label>
