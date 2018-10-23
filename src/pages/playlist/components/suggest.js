@@ -66,7 +66,7 @@ export default class PlaylistInfo extends Component {
                 </li>
                 <li>
                   <label className='c-form__label'>Your email address</label>
-                  <input className='c-input c-input--primary' type="text" name="email" value={this.state.email} onChange={this.handleChange} required />
+                  <input className='c-input c-input--primary' type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
                   <small class='c-form__annotation'>We'll use this to notify you when the video is added to the playlist.</small>
                 </li>
                 <li>
