@@ -50,8 +50,8 @@ class HomePage extends Component {
           </div>
         </div>
         <div className='o-wrapper'>
-          <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').sort(() => .5 - Math.random()).splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
-          <Playlist isLoaded={true} data={playlists.data} onPlaylistClick={this.onPlaylistClick} />
+          <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
+          <Playlist isLoaded={true} data={playlists.data.filter(i => i.classification !== 'staff_picked')} onPlaylistClick={this.onPlaylistClick} />
         </div>
       </Layout>
     );
