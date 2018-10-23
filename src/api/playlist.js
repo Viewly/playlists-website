@@ -8,14 +8,14 @@ export async function playlistFetch (baseUrl, { playlistId }) {
 }
 
 export async function playlistsFetch (baseUrl) {
-  const url = `${baseUrl}/playlists`;
+  const url = `${baseUrl}/playlists?status=published`;
   const { body } = await get(url);
 
   return body;
 }
 
 export async function playlistSearch (baseUrl, { query }) {
-  const url = `${baseUrl}/playlists?title=${query}`;
+  const url = `${baseUrl}/playlists?status=published&title=${query}`;
   const { body } = await get(url);
 
   return body;
