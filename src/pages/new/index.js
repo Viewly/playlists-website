@@ -99,7 +99,7 @@ class NewPlaylist extends Component {
                   </li>
                   <li>
                     <label className='c-form__label'>Your email address</label>
-                    <input className='c-input c-input--primary' type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
+                    <input className='c-input c-input--primary' type="email" name="email" placeholder="search playlists" value={this.state.email} onChange={this.handleChange} required />
                   </li>
                   <li className='u-text-right'>
                     <button class='c-btn c-btn--primary'>Next</button>
