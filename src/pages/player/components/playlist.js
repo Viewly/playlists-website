@@ -1,7 +1,7 @@
 import React from "react";
 import PlaylistItem from "./playlist_item";
 
-const Playlist = ({ title, videos, togglePlaylist, isVisible, percentage, onClick, videoId }) => (
+const Playlist = ({ title, url, videos, togglePlaylist, isVisible, percentage, onClick, videoId }) => (
   <div onClick={onClick} className={`c-player-playlist ${isVisible ? 'is-visible' : ''}`}>
 
     <button className='c-btn c-player-playlist__btn-hide' onClick={togglePlaylist}>
@@ -14,7 +14,7 @@ const Playlist = ({ title, videos, togglePlaylist, isVisible, percentage, onClic
     <div className='c-player-playlist__content'>
       <h2 className='u-h5 u-margin-bottom-tiny'>{title}</h2>
       <p className='c-progress-highlight u-margin-bottom-small'>{percentage}% watched</p>
-      {videos && videos.map((item, idx) => <PlaylistItem key={`video-${idx}`} isCurrent={item.id === videoId} onPlayNext={togglePlaylist} {...item} />)}
+      {videos && videos.map((item, idx) => <PlaylistItem key={`video-${idx}`} url={url} isCurrent={item.id === videoId} onPlayNext={togglePlaylist} {...item} />)}
     </div>
   </div>
 )

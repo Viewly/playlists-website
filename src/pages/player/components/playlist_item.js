@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { convertYoutubeDuration } from "../../../utils"
 
-const PlaylistItem = ({ id, title, duration, playlist_id, thumbnail_url, percentage, onPlayNext, isCurrent }) => (
+const PlaylistItem = ({ id, url, title, duration, thumbnail_url, percentage, onPlayNext, isCurrent }) => (
 
   <div className={`c-video ${isCurrent ? 'is-current' : ''} ${percentage === 100 ? 'is-watched' : ''}`}>
     <div className='c-thumbnail'>
-      <Link className='c-thumbnail__link' onClick={onPlayNext} to={`/player/${playlist_id}/${id}`}></Link>
+      <Link className='c-thumbnail__link' onClick={onPlayNext} to={`/player/${url}/${id}`}></Link>
       <img className='c-thumbnail__img' src={thumbnail_url} />
       <div className='c-thumbnail__play-icon'>
         <svg  width='16' height='22' viewBox='0 0 16 22' xmlns='http://www.w3.org/2000/svg'>
@@ -29,13 +29,13 @@ const PlaylistItem = ({ id, title, duration, playlist_id, thumbnail_url, percent
       }
       <span className='c-thumbnail__duration-indicator'>{convertYoutubeDuration(duration)}</span>
     </div>
-    <h4 className='c-video__title'><Link onClick={onPlayNext} to={`/player/${playlist_id}/${id}`}>{title}</Link></h4>
+    <h4 className='c-video__title'><Link onClick={onPlayNext} to={`/player/${url}/${id}`}>{title}</Link></h4>
   </div>
 )
 
 PlaylistItem.propTypes = {
   title: PropTypes.string.isRequired,
-  playlist_id: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
   thumbnail_url: PropTypes.string.isRequired,
   onPlayNext: PropTypes.func.isRequired
 };
