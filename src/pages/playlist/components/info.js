@@ -14,7 +14,7 @@ import { sumVideoDurations } from "../../../utils";
 export default class PlaylistInfo extends Component {
   render() {
     const { playlist, match: { params: { playlistId } } } = this.props;
-    const isLoaded = (playlist._status === 'LOADED') || (playlist.id === playlistId);
+    const isLoaded = (playlist._status === 'LOADED') || (playlist.id === playlistId) || (playlist.url === playlistId);
     const isLoading = playlist._status === 'LOADING';
     if (!isLoaded) return <div>Loading ...</div>;
 
