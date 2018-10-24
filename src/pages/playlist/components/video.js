@@ -6,7 +6,7 @@ import { convertYoutubeDuration } from "../../../utils"
 const Video = ({ id, title, duration, url, thumbnail_url, percentage }) => (
   <div className='o-grid__cell u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom'>
 
-    <div className={`c-video ${percentage === 100 ? 'is-watched' : ''}`}>
+    <div className={`c-video c-video--condensed ${percentage === 100 ? 'is-watched' : ''}`}>
       <div className='c-thumbnail'>
         <Link className='c-thumbnail__link' to={`/player/${url}/${id}`}></Link>
         <img className='c-thumbnail__img' src={thumbnail_url} />
@@ -31,7 +31,10 @@ const Video = ({ id, title, duration, url, thumbnail_url, percentage }) => (
 
         <span className='c-thumbnail__duration-indicator'>{convertYoutubeDuration(duration)}</span>
       </div>
-      <h4 className='c-video__title'><Link to={`/player/${url}/${id}`}>{title}</Link></h4>
+      <div className='c-video--condensed__text'>
+        <h4 className='c-video__title'><Link to={`/player/${url}/${id}`}>{title}</Link></h4>
+        <span className='c-video--condensed__duration'>{convertYoutubeDuration(duration)}</span>
+      </div>
     </div>
   </div>
 )
