@@ -20,13 +20,13 @@ class HomePage extends Component {
     playlistsFetch();
   }
 
-  onPlaylistClick = (playlistId) => (evnt) => {
+  onPlaylistClick = (url) => (evnt) => {
     const { history, injectPlaylist, playlists } = this.props;
-    const selectedPlaylist = playlists.data.find(item => item.id === playlistId);
+    const selectedPlaylist = playlists.data.find(item => item.url === url);
 
     evnt.preventDefault();
     injectPlaylist(selectedPlaylist);
-    history.push(`/playlist/${playlistId}`);
+    history.push(`/playlist/${url}`);
   }
 
   render() {

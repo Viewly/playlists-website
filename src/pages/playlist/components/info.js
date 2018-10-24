@@ -40,7 +40,7 @@ export default class PlaylistInfo extends Component {
               </div>
             </div>
             <div className='o-grid'>
-              {!isLoading && playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} {...item} />)}
+              {!isLoading && playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} url={playlist.url} {...item} />)}
               {isLoading && (
                 <div>Loading ...</div>
               )}

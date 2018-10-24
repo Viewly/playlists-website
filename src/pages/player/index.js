@@ -52,9 +52,9 @@ class PlayerPage extends Component {
     const nextVideoId = this.getNextVideoId(this.state.videoId);
 
     if (nextVideoId === -1) {
-      history.push(`/playlist/${playlist.id}`);
+      history.push(`/playlist/${playlist.url}`);
     } else {
-      history.push(`/player/${playlist.id}/${nextVideoId}`);
+      history.push(`/player/${playlist.url}/${nextVideoId}`);
     }
   }
 
@@ -84,7 +84,7 @@ class PlayerPage extends Component {
         {isLoaded && (
           <VideoPlayer
             togglePlaylist={this.togglePlaylist}
-            playlistUrl={`/playlist/${playlist.id}`}
+            playlistUrl={`/playlist/${playlist.url}`}
             video={currentVideo}
             onVideoEnd={this.onVideoEnd}
             onPercentage={this.onPercentage} />
@@ -96,6 +96,7 @@ class PlayerPage extends Component {
             videoId={this.state.videoId}
             togglePlaylist={this.togglePlaylist}
             title={playlist.title}
+            url={playlist.url}
             percentage={playlist.percentage}
             videos={playlist.videos} />
         )}

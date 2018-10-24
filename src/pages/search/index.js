@@ -41,11 +41,11 @@ class SearchPage extends Component {
     playlistSearch(query);
   }
 
-  onPlaylistClick = (playlistId) => (evnt) => {
+  onPlaylistClick = (url) => (evnt) => {
     const { history } = this.props;
 
     evnt.preventDefault();
-    history.push(`/playlist/${playlistId}`);
+    history.push(`/playlist/${url}`);
   }
 
   render() {
