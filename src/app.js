@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Route, Switch } from 'react-router-dom';
 import { hot } from "react-hot-loader";
-
+import PlayerPage from './pages/player';
+import HeaderContainer from "./components/HeaderContainer";
 import { routes } from './routes';
 
 class App extends Component {

@@ -39,7 +39,7 @@ class HomePage extends Component {
     return 'lol';
   }
 
-  onPlaylistClick = (playlistId) => (evnt) => {
+  onPlaylistClick = (url) => (evnt) => {
     const { history, injectPlaylist, playlists } = this.props;
     const selectedPlaylist = playlists.data.find(item => item.url === url);
 
