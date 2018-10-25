@@ -29,7 +29,6 @@ $tweakpoint-video-condensed:        medium;
 
 .c-video--condensed {
     @include mq($until: $tweakpoint-video-condensed) {
-        align-items: center;
         display: flex;
 
         .c-thumbnail {
