@@ -1,21 +1,22 @@
-import { createServer } from "http";
+import express from 'express';
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { matchPath } from "react-router-dom";
 import App from "./App";
-// import rootReducer from "./reducers/index";
-// import { createBasicStore } from "./store/";
 import { routes } from "./routes";
-import Html from './server/html';
 import store from "./store";
+import fs from "fs";
 
 const port = 3000;
 
-createServer((req, res) => {
-  // const initialState = {};
-  // const store = createBasicStore(rootReducer, initialState);
+const app = express();
+app.use(express.static('.', { index: false }));
+
+const indexHtml = fs.readFileSync('./index.html', 'utf8');
+
+app.get('*', async (req, res) => {
   const currentRoute = routes.find(route => matchPath(req.url, route)) || {};
   let promise;
 
@@ -36,11 +37,12 @@ createServer((req, res) => {
       </Provider>
     );
 
-    const output = ReactDOMServer.renderToStaticMarkup(<Html title="Hello World" children={html} initialState={store.getState()} />)
-    res.write(`<!doctype html>${output}`);
+    let finalHtml = indexHtml;
+    finalHtml = finalHtml.replace('<!-- ROOT_CONTAINER -->', html);
+    finalHtml = finalHtml.replace('/*INITIAL_STATE*/', JSON.stringify(store.getState()));
+    res.write(finalHtml);
     res.end();
   });
 
-}).listen(port);
-
-console.log(`Serving at http://localhost:${port}`);
+});
+app.listen(port, () => console.log(`App listening on port ${port}`));

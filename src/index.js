@@ -7,13 +7,16 @@ import App from "./app";
 import ScrollToTop from "./components/scrollToTop";
 
 const $appContainer = document.getElementById("root");
-
-$appContainer && ReactDOM.render((
+const Application = (
   <Provider store={store}>
     <BrowserRouter>
       <ScrollToTop>
         <App />
       </ScrollToTop>
     </BrowserRouter>
-  </Provider>), $appContainer
+  </Provider>
 );
+
+$appContainer && __HYDRATE__
+  ? ReactDOM.hydrate(Application, $appContainer)
+  : ReactDOM.render(Application, $appContainer);

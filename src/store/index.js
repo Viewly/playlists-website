@@ -18,6 +18,7 @@ const logger = createLogger({
 const store = createStore(
   rootReducer,
   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  CLIENT && !!window.__INITIAL_STATE__ ? window.__INITIAL_STATE__ : undefined,
   applyMiddleware(thunk, logger)
 )
 

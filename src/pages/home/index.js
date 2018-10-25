@@ -23,20 +23,10 @@ const prepareActions = (dispatch) => ({
   playlists: state.playlists
 }), prepareActions)
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-
-    // console.log('props staticContext', props.staticContext)
-  }
-
   componentDidMount() {
     const { playlistsFetch } = this.props;
 
     playlistsFetch();
-  }
-
-  loadData() {
-    return 'lol';
   }
 
   onPlaylistClick = (url) => (evnt) => {
