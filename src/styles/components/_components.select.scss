@@ -1,0 +1,92 @@
+/*------------------------------------*\
+    #SELECT REPLACEMENT
+\*------------------------------------*/
+
+$select-padding:                $input-padding;
+
+$select-arrow-color:            color('dark-grey');
+$select-arrow-size:             5px;
+
+$select-arrow-box-width:        40px;
+
+
+
+
+
+.c-select {
+    background-color: $input-background-color;
+    border: 1px solid transparent;
+    border-radius: $input-border-radius;
+    display: inline-block;
+    text-align: left;
+    transition-duration: .2s;
+    transition-property: background, box-shadow, border, color;
+    position: relative;
+
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+        pointer-events: none;
+        position: absolute;
+    }
+
+    &::before {
+        border: $select-arrow-size solid transparent;
+        border-top-color: rgba($select-arrow-color, .65);
+        height: 0;
+        transition: inherit;
+        width: 0;
+        top: calc(50% - #{$select-arrow-size / 2});
+        right: ($select-arrow-box-width / 2) - $select-arrow-size;
+    }
+
+    &::after {
+        //border-left: 1px solid $global-border-color;
+        width: $select-arrow-box-width;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    &:hover {
+        background-color: lighten($input-background-color, 1%);
+        border-color: darken($input-background-color, 3%);
+
+        &::before {
+            border-top-color: rgba($select-arrow-color, .8);
+        }
+    }
+}
+
+    .c-select__select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: none;
+        border: none;
+        color: $input-color;
+        cursor: pointer;
+        display: inline-block;
+        font-family: $global-font-family;
+        font-size: $input-font-size;
+        padding: $select-padding;
+        padding-right: $select-arrow-box-width + $spacing-unit-tiny;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+
+        &::-ms-expand {
+            display: none;
+        }
+
+        &:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 $global-text-color;
+        }
+
+        &:active,
+        &:focus {
+            outline: none;
+        }
+    }

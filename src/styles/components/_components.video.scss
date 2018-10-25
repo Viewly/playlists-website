@@ -2,6 +2,12 @@
     #VIDEO
 \*------------------------------------*/
 
+$tweakpoint-video-condensed:        medium;
+
+
+
+
+
 .c-video {
     display: block;
 
@@ -19,8 +25,46 @@
             left: -$player-playlist-content-padding;
         }
     }
-
 }
+
+.c-video--condensed {
+    @include mq($until: $tweakpoint-video-condensed) {
+        display: flex;
+
+        .c-thumbnail {
+            flex: 0 0 auto;
+            margin-bottom: 0;
+            width: 40%;
+        }
+
+        .c-thumbnail__duration-indicator {
+            display: none;
+        }
+    }
+}
+
+    .c-video--condensed__text {
+        @include mq($until: $tweakpoint-video-condensed) {
+            margin-left: $spacing-unit-small;
+        }
+    }
+
+    .c-video--condensed__duration {
+        background-color: color('grey');
+        border-radius: 2px;
+        color: color('dark-grey');
+        display: none;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.2;
+        padding: 2px 4px;
+
+        @include mq($until: $tweakpoint-video-condensed) {
+            display: inline-block;
+        }
+    }
+
+
 
     /**
      * Video title
@@ -34,14 +78,18 @@
         $max-number-of-lines: 2;
         $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
 
-        color: #1d1d1d;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: $max-number-of-lines;
+        color: $global-text-color;
         display: block;
+        display: -webkit-box;
         font-size: $font-size;
         font-weight: 500;
-        max-height: round($max-height);
         margin-bottom: 0;
+        max-height: round($max-height);
         overflow: hidden;
         padding-right: $spacing-unit-tiny; /* [1] */
+        text-overflow: ellipsis;
         transition: $global-transition;
 
         &:not(:last-child) {
@@ -62,6 +110,19 @@
             font-size: $font-size;
             font-weight: 700;
             max-height: round($max-height);
+        }
+
+        .c-video--condensed & {
+            $max-number-of-lines: 3;
+            $max-height: $font-size * ($line-height - .25) * $max-number-of-lines;
+
+            @include mq($until: $tweakpoint-video-condensed) {
+                -webkit-line-clamp: $max-number-of-lines;
+                font-size: $font-size;
+                max-height: round($max-height);
+                margin-top: 0;
+                padding-right: 0;
+            }
         }
 
     }

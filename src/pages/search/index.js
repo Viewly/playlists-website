@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import queryString from "query-string";
 
 import Layout from "./layout";
@@ -40,11 +41,11 @@ class SearchPage extends Component {
     playlistSearch(query);
   }
 
-  onPlaylistClick = (playlistId) => (evnt) => {
+  onPlaylistClick = (url) => (evnt) => {
     const { history } = this.props;
 
     evnt.preventDefault();
-    history.push(`/playlist/${playlistId}`);
+    history.push(`/playlist/${url}`);
   }
 
   render() {
@@ -53,26 +54,35 @@ class SearchPage extends Component {
 
     return (
       <Layout>
-        <div className='o-wrapper'>
-          you searched for - {this.state.query}
-
-          {isReady && (
-            <div>
-              {!searchedPlaylists.data.length && (
-                <div>
-                  <img src={require('../../images/hero-illustration.svg')} />
-                </div>
-              )}
-
-              {searchedPlaylists.data.map((item, idx) => (
-                  <PlaylistItem key={`searchitem-${idx}`} onPlaylistClick={this.onPlaylistClick} {...item} />
-              ))}
-            </div>
-          )}
+        <div className='o-wrapper u-padding-top-large u-padding-bottom'>
 
           {!isReady && (
             <div>
               LOADING
+            </div>
+          )}
+
+          {isReady && (
+            <div>
+              {!searchedPlaylists.data.length && (
+                <div className='c-no-results'>
+                  <img className='c-no-results__img' src={require('../../images/no-results.svg')} />
+                  <p>Try searching again using different keywords, <br />or <Link to='/new'>create your playlist</Link></p>
+                </div>
+              )}
+
+              {searchedPlaylists.data.length > 0 && (
+                <div>
+                  <h2 className='u-h4'>Results for &ldquo;{this.state.query}&rdquo;</h2>
+
+                  <div className='o-grid'>
+                    {searchedPlaylists.data.map((item, idx) => (
+                      <PlaylistItem key={`searchitem-${idx}`} onPlaylistClick={this.onPlaylistClick} {...item} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
             </div>
           )}
         </div>

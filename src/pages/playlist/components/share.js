@@ -25,48 +25,57 @@ export default class SharePlaylist extends Component {
     const { playlist } = this.props;
     const shareTitle = playlist.title;
     // TODO move these somewhere else
-    const shareUrl = `https://www.vidflow.io/playlist/${playlist.id}`;
+    const shareUrl = `https://www.vidflow.io/playlist/${playlist.url}`;
     const twitterTitle = "Found this playlist on @vidflow_io";
     const emailSubject = "Playlist from vidflow.io";
 
     return (
-      <div className={`shame-share ${this.state.active ? 'is-active' : ''}`}>
-        <button onClick={this.toggleShare}>💩</button>
+      <div className={`c-share ${this.state.active ? 'is-active' : ''}`}>
+        <button className='c-btn c-share__btn' onClick={this.toggleShare}>
+          <svg className='o-icon' width="21" height="22" viewBox="0 0 21 22" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(1 1)" stroke="currentColor" strokeWidth="2" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="16" cy="3" r="3"/>
+              <circle cx="3" cy="11" r="3"/>
+              <circle cx="16" cy="17" r="3"/>
+              <path d="M6 12l6.83 3.98M12.82 5L6 8.98"/>
+            </g>
+          </svg>
+        </button>
 
-        <div className='shame-share-socials'>
-          <FacebookShareButton url={shareUrl} quote={shareTitle} className='shame-share-item'>
+        <div className='c-share__socials'>
+          <FacebookShareButton url={shareUrl} quote={shareTitle} className='c-share__item'>
             <FacebookIcon
-              size={64}
+              size={36}
               round />
-            <span>Facebook</span>
+            {/* <span>Facebook</span> */}
           </FacebookShareButton>
 
-          <TwitterShareButton url={shareUrl} title={twitterTitle} className='shame-share-item'>
+          <TwitterShareButton url={shareUrl} title={twitterTitle} className='c-share__item'>
             <TwitterIcon
-              size={64}
+              size={36}
               round />
-            <span>Twitter</span>
+            {/* <span>Twitter</span> */}
           </TwitterShareButton>
 
-          <RedditShareButton url={shareUrl} title={shareTitle} className='shame-share-item'>
+          <RedditShareButton url={shareUrl} title={shareTitle} className='c-share__item'>
             <RedditIcon
-              size={64}
+              size={36}
               round />
-            <span>Reddit</span>
+            {/* <span>Reddit</span> */}
           </RedditShareButton>
 
-          <GooglePlusShareButton url={shareUrl} className='shame-share-item'>
+          <GooglePlusShareButton url={shareUrl} className='c-share__item'>
             <GooglePlusIcon
-              size={64}
+              size={36}
               round />
-            <span>Google+</span>
+            {/* <span>Google+</span> */}
           </GooglePlusShareButton>
 
-          <EmailShareButton url={shareUrl} subject={emailSubject} body={shareTitle} className='shame-share-item'>
+          <EmailShareButton url={shareUrl} subject={emailSubject} body={shareTitle} className='c-share__item'>
             <EmailIcon
-              size={64}
+              size={36}
               round />
-            <span>Email</span>
+            {/* <span>Email</span> */}
           </EmailShareButton>
         </div>
 

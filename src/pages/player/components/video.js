@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Plyr from "./plyr";
 
-const VideoPlayer = ({ playlistUrl, video, togglePlaylist, onVideoEnd, onPercentage }) => (
+const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage }) => (
   <div className='c-player'>
     <div>
       <div className='c-player__container'>

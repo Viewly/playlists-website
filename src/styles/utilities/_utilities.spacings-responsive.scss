@@ -1,0 +1,21 @@
+/*------------------------------------*\
+    #RESPONSIVE SPACING
+\*------------------------------------*/
+
+@each $inuit-bp-name, $inuit-bp-value in $mq-breakpoints {
+
+    @include mq($from: $inuit-bp-name) {
+        @each $property, $property-namespace in $inuit-spacing-properties {
+
+            @each $direction, $direction-namespace in $inuit-spacing-directions {
+
+                @each $size, $value in $inuit-spacing-sizes {
+
+                    .u-#{$property-namespace}#{$direction-namespace}#{$size}\@#{$inuit-bp-name} {
+                        #{$property}#{$direction}: $value !important;
+                    }
+                }
+            }
+        }
+    }
+}

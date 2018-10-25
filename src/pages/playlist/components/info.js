@@ -13,9 +13,9 @@ import { sumVideoDurations } from "../../../utils";
 }))
 export default class PlaylistInfo extends Component {
   render() {
-    const { playlist } = this.props;
-    const isLoaded = playlist._status === 'LOADED';
-
+    const { playlist, match: { params: { playlistId } } } = this.props;
+    const isLoaded = (playlist._status === 'LOADED') || (playlist.id === playlistId) || (playlist.url === playlistId);
+    const isLoading = playlist._status === 'LOADING';
     if (!isLoaded) return <div>Loading ...</div>;
 
     return (
@@ -30,18 +30,20 @@ export default class PlaylistInfo extends Component {
 
         <div className='c-section c-section--grey'>
           <div className='o-wrapper'>
-            <div className='o-grid o-grid--auto o-grid--middle o-grid--between'>
+            <div className='o-grid o-grid--small o-grid--auto o-grid--middle o-grid--between'>
               <div className='o-grid__cell u-margin-bottom'>
                 <span><b>{playlist.videos.length} videos</b></span>
               </div>
               <div className='o-grid__cell u-margin-bottom'>
                 <SharePlaylist playlist={playlist} />
-                <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--secondary'>Suggest a video</Link>
-                <a href='#' className='c-btn c-btn--primary u-margin-left-small'>Play all</a>
+                <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>Suggest a video</Link>
               </div>
             </div>
             <div className='o-grid'>
-              {playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} {...item} />)}
+              {!isLoading && playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} url={playlist.url} {...item} />)}
+              {isLoading && (
+                <div>Loading ...</div>
+              )}
             </div>
           </div>
         </div>

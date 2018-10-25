@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Layout from "./layout";
+import { Link } from "react-router-dom";
 
-import { playlistsFetch } from "../../actions";
+import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "./components/playlist";
@@ -10,7 +10,8 @@ import Recommended from "./components/recommended";
 
 
 const prepareActions = (dispatch) => ({
-  playlistsFetch: () => dispatch(playlistsFetch())
+  playlistsFetch: () => dispatch(playlistsFetch()),
+  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
@@ -39,10 +40,12 @@ class HomePage extends Component {
   }
 
   onPlaylistClick = (playlistId) => (evnt) => {
-    const { history } = this.props;
+    const { history, injectPlaylist, playlists } = this.props;
+    const selectedPlaylist = playlists.data.find(item => item.url === url);
 
     evnt.preventDefault();
-    history.push(`/playlist/${playlistId}`);
+    injectPlaylist(selectedPlaylist);
+    history.push(`/playlist/${url}`);
   }
 
   render() {
@@ -50,14 +53,26 @@ class HomePage extends Component {
     const isReady = isLoaded(playlists);
 
     return (
-      <Layout>
-        {isReady && (
+      <>
+        <div className='c-hero'>
           <div className='o-wrapper'>
-            <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').sort(() => .5 - Math.random()).splice(0, 3)} onPlaylistClick={this.onPlaylistClick} />
-            <Playlist isLoaded={true} data={playlists.data} onPlaylistClick={this.onPlaylistClick} />
+            <div className='o-grid o-grid--middle o-grid--large'>
+              <div className='o-grid__cell c-hero__grid__cell'>
+                <h1 className="c-hero__title">Collaborative <br />YouTube playlists</h1>
+                <p>Discover playlists, create your own, and contribute to others.</p>
+                <Link to='/new' className='c-btn c-btn--primary c-btn--large'>Create your playlist</Link>
+              </div>
+              <div className='o-grid__cell c-hero__grid__cell'>
+                <img className='c-hero__graphic' src={require('../../images/hero-illustration.svg')} />
+              </div>
+            </div>
           </div>
-        )}
-      </Layout>
+        </div>
+        <div className='o-wrapper'>
+          <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
+          <Playlist isLoaded={true} data={playlists.data.filter(i => i.classification !== 'staff_picked')} onPlaylistClick={this.onPlaylistClick} />
+        </div>
+      </>
     );
   }
 }
