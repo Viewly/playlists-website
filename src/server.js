@@ -39,7 +39,8 @@ app.get('*', async (req, res) => {
 
     let finalHtml = indexHtml;
     finalHtml = finalHtml.replace('<!-- ROOT_CONTAINER -->', html);
-    finalHtml = finalHtml.replace('/*INITIAL_STATE*/', JSON.stringify(store.getState()));
+    finalHtml = finalHtml.replace('var __INITIAL_STATE__ = false;', `var __INITIAL_STATE__ = ${JSON.stringify(store.getState())};`);
+    finalHtml = finalHtml.replace('var __HYDRATE__ = false;', 'var __HYDRATE__ = true;');
     res.write(finalHtml);
     res.end();
   });

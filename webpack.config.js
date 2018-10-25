@@ -69,6 +69,8 @@ module.exports = {
     }),
     new FaviconsWebpackPlugin('./src/favicons/favicon.png'),
     new webpack.DefinePlugin({
+      DEVELOPMENT: true,
+      PRODUCTION: false,
       CLIENT: true,
       SERVER: false
     })
