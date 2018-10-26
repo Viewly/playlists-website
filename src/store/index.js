@@ -9,28 +9,23 @@ const loggerMiddleware = createLogger({
 
 
 const composeEnhancers = DEVELOPMENT && CLIENT && !!window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
 const enhancer = composeEnhancers(
-    applyMiddleware(
-        thunkMiddleware,
-        loggerMiddleware
+  CLIENT
+    ? applyMiddleware(
+      thunkMiddleware,
+      loggerMiddleware
+    )
+    : applyMiddleware(
+      thunkMiddleware
     )
 );
 
 const store = createStore(
   rootReducer,
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   CLIENT && !!window.__INITIAL_STATE__ ? window.__INITIAL_STATE__ : undefined,
-  // applyMiddleware(thunk, logger)
   enhancer
 )
-
-// export function createBasicStore (reducers, data) {
-//   return createStore(
-//     reducers,
-//     applyMiddleware(thunk, logger)
-//   )
-// }
 
 export default store;
