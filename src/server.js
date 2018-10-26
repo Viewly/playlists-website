@@ -8,13 +8,15 @@ import App from "./App";
 import { routes } from "./routes";
 import store from "./store";
 import fs from "fs";
+import path from "path";
 
 const port = 3000;
 
 const app = express();
 app.use(express.static('.', { index: false }));
 
-const indexHtml = fs.readFileSync('./index.html', 'utf8');
+const indexPath = path.resolve(__dirname, '..', 'dist', 'index.html');
+const indexHtml = fs.readFileSync(indexPath, 'utf8');
 
 app.get('*', async (req, res) => {
   const currentRoute = routes.find(route => matchPath(req.url, route)) || {};

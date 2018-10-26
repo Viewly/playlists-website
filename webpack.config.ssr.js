@@ -12,6 +12,10 @@ module.exports = {
   },
   module: config.module,
   target: 'node',
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
   externals: nodeExternals(),
   plugins: [
     new webpack.DefinePlugin({
