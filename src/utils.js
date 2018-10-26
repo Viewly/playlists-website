@@ -18,6 +18,9 @@ export function sumVideoDurations (videos) {
 }
 
 export function getPlaylistProgress(playlistId) {
+  if (SERVER) {
+    return {};
+  }
   const storageKey = `progress-${playlistId}`;
   const playlist = JSON.parse(localStorage.getItem(storageKey)) || {};
 
@@ -25,6 +28,9 @@ export function getPlaylistProgress(playlistId) {
 }
 
 export function savePlaylistProgress(playlistId, playlist) {
+  if (SERVER) {
+    return false;
+  }
   const storageKey = `progress-${playlistId}`;
   localStorage.setItem(storageKey, JSON.stringify(playlist));
 }
