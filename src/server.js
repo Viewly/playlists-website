@@ -13,7 +13,7 @@ import path from "path";
 const port = 3000;
 
 const app = express();
-app.use(express.static('.', { index: false }));
+app.use(express.static(path.resolve(__dirname, '..', 'dist'), { index: false }));
 
 const indexPath = path.resolve(__dirname, '..', 'dist', 'index.html');
 const indexHtml = fs.readFileSync(indexPath, 'utf8');
@@ -23,7 +23,8 @@ app.get('*', async (req, res) => {
   let promise;
 
   if (currentRoute.component && currentRoute.component.asyncLoad) {
-    promise = currentRoute.component.asyncLoad({}, {}, store);
+    const matched = matchPath(req.url, currentRoute);
+    promise = currentRoute.component.asyncLoad(matched.params, {}, store);
   } else {
     promise = Promise.resolve(null);
   }

@@ -42,7 +42,7 @@ const rootReducer = (state = initialState, action) => {
       const sumProgresses = watchedVideos.reduce((acc, curr) => (acc + curr.percentage), 0);
       action.data.percentage = Math.round(sumProgresses / action.data.videos.length);
 
-      return { ...state, playlist: { _status: LOADED, ...action.data } };
+      return { ...state, playlist: { _status: LOADED, ...action.data, isServerRendered: SERVER } };
 
     case actions.PLAYLIST_SEARCH_START:
       return { ...state, searchedPlaylists: { _status: LOADING, data: [] } };
