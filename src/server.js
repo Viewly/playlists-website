@@ -1,14 +1,17 @@
 import express from 'express';
 import React from "react";
 import ReactDOMServer from "react-dom/server";
+import fs from "fs";
+import path from "path";
+import MetaTagsServer from 'react-meta-tags/server';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { matchPath } from "react-router-dom";
+import { MetaTagsContext } from 'react-meta-tags';
+
 import App from "./App";
 import { routes } from "./routes";
 import store from "./store";
-import fs from "fs";
-import path from "path";
 
 const port = 3000;
 
@@ -20,6 +23,8 @@ const indexHtml = fs.readFileSync(indexPath, 'utf8');
 
 app.get('*', async (req, res) => {
   const currentRoute = routes.find(route => matchPath(req.url, route)) || {};
+  const metaTagsInstance = MetaTagsServer();
+
   let promise;
 
   if (currentRoute.component && currentRoute.component.asyncLoad) {
@@ -34,16 +39,21 @@ app.get('*', async (req, res) => {
 
     const html = ReactDOMServer.renderToString(
       <Provider store={store}>
-        <StaticRouter location={req.url} context={context}>
-          <App />
-        </StaticRouter>
+        <MetaTagsContext extract={metaTagsInstance.extract}>
+          <StaticRouter location={req.url} context={context}>
+            <App />
+          </StaticRouter>
+        </MetaTagsContext>
       </Provider>
     );
+
+    const meta = metaTagsInstance.renderToString();
 
     let finalHtml = indexHtml;
     finalHtml = finalHtml.replace('<!-- ROOT_CONTAINER -->', html);
     finalHtml = finalHtml.replace('var __INITIAL_STATE__ = false;', `var __INITIAL_STATE__ = ${JSON.stringify(store.getState())};`);
     finalHtml = finalHtml.replace('var __HYDRATE__ = false;', 'var __HYDRATE__ = true;');
+    finalHtml = finalHtml.replace('<!-- DEFAULT META TAGS -->', `${meta} <!-- DEFAULT META TAGS`);
     res.write(finalHtml);
     res.end();
   });
