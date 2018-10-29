@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Header from "./header";
 import Video from "./video";
 import SharePlaylist from "./share";
+import SEO from "../../../components/SEO";
 
 import { sumVideoDurations } from "../../../utils";
 
@@ -28,6 +29,7 @@ export default class PlaylistInfo extends Component {
           description={playlist.description}
           tags={[ playlist.category ]} />
 
+        <SEO playlist={playlist} />
         <div className='c-section c-section--grey'>
           <div className='o-wrapper'>
             <div className='o-grid o-grid--small o-grid--auto o-grid--middle o-grid--between'>

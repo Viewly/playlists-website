@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import VideoPlayer from "./components/video";
 import Playlist from "./components/playlist";
+import SEO from "../../components/SEO";
 
 import { playlistFetch, updatePercentage } from "../../actions";
 
@@ -82,23 +83,24 @@ class PlayerPage extends Component {
     return (
       <>
         {isLoaded && (
-          <VideoPlayer
-            togglePlaylist={this.togglePlaylist}
-            playlistUrl={`/playlist/${playlist.url}`}
-            video={currentVideo}
-            onVideoEnd={this.onVideoEnd}
-            onPercentage={this.onPercentage} />
-        )}
-        {isLoaded && (
-          <Playlist
-            onClick={this.onPlaylistClick}
-            isVisible={this.state.showPlaylist}
-            videoId={this.state.videoId}
-            togglePlaylist={this.togglePlaylist}
-            title={playlist.title}
-            url={playlist.url}
-            percentage={playlist.percentage}
-            videos={playlist.videos} />
+          <>
+            <SEO playlist={playlist} />
+            <VideoPlayer
+              togglePlaylist={this.togglePlaylist}
+              playlistUrl={`/playlist/${playlist.url}`}
+              video={currentVideo}
+              onVideoEnd={this.onVideoEnd}
+              onPercentage={this.onPercentage} />
+            <Playlist
+              onClick={this.onPlaylistClick}
+              isVisible={this.state.showPlaylist}
+              videoId={this.state.videoId}
+              togglePlaylist={this.togglePlaylist}
+              title={playlist.title}
+              url={playlist.url}
+              percentage={playlist.percentage}
+              videos={playlist.videos} />
+          </>
         )}
       </>
     );

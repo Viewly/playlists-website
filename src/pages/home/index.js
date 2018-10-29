@@ -7,7 +7,7 @@ import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "./components/playlist";
 import Recommended from "./components/recommended";
-
+import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch()),
@@ -44,6 +44,7 @@ class HomePage extends Component {
 
     return (
       <>
+        <SEO />
         <div className='c-hero'>
           <div className='o-wrapper'>
             <div className='o-grid o-grid--middle o-grid--large'>
@@ -59,8 +60,8 @@ class HomePage extends Component {
           </div>
         </div>
         <div className='o-wrapper'>
-          <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
-          <Playlist isLoaded={true} data={playlists.data.filter(i => i.classification !== 'staff_picked')} onPlaylistClick={this.onPlaylistClick} />
+          <Recommended isLoaded={isReady} data={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
+          <Playlist isLoaded={isReady} data={playlists.data.filter(i => i.classification !== 'staff_picked')} onPlaylistClick={this.onPlaylistClick} />
         </div>
       </>
     );
