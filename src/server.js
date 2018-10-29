@@ -18,7 +18,7 @@ const port = 3000;
 const app = express();
 app.use(express.static(path.resolve(__dirname, '..', 'dist'), { index: false }));
 
-const indexPath = path.resolve(__dirname, '..', 'dist', 'index.html');
+const indexPath = path.resolve(__dirname, '..', 'dist', 'template.html');
 const indexHtml = fs.readFileSync(indexPath, 'utf8');
 
 app.get('*', async (req, res) => {
