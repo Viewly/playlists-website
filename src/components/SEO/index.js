@@ -24,7 +24,7 @@ class SEO extends Component {
     return (
       <MetaTags>
         <title>{playlist.title} - {SEO_NAME}</title>
-        <meta name="description" content={playlist.description} />
+        <meta name="description" content={playlist.description.replace(/(\r\n|\r|\n)/, '')} />
         <meta property="og:title" content={playlist.title} />
         <meta property="og:image" content={poster} />
         <meta property="og:url" content={playlist.url} />
