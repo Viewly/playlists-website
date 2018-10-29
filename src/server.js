@@ -53,7 +53,7 @@ app.get('*', async (req, res) => {
     finalHtml = finalHtml.replace('<!-- ROOT_CONTAINER -->', html);
     finalHtml = finalHtml.replace('var __INITIAL_STATE__ = false;', `var __INITIAL_STATE__ = ${JSON.stringify(store.getState())};`);
     finalHtml = finalHtml.replace('var __HYDRATE__ = false;', 'var __HYDRATE__ = true;');
-    finalHtml = finalHtml.replace('<!-- DEFAULT META TAGS -->', `${meta} <!-- DEFAULT META TAGS`);
+    finalHtml = finalHtml.replace(/<!-- DEFAULT META TAGS -->[\s\S]+<!-- \/DEFAULT META TAGS -->/, meta);
     res.write(finalHtml);
     res.end();
   });
