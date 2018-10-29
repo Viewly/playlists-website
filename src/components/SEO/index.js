@@ -14,6 +14,7 @@ class SEO extends Component {
           <meta property="og:title" content={SEO_NAME} />
           <meta property="og:description" content={SEO_DESCRIPTION} />
           <meta property="og:url" content={SEO_URL} />
+          <meta property="og:type" content="website">
           <meta name="twitter:card" content="summary_large_image" />
         </MetaTags>
       )
@@ -26,6 +27,7 @@ class SEO extends Component {
         <meta property="og:title" content={playlist.title} />
         <meta property="og:image" content={playlist.thumbnail} />
         <meta property="og:url" content={playlist.url} />
+        <meta property="og:type" content="website">
         <meta name="twitter:card" content="summary_large_image" />
       </MetaTags>
     );
