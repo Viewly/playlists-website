@@ -22,7 +22,7 @@ class SEO extends Component {
 
     return (
       <MetaTags>
-        <title>{playlist.title} - Vidflow.io</title>
+        <title>{playlist.title} - {SEO_NAME}</title>
         <meta name="description" content={playlist.description} />
         <meta property="og:title" content={playlist.title} />
         <meta property="og:image" content={playlist.thumbnail} />
