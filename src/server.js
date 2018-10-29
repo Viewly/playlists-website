@@ -9,7 +9,7 @@ import { StaticRouter } from 'react-router';
 import { matchPath } from "react-router-dom";
 import { MetaTagsContext } from 'react-meta-tags';
 
-import App from "./App";
+import App from "./app";
 import { routes } from "./routes";
 import store from "./store";
 
