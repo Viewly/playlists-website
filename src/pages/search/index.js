@@ -73,7 +73,7 @@ class SearchPage extends Component {
 
               {searchedPlaylists.data.length > 0 && (
                 <div>
-                  <h2 className='u-h4'>Results for &ldquo;{this.state.query}&rdquo;</h2>
+                  <h1 className='u-h4'>Results for &ldquo;{this.state.query}&rdquo;</h1>
 
                   <div className='o-grid'>
                     {searchedPlaylists.data.map((item, idx) => (

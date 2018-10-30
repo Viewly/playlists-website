@@ -11,7 +11,7 @@ const Header = ({ title, author, duration, tags, poster, description }) => (
         </div>
         <div className='o-grid__cell u-3/5@large'>
           <div className='c-section__intro'>
-            <h2 className='c-section__title'>{title}</h2>
+            <h1 className='c-section__title'>{title}</h1>
             <ul className='o-grid o-grid--auto'>
               <li className='o-grid__cell'>
                 <dl>

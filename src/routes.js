@@ -2,6 +2,7 @@ import HomePage from './pages/home';
 import PlaylistPage from './pages/playlist';
 import PlayerPage from './pages/player';
 import NewPlaylist from './pages/new';
+import CategoriesPage from './pages/categories';
 import SearchPage from './pages/search';
 
 export const routes = [
@@ -13,6 +14,10 @@ export const routes = [
     {
       path: "/new",
       component: NewPlaylist,
+    },
+    {
+      path: "/categories",
+      component: CategoriesPage,
     },
     {
       path: "/search/",
