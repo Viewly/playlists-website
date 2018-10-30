@@ -4,16 +4,28 @@ import { Route } from 'react-router-dom';
 import PlaylistInfo from "./components/info";
 import PlaylistSuggest from "./components/suggest";
 
+import { asyncLoad } from "../../utils";
 import { playlistFetch } from "../../actions";
 
-@connect(null, (dispatch) => ({
+const prepareActions = (dispatch) => ({
   playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId }))
-}))
+});
+
+@asyncLoad(async (params = {}, query = {}, store) => {
+  const { playlistFetch } = prepareActions(store.dispatch);
+
+  await playlistFetch(params.playlistId);
+})
+@connect((state) => ({
+  playlist: state.playlist
+}), prepareActions)
 class PlaylistPage extends Component {
   componentDidMount () {
-    const { playlistFetch, match: { params: { playlistId } } } = this.props;
+    const { playlist, playlistFetch, match: { params: { playlistId } } } = this.props;
 
-    playlistFetch(playlistId);
+    if (!playlist.isServerRendered || (playlist.url !== playlistId)) {
+      playlistFetch(playlistId);
+    }
   }
   render() {
     return (

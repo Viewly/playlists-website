@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --hot --host 0.0.0.0",
+    "ssr-start": "node ./dist/server",
+    "ssr-build": "webpack --mode production --config webpack.config.ssr.js",
     "clear": "rimraf ./dist",
     "build": "npm run clear && webpack --mode production --config webpack.config.prod.js"
   },
@@ -40,15 +42,18 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
+    "webpack-dev-server": "^3.1.9",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "axios": "^0.18.0",
+    "express": "^4.16.4",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
     "plyr": "^3.4.4",
     "query-string": "^6.2.0",
+    "react-meta-tags": "^0.7.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-share": "^2.3.1",

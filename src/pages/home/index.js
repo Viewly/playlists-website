@@ -3,18 +3,27 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
+import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "./components/playlist";
 import Recommended from "./components/recommended";
+import SEO from "../../components/SEO";
 
-@connect((state) => ({
-  playlists: state.playlists
-}), (dispatch) => ({
+const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch()),
   injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
-}))
+});
+
+@asyncLoad(async (params = {}, query = {}, store) => {
+  const { playlistsFetch } = prepareActions(store.dispatch);
+
+  await playlistsFetch();
+})
+@connect((state) => ({
+  playlists: state.playlists
+}), prepareActions)
 class HomePage extends Component {
-  componentDidMount () {
+  componentDidMount() {
     const { playlistsFetch } = this.props;
 
     playlistsFetch();
@@ -31,9 +40,11 @@ class HomePage extends Component {
 
   render() {
     const { playlists } = this.props;
+    const isReady = isLoaded(playlists);
 
     return (
       <>
+        <SEO />
         <div className='c-hero'>
           <div className='o-wrapper'>
             <div className='o-grid o-grid--middle o-grid--large'>
@@ -49,8 +60,8 @@ class HomePage extends Component {
           </div>
         </div>
         <div className='o-wrapper'>
-          <Recommended isLoaded={true} data={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
-          <Playlist isLoaded={true} data={playlists.data.filter(i => i.classification !== 'staff_picked')} onPlaylistClick={this.onPlaylistClick} />
+          <Recommended isLoaded={isReady} data={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
+          <Playlist isLoaded={isReady} data={playlists.data.filter(i => i.classification !== 'staff_picked')} onPlaylistClick={this.onPlaylistClick} />
         </div>
       </>
     );

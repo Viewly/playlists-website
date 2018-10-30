@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch } from 'react-router-dom';
 import { hot } from "react-hot-loader";
-
-import HomePage from './pages/home';
-import PlaylistPage from './pages/playlist';
 import PlayerPage from './pages/player';
-import NewPlaylist from './pages/new';
-import SearchPage from './pages/search';
 import HeaderContainer from "./components/HeaderContainer";
+import { routes } from './routes';
 
 class App extends Component {
   render() {
@@ -26,10 +22,15 @@ class LayoutWithHeader extends Component {
       <div>
         <HeaderContainer />
 
-        <Route exact path='/' component={HomePage} />
+        <>
+          {routes.map((route, idx) => (
+            <Route key={`route-${idx}`} {...route} />
+          ))}
+        </>
+        {/* <Route exact path='/' component={HomePage} />
         <Route path='/new' component={NewPlaylist} />
         <Route path='/search/' component={SearchPage} />
-        <Route path='/playlist/:playlistId' component={PlaylistPage} />
+        <Route path='/playlist/:playlistId' component={PlaylistPage} /> */}
       </div>
     )
   }

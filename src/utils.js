@@ -18,6 +18,9 @@ export function sumVideoDurations (videos) {
 }
 
 export function getPlaylistProgress(playlistId) {
+  if (SERVER) {
+    return {};
+  }
   const storageKey = `progress-${playlistId}`;
   const playlist = JSON.parse(localStorage.getItem(storageKey)) || {};
 
@@ -25,6 +28,9 @@ export function getPlaylistProgress(playlistId) {
 }
 
 export function savePlaylistProgress(playlistId, playlist) {
+  if (SERVER) {
+    return false;
+  }
   const storageKey = `progress-${playlistId}`;
   localStorage.setItem(storageKey, JSON.stringify(playlist));
 }
@@ -47,5 +53,9 @@ export function updateVideosWithProgresses(videos, progresses) {
 }
 
 export function isLoaded(item) {
-  return item._status === LOADED;
+  return item && item._status === LOADED;
+}
+
+export function asyncLoad (asyncFunc) {
+  return b => Object.assign(b, { asyncLoad: asyncFunc })
 }

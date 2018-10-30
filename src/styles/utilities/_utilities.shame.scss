@@ -63,6 +63,12 @@ dl {
 .plyr__progress--buffer {
     display: none;
 }
+/* HACK - fixes plyr volume buttons misbehaving */
+.plyr__volume {
+    display: flex;
+    align-items: center;
+    max-width: 112px;
+}
 
 /* HACK - fixes plyr volume buttons misbehaving */
 .plyr__volume {

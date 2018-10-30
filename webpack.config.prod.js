@@ -4,7 +4,7 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
-
+const config = require("./webpack.config");
 
 module.exports = Object.assign(baseConfig, {
   output: {
@@ -13,15 +13,6 @@ module.exports = Object.assign(baseConfig, {
     publicPath: '/'
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "style-[hash].css",
-      chunkFilename: "[id].css"
-    }),
-    new FaviconsWebpackPlugin('./src/favicons/favicon.png')
+    ...config.plugins
   ]
 })
