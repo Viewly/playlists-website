@@ -13,7 +13,7 @@ const Header = ({ title, author, duration, tags, poster, description }) => (
           <div className='c-section__intro'>
             <h2 className='c-section__title'>{title}</h2>
             <ul className='o-grid o-grid--auto'>
-              <li className='o-grid__cell'>
+              <li className='o-grid__cell u-margin-bottom'>
                 <dl>
                   <dt>Author</dt>
                   <dd>
@@ -21,20 +21,22 @@ const Header = ({ title, author, duration, tags, poster, description }) => (
                   </dd>
                 </dl>
               </li>
-              <li className='o-grid__cell'>
+              <li className='o-grid__cell u-margin-bottom'>
                 <dl>
                   <dt>Length</dt>
                   <dd>{duration}</dd>
                 </dl>
               </li>
-              <li className='o-grid__cell'>
+              <li className='o-grid__cell u-margin-bottom'>
                 <dl>
                   <dt>Category</dt>
                   <dd>{tags[0]}</dd>
                 </dl>
               </li>
             </ul>
-            <p>{description}</p>
+            <div className='c-section__description'>
+              <p>{description}</p>
+            </div>
           </div>
         </div>
       </div>

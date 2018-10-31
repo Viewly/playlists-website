@@ -32,7 +32,7 @@ export default class PlaylistInfo extends Component {
         <SEO playlist={playlist} />
         <div className='c-section c-section--grey'>
           <div className='o-wrapper'>
-            <div className='o-grid o-grid--small o-grid--auto o-grid--middle o-grid--between'>
+            <div className='o-grid o-grid--small o-grid--auto o-grid--middle o-grid--between u-margin-bottom u-margin-bottom-small@large'>
               <div className='o-grid__cell u-margin-bottom'>
                 <span><b>{playlist.videos.length} videos</b></span>
               </div>

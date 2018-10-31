@@ -10,13 +10,6 @@
         padding-bottom: $spacing-unit-large + 10px;
         padding-top: $spacing-unit-large + 10px;
     }
-
-    ul,
-    p {
-        &:not(:last-child) {
-            margin-bottom: $spacing-unit;
-        }
-    }
 }
 
     /**
@@ -47,6 +40,18 @@
             padding-left: $spacing-unit;
         }
     }
+
+        /**
+         * Section description
+         */
+        .c-section__description {
+            ul,
+            p {
+                &:not(:last-child) {
+                    margin-bottom: $spacing-unit;
+                }
+            }
+        }
 
     /**
      * Section thumbnail
