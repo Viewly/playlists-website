@@ -41,12 +41,10 @@ class ProfilePage extends Component {
     const isReady = isLoaded(playlists);
 
     return (
-      <div className='o-wrapper'>
-        <h1>{profileId}</h1>
+      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+        <h1 className='u-h3'>All playlists by {profileId}</h1>
 
-        <div className='o-wrapper'>
-          <Playlist title="" isLoaded={isReady} data={playlists.data.filter(i => i.user_id === profileId)} onPlaylistClick={this.onPlaylistClick} />
-        </div>
+        <Playlist title="" isLoaded={isReady} data={playlists.data.filter(i => i.user_id === profileId)} onPlaylistClick={this.onPlaylistClick} />
       </div>
     );
   }
