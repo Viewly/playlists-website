@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
@@ -41,7 +42,7 @@ class CategoryPage extends Component {
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1 className='u-h3'>{categoryId}</h1>
+      <h1 className='u-h3'><Link to="/categories">Categories</Link> <span className='c-heading-delimiter'>&rsaquo;</span> {categoryId}</h1>
 
         <Playlist title="" isLoaded={isReady} data={playlists.data.filter(i => i.category === categoryId)} onPlaylistClick={this.onPlaylistClick} />
       </div>
