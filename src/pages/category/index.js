@@ -40,12 +40,10 @@ class CategoryPage extends Component {
     const isReady = isLoaded(playlists);
 
     return (
-      <div className='o-wrapper'>
-        <h1>{categoryId}</h1>
+      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+        <h1 className='u-h3'>{categoryId}</h1>
 
-        <div className='o-wrapper'>
-          <Playlist title="" isLoaded={isReady} data={playlists.data.filter(i => i.category === categoryId)} onPlaylistClick={this.onPlaylistClick} />
-        </div>
+        <Playlist title="" isLoaded={isReady} data={playlists.data.filter(i => i.category === categoryId)} onPlaylistClick={this.onPlaylistClick} />
       </div>
     );
   }
