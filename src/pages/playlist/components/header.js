@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Header = ({ title, author, duration, tags, poster, description }) => (
   <div className='c-section'>
@@ -17,7 +18,7 @@ const Header = ({ title, author, duration, tags, poster, description }) => (
                 <dl>
                   <dt>Author</dt>
                   <dd>
-                    {author}
+                    <Link to={`/profile/${author}`}>{author}</Link>
                   </dd>
                 </dl>
               </li>

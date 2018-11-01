@@ -3,6 +3,7 @@ import PlaylistPage from './pages/playlist';
 import PlayerPage from './pages/player';
 import NewPlaylist from './pages/new';
 import SearchPage from './pages/search';
+import ProfilePage from './pages/profile';
 
 export const routes = [
     {
@@ -17,6 +18,10 @@ export const routes = [
     {
       path: "/search/",
       component: SearchPage
+    },
+    {
+      path: "/profile/:profileId",
+      component: ProfilePage
     },
     {
       path: "/playlist/:playlistId",
