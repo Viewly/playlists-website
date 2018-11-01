@@ -31,7 +31,7 @@ const Header = ({ title, author, duration, tags, poster, description }) => (
               <li className='o-grid__cell u-margin-bottom'>
                 <dl>
                   <dt>Category</dt>
-                  <dd>{tags[0]}</dd>
+                  <dd><Link to={`/category/${tags[0]}`}>{tags[0]}</Link></dd>
                 </dl>
               </li>
             </ul>

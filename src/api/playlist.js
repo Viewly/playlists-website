@@ -7,8 +7,11 @@ export async function playlistFetch (baseUrl, { playlistId }) {
   return body;
 }
 
-export async function playlistsFetch (baseUrl) {
-  const url = `${baseUrl}/playlists?status=published`;
+export async function playlistsFetch (baseUrl, params) {
+  const url = params && params.query
+    ? `${baseUrl}/playlists?status=published&${params.query}`
+    : `${baseUrl}/playlists?status=published`
+
   const { body } = await get(url);
 
   return body;

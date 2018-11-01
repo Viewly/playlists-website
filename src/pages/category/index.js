@@ -5,26 +5,25 @@ import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../home/components/playlist";
-import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
-  playlistsFetch: () => dispatch(playlistsFetch()),
+  playlistsFetch: (query) => dispatch(playlistsFetch({ query })),
   injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
   const { playlistsFetch } = prepareActions(store.dispatch);
 
-  await playlistsFetch();
+  await playlistsFetch(`category=${encodeURIComponent(params.categoryId)}`);
 })
 @connect((state) => ({
   playlists: state.playlists
 }), prepareActions)
-class ProfilePage extends Component {
+class CategoryPage extends Component {
   componentDidMount() {
-    const { playlistsFetch } = this.props;
+    const { playlistsFetch, match: { params: { categoryId } }  } = this.props;
 
-    playlistsFetch();
+    playlistsFetch(`category=${encodeURIComponent(categoryId)}`);
   }
 
   onPlaylistClick = (url) => (evnt) => {
@@ -37,18 +36,18 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { playlists, match: { params: { profileId }} } = this.props;
+    const { playlists, match: { params: { categoryId } } } = this.props;
     const isReady = isLoaded(playlists);
 
     return (
       <div className='o-wrapper'>
-        <h1>{profileId}</h1>
+        <h1>{categoryId}</h1>
 
         <div className='o-wrapper'>
-          <Playlist title="" isLoaded={isReady} data={playlists.data.filter(i => i.user_id === profileId)} onPlaylistClick={this.onPlaylistClick} />
+          <Playlist title="" isLoaded={isReady} data={playlists.data.filter(i => i.category === categoryId)} onPlaylistClick={this.onPlaylistClick} />
         </div>
       </div>
     );
   }
 }
-export default ProfilePage;
+export default CategoryPage;

@@ -5,6 +5,7 @@ import NewPlaylist from './pages/new';
 import CategoriesPage from './pages/categories';
 import SearchPage from './pages/search';
 import ProfilePage from './pages/profile';
+import CategoryPage from './pages/category';
 
 export const routes = [
     {
@@ -27,6 +28,10 @@ export const routes = [
     {
       path: "/profile/:profileId",
       component: ProfilePage
+    },
+    {
+      path: "/category/:categoryId",
+      component: CategoryPage
     },
     {
       path: "/playlist/:playlistId",
