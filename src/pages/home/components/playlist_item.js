@@ -19,7 +19,7 @@ const PlaylistItem = ({ url, title, description, playlist_thumbnail_url, duratio
         <span className='c-thumbnail__total-videos'>{noVideos} videos</span>
         <span className='c-thumbnail__duration-indicator'>{duration}</span>
       </div>
-      <span className="c-video__category">{category}</span>
+      <span className="c-video__category"><Link to={`/category/${category}`}>{category}</Link></span>
       <h4 className='c-video__title c-video__title--large'><Link onClick={onPlaylistClick(url)} to={`/playlist/${url}`}>{title}</Link></h4>
     </div>
   </div>
