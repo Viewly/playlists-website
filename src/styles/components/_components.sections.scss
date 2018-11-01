@@ -45,6 +45,8 @@
          * Section description
          */
         .c-section__description {
+            white-space: pre-line;
+
             ul,
             p {
                 &:not(:last-child) {
