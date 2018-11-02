@@ -10,7 +10,7 @@ module.exports = Object.assign(baseConfig, {
   output: {
     path: path.resolve(__dirname, "dist/"),
     filename: "[name]-[hash].js",
-    publicPath: '/'
+    publicPath: 'https://viewly-playlists-website.s3-website.eu-central-1.amazonaws.com/'
   },
   plugins: [
     ...config.plugins
