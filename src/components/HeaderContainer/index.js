@@ -22,7 +22,7 @@ class HeaderContainer extends Component {
           </div>
 
           <div className='c-header__grid__item c-header__grid__item--right'>
-            <Link to='/new' className='c-btn c-btn--primary c-btn--plain'>Create your playlist</Link>
+            <Link to='/create-playlist' className='c-btn c-btn--primary c-btn--plain'>Create your playlist</Link>
           </div>
         </div>
       </header>

@@ -6,7 +6,7 @@ import { playlistCreateNew } from "../../actions";
 @connect(null, (dispatch) => ({
   playlistCreateNew: (title, description, email, category) => dispatch(playlistCreateNew({ title, description, email, category })),
 }))
-class NewPlaylist extends Component {
+class CreatePlaylist extends Component {
   state = {
     title: '',
     description: '',
@@ -111,4 +111,4 @@ class NewPlaylist extends Component {
     );
   }
 }
-export default NewPlaylist;
+export default CreatePlaylist;
