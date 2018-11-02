@@ -42,7 +42,7 @@ class CategoryPage extends Component {
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-      <h1 className='u-h3'><Link to="/categories">Categories</Link> <span className='c-heading-delimiter'>&rsaquo;</span> {categoryId}</h1>
+      <h1 className='u-h3'>Categories <span className='c-heading-delimiter'>&rsaquo;</span> {categoryId}</h1>
 
         <Playlist title="" isLoaded={isReady} data={playlists.data.filter(i => i.category === categoryId)} onPlaylistClick={this.onPlaylistClick} />
       </div>
