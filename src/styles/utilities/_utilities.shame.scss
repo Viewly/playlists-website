@@ -26,6 +26,15 @@ dl {
         font-size: 11px;
         text-transform: uppercase;
     }
+
+    a {
+        color: inherit;
+
+        &:hover {
+            color: color('brand-primary');
+            text-decoration: none;
+        }
+    }
 }
 
 .c-header {

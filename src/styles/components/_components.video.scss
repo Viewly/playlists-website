@@ -164,6 +164,15 @@ $tweakpoint-video-condensed:        medium;
         margin-bottom: 3px;
         margin-top: $spacing-unit-small;
         text-transform: uppercase;
+
+        a {
+            color: inherit;
+
+            &:hover {
+                color: color('brand-primary');
+                text-decoration: none;
+            }
+        }
     }
 
     /**
