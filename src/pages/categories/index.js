@@ -1,82 +1,38 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
+import { categoriesFetch } from "../../actions";
+import { asyncLoad } from "../../utils";
 
+import CategoryItem from "./components/category_item";
+
+const prepareActions = (dispatch) => ({
+  categoriesFetch: () => dispatch(categoriesFetch()),
+});
+
+@asyncLoad(async (params = {}, query = {}, store) => {
+  const { categoriesFetch } = prepareActions(store.dispatch);
+
+  await categoriesFetch();
+})
+@connect((state) => ({
+  categories: state.categories
+}), prepareActions)
 class CategoriesPage extends Component {
+  componentDidMount() {
+    const { categoriesFetch } = this.props;
+
+    categoriesFetch();
+  }
+
   render() {
+    const { categories } = this.props;
+
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <h1 className='u-h3'>Browse categories</h1>
         <div className='c-categories-grid'>
-          <a href='' className='c-category c-categories-grid__box'>
-            <div className='c-category__graphic'>
-              <img src={require('../../images/category-gaming.svg')} />
-              <img src={require('../../images/category-gaming-hover.svg')} />
-            </div>
-            <h3 className='c-category__title'>Gaming</h3>
-          </a>
-          <a href='' className='c-category c-categories-grid__box'>
-            <div className='c-category__graphic'>
-              <img src={require('../../images/category-gaming.svg')} />
-              <img src={require('../../images/category-gaming-hover.svg')} />
-            </div>
-            <h3 className='c-category__title'>Nonprofits & Activism</h3>
-          </a>
-          <a href='' className='c-category c-categories-grid__box'>
-            <div className='c-category__graphic'>
-              <img src={require('../../images/category-gaming.svg')} />
-              <img src={require('../../images/category-gaming-hover.svg')} />
-            </div>
-            <h3 className='c-category__title'>Gaming</h3>
-          </a>
-          <a href='' className='c-category c-categories-grid__box'>
-            <div className='c-category__graphic'>
-              <img src={require('../../images/category-gaming.svg')} />
-              <img src={require('../../images/category-gaming-hover.svg')} />
-            </div>
-            <h3 className='c-category__title'>Nonprofits & Activism</h3>
-          </a>
-          <a href='' className='c-category c-categories-grid__box'>
-            <div className='c-category__graphic'>
-              <img src={require('../../images/category-gaming.svg')} />
-              <img src={require('../../images/category-gaming-hover.svg')} />
-            </div>
-            <h3 className='c-category__title'>Gaming</h3>
-          </a>
-          <a href='' className='c-category c-categories-grid__box'>
-            <div className='c-category__graphic'>
-              <img src={require('../../images/category-gaming.svg')} />
-              <img src={require('../../images/category-gaming-hover.svg')} />
-            </div>
-            <h3 className='c-category__title'>Nonprofits & Activism</h3>
-          </a>
-          <a href='' className='c-category c-categories-grid__box'>
-            <div className='c-category__graphic'>
-              <img src={require('../../images/category-gaming.svg')} />
-              <img src={require('../../images/category-gaming-hover.svg')} />
-            </div>
-            <h3 className='c-category__title'>Gaming</h3>
-          </a>
-          <a href='' className='c-category c-categories-grid__box'>
-            <div className='c-category__graphic'>
-              <img src={require('../../images/category-gaming.svg')} />
-              <img src={require('../../images/category-gaming-hover.svg')} />
-            </div>
-            <h3 className='c-category__title'>Nonprofits & Activism</h3>
-          </a>
-          <a href='' className='c-category c-categories-grid__box'>
-            <div className='c-category__graphic'>
-              <img src={require('../../images/category-gaming.svg')} />
-              <img src={require('../../images/category-gaming-hover.svg')} />
-            </div>
-            <h3 className='c-category__title'>Gaming</h3>
-          </a>
-          <a href='' className='c-category c-categories-grid__box'>
-            <div className='c-category__graphic'>
-              <img src={require('../../images/category-gaming.svg')} />
-              <img src={require('../../images/category-gaming-hover.svg')} />
-            </div>
-            <h3 className='c-category__title'>Nonprofits & Activism</h3>
-          </a>
+          {categories.data.map((item, idx) => <CategoryItem key={`category-${idx}`} {...item} />)}
         </div>
       </div>
     );

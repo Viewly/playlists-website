@@ -49,3 +49,9 @@ export async function playlistCreateNew (baseUrl, { title, description, email, c
 
   return body;
 }
+
+export async function categoriesFetch (baseUrl) {
+  const { body } = await get(`${baseUrl}/categories`);
+
+  return body;
+}
