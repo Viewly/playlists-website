@@ -29,16 +29,11 @@ class LayoutWithHeader extends Component {
     return (
       <div>
         <HeaderContainer />
-
         <>
           {routes.map((route, idx) => (
             <Route key={`route-${idx}`} {...route} />
           ))}
         </>
-        {/* <Route exact path='/' component={HomePage} />
-        <Route path='/new' component={NewPlaylist} />
-        <Route path='/search/' component={SearchPage} />
-        <Route path='/playlist/:playlistId' component={PlaylistPage} /> */}
       </div>
     )
   }
