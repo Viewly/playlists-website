@@ -8,7 +8,7 @@ RUN apt-get install -y nodejs npm
 RUN apt install -y python3 python3-pip
 
 # install awscli
-RUN pip3 install awscli
+RUN pip3 install -U awscli
 
 # add our code
 COPY . /app
