@@ -17,3 +17,6 @@ RUN gem install scss_lint --no-user-install
 RUN npm install
 RUN npm run build
 RUN npm run ssr-build
+
+EXPOSE 3000
+CMD ["npm", "run", "ssr-start"]
