@@ -6,6 +6,7 @@ const initialState = {
   config: { apiUrl: 'https://api.vidflow.io/v1/api' },
   playlists: { _status: PENDING, data: [] },
   playlist: { _status: PENDING },
+  categories: { _status: PENDING, data: [] },
   searchedPlaylists: { _status: PENDING, data: [] }
 };
 
@@ -50,6 +51,9 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, searchedPlaylists: { _status: LOADED, data: action.data } };
     case actions.PLAYLIST_SEARCH_ERROR:
       return { ...state, searchedPlaylists: { _status: ERROR, data: [] } };
+
+    case actions.CATEGORIES_FETCH_SUCCESS:
+      return { ...state, categories: { _status: LOADED, data: action.data } };
 
     default:
       return state;
