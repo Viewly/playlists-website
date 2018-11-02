@@ -25,4 +25,8 @@ body {
     background-color: inherit;
     overflow-x: hidden; /* [1] */
     padding-top: $header-height;
+
+    @include mq($until: ($tweakpoint-nav-primary - 1)) {
+        padding-bottom: $header-height;
+    }
 }

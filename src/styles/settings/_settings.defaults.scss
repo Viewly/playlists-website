@@ -49,6 +49,7 @@ $mq-breakpoints: (
 // Colors
 $colors: (
     'blue': #0048ff,
+    'purple': #341f97,
     'light-blue': #009eff,
     'orange': #fba311,
     'green': #55da1e,
@@ -58,12 +59,17 @@ $colors: (
 
     // Brand colors
     'brand-primary': 'orange',
-    'brand-secondary': 'light-blue'
+    'brand-secondary': 'purple'
 );
 
 
 // Header
-$header-height:                            68px;
+$header-height:                             62px;
+
+
+// Primary navigation
+$tweakpoint-nav-primary:                    600px;
+$tweakpoint-nav-primary-large:              800px;
 
 
 // Player playlist content

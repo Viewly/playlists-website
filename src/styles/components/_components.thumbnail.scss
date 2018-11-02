@@ -21,10 +21,6 @@ $thumbnail-progress-bar-height:     3px;
     will-change: transform;
     position: relative;
 
-    &:hover {
-        text-decoration: none;
-    }
-
     @include mq($tweakpoint-thumbnail) {
         &:hover {
 
@@ -52,6 +48,10 @@ $thumbnail-progress-bar-height:     3px;
         display: block;
         padding-bottom: (9 / 16) * 100%;
         width: 100%;
+    }
+
+    &:hover {
+        text-decoration: none;
     }
 }
 

@@ -279,10 +279,6 @@ $tweakpoint-category:   large;
     text-align: center;
     transition: $global-transition;
 
-    &:hover {
-        text-decoration: none;
-    }
-
     @include mq($tweakpoint-category) {
         &:hover {
             border-color: rgba($border-color, .5);
@@ -290,6 +286,9 @@ $tweakpoint-category:   large;
         }
     }
 
+    &:hover {
+        text-decoration: none;
+    }
 }
 
     .c-category__graphic {

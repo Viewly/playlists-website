@@ -1,0 +1,104 @@
+/*------------------------------------*\
+    #PRIMARY NAVIGATION
+\*------------------------------------*/
+
+/**
+ * 1. Since `$from:` is inclusive `min-width` boundary in sass-mq (as per
+ *    https://github.com/sass-mq/sass-mq#responsive-mode-on-default), and we are
+ *    using in a few breakpoints for the navigation, here we need to deduct
+ *    `1px` of buffer so that it all plays together correctly.
+ */
+.c-nav-primary {
+    background-color: #fff;
+    color: $global-text-color;
+
+    @include mq($until: ($tweakpoint-nav-primary - 1)) { /* [1] */
+        background-color: color('light-grey');
+        border-top: 1px solid color('grey');
+        padding-left: $spacing-unit-small;
+        padding-right: $spacing-unit-small;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+    }
+
+    @include mq($from: $tweakpoint-nav-primary, $until: $tweakpoint-nav-primary-large) {
+        background-color: transparent;
+        margin-left: $spacing-unit-large;
+    }
+
+    @include mq($from: $tweakpoint-nav-primary-large) {
+        margin-left: $spacing-unit-huge;
+    }
+
+    ul {
+        display: flex;
+        justify-content: center;
+        list-style-type: none;
+    }
+}
+
+        /**
+         * 1. Remove outline for webkit browsers.
+         */
+        .c-nav-primary__item {
+            &:not(:last-child) {
+                margin-right: $spacing-unit;
+
+                @include mq($from: $tweakpoint-nav-primary, $until: $tweakpoint-nav-primary-large) {
+                    margin-right: $spacing-unit-small;
+                }
+            }
+
+            &:focus {
+                outline: none; /* [1] */
+            }
+        }
+
+        /**
+         * 1. Since `$from:` is inclusive `min-width` boundary in sass-mq (as per
+         *    https://github.com/sass-mq/sass-mq#responsive-mode-on-default), and we are
+         *    using in a few breakpoints for the navigation, here we need to deduct
+         *    `1px` of buffer so that it all plays together correctly.
+         */
+        .c-nav-primary__link {
+            $color: #9ea0a3;
+
+            align-items: center;
+            border-bottom: 2px solid transparent;
+            color: $color;
+            display: flex;
+            font-size: 14px;
+            font-weight: 700;
+            height: $header-height - 1;
+            padding-left: 3px;
+            padding-right: 3px;
+
+            .o-icon {
+                font-size: 22px;
+            }
+
+            &:hover {
+                color: darken($color, 20%);
+                text-decoration: none;
+            }
+
+            .c-nav-primary__item.is-current & {
+                border-color: currentColor;
+                color: $global-text-color;
+
+                .o-icon {
+                    opacity: 1;
+                }
+            }
+        }
+
+            .c-nav-primary__label {
+                margin-left: 8px;
+
+                @include mq($from: $tweakpoint-nav-primary, $until: $tweakpoint-nav-primary-large) {
+                    display: none;
+                }
+            }
