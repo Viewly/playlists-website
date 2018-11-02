@@ -14,8 +14,11 @@ exports.handler = (event, context, callback) => {
   const request = event.Records[0].cf.request;
   const headers = request.headers;
 
-  // this is a page, and not an asset like foo(.)png
-  if (request.uri.indexOf('.') >= 0) {
+  // If this is an asset, always go to CDN version.
+  // If this is a player page, always go to CDN version
+  // since SSR can't render the player
+  if (request.uri.indexOf('.') >= 0
+      || request.uri.startsWith('/player/')) {
     callback(null, request);
     return;
   }
