@@ -6,6 +6,7 @@ import CategoriesPage from './pages/categories';
 import SearchPage from './pages/search';
 import ProfilePage from './pages/profile';
 import CategoryPage from './pages/category';
+import LatestPlaylists from './pages/new';
 
 export const routes = [
     {
@@ -16,6 +17,10 @@ export const routes = [
     {
       path: "/create-playlist",
       component: CreatePlaylist,
+    },
+    {
+      path: "/new",
+      component: LatestPlaylists,
     },
     {
       path: "/categories",

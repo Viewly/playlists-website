@@ -4,14 +4,14 @@ import { SEO_NAME, SEO_DESCRIPTION, SEO_URL, SEO_TITLE } from "../../constants/s
 
 class SEO extends Component {
   render() {
-    const { playlist } = this.props;
+    const { playlist, title } = this.props;
 
     if (!playlist) {
       return (
         <MetaTags>
-          <title>{SEO_TITLE}</title>
+          <title>{title ? `${title} - ${SEO_NAME}` : SEO_TITLE}</title>
           <meta name="description" content={SEO_DESCRIPTION} />
-          <meta property="og:title" content={SEO_NAME} />
+          <meta property="og:title" content={title || SEO_NAME} />
           <meta property="og:description" content={SEO_DESCRIPTION} />
           <meta property="og:url" content={SEO_URL} />
           <meta property="og:type" content="website" />
