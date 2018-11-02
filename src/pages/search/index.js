@@ -67,7 +67,7 @@ class SearchPage extends Component {
               {!searchedPlaylists.data.length && (
                 <div className='c-no-results'>
                   <img className='c-no-results__img' src={require('../../images/no-results.svg')} />
-                  <p>Try searching again using different keywords, <br />or <Link to='/new'>create your playlist</Link></p>
+                  <p>Try searching again using different keywords, <br />or <Link to='/create-playlist'>create your playlist</Link></p>
                 </div>
               )}
 
