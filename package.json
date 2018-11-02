@@ -13,7 +13,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "engines" : { "node" : ">=8.4.0", "npm": ">=5" },
+  "engines": {
+    "node": ">=8.4.0",
+    "npm": ">=5"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -60,6 +63,7 @@
     "react-share": "^2.3.1",
     "react-youtube": "^7.8.0",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "universal-cookie": "^3.0.4"
   }
 }
