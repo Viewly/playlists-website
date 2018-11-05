@@ -76,6 +76,10 @@
             padding-left: 3px;
             padding-right: 3px;
 
+            @include mq($until: ($tweakpoint-nav-primary - 1)) {
+                height: $nav-height;
+            }
+
             .o-icon {
                 font-size: 22px;
             }

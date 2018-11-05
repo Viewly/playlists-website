@@ -17,14 +17,15 @@ $tweakpoint-hero-extralarge:        1140px;
     padding-top: $spacing-unit-large;
     text-align: center;
 
-    @include mq($tweakpoint-hero) {
-        text-align: left;
-    }
 
     @include mq(medium) {
         margin-bottom: $spacing-unit-large;
         padding-top: $spacing-unit-large;
         padding-bottom: $spacing-unit-large;
+    }
+
+    @include mq($tweakpoint-hero) {
+        text-align: left;
     }
 
     p {
@@ -58,8 +59,12 @@ $tweakpoint-hero-extralarge:        1140px;
      * Hero title
      */
     .c-hero__title {
-        font-size: 32px;
+        font-size: 30px;
         font-weight: 700;
+
+        @include mq($tweakpoint-hero) {
+            font-size: 32px;
+        }
 
         @include mq($tweakpoint-hero-medium) {
             font-size: 42px;
