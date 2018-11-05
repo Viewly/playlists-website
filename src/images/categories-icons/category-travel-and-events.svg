@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>category-travel-and-events</title>
+    <desc>Created with Sketch.</desc>
+    <g id="category-travel-and-events" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="luggage" transform="translate(7.000000, 11.000000)">
+            <path d="M72,22 L72,18.4991254 C72,16.0139942 69.7342566,14 66.938484,14 L63,14 C63.8173469,18.0699708 67.4212828,21.2734694 72,22 Z" id="Path" fill="#CCCCCC"></path>
+            <path d="M72,59.5008746 L72,56 C67.4212828,56.7265306 63.8173469,59.9300292 63,64 L66.938484,64 C69.7342566,64 72,61.9860058 72,59.5008746 Z" id="Path" fill="#CCCCCC"></path>
+            <path d="M0,22 C4.5787172,21.2734694 8.18265306,18.0699708 9,14 L5.06151603,14 C2.26574344,14 0,16.0139942 0,18.4991254 L0,22 Z" id="Path" fill="#CCCCCC"></path>
+            <path d="M0,56 L0,59.5008746 C0,61.9860058 2.26574344,64 5.06151603,64 L9,64 C8.18265306,59.9300292 4.5787172,56.7265306 0,56 Z" id="Path" fill="#CCCCCC"></path>
+            <path d="M67.2107586,64 L4.78924138,64 C2.14386207,64 0,61.8939024 0,59.295122 L0,18.704878 C0,16.1060976 2.14386207,14 4.78924138,14 L67.2107586,14 C69.8561379,14 72,16.1060976 72,18.704878 L72,59.295122 C72,61.8939024 69.8561379,64 67.2107586,64 Z" id="Path" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M13,10 L17,10 C18.1045695,10 19,10.8954305 19,12 L19,64 L11,64 L11,12 C11,10.8954305 11.8954305,10 13,10 Z" id="Rectangle" stroke="#1D1D1D" stroke-width="2" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M55,10 L59,10 C60.1045695,10 61,10.8954305 61,12 L61,64 L53,64 L53,12 C53,10.8954305 53.8954305,10 55,10 Z" id="Rectangle" stroke="#1D1D1D" stroke-width="2" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M36,0 C28.8318,0 23,5.70945455 23,12.7272727 L23,14 L28.2,14 L28.2,12.7272727 C28.2,8.52727273 31.71,5.09090909 36,5.09090909 C40.29,5.09090909 43.8,8.52727273 43.8,12.7272727 L43.8,14 L49,14 L49,12.7272727 C49,5.70945455 43.1682,0 36,0 Z" id="Path" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <polygon id="Rectangle" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(30.028837, 44.949492) rotate(22.880347) translate(-30.028837, -44.949492) " points="24.3964101 41.2266186 35.6843341 41.1920139 35.6612644 48.6723662 24.3733403 48.7069709"></polygon>
+            <polygon id="Path" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="28 33 28 39.87 36.3182 43.1952 35.5138667 45 47 45 47 33"></polygon>
+            <polygon id="Path" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="43.9851974 33 47 31.5337617 42.7269737 22 29 28.6771028 30.9366776 33"></polygon>
+        </g>
+    </g>
+</svg>

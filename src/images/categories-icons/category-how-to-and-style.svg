@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>howto_gray_icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="howto_gray_icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Group" transform="translate(43.589358, 42.589358) rotate(-315.000000) translate(-43.589358, -42.589358) translate(-4.910642, -5.910642)" stroke="#1D1D1D" stroke-linejoin="round" stroke-width="2">
+            <path d="M50.3681037,1.8858096 L55,14 L42,14 L46.6318963,1.8858096 C47.0263795,0.85408443 48.1825498,0.337497708 49.2142749,0.731980861 C49.7454273,0.93506853 50.165016,1.35465723 50.3681037,1.8858096 Z" id="Triangle"></path>
+            <path d="M2,38 L42,38 L42,60 L2,60 C0.8954305,60 1.3527075e-16,59.1045695 0,58 L-2.22044605e-16,40 C-3.57315355e-16,38.8954305 0.8954305,38 2,38 Z" id="Rectangle"></path>
+            <path d="M57,38 L97,38 L97,60 L57,60 C55.8954305,60 55,59.1045695 55,58 L55,40 C55,38.8954305 55.8954305,38 57,38 Z" id="Rectangle-Copy-3" transform="translate(76.000000, 49.000000) scale(-1, 1) translate(-76.000000, -49.000000) "></path>
+            <path d="M43,14 L54,14 C54.5522847,14 55,14.4477153 55,15 L55,95 C55,96.1045695 54.1045695,97 53,97 L44,97 C42.8954305,97 42,96.1045695 42,95 L42,15 C42,14.4477153 42.4477153,14 43,14 Z" id="Rectangle"></path>
+            <path d="M43.2034894,87 L53.6101595,87" id="Line-8"></path>
+            <path d="M43.2034894,81 L53.6101595,81" id="Line-8-Copy-3"></path>
+            <path d="M6,54 L42.3298038,54" id="Line-8-Copy"></path>
+            <path d="M55.8720703,54 L91,54" id="Line-8-Copy-2"></path>
+            <path d="M11,40 L11,44" id="Line-9"></path>
+            <path d="M21,40 L21,44" id="Line-9-Copy"></path>
+            <path d="M31,40 L31,44" id="Line-9-Copy-2"></path>
+            <path d="M65,40 L65,44" id="Line-9-Copy-5"></path>
+            <path d="M75,40 L75,44" id="Line-9-Copy-4"></path>
+            <path d="M85,40 L85,44" id="Line-9-Copy-3"></path>
+        </g>
+        <path d="M20.9619408,65.0056676 L63,22.7903679" id="Path-5-Copy" stroke="#1D1D1D" stroke-width="2"></path>
+    </g>
+</svg>
