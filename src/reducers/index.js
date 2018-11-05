@@ -53,7 +53,16 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, searchedPlaylists: { _status: ERROR, data: [] } };
 
     case actions.CATEGORIES_FETCH_SUCCESS:
-      return { ...state, categories: { _status: LOADED, data: action.data } };
+      return {
+        ...state, categories: {
+          _status: LOADED,
+          data: action.data.sort(function (a, b) {
+            if (a.name < b.name) { return -1; }
+            if (a.name > b.name) { return 1; }
+            return 0;
+          })
+        }
+      };
 
     default:
       return state;
