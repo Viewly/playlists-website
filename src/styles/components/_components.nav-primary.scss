@@ -89,7 +89,7 @@
                 text-decoration: none;
             }
 
-            .c-nav-primary__item.is-current & {
+            &.is-current {
                 border-color: currentColor;
                 color: $global-text-color;
 
