@@ -30,10 +30,15 @@ export default class Playlist extends Component {
 
     return (
       <div className='u-margin-top-small'>
-        {title && <h2>{title}</h2>}
-        {moreButton && (
-          <div><Link to={moreButton.url}>{moreButton.title}</Link></div>
-        )}
+        <div className='o-grid'>
+          {title && <div className='o-grid__cell'><h2>{title}</h2></div>}
+          {moreButton && (
+            <div className='o-grid__cell'>
+              <Link to={moreButton.url}>{moreButton.title}</Link>
+            </div>
+          )}
+        </div>
+
         <div className='o-grid'>
           {isLoaded && playlists.length === 0 && (
             <div>{noPlaylistsText}</div>
