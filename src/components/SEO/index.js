@@ -21,7 +21,7 @@ class SEO extends Component {
     }
     // TODO - url from constants or env
     const poster = `https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/${playlist.playlist_thumbnail_url}`;
-    const description = playlist.description.replace(/(\r\n|\r|\n)/, '');
+    const description = playlist.description && playlist.description.replace(/(\r\n|\r|\n)/, '');
     return (
       <MetaTags>
         <title>{playlist.title} - {SEO_NAME}</title>
