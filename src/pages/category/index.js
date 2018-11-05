@@ -14,25 +14,25 @@ const prepareActions = (dispatch) => ({
 @asyncLoad(async (params = {}, query = {}, store) => {
   const { playlistsFetch } = prepareActions(store.dispatch);
 
-  await playlistsFetch(`category=${encodeURIComponent(params.categoryId)}`);
+  await playlistsFetch(`slug=${params.categorySlug}`);
 })
 @connect((state) => ({
   playlists: state.playlists
 }), prepareActions)
 class CategoryPage extends Component {
   componentDidMount() {
-    const { playlistsFetch, match: { params: { categoryId } }  } = this.props;
+    const { playlistsFetch, match: { params: { categorySlug } }  } = this.props;
 
-    playlistsFetch(`category=${encodeURIComponent(categoryId)}`);
+    playlistsFetch(`slug=${categorySlug}`);
   }
 
   render() {
-    const { playlists, match: { params: { categoryId } } } = this.props;
+    const { playlists, match: { params: { categorySlug } } } = this.props;
     const isReady = isLoaded(playlists);
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1 className='u-h3'><Link to="/categories">Categories</Link> <span className='c-heading-delimiter'>&rsaquo;</span> {categoryId}</h1>
+        <h1 className='u-h3'><Link to="/categories">Categories</Link> <span className='c-heading-delimiter'>&rsaquo;</span> {categorySlug}</h1>
         <Playlist title="" isLoaded={isReady} playlists={playlists.data.filter(i => i.category === categoryId)} />
       </div>
     );

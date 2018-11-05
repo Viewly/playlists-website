@@ -35,7 +35,7 @@ export const routes = [
       component: ProfilePage
     },
     {
-      path: "/category/:categoryId",
+      path: "/category/:categorySlug",
       component: CategoryPage
     },
     {
