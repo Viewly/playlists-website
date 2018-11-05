@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
+import { playlistsFetch } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
-import Playlist from "../home/components/playlist";
+import Playlist from "../../components/PlaylistContainer";
 
 const prepareActions = (dispatch) => ({
-  playlistsFetch: (query) => dispatch(playlistsFetch({ query })),
-  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
+  playlistsFetch: (query) => dispatch(playlistsFetch({ query }))
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
@@ -27,15 +26,6 @@ class CategoryPage extends Component {
     playlistsFetch(`category=${encodeURIComponent(categoryId)}`);
   }
 
-  onPlaylistClick = (url) => (evnt) => {
-    const { history, injectPlaylist, playlists } = this.props;
-    const selectedPlaylist = playlists.data.find(item => item.url === url);
-
-    evnt.preventDefault();
-    injectPlaylist(selectedPlaylist);
-    history.push(`/playlist/${url}`);
-  }
-
   render() {
     const { playlists, match: { params: { categoryId } } } = this.props;
     const isReady = isLoaded(playlists);
@@ -43,8 +33,7 @@ class CategoryPage extends Component {
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
       <h1 className='u-h3'>Categories <span className='c-heading-delimiter'>&rsaquo;</span> {categoryId}</h1>
-
-        <Playlist title="" isLoaded={isReady} data={playlists.data.filter(i => i.category === categoryId)} onPlaylistClick={this.onPlaylistClick} />
+        <Playlist title="" isLoaded={isReady} playlists={playlists.data.filter(i => i.category === categoryId)} />
       </div>
     );
   }
