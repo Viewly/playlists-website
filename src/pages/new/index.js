@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
-import Playlist from "../home/components/playlist";
+import Playlist from "../../components/PlaylistContainer";
 import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
@@ -45,7 +45,11 @@ class LatestPlaylists extends Component {
         <SEO title="Latest playlists" />
 
         <div className='o-wrapper'>
-          <Playlist isLoaded={isReady} title="Latest playlists" data={playlists.data.filter(i => i.classification !== 'staff_picked')} onPlaylistClick={this.onPlaylistClick} />
+          <Playlist
+            isLoaded={isReady}
+            title="Latest playlists"
+            playlists={playlists.data.filter(i => i.classification !== 'staff_picked')}
+          />
         </div>
       </>
     );

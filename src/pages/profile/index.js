@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
-import Playlist from "../home/components/playlist";
-import SEO from "../../components/SEO";
+import Playlist from "../../components/PlaylistContainer";
 
 const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch()),
@@ -44,7 +43,10 @@ class ProfilePage extends Component {
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <h1 className='u-h3'>All playlists by {profileId}</h1>
 
-        <Playlist title="" isLoaded={isReady} data={playlists.data.filter(i => i.user_id === profileId)} onPlaylistClick={this.onPlaylistClick} />
+        <Playlist
+          isLoaded={isReady}
+          playlists={playlists.data.filter(i => i.user_id === profileId)}
+          />
       </div>
     );
   }

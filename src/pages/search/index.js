@@ -5,7 +5,7 @@ import queryString from "query-string";
 
 import Layout from "./layout";
 
-import PlaylistItem from "../home/components/playlist_item";
+import Playlist from "../../components/PlaylistContainer";
 import { isLoaded } from "../../utils";
 import { playlistSearch } from "../../actions";
 
@@ -72,15 +72,11 @@ class SearchPage extends Component {
               )}
 
               {searchedPlaylists.data.length > 0 && (
-                <div>
-                  <h1 className='u-h4'>Results for &ldquo;{this.state.query}&rdquo;</h1>
-
-                  <div className='o-grid'>
-                    {searchedPlaylists.data.map((item, idx) => (
-                      <PlaylistItem key={`searchitem-${idx}`} onPlaylistClick={this.onPlaylistClick} {...item} />
-                    ))}
-                  </div>
-                </div>
+                <Playlist
+                  title={`Results for “${this.state.query}”`}
+                  isLoaded={isReady}
+                  playlists={searchedPlaylists.data}
+                />
               )}
 
             </div>
