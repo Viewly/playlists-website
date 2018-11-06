@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import { PLAYLIST_INJECT_DATA } from "../../actions";
 import PlaylistItem from "./item";
@@ -13,6 +13,7 @@ import Loading from "../loading";
 export default class Playlist extends Component {
   static defaultProps = {
     noPlaylistsText: "No playlists found",
+    moreButton: false
   }
 
   onPlaylistClick = (url) => (evnt) => {
@@ -25,16 +26,24 @@ export default class Playlist extends Component {
   }
 
   render() {
-    const { isLoaded, playlists, title, noPlaylistsText } = this.props;
+    const { isLoaded, playlists, title, noPlaylistsText, moreButton, big } = this.props;
 
     return (
       <div className='u-margin-top-small'>
-        {title && <h2>{title}</h2>}
+        <div className='o-grid'>
+          {title && <div className='o-grid__cell'><h2>{title}</h2></div>}
+          {moreButton && (
+            <div className='o-grid__cell'>
+              <Link to={moreButton.url}>{moreButton.title}</Link>
+            </div>
+          )}
+        </div>
+
         <div className='o-grid'>
           {isLoaded && playlists.length === 0 && (
             <div>{noPlaylistsText}</div>
           )}
-          {isLoaded && playlists.map((item, idx) => <PlaylistItem key={`playlistitem-${idx}`} onPlaylistClick={this.onPlaylistClick} {...item} />)}
+          {isLoaded && playlists.map((item, idx) => <PlaylistItem big={big} key={`playlistitem-${idx}`} onPlaylistClick={this.onPlaylistClick} {...item} />)}
           {!isLoaded && <Loading />}
         </div>
       </div>

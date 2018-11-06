@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
-import Playlist from "./components/playlist";
-import Recommended from "./components/recommended";
+import Playlist from "../../components/PlaylistContainer";
 import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
@@ -60,8 +59,19 @@ class HomePage extends Component {
           </div>
         </div>
         <div className='o-wrapper'>
-          <Recommended isLoaded={isReady} data={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
-          <Playlist isLoaded={isReady} data={playlists.data.filter(i => i.classification !== 'staff_picked')} onPlaylistClick={this.onPlaylistClick} />
+          <Playlist
+            big
+            title="Staff picks"
+            isLoaded={isReady}
+            playlists={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)}
+            />
+
+          <Playlist
+            title="Latest playlists"
+            moreButton={{ title: 'See more', url: '/new' }}
+            isLoaded={isReady}
+            playlists={playlists.data.filter(i => i.classification !== 'staff_picked').splice(0, 8)}
+            />
         </div>
       </>
     );
