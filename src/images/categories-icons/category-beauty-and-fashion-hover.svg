@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>category-beauty&amp;fashion-hover</title>
+    <desc>Created with Sketch.</desc>
+    <g id="category-beauty&amp;fashion-hover" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(8.000000, 10.000000)">
+            <circle id="Oval" stroke="#1D1D1D" stroke-width="2" fill="#D9DDEB" stroke-linecap="round" stroke-linejoin="round" cx="38.5" cy="31.5" r="31.5"></circle>
+            <circle id="Oval-Copy" fill="#C1DCFF" cx="38.5" cy="31.5" r="24.5"></circle>
+            <circle id="Oval-Copy-2" fill="#D6E7FD" cx="36.5" cy="30.5" r="21.5"></circle>
+            <circle id="Oval-Copy-3" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="38.5" cy="31.5" r="24.5"></circle>
+            <rect id="Rectangle" fill="#FFCC76" x="0" y="30" width="19" height="40" rx="2"></rect>
+            <rect id="Rectangle-Copy-3" fill="#ECB559" x="0" y="30" width="7" height="40" rx="2"></rect>
+            <rect id="Rectangle-Copy-4" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x="0" y="30" width="19" height="40" rx="2"></rect>
+            <path d="M4,23 L15,23 C16.1045695,23 17,23.8954305 17,25 L17,30 L2,30 L2,25 C2,23.8954305 2.8954305,23 4,23 Z" id="Rectangle-Copy" stroke="#1D1D1D" stroke-width="2" fill="#ECB559" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M5.47885213,2.80664662 L13.9577043,7.43147505 C14.6002259,7.78194139 15,8.45537776 15,9.1872662 L15,23 L4,23 L4,3.68454219 C4,3.13225744 4.44771525,2.68454219 5,2.68454219 C5.16731899,2.68454219 5.33196353,2.72652556 5.47885213,2.80664662 Z" id="Rectangle-Copy-2" fill="#CE3131"></path>
+            <path d="M5.50769666,3 L6.11994548,3.40608223 C6.67911546,3.77695921 7.01504823,4.40352183 7.01447442,5.07450653 L7,22 L4,23 L4,3.80918468 C4,3.27291946 4.43472886,2.8381906 4.97099408,2.8381906 C5.16191211,2.8381906 5.34859379,2.89447289 5.50769666,3 Z" id="Rectangle-Copy-5" fill="#FF5050"></path>
+            <path d="M5.47885213,2.80664662 L13.9577043,7.43147505 C14.6002259,7.78194139 15,8.45537776 15,9.1872662 L15,23 L4,23 L4,3.68454219 C4,3.13225744 4.44771525,2.68454219 5,2.68454219 C5.16731899,2.68454219 5.33196353,2.72652556 5.47885213,2.80664662 Z" id="Rectangle-Copy-6" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M19,56 L65,56 C66.1045695,56 67,56.8954305 67,58 L67,61 C67,63.7614237 64.7614237,66 62,66 L19,66 L19,56 Z" id="Rectangle" stroke="#1D1D1D" stroke-width="2" fill="#A5ADCA" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M54.2670273,28 L35,47" id="Path-11" stroke="#1D1D1D" stroke-width="2" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M53,37 L44,46" id="Path-11-Copy" stroke="#1D1D1D" stroke-width="2" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>category-nonprofits-and-activism</title>
+    <desc>Created with Sketch.</desc>
+    <g id="category-nonprofits-and-activism" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M75,18 L84,11" id="Path-17" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M70,13 L72,5" id="Path-17-Copy" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M78,25 L86.0562886,26" id="Path-17-Copy-2" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(82.028144, 25.500000) scale(-1, -1) translate(-82.028144, -25.500000) "></path>
+        <g id="Group" transform="translate(38.733398, 44.004883) rotate(-30.000000) translate(-38.733398, -44.004883) translate(0.233398, 15.004883)">
+            <path d="M10,13 L28,13 L28,35 L10,35 C4.4771525,35 3.0088066e-13,30.5228475 3.00204306e-13,25 L3.00204306e-13,23 C2.99527952e-13,17.4771525 4.4771525,13 10,13 Z" id="Rectangle" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M22,27 C20.8955582,27 20,27.895021 20,28.9988002 C20,30.104979 20.8955582,31 22,31 C23.1044418,31 24,30.104979 24,28.9988002 C24,27.895021 23.1044418,27 22,27 Z" id="Path" fill="#1D1D1D"></path>
+            <path d="M12.5,40 L29,40 L29,53 L12.5,53 C8.91014913,53 6,50.0898509 6,46.5 L6,46.5 C6,42.9101491 8.91014913,40 12.5,40 Z" id="Rectangle-Copy" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(17.500000, 46.500000) rotate(-90.000000) translate(-17.500000, -46.500000) "></path>
+            <polygon id="Rectangle" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="28 13 66 3 66 45 28 35"></polygon>
+            <rect id="Rectangle" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x="66" y="0" width="5" height="48" rx="2"></rect>
+            <path d="M71.4415184,21 L76.5584816,21 C77.4193424,21 78.1836201,21.5508602 78.4558482,22.3675445 L80,27 L68,27 L69.5441518,22.3675445 C69.8163799,21.5508602 70.5806576,21 71.4415184,21 Z" id="Rectangle" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(74.000000, 24.000000) rotate(-270.000000) translate(-74.000000, -24.000000) "></path>
+            <path d="M17,29 L14,29 C10.852427,29 7.88854382,27.5180584 6,25" id="Path-19" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

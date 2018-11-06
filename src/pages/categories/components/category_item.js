@@ -8,8 +8,8 @@ class CategoryItem extends Component {
     return (
       <Link to={`/category/${slug}`} className='c-category c-categories-grid__box'>
         <div className='c-category__graphic'>
-          <img src={require('../../../images/category-gaming.svg')} />
-          <img src={require('../../../images/category-gaming-hover.svg')} />
+          <img src={require(`../../../images/categories-icons/category-${slug}.svg`)} />
+          <img src={require(`../../../images/categories-icons/category-${slug}-hover.svg`)} />
         </div>
         <h3 className='c-category__title'>{name}</h3>
       </Link>

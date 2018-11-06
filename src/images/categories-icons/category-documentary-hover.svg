@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>category-documentary-hover</title>
+    <desc>Created with Sketch.</desc>
+    <g id="category-documentary-hover" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(6.000000, 13.000000)">
+            <g id="148945">
+                <path d="M71.4240345,62 L2.57596552,62 C1.15337931,62 0,60.8567059 0,59.4465588 L0,19 L74,19 L74,59.4465588 C74,60.8567059 72.8466207,62 71.4240345,62 Z" id="Path" stroke="#1D1D1D" stroke-width="2" fill="#FFB539" stroke-linecap="round" stroke-linejoin="round"></path>
+                <rect id="Rectangle" fill="#FFEFD3" x="41" y="42" width="27" height="15" rx="2"></rect>
+                <path d="M33.4545845,7 L30,0 L2.57596552,0 C1.15337931,0 0,1.16988235 0,2.61282353 L0,6.05882353 L0,19 L74,19 L74,13 C74,9.6862915 71.3137085,7 68,7 L33.4545845,7 Z" id="Path" stroke="#1D1D1D" stroke-width="2" fill="#CE912C" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M20.8715755,31.5494676 L28.1617281,44.5097388 C28.4324919,44.9910966 28.2617716,45.6008117 27.7804138,45.8715755 C27.6307321,45.9557715 27.4618894,46 27.2901525,46 L12.7098475,46 C12.1575627,46 11.7098475,45.5522847 11.7098475,45 C11.7098475,44.8282631 11.754076,44.6594204 11.8382719,44.5097388 L19.1284245,31.5494676 C19.3991883,31.0681097 20.0089034,30.8973895 20.4902612,31.1681533 C20.6498857,31.2579421 20.7817868,31.3898431 20.8715755,31.5494676 Z" id="Triangle" stroke="#1D1D1D" stroke-width="2" fill="#00796B" stroke-linecap="round" stroke-linejoin="round" transform="translate(20.000000, 38.000000) rotate(-270.000000) translate(-20.000000, -38.000000) "></path>
+            </g>
+            <path d="M63,47 L46,47" id="Path-14" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M56.509668,52 L46,52" id="Path-14-Copy" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

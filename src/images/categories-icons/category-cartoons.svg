@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>category-cartoon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="category-cartoon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(6.000000, 8.000000)">
+            <path d="M27,70 L16.6116432,70 C15.6240346,70 14.7842854,69.2791147 14.634713,68.3028981 L9.0546432,31.8833493 C8.21101466,26.3772241 9.15806041,20.7457181 11.7562718,15.8184043 C17.3170514,5.27280144 25.5678848,1.6748403e-15 36.5087719,0 C47.224606,0 55.5586913,5.0581104 61.5110278,15.1743312 L61.5110279,15.1743311 C64.5936268,20.4133244 65.7431687,26.5667946 64.7598775,32.5653449 L58.8983437,68.3235252 C58.7398649,69.2903219 57.904384,70 56.9246843,70 L46.9398659,70 L46.8498171,69.7323857 C45.0134017,64.2747722 39.1004229,61.3392111 33.6428095,63.1756266 C30.4582798,64.2471791 27.9853113,66.7877398 27,70 Z" id="Path-12" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle id="Oval" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="17" cy="29" r="17"></circle>
+            <circle id="Oval-Copy-2" fill="#1D1D1D" cx="20" cy="26" r="6"></circle>
+            <circle id="Oval-Copy-4" fill="#FFFFFF" cx="17.5" cy="23.5" r="2.5"></circle>
+            <circle id="Oval-Copy-3" fill="#1D1D1D" cx="53" cy="26" r="6"></circle>
+            <circle id="Oval-Copy" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="56" cy="29" r="17"></circle>
+            <circle id="Oval-Copy-5" fill="#FFFFFF" cx="50.5" cy="23.5" r="2.5"></circle>
+            <path d="M31,50 L42,50" id="Line-11" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M34,28 L38.7432202,28" id="Path-13" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

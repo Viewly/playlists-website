@@ -292,9 +292,9 @@ $tweakpoint-category:   large;
 }
 
     .c-category__graphic {
-        display: none;
-        height: 1em;
+        display: block;
         font-size: 68px;
+        height: 1em;
         margin-bottom: $spacing-unit;
         margin-left: auto;
         margin-right: auto;
@@ -326,7 +326,7 @@ $tweakpoint-category:   large;
     }
 
     .c-category__title {
-        font-size: 14px;
+        font-size: 13px;
         text-transform: uppercase;
     }
 
