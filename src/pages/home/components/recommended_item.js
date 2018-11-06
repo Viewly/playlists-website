@@ -30,7 +30,7 @@ RecommendedItem.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   playlist_thumbnail_url: PropTypes.string,
-  category: PropTypes.string,
+  category: PropTypes.object,
   noVideos: PropTypes.number,
   duration: PropTypes.string,
   onPlaylistClick: PropTypes.func,

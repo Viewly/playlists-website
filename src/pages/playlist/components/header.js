@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Header = ({ title, author, duration, tags, poster, description }) => (
+const Header = ({ title, author, duration, category, poster, description }) => (
   <div className='c-section'>
     <div className='o-wrapper'>
       <div className='o-grid o-grid--middle'>
@@ -31,7 +31,7 @@ const Header = ({ title, author, duration, tags, poster, description }) => (
               <li className='o-grid__cell u-margin-bottom'>
                 <dl>
                   <dt>Category</dt>
-                  <dd><Link to={`/category/${tags[0]}`}>{tags[0]}</Link></dd>
+                  <dd><Link to={`/category/${category.slug}`}>{category.name}</Link></dd>
                 </dl>
               </li>
             </ul>
@@ -50,7 +50,7 @@ Header.propTypes = {
   author: PropTypes.string.isRequired,
   poster: PropTypes.string,
   description: PropTypes.string,
-  tags: PropTypes.array
+  category: PropTypes.object.isRequired
 };
 
 export default Header;
