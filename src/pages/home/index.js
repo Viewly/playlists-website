@@ -69,7 +69,9 @@ class HomePage extends Component {
               />
           </div>
 
-          <Categories />
+          <div className='u-margin-bottom-large u-padding-bottom-large'>
+            <Categories />
+          </div>
 
           <Playlist
             title="New playlists"
