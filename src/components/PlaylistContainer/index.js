@@ -12,7 +12,6 @@ import Loading from "../loading";
 }))
 export default class Playlist extends Component {
   static defaultProps = {
-    noPlaylistsText: "No playlists found",
     moreButton: false
   }
 
@@ -26,7 +25,7 @@ export default class Playlist extends Component {
   }
 
   render() {
-    const { isLoaded, playlists, title, noPlaylistsText, moreButton, big } = this.props;
+    const { isLoaded, playlists, title, moreButton, big } = this.props;
 
     return (
       <div>
@@ -40,11 +39,16 @@ export default class Playlist extends Component {
         </div>
 
         <div className='o-grid'>
-          {isLoaded && playlists.length === 0 && (
-            <div>{noPlaylistsText}</div>
-          )}
           {isLoaded && playlists.map((item, idx) => <PlaylistItem big={big} key={`playlistitem-${idx}`} onPlaylistClick={this.onPlaylistClick} {...item} />)}
           {!isLoaded && <Loading />}
+          {isLoaded && playlists.length === 0 && (
+            <div className='o-grid__cell u-1/1'>
+              <div className='c-no-results'>
+                <img className='c-no-results__img' src={require('../../images/message-no-playlists-yet.svg')} />
+                <p>There are no playlists in this category yet. <br />Try browsing other categories or <Link to='/create-playlist'>create a playlist</Link> <br />in this one.</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     )

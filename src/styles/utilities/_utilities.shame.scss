@@ -200,6 +200,12 @@ dl {
     padding-bottom: $spacing-unit-large;
     text-align: center;
 
+    @include mq($until: 360px) {
+        br {
+            display: none;
+        }
+    }
+
     a {
         color: color('brand-primary');
         font-weight: 700;
