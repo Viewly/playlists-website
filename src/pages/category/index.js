@@ -21,7 +21,7 @@ const prepareActions = (dispatch) => ({
 }), prepareActions)
 class CategoryPage extends Component {
   componentDidMount() {
-    const { playlistsFetch, match: { params: { categorySlug } }  } = this.props;
+    const { playlistsFetch, match: { params: { categorySlug } } } = this.props;
 
     playlistsFetch(`slug=${categorySlug}`);
   }
@@ -32,8 +32,11 @@ class CategoryPage extends Component {
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1 className='u-h3'><Link to="/categories">Categories</Link> <span className='c-heading-delimiter'>&rsaquo;</span> {categorySlug}</h1>
-        <Playlist title="" isLoaded={isReady} playlists={playlists.data.filter(i => i.category.slug === categorySlug)} />
+        <Playlist
+          title={<><Link to="/categories">Categories</Link> <span className='c-heading-delimiter'>&rsaquo;</span> {categorySlug}</>}
+          isLoaded={isReady}
+          playlists={playlists.data.filter(i => i.category.slug === categorySlug)}
+        />
       </div>
     );
   }

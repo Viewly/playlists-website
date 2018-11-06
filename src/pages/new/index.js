@@ -42,12 +42,12 @@ class LatestPlaylists extends Component {
 
     return (
       <>
-        <SEO title="Latest playlists" />
+        <SEO title="New playlists" />
 
-        <div className='o-wrapper'>
+        <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
           <Playlist
             isLoaded={isReady}
-            title="Latest playlists"
+            title="New playlists"
             playlists={playlists.data.filter(i => i.classification !== 'staff_picked')}
           />
         </div>

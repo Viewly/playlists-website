@@ -334,3 +334,13 @@ $tweakpoint-category:   large;
 .c-heading-delimiter {
     color: #afb1b3;
 }
+
+.c-link-secondary {
+    color: #afb1b3;
+    font-size: 14px;
+    font-weight: 500;
+
+    &:hover {
+        color: color('brand-primary');
+    }
+}

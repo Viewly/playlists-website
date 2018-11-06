@@ -29,12 +29,12 @@ export default class Playlist extends Component {
     const { isLoaded, playlists, title, noPlaylistsText, moreButton, big } = this.props;
 
     return (
-      <div className='u-margin-top-small'>
-        <div className='o-grid'>
-          {title && <div className='o-grid__cell'><h2>{title}</h2></div>}
+      <div>
+        <div className='o-grid o-grid--auto o-grid--middle o-grid--between u-margin-bottom'>
+          {title && <div className='o-grid__cell'><h2 className='u-h3'>{title}</h2></div>}
           {moreButton && (
             <div className='o-grid__cell'>
-              <Link to={moreButton.url}>{moreButton.title}</Link>
+              <Link className='c-link-secondary' to={moreButton.url}>{moreButton.title}</Link>
             </div>
           )}
         </div>

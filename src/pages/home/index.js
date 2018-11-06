@@ -59,16 +59,18 @@ class HomePage extends Component {
           </div>
         </div>
         <div className='o-wrapper'>
-          <Playlist
-            big
-            title="Staff picks"
-            isLoaded={isReady}
-            playlists={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)}
-            />
+          <div className='u-margin-bottom-large'>
+            <Playlist
+              big
+              title="Staff picks"
+              isLoaded={isReady}
+              playlists={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)}
+              />
+          </div>
 
           <Playlist
-            title="Latest playlists"
-            moreButton={{ title: 'See more', url: '/new' }}
+            title="New playlists"
+            moreButton={{ title: 'View All', url: '/new' }}
             isLoaded={isReady}
             playlists={playlists.data.filter(i => i.classification !== 'staff_picked').splice(0, 8)}
             />
