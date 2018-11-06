@@ -8,9 +8,35 @@ export async function playlistFetch (baseUrl, { playlistId }) {
 }
 
 export async function playlistsFetch (baseUrl, params) {
-  const url = params && params.query
+  let url = params && params.query
     ? `${baseUrl}/playlists?status=published&${params.query}`
     : `${baseUrl}/playlists?status=published`
+
+  if (params.page) {
+    url += `&page=${params.page}`;
+  }
+
+  if (params.limit) {
+    url += `&limit=${params.limit}`;
+  }
+
+  const { body } = await get(url);
+
+  return body;
+}
+
+export async function playlistsLoadMore (baseUrl, params) {
+  let url = params && params.query
+    ? `${baseUrl}/playlists?status=published&${params.query}`
+    : `${baseUrl}/playlists?status=published`
+
+  if (params.page) {
+    url += `&page=${params.page}`;
+  }
+
+  if (params.limit) {
+    url += `&limit=${params.limit}`;
+  }
 
   const { body } = await get(url);
 
