@@ -34,7 +34,7 @@ export default class Playlist extends Component {
           {title && <div className='o-grid__cell'><h2 className='u-h3'>{title}</h2></div>}
           {moreButton && (
             <div className='o-grid__cell'>
-              <Link to={moreButton.url}>{moreButton.title}</Link>
+              <Link className='c-link-secondary' to={moreButton.url}>{moreButton.title}</Link>
             </div>
           )}
         </div>

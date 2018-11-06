@@ -54,7 +54,7 @@ class SearchPage extends Component {
 
     return (
       <Layout>
-        <div className='o-wrapper u-padding-top-large u-padding-bottom'>
+        <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
 
           {!isReady && (
             <div>
