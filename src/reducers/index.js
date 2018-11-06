@@ -15,6 +15,9 @@ const rootReducer = (state = initialState, action) => {
     case actions.PLAYLISTS_FETCH_SUCCESS:
       return { ...state, playlists: { data: action.data, _status: LOADED } };
 
+    case actions.PLAYLISTS_LOAD_MORE_SUCCESS:
+      return { ...state, playlists: { data: [ ...state.playlists.data, ...action.data ], _status: LOADED } };
+
     case actions.PLAYLIST_INJECT_DATA:
       return { ...state, playlist: { ...action.data, videos: [] } }
 

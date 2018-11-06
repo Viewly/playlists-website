@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import VisibilitySensor from "react-visibility-sensor";
 
-import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
+import { playlistsFetch, playlistsLoadMore, PLAYLIST_INJECT_DATA } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
 import SEO from "../../components/SEO";
 
+const LIMIT = 12;
+
 const prepareActions = (dispatch) => ({
-  playlistsFetch: () => dispatch(playlistsFetch()),
+  playlistsFetch: () => dispatch(playlistsFetch({ page: 0, limit: LIMIT })),
+  playlistsLoadMore: (page, limit) => dispatch(playlistsLoadMore({ page, limit })),
   injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
 });
 
@@ -21,19 +25,30 @@ const prepareActions = (dispatch) => ({
   playlists: state.playlists
 }), prepareActions)
 class LatestPlaylists extends Component {
+  state = {
+    page: 0,
+    hasMore: true
+  }
+
   componentDidMount() {
     const { playlistsFetch } = this.props;
 
     playlistsFetch();
   }
 
-  onPlaylistClick = (url) => (evnt) => {
-    const { history, injectPlaylist, playlists } = this.props;
-    const selectedPlaylist = playlists.data.find(item => item.url === url);
+  loadMore = async (visible) => {
+    const { playlistsLoadMore } = this.props;
 
-    evnt.preventDefault();
-    injectPlaylist(selectedPlaylist);
-    history.push(`/playlist/${url}`);
+    if (visible === false) {
+      return;
+    }
+
+    this.setState({ page: this.state.page + 1 }, async () => {
+      const playlists = await playlistsLoadMore(this.state.page, LIMIT);
+      if (playlists.length < LIMIT) {
+        this.setState({ hasMore: false });
+      }
+    })
   }
 
   render() {
@@ -50,6 +65,12 @@ class LatestPlaylists extends Component {
             title="New playlists"
             playlists={playlists.data.filter(i => i.classification !== 'staff_picked')}
           />
+
+          {isReady && this.state.hasMore && (
+            <VisibilitySensor partialVisibility offset={{ bottom: -200 }} onChange={this.loadMore}>
+              <button onClick={this.loadMore}>Load more</button>
+            </VisibilitySensor>
+          )}
         </div>
       </>
     );
