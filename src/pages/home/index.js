@@ -6,6 +6,7 @@ import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
+import Categories from "./components/categories";
 import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
@@ -67,6 +68,8 @@ class HomePage extends Component {
               playlists={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)}
               />
           </div>
+
+          <Categories />
 
           <Playlist
             title="New playlists"
