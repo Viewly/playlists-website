@@ -12,11 +12,11 @@ export async function playlistsFetch (baseUrl, params) {
     ? `${baseUrl}/playlists?status=published&${params.query}`
     : `${baseUrl}/playlists?status=published`
 
-  if (params.page) {
+  if (params && params.page) {
     url += `&page=${params.page}`;
   }
 
-  if (params.limit) {
+  if (params && params.limit) {
     url += `&limit=${params.limit}`;
   }
 
@@ -30,11 +30,11 @@ export async function playlistsLoadMore (baseUrl, params) {
     ? `${baseUrl}/playlists?status=published&${params.query}`
     : `${baseUrl}/playlists?status=published`
 
-  if (params.page) {
+  if (params && params.page) {
     url += `&page=${params.page}`;
   }
 
-  if (params.limit) {
+  if (params && params.limit) {
     url += `&limit=${params.limit}`;
   }
 

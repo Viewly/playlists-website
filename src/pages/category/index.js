@@ -11,7 +11,7 @@ import Playlist from "../../components/PlaylistContainer";
 const LIMIT = 12;
 
 const prepareActions = (dispatch) => ({
-  playlistsFetch: (query, page, limit) => dispatch(playlistsFetch({ query, page, limit })),
+  playlistsFetch: (query) => dispatch(playlistsFetch({ query, page: 0, limit: LIMIT })),
   playlistsLoadMore: (query, page, limit) => dispatch(playlistsLoadMore({ query, page, limit })),
 });
 
@@ -32,7 +32,7 @@ class CategoryPage extends Component {
   componentDidMount() {
     const { playlistsFetch, match: { params: { categorySlug } } } = this.props;
 
-    playlistsFetch(`slug=${categorySlug}`, 0, LIMIT);
+    playlistsFetch(`slug=${categorySlug}`);
   }
 
   loadMore = async (visible) => {
