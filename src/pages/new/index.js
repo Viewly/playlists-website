@@ -27,15 +27,6 @@ class LatestPlaylists extends Component {
     playlistsFetch();
   }
 
-  onPlaylistClick = (url) => (evnt) => {
-    const { history, injectPlaylist, playlists } = this.props;
-    const selectedPlaylist = playlists.data.find(item => item.url === url);
-
-    evnt.preventDefault();
-    injectPlaylist(selectedPlaylist);
-    history.push(`/playlist/${url}`);
-  }
-
   render() {
     const { playlists } = this.props;
     const isReady = isLoaded(playlists);
