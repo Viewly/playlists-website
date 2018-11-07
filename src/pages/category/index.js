@@ -5,6 +5,7 @@ import VisibilitySensor from "react-visibility-sensor";
 
 import { playlistsFetch, playlistsLoadMore, categoriesFetch } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
+import SEO from "../../components/SEO";
 
 import Playlist from "../../components/PlaylistContainer";
 
@@ -60,6 +61,8 @@ class CategoryPage extends Component {
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+        <SEO title={categoryName} />
+
         <Playlist
           title={<><Link to="/categories">Categories</Link> <span className='c-heading-delimiter'>&rsaquo;</span> {categoryName}</>}
           isLoaded={isReady}
