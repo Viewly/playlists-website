@@ -21,13 +21,13 @@ class PlayerPage extends Component {
   componentDidMount() {
     const { playlist, playlistFetch, match: { params: { playlistId, videoId } } } = this.props;
 
-    document && document.documentElement.classList.add('hidescroll');
+    document && document.documentElement.classList.add('is-overflow-y-hidden');
     playlist.id !== playlistId && playlistFetch(playlistId);
     this.setState({ videoId: parseInt(videoId, 10) });
   }
 
   componentWillUnmount() {
-    document && document.documentElement.classList.remove('hidescroll');
+    document && document.documentElement.classList.remove('is-overflow-y-hidden');
   }
 
   componentDidUpdate(prevProps) {
