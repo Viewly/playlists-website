@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
-    <title>howto_gray_icon</title>
+    <title>category-how-to-and-style</title>
     <desc>Created with Sketch.</desc>
-    <g id="howto_gray_icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <g id="Group" transform="translate(43.589358, 42.589358) rotate(-315.000000) translate(-43.589358, -42.589358) translate(-4.910642, -5.910642)" stroke="#1D1D1D" stroke-linejoin="round" stroke-width="2">
-            <path d="M50.3681037,1.8858096 L55,14 L42,14 L46.6318963,1.8858096 C47.0263795,0.85408443 48.1825498,0.337497708 49.2142749,0.731980861 C49.7454273,0.93506853 50.165016,1.35465723 50.3681037,1.8858096 Z" id="Triangle"></path>
-            <path d="M2,38 L42,38 L42,60 L2,60 C0.8954305,60 1.3527075e-16,59.1045695 0,58 L-2.22044605e-16,40 C-3.57315355e-16,38.8954305 0.8954305,38 2,38 Z" id="Rectangle"></path>
-            <path d="M57,38 L97,38 L97,60 L57,60 C55.8954305,60 55,59.1045695 55,58 L55,40 C55,38.8954305 55.8954305,38 57,38 Z" id="Rectangle-Copy-3" transform="translate(76.000000, 49.000000) scale(-1, 1) translate(-76.000000, -49.000000) "></path>
-            <path d="M43,14 L54,14 C54.5522847,14 55,14.4477153 55,15 L55,95 C55,96.1045695 54.1045695,97 53,97 L44,97 C42.8954305,97 42,96.1045695 42,95 L42,15 C42,14.4477153 42.4477153,14 43,14 Z" id="Rectangle"></path>
-            <path d="M43.2034894,87 L53.6101595,87" id="Line-8"></path>
-            <path d="M43.2034894,81 L53.6101595,81" id="Line-8-Copy-3"></path>
-            <path d="M6,54 L42.3298038,54" id="Line-8-Copy"></path>
-            <path d="M55.8720703,54 L91,54" id="Line-8-Copy-2"></path>
-            <path d="M11,40 L11,44" id="Line-9"></path>
-            <path d="M21,40 L21,44" id="Line-9-Copy"></path>
-            <path d="M31,40 L31,44" id="Line-9-Copy-2"></path>
-            <path d="M65,40 L65,44" id="Line-9-Copy-5"></path>
-            <path d="M75,40 L75,44" id="Line-9-Copy-4"></path>
-            <path d="M85,40 L85,44" id="Line-9-Copy-3"></path>
+    <g id="category-how-to-and-style" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(43.053824, 43.053824) rotate(-315.000000) translate(-43.053824, -43.053824) translate(0.553824, -5.446176)">
+            <path d="M44.3681037,1.8858096 L49,14 L36,14 L40.6318963,1.8858096 C41.0263795,0.85408443 42.1825498,0.337497708 43.2142749,0.73198086 C43.7454273,0.93506853 44.165016,1.35465723 44.3681037,1.8858096 Z" id="Triangle" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M44.3681037,1.8858096 L46.3242299,7.00183212 L38.6719617,7.01179258 L40.6318963,1.8858096 C41.0263795,0.85408443 42.1825498,0.337497708 43.2142749,0.73198086 C43.7454273,0.93506853 44.165016,1.35465723 44.3681037,1.8858096 Z" id="Triangle-Copy" stroke="#1D1D1D" stroke-width="2" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M37,14 L48,14 C48.5522847,14 49,14.4477153 49,15 L49,79 C49,80.1045695 48.1045695,81 47,81 L38,81 C36.8954305,81 36,80.1045695 36,79 L36,15 C36,14.4477153 36.4477153,14 37,14 Z" id="Rectangle-Copy" fill="#FFFFFF"></path>
+            <path d="M2,38 L36,38 L36,60 L2,60 C0.8954305,60 1.81912467e-12,59.1045695 1.8189894e-12,58 L1.8189894e-12,40 C1.81885413e-12,38.8954305 0.8954305,38 2,38 Z" id="Rectangle" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M51,38 L85,38 L85,60 L51,60 C49.8954305,60 49,59.1045695 49,58 L49,40 C49,38.8954305 49.8954305,38 51,38 Z" id="Rectangle-Copy-3" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(67.000000, 49.000000) scale(-1, 1) translate(-67.000000, -49.000000) "></path>
+            <path d="M37,14 L48,14 C48.5522847,14 49,14.4477153 49,15 L49,95 C49,96.1045695 48.1045695,97 47,97 L38,97 C36.8954305,97 36,96.1045695 36,95 L36,15 C36,14.4477153 36.4477153,14 37,14 Z" id="Rectangle" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M37.2034894,87 L47.6101595,87" id="Line-8" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M37.2034894,81 L47.6101595,81" id="Line-8-Copy-3" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M-3.63797881e-12,54 L36.3298038,54" id="Line-8-Copy" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M49.8720703,54 L85,54" id="Line-8-Copy-2" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M5,40 L5,44" id="Line-9" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M15,40 L15,44" id="Line-9-Copy" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M25,40 L25,44" id="Line-9-Copy-2" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M59,40 L59,44" id="Line-9-Copy-5" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M69,40 L69,44" id="Line-9-Copy-4" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M79,40 L79,44" id="Line-9-Copy-3" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
         </g>
-        <path d="M20.9619408,65.0056676 L63,22.7903679" id="Path-5-Copy" stroke="#1D1D1D" stroke-width="2"></path>
     </g>
 </svg>
