@@ -82,13 +82,6 @@ dl {
     align-items: center;
     max-width: 112px;
 }
-
-/* HACK - fixes plyr volume buttons misbehaving */
-.plyr__volume {
-    display: flex;
-    align-items: center;
-    max-width: 112px;
-}
 .plyr__poster {
     pointer-events: none;
 }
