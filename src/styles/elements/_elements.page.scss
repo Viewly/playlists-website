@@ -12,7 +12,7 @@ html {
     font-family: $global-font-family;
     font-weight: 400;
 
-    &.hidescroll {
+    &.is-overflow-y-hidden {
         overflow-y: hidden;
     }
 }
