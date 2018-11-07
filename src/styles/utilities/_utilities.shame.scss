@@ -46,6 +46,10 @@ dl {
     left: 0;
     right: 0;
     z-index: 1000;
+
+    @include mq($until: ($tweakpoint-nav-primary - 1)) {
+        border-bottom: none;
+    }
 }
 
     .c-header__grid {
