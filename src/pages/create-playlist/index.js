@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { playlistCreateNew } from "../../actions";
+import { playlistCreateNew, categoriesFetch } from "../../actions";
 
-@connect(null, (dispatch) => ({
+@connect((state) => ({
+  categories: state.categories
+}), (dispatch) => ({
   playlistCreateNew: (title, description, email, category) => dispatch(playlistCreateNew({ title, description, email, category })),
+  categoriesFetch: () => dispatch(categoriesFetch())
 }))
 class CreatePlaylist extends Component {
   state = {
@@ -13,6 +16,12 @@ class CreatePlaylist extends Component {
     email: '',
     category: '0',
     suggested: false
+  }
+
+  componentDidMount() {
+    const { categoriesFetch } = this.props;
+
+    categoriesFetch();
   }
 
   handleChange = (evnt) => {
@@ -30,6 +39,8 @@ class CreatePlaylist extends Component {
   }
 
   render() {
+    const { categories } = this.props;
+
     return (
       <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
 
@@ -55,39 +66,7 @@ class CreatePlaylist extends Component {
                   <div className='c-select u-1/1'>
                     <select className='c-select__select' name="category" value={this.state.category} onChange={this.handleChange}>
                       <option value="0">No category</option>
-                      <option value="2">Autos & Vehicles</option>
-                      <option value="1">Film & Animation</option>
-                      <option value="10">Music</option>
-                      <option value="15">Pets & Animals</option>
-                      <option value="17">Sports</option>
-                      <option value="18">Short Movies</option>
-                      <option value="19">Travel & Events</option>
-                      <option value="20">Gaming</option>
-                      <option value="21">Videoblogging</option>
-                      <option value="22">People & Blogs</option>
-                      <option value="23">Comedy</option>
-                      <option value="24">Entertainment</option>
-                      <option value="25">News & Politics</option>
-                      <option value="26">Howto & Style</option>
-                      <option value="27">Education</option>
-                      <option value="28">Science & Technology</option>
-                      <option value="29">Nonprofits & Activism</option>
-                      <option value="30">Movies</option>
-                      <option value="31">Anime/Animation</option>
-                      <option value="32">Action/Adventure</option>
-                      <option value="33">Classics</option>
-                      <option value="34">Comedy</option>
-                      <option value="35">Documentary</option>
-                      <option value="36">Drama</option>
-                      <option value="37">Family</option>
-                      <option value="38">Foreign</option>
-                      <option value="39">Horror</option>
-                      <option value="40">Sci-Fi/Fantasy</option>
-                      <option value="41">Thriller</option>
-                      <option value="42">Shorts</option>
-                      <option value="43">Shows</option>
-                      <option value="44">Trailers</option>
-                      <option value="45">Cooking</option>
+                      {categories.data.map((item, idx) => <option key={`category-${idx}`} value={item.id}>{item.name}</option>)}
                     </select>
                   </div>
                 </li>
