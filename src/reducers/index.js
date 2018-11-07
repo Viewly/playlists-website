@@ -7,7 +7,6 @@ const initialState = {
   playlists: { _status: PENDING, data: [] },
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
-  searchedPlaylists: { _status: PENDING, data: [] }
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -47,13 +46,6 @@ const rootReducer = (state = initialState, action) => {
       action.data.percentage = Math.round(sumProgresses / action.data.videos.length);
 
       return { ...state, playlist: { _status: LOADED, ...action.data, isServerRendered: SERVER } };
-
-    case actions.PLAYLIST_SEARCH_START:
-      return { ...state, searchedPlaylists: { _status: LOADING, data: [] } };
-    case actions.PLAYLIST_SEARCH_SUCCESS:
-      return { ...state, searchedPlaylists: { _status: LOADED, data: action.data } };
-    case actions.PLAYLIST_SEARCH_ERROR:
-      return { ...state, searchedPlaylists: { _status: ERROR, data: [] } };
 
     case actions.CATEGORIES_FETCH_SUCCESS:
       return {
