@@ -266,6 +266,22 @@ dl {
     }
 }
 
+.c-categories-grid--home {
+    $tweakpoint: 1080px;
+
+    @include mq($from: medium, $until: $tweakpoint) {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    @include mq($from: large, $until: $tweakpoint) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include mq($tweakpoint) {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
 
 $tweakpoint-category:   large;
 
