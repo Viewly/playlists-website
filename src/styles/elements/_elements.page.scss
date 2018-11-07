@@ -11,6 +11,10 @@ html {
     color: $global-text-color;
     font-family: $global-font-family;
     font-weight: 400;
+
+    &.hidescroll {
+        overflow-y: hidden;
+    }
 }
 
 /**
