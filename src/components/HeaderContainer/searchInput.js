@@ -21,7 +21,7 @@ class SearchInput extends Component {
   doSearch = () => {
     const { history } = this.props;
 
-    this.state.searchText.length > 0 && history.push(`/search/?query=${this.state.searchText}`);
+    this.state.searchText.length > 0 && history.push(`/search/?query=${encodeURIComponent(this.state.searchText)}`);
   }
 
   render() {
