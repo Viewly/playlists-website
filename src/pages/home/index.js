@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
+import { playlistsFetch, playlistsLoadMore, PLAYLIST_INJECT_DATA } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
@@ -10,7 +10,8 @@ import Categories from "./components/categories";
 import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
-  playlistsFetch: () => dispatch(playlistsFetch()),
+  playlistsFetch: (query) => dispatch(playlistsFetch({ query })),
+  playlistsLoadMore: (query) => dispatch(playlistsLoadMore({ query })),
   injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
 });
 
@@ -18,15 +19,17 @@ const prepareActions = (dispatch) => ({
   const { playlistsFetch } = prepareActions(store.dispatch);
 
   await playlistsFetch();
+  await playlistsLoadMore("classification=staff_picked");
 })
 @connect((state) => ({
   playlists: state.playlists
 }), prepareActions)
 class HomePage extends Component {
-  componentDidMount() {
-    const { playlistsFetch } = this.props;
+  async componentDidMount() {
+    const { playlistsFetch, playlistsLoadMore } = this.props;
 
-    playlistsFetch();
+    await playlistsFetch();
+    playlistsLoadMore("classification=staff_picked");
   }
 
   onPlaylistClick = (url) => (evnt) => {
@@ -41,6 +44,7 @@ class HomePage extends Component {
   render() {
     const { playlists } = this.props;
     const isReady = isLoaded(playlists);
+    const pickedPlaylists = playlists.data.filter(i => i.classification === 'staff_picked').splice(0, 3);
 
     return (
       <>
@@ -61,12 +65,14 @@ class HomePage extends Component {
         </div>
         <div className='o-wrapper'>
           <div className='u-margin-bottom-large'>
-            <Playlist
-              big
-              title="Staff picks"
-              isLoaded={isReady}
-              playlists={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)}
+            {pickedPlaylists.length > 0 && (
+              <Playlist
+                big
+                title="Staff picks"
+                isLoaded={isReady}
+                playlists={pickedPlaylists}
               />
+            )}
           </div>
 
           <div className='u-margin-bottom-large u-padding-bottom-large'>
@@ -78,7 +84,7 @@ class HomePage extends Component {
             moreButton={{ title: 'View All', url: '/new' }}
             isLoaded={isReady}
             playlists={playlists.data.filter(i => i.classification !== 'staff_picked').splice(0, 8)}
-            />
+          />
         </div>
       </>
     );
