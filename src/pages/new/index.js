@@ -68,7 +68,9 @@ class LatestPlaylists extends Component {
 
           {isReady && this.state.hasMore && (
             <VisibilitySensor partialVisibility offset={{ bottom: -200 }} onChange={this.loadMore}>
-              <button onClick={this.loadMore}>Load more</button>
+              <div className='u-text-center'>
+                <button className='c-btn c-btn--secondary c-btn--small' onClick={this.loadMore}>Load more</button>
+              </div>
             </VisibilitySensor>
           )}
         </div>
