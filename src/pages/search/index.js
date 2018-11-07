@@ -44,7 +44,7 @@ class SearchPage extends Component {
   doSearch = (query) => {
     const { playlistsFetch } = this.props;
 
-    playlistsFetch(`title=${query}`);
+    playlistsFetch(`title=${encodeURIComponent(query)}`);
   }
 
   loadMore = async (visible) => {
