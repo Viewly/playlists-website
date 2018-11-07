@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
-const THUMBNAIL_ROOT = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload';
-const NO_THUMBNAIL = 'https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload/a6a9391c-2f46-3e9c-d3ef-7af0ea2297a9_thumbnail.png';
+import { THUMBNAIL_ROOT, NO_THUMBNAIL } from "../../constants";
 
 const PlaylistItem = ({ url, title, description, playlist_thumbnail_url, duration, noVideos, category, onPlaylistClick, big }) => (
   <div className={`o-grid__cell u-1/2@medium u-1/3@large ${big ? '' : 'u-1/4@extralarge'} u-margin-bottom-large`} onClick={() => onPlaylistClick(url)}>
