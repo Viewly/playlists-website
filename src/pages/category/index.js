@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import VisibilitySensor from "react-visibility-sensor";
 
-import { playlistsFetch, playlistsLoadMore } from "../../actions";
+import { playlistsFetch, playlistsLoadMore, categoriesFetch } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
@@ -13,6 +13,7 @@ const LIMIT = 12;
 const prepareActions = (dispatch) => ({
   playlistsFetch: (query) => dispatch(playlistsFetch({ query, page: 0, limit: LIMIT })),
   playlistsLoadMore: (query, page, limit) => dispatch(playlistsLoadMore({ query, page, limit })),
+  categoriesFetch: () => dispatch(categoriesFetch()),
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
@@ -21,7 +22,8 @@ const prepareActions = (dispatch) => ({
   await playlistsFetch(`slug=${params.categorySlug}`);
 })
 @connect((state) => ({
-  playlists: state.playlists
+  playlists: state.playlists,
+  categories: state.categories
 }), prepareActions)
 class CategoryPage extends Component {
   state = {
@@ -30,8 +32,9 @@ class CategoryPage extends Component {
   }
 
   componentDidMount() {
-    const { playlistsFetch, match: { params: { categorySlug } } } = this.props;
+    const { categories, categoriesFetch, playlistsFetch, match: { params: { categorySlug } } } = this.props;
 
+    isLoaded(categories) || categoriesFetch();
     playlistsFetch(`slug=${categorySlug}`);
   }
 
@@ -51,13 +54,14 @@ class CategoryPage extends Component {
   }
 
   render() {
-    const { playlists, match: { params: { categorySlug } } } = this.props;
+    const { playlists, categories, match: { params: { categorySlug } } } = this.props;
     const isReady = isLoaded(playlists);
+    const categoryName = isLoaded(categories) ? categories.data.find(item => item.slug === categorySlug).name : categorySlug;
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <Playlist
-          title={<><Link to="/categories">Categories</Link> <span className='c-heading-delimiter'>&rsaquo;</span> {categorySlug}</>}
+          title={<><Link to="/categories">Categories</Link> <span className='c-heading-delimiter'>&rsaquo;</span> {categoryName}</>}
           isLoaded={isReady}
           playlists={playlists.data.filter(i => i.category.slug === categorySlug)}
         />
