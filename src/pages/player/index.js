@@ -21,8 +21,13 @@ class PlayerPage extends Component {
   componentDidMount() {
     const { playlist, playlistFetch, match: { params: { playlistId, videoId } } } = this.props;
 
+    document && document.documentElement.classList.add('hidescroll');
     playlist.id !== playlistId && playlistFetch(playlistId);
     this.setState({ videoId: parseInt(videoId, 10) });
+  }
+
+  componentWillUnmount() {
+    document && document.documentElement.classList.remove('hidescroll');
   }
 
   componentDidUpdate(prevProps) {
