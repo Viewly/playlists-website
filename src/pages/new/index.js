@@ -63,7 +63,7 @@ class LatestPlaylists extends Component {
           <Playlist
             isLoaded={isReady}
             title="New playlists"
-            playlists={playlists.data.filter(i => i.classification !== 'staff_picked')}
+            playlists={playlists.data}
           />
 
           {isReady && this.state.hasMore && (
