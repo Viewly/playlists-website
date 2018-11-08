@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import VisibilitySensor from "react-visibility-sensor";
 
-import { playlistsFetch, playlistsLoadMore, categoriesFetch } from "../../actions";
+import { playlistsFetch, playlistsLoadMore, categoriesFetch, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 import SEO from "../../components/SEO";
 
 import Playlist from "../../components/PlaylistContainer";
+import { CATEGORY_PAGE } from "../../constants/pages";
 
 const LIMIT = 12;
 
@@ -15,16 +16,20 @@ const prepareActions = (dispatch) => ({
   playlistsFetch: (query) => dispatch(playlistsFetch({ query, page: 0, limit: LIMIT })),
   playlistsLoadMore: (query, page, limit) => dispatch(playlistsLoadMore({ query, page, limit })),
   categoriesFetch: () => dispatch(categoriesFetch()),
+  setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: CATEGORY_PAGE }),
+  setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: CATEGORY_PAGE }),
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
-  const { playlistsFetch } = prepareActions(store.dispatch);
+  const { playlistsFetch, setServerRendered } = prepareActions(store.dispatch);
 
   await playlistsFetch(`slug=${params.categorySlug}`);
+  setServerRendered();
 })
 @connect((state) => ({
   playlists: state.playlists,
-  categories: state.categories
+  categories: state.categories,
+  isSSR: !!state.renderedPages[CATEGORY_PAGE]
 }), prepareActions)
 class CategoryPage extends Component {
   state = {
@@ -33,10 +38,14 @@ class CategoryPage extends Component {
   }
 
   componentDidMount() {
-    const { categories, categoriesFetch, playlistsFetch, match: { params: { categorySlug } } } = this.props;
+    const { categories, categoriesFetch, playlistsFetch, setClientRendered, isSSR, match: { params: { categorySlug } } } = this.props;
 
     isLoaded(categories) || categoriesFetch();
-    playlistsFetch(`slug=${categorySlug}`);
+    if (!isSSR) {
+      playlistsFetch(`slug=${categorySlug}`);
+    } else {
+      setClientRendered();
+    }
   }
 
   loadMore = async (visible) => {

@@ -2,27 +2,32 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import VisibilitySensor from "react-visibility-sensor";
 
-import { playlistsFetch, playlistsLoadMore, PLAYLIST_INJECT_DATA } from "../../actions";
+import { playlistsFetch, playlistsLoadMore, PLAYLIST_INJECT_DATA, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
 import SEO from "../../components/SEO";
+import { NEW_PAGE } from "../../constants/pages";
 
 const LIMIT = 12;
 
 const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch({ page: 0, limit: LIMIT })),
   playlistsLoadMore: (page, limit) => dispatch(playlistsLoadMore({ page, limit })),
-  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
+  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data }),
+  setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: NEW_PAGE }),
+  setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: NEW_PAGE }),
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
-  const { playlistsFetch } = prepareActions(store.dispatch);
+  const { playlistsFetch, setServerRendered } = prepareActions(store.dispatch);
 
   await playlistsFetch();
+  setServerRendered();
 })
 @connect((state) => ({
-  playlists: state.playlists
+  playlists: state.playlists,
+  isSSR: !!state.renderedPages[NEW_PAGE]
 }), prepareActions)
 class LatestPlaylists extends Component {
   state = {
@@ -31,9 +36,13 @@ class LatestPlaylists extends Component {
   }
 
   componentDidMount() {
-    const { playlistsFetch } = this.props;
+    const { playlistsFetch, setClientRendered, isSSR } = this.props;
 
-    playlistsFetch();
+    if (!isSSR) {
+      playlistsFetch();
+    } else {
+      setClientRendered();
+    }
   }
 
   loadMore = async (visible) => {
