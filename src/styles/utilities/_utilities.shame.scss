@@ -47,7 +47,7 @@ dl {
     right: 0;
     z-index: 1000;
 
-    @include mq($until: ($tweakpoint-nav-primary - 1)) {
+    @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
         border-bottom: none;
     }
 }
