@@ -97,12 +97,18 @@
         }
 
             .c-nav-primary__icon {
+                font-size: 18px;
+                height: 1em;
+                width: 1em;
                 position: relative;
 
                 img {
+                    height: 100%;
                     transition: $global-transition;
-                    vertical-align: top;
-                    position: relative;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
                     z-index: 10;
 
                     .c-nav-primary__link:hover &,
@@ -112,9 +118,6 @@
 
                     &:last-child {
                         opacity: 0;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
                         z-index: 20;
 
                         .c-nav-primary__link:hover &,
