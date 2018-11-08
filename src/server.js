@@ -11,7 +11,7 @@ import { MetaTagsContext } from 'react-meta-tags';
 
 import App from "./app";
 import { routes } from "./routes";
-import store from "./store";
+import createStore from "./store";
 
 const port = 3000;
 
@@ -24,7 +24,7 @@ const indexHtml = fs.readFileSync(indexPath, 'utf8');
 app.get('*', async (req, res) => {
   const currentRoute = routes.find(route => matchPath(req.url, route)) || {};
   const metaTagsInstance = MetaTagsServer();
-
+  const store = createStore();
   let promise;
 
   if (currentRoute.component && currentRoute.component.asyncLoad) {
