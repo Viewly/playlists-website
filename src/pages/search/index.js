@@ -44,11 +44,11 @@ class SearchPage extends Component {
   doSearch = (query) => {
     const { playlistsFetch } = this.props;
 
-    playlistsFetch(`q=${encodeURIComponent(query)}`);
+    query.length > 0 && playlistsFetch(`q=${encodeURIComponent(query)}`);
   }
 
   loadMore = async (visible) => {
-    const { playlistsLoadMore, match: { params: { categorySlug } } } = this.props;
+    const { playlistsLoadMore } = this.props;
 
     if (visible === false) {
       return;
