@@ -55,7 +55,7 @@ class SearchPage extends Component {
     }
 
     this.setState({ page: this.state.page + 1 }, async () => {
-      const playlists = await playlistsLoadMore(`q=${this.state.query}`, this.state.page, LIMIT);
+      const playlists = await playlistsLoadMore(`q=${encodeURIComponent(this.state.query)}`, this.state.page, LIMIT);
       if (playlists.length < LIMIT) {
         this.setState({ hasMore: false });
       }
