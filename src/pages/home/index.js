@@ -10,13 +10,13 @@ import Categories from "./components/categories";
 import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
-  playlistsFetch: (query) => dispatch(playlistsFetch({ query })),
+  playlistsFetch: () => dispatch(playlistsFetch()),
   playlistsLoadMore: (query) => dispatch(playlistsLoadMore({ query })),
   injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
-  const { playlistsFetch } = prepareActions(store.dispatch);
+  const { playlistsFetch, playlistsLoadMore } = prepareActions(store.dispatch);
 
   await playlistsFetch();
   await playlistsLoadMore("classification=staff_picked");
@@ -30,15 +30,6 @@ class HomePage extends Component {
 
     await playlistsFetch();
     playlistsLoadMore("classification=staff_picked");
-  }
-
-  onPlaylistClick = (url) => (evnt) => {
-    const { history, injectPlaylist, playlists } = this.props;
-    const selectedPlaylist = playlists.data.find(item => item.url === url);
-
-    evnt.preventDefault();
-    injectPlaylist(selectedPlaylist);
-    history.push(`/playlist/${url}`);
   }
 
   render() {
