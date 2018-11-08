@@ -285,6 +285,14 @@ dl {
     }
 }
 
+.c-categories-grid--hashtags {
+    grid-gap: $spacing-unit-small;
+
+    @include mq($until: 350px) {
+        grid-gap: $spacing-unit-tiny;
+    }
+}
+
 
 $tweakpoint-category:   large;
 
@@ -293,7 +301,9 @@ $tweakpoint-category:   large;
 
     background-color: #fff;
     border: 1px solid $border-color;
+    color: #8b8b8b;
     border-radius: 4px;
+    font-size: 12px;
     padding: $spacing-unit $spacing-unit-small;
     text-align: center;
     transition: $global-transition;
@@ -303,6 +313,11 @@ $tweakpoint-category:   large;
             border-color: rgba($border-color, .5);
             box-shadow: 0 3px 10px 0 rgba(#111214, .2);
         }
+    }
+
+    .c-categories-grid--hashtags & {
+        padding-left: 3px;
+        padding-right: 3px;
     }
 
     &:hover {
@@ -347,6 +362,16 @@ $tweakpoint-category:   large;
     .c-category__title {
         font-size: 13px;
         text-transform: uppercase;
+
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit-tiny;
+        }
+
+        .c-categories-grid--hashtags & {
+            @include mq($until: 350px) {
+                font-size: 12px;
+            }
+        }
     }
 
 
