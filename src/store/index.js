@@ -22,10 +22,10 @@ const enhancer = composeEnhancers(
     )
 );
 
-const store = createStore(
-  rootReducer,
-  CLIENT && !!window.__INITIAL_STATE__ ? window.__INITIAL_STATE__ : undefined,
-  enhancer
-)
-
-export default store;
+export default function() {
+  return createStore(
+    rootReducer,
+    CLIENT && !!window.__INITIAL_STATE__ ? window.__INITIAL_STATE__ : undefined,
+    enhancer
+  );
+}
