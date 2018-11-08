@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { playlistSuggestVideo } from "../../../actions";
+import Loading from "../../../components/loading";
 
 @connect((state) => ({
   playlist: state.playlist
@@ -35,7 +36,7 @@ export default class PlaylistInfo extends Component {
     const { playlist } = this.props;
     const isLoaded = playlist._status === 'LOADED';
 
-    if (!isLoaded) return <div>Loading ...</div>;
+    if (!isLoaded) return <Loading />;
 
     return (
       <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
@@ -62,12 +63,12 @@ export default class PlaylistInfo extends Component {
                 <li>
                   <label className='c-form__label'>Why should it be added to the playlist? (optional)</label>
                   <textarea className='c-input c-input--primary c-input--textarea' name="description" value={this.state.description} onChange={this.handleChange}></textarea>
-                  <small class='c-form__annotation'>Briefly explain why you're suggesting this video.</small>
+                  <small className='c-form__annotation'>Briefly explain why you're suggesting this video.</small>
                 </li>
                 <li>
                   <label className='c-form__label'>Your email address</label>
                   <input className='c-input c-input--primary' type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
-                  <small class='c-form__annotation'>We'll use this to notify you when the video is added to the playlist.</small>
+                  <small className='c-form__annotation'>We'll use this to notify you when the video is added to the playlist.</small>
                 </li>
                 <li>
                   <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
