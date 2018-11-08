@@ -7,6 +7,7 @@ const initialState = {
   playlists: { _status: PENDING, data: [] },
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
+  hashtags: { _status: PENDING, data: [] },
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -17,7 +18,7 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, playlists: { data: action.data, _status: LOADED } };
 
     case actions.PLAYLISTS_LOAD_MORE_SUCCESS:
-      return { ...state, playlists: { data: [ ...state.playlists.data, ...action.data ], _status: LOADED } };
+      return { ...state, playlists: { data: [...state.playlists.data, ...action.data], _status: LOADED } };
 
     case actions.PLAYLIST_INJECT_DATA:
       return { ...state, playlist: { ...action.data, videos: [] } }
@@ -60,6 +61,9 @@ const rootReducer = (state = initialState, action) => {
           })
         }
       };
+
+    case actions.HASHTAGS_FETCH_SUCCESS:
+      return { ...state, hashtags: { _status: LOADED, data: action.data } };
 
     default:
       return state;
