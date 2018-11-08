@@ -7,23 +7,23 @@ import { isLoaded, asyncLoad } from "../../utils";
 import Playlist from "../../components/PlaylistContainer";
 
 const prepareActions = (dispatch) => ({
-  playlistsFetch: () => dispatch(playlistsFetch()),
+  playlistsFetch: (query) => dispatch(playlistsFetch({ query })),
   injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
   const { playlistsFetch } = prepareActions(store.dispatch);
 
-  await playlistsFetch();
+  await playlistsFetch(`user_id=${params.profileId}`);
 })
 @connect((state) => ({
   playlists: state.playlists
 }), prepareActions)
 class ProfilePage extends Component {
   componentDidMount() {
-    const { playlistsFetch } = this.props;
+    const { playlistsFetch, match: { params: { profileId } } } = this.props;
 
-    playlistsFetch();
+    playlistsFetch(`user_id=${profileId}`);
   }
 
   onPlaylistClick = (url) => (evnt) => {
@@ -36,7 +36,7 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { playlists, match: { params: { profileId }} } = this.props;
+    const { playlists, match: { params: { profileId } } } = this.props;
     const isReady = isLoaded(playlists);
 
     return (
@@ -46,7 +46,7 @@ class ProfilePage extends Component {
         <Playlist
           isLoaded={isReady}
           playlists={playlists.data.filter(i => i.user_id === profileId)}
-          />
+        />
       </div>
     );
   }
