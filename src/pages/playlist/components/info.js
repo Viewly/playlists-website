@@ -8,6 +8,7 @@ import SharePlaylist from "./share";
 import SEO from "../../../components/SEO";
 
 import { sumVideoDurations } from "../../../utils";
+import Loading from "../../../components/loading";
 
 @connect((state) => ({
   playlist: state.playlist
@@ -43,9 +44,7 @@ export default class PlaylistInfo extends Component {
             </div>
             <div className='o-grid'>
               {!isLoading && playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} url={playlist.url} {...item} />)}
-              {isLoading && (
-                <div>Loading ...</div>
-              )}
+              {isLoading && <Loading />}
             </div>
           </div>
         </div>

@@ -9,6 +9,7 @@ import Layout from "./layout";
 import Playlist from "../../components/PlaylistContainer";
 import { isLoaded } from "../../utils";
 import { playlistsFetch, playlistsLoadMore } from "../../actions";
+import Loading from "../../components/loading";
 
 const LIMIT = 12;
 
@@ -71,9 +72,7 @@ class SearchPage extends Component {
         <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
 
           {!isReady && (
-            <div>
-              LOADING
-            </div>
+            <Loading />
           )}
 
           {isReady && (
