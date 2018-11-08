@@ -8,6 +8,7 @@ const initialState = {
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
   hashtags: { _status: PENDING, data: [] },
+  renderedPages: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -22,6 +23,11 @@ const rootReducer = (state = initialState, action) => {
 
     case actions.PLAYLIST_INJECT_DATA:
       return { ...state, playlist: { ...action.data, videos: [] } }
+
+    case actions.SET_SERVER_RENDERED:
+      return { ...state, renderedPages: { ...state.renderedPages, [action.data]: true } }
+    case actions.SET_CLIENT_RENDERED:
+      return { ...state, renderedPages: { ...state.renderedPages, [action.data]: false } }
 
     case actions.PERCENTAGE_UPDATE_SUCCESS:
       const videos = state.playlist.videos.map(item => {

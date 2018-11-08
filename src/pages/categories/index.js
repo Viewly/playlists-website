@@ -1,29 +1,38 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { categoriesFetch } from "../../actions";
+import { categoriesFetch, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { asyncLoad } from "../../utils";
 import SEO from "../../components/SEO";
 
 import CategoryItem from "./components/category_item";
+import { CATEGORIES_PAGE } from "../../constants/pages";
 
 const prepareActions = (dispatch) => ({
   categoriesFetch: () => dispatch(categoriesFetch()),
+  setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: CATEGORIES_PAGE }),
+  setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: CATEGORIES_PAGE }),
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
-  const { categoriesFetch } = prepareActions(store.dispatch);
+  const { categoriesFetch, setServerRendered } = prepareActions(store.dispatch);
 
   await categoriesFetch();
+  setServerRendered();
 })
 @connect((state) => ({
-  categories: state.categories
+  categories: state.categories,
+  isSSR: !!state.renderedPages[CATEGORIES_PAGE]
 }), prepareActions)
 class CategoriesPage extends Component {
   componentDidMount() {
-    const { categoriesFetch } = this.props;
+    const { categoriesFetch, setClientRendered, isSSR } = this.props;
 
-    categoriesFetch();
+    if (!isSSR) {
+      categoriesFetch();
+    } else {
+      setClientRendered();
+    }
   }
 
   render() {

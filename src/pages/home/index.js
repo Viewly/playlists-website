@@ -2,34 +2,43 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { playlistsFetch, playlistsLoadMore, PLAYLIST_INJECT_DATA } from "../../actions";
+import { playlistsFetch, playlistsLoadMore, PLAYLIST_INJECT_DATA, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
 import Categories from "./components/categories";
 import SEO from "../../components/SEO";
+import { HOME_PAGE } from "../../constants/pages";
 
 const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch()),
   playlistsLoadMore: (query) => dispatch(playlistsLoadMore({ query })),
-  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
+  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data }),
+  setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: HOME_PAGE }),
+  setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: HOME_PAGE }),
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
-  const { playlistsFetch, playlistsLoadMore } = prepareActions(store.dispatch);
+  const { playlistsFetch, playlistsLoadMore, setServerRendered } = prepareActions(store.dispatch);
 
   await playlistsFetch();
   await playlistsLoadMore("classification=staff_picked");
+  setServerRendered();
 })
 @connect((state) => ({
-  playlists: state.playlists
+  playlists: state.playlists,
+  isSSR: !!state.renderedPages[HOME_PAGE]
 }), prepareActions)
 class HomePage extends Component {
   async componentDidMount() {
-    const { playlistsFetch, playlistsLoadMore } = this.props;
+    const { playlistsFetch, playlistsLoadMore, isSSR, setClientRendered } = this.props;
 
-    await playlistsFetch();
-    playlistsLoadMore("classification=staff_picked");
+    if (!isSSR) {
+      await playlistsFetch();
+      playlistsLoadMore("classification=staff_picked");
+    } else {
+      setClientRendered();
+    }
   }
 
   render() {
