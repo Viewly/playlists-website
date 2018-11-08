@@ -14,6 +14,14 @@ class SearchInput extends Component {
     parsed.query && this.setState({ searchText: parsed.query });
   }
 
+  componentDidUpdate(prevProps) {
+    const thisRoute = '/search/';
+
+    if ((prevProps.location.pathname === thisRoute) && (this.props.location.pathname !== thisRoute)) {
+      this.setState({ searchText: '' });
+    }
+  }
+
   handleEnter = (evnt) => {
     evnt.key === 'Enter' && this.doSearch();
   }
