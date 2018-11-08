@@ -9,8 +9,8 @@ export async function playlistFetch (baseUrl, { playlistId }) {
 
 export async function playlistsFetch (baseUrl, params) {
   let url = params && params.query
-    ? `${baseUrl}/playlists?status=published&${params.query}`
-    : `${baseUrl}/playlists?status=published`
+    ? `${baseUrl}/playlists?status=published&order=publish_date&${params.query}`
+    : `${baseUrl}/playlists?status=published&order=publish_date`
 
   if (params && params.page) {
     url += `&page=${params.page}`;
@@ -27,8 +27,8 @@ export async function playlistsFetch (baseUrl, params) {
 
 export async function playlistsLoadMore (baseUrl, params) {
   let url = params && params.query
-    ? `${baseUrl}/playlists?status=published&${params.query}`
-    : `${baseUrl}/playlists?status=published`
+    ? `${baseUrl}/playlists?status=published&order=publish_date&${params.query}`
+    : `${baseUrl}/playlists?status=published&order=publish_date`
 
   if (params && params.page) {
     url += `&page=${params.page}`;
@@ -44,7 +44,7 @@ export async function playlistsLoadMore (baseUrl, params) {
 }
 
 export async function playlistSearch (baseUrl, { query }) {
-  const url = `${baseUrl}/playlists?status=published&title=${query}`;
+  const url = `${baseUrl}/playlists?status=published&order=publish_date&title=${query}`;
   const { body } = await get(url);
 
   return body;
