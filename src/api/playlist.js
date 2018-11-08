@@ -43,13 +43,6 @@ export async function playlistsLoadMore (baseUrl, params) {
   return body;
 }
 
-export async function playlistSearch (baseUrl, { query }) {
-  const url = `${baseUrl}/playlists?status=published&order=publish_date&title=${query}`;
-  const { body } = await get(url);
-
-  return body;
-}
-
 export async function playlistSuggestVideo (baseUrl, { playlistId, description, url, email }) {
   const requestUrl = `${baseUrl}/suggestion`;
   const { body } = await post(requestUrl, {
