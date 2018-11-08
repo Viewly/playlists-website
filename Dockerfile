@@ -1,10 +1,13 @@
 FROM ubuntu:18.04
 
-## install node.js
+# install node.js
 RUN apt-get update
 RUN apt-get install -y nodejs npm
 
-## install pip3
+# install curl for redeployments
+RUN apt-get install -y curl
+
+# install pip3
 RUN apt install -y python3 python3-pip
 
 # install awscli
