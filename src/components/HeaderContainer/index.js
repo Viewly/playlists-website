@@ -55,7 +55,7 @@ class HeaderContainer extends Component {
                       <img src={require('../../images/nav-icons/nav-hashtag.svg')} />
                       <img src={require('../../images/nav-icons/nav-hashtag-active.svg')} />
                     </div>
-                    <span className='c-nav-primary__label'>Hashtags</span>
+                    <span className='c-nav-primary__label'>Explore</span>
                   </NavLink>
                 </li>
               </ul>
