@@ -49,6 +49,15 @@ class HeaderContainer extends Component {
                     <span className='c-nav-primary__label'>Categories</span>
                   </NavLink>
                 </li>
+                <li className='c-nav-primary__item'>
+                  <NavLink to='/hashtags' activeClassName='is-current' className='c-nav-primary__link'>
+                    <div className='c-nav-primary__icon'>
+                      <img src={require('../../images/nav-icons/nav-hashtag.svg')} />
+                      <img src={require('../../images/nav-icons/nav-hashtag-active.svg')} />
+                    </div>
+                    <span className='c-nav-primary__label'>Hashtags</span>
+                  </NavLink>
+                </li>
               </ul>
             </nav>
           </div>
