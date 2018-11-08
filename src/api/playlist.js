@@ -74,3 +74,9 @@ export async function categoriesFetch (baseUrl) {
 
   return body;
 }
+
+export async function hashtagsFetch (baseUrl) {
+  const { body } = await get(`${baseUrl}/hashtags`);
+
+  return body;
+}
