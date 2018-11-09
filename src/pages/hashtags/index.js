@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { hashtagsFetch } from "../../actions";
@@ -20,6 +21,11 @@ const prepareActions = (dispatch) => ({
   hashtags: state.hashtags
 }), prepareActions)
 class HashtagsPage extends Component {
+  static propTypes = {
+    hashtagsFetch: PropTypes.func.isRequired,
+    hashtags: PropTypes.object
+  }
+
   componentDidMount() {
     const { hashtagsFetch } = this.props;
 

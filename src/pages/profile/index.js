@@ -1,14 +1,14 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
+import { playlistsFetch } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
 
 const prepareActions = (dispatch) => ({
   playlistsFetch: (query) => dispatch(playlistsFetch({ query })),
-  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
@@ -20,19 +20,17 @@ const prepareActions = (dispatch) => ({
   playlists: state.playlists
 }), prepareActions)
 class ProfilePage extends Component {
+  static propTypes = {
+    playlistsFetch: PropTypes.func.isRequired,
+    playlists: PropTypes.object,
+    match: PropTypes.object,
+    history: PropTypes.object,
+  }
+
   componentDidMount() {
     const { playlistsFetch, match: { params: { profileId } } } = this.props;
 
     playlistsFetch(`user_id=${profileId}`);
-  }
-
-  onPlaylistClick = (url) => (evnt) => {
-    const { history, injectPlaylist, playlists } = this.props;
-    const selectedPlaylist = playlists.data.find(item => item.url === url);
-
-    evnt.preventDefault();
-    injectPlaylist(selectedPlaylist);
-    history.push(`/playlist/${url}`);
   }
 
   render() {

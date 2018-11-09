@@ -1,7 +1,13 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 class HashtagItem extends Component {
+  static propTypes = {
+    hashtag: PropTypes.string.isRequired,
+    mentions: PropTypes.string.isRequired
+  }
+
   render() {
     const { hashtag, mentions } = this.props;
 

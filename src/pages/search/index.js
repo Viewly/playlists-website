@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import queryString from "query-string";
@@ -20,8 +21,15 @@ const LIMIT = 12;
   playlistsLoadMore: (query, page, limit) => dispatch(playlistsLoadMore({ query, page, limit })),
 }))
 class SearchPage extends Component {
+  static propTypes = {
+    playlistsFetch: PropTypes.func.isRequired,
+    playlistsLoadMore: PropTypes.func.isRequired,
+    playlists: PropTypes.object,
+    location: PropTypes.object
+  }
+
   state = {
-    query: '',
+    query: "",
     page: 0,
     hasMore: true
   }
@@ -60,7 +68,7 @@ class SearchPage extends Component {
       if (playlists.length < LIMIT) {
         this.setState({ hasMore: false });
       }
-    })
+    });
   }
 
   render() {
@@ -79,7 +87,7 @@ class SearchPage extends Component {
             <div>
               {!playlists.data.length && (
                 <div className='c-no-results'>
-                  <img className='c-no-results__img' src={require('../../images/message-no-results.svg')} />
+                  <img className='c-no-results__img' src={require("../../images/message-no-results.svg")} />
                   <p>Try searching again using different keywords, <br />or <Link to='/create-playlist'>create your playlist</Link></p>
                 </div>
               )}

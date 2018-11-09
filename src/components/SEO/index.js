@@ -1,9 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import MetaTags from "react-meta-tags";
 import { SEO_NAME, SEO_DESCRIPTION, SEO_URL, SEO_TITLE } from "../../constants/seo_defaults";
 import { THUMBNAIL_ROOT } from "../../constants";
 
 class SEO extends Component {
+  static propTypes = {
+    playlist: PropTypes.object,
+    title: PropTypes.string,
+  }
+
   render() {
     const { playlist, title } = this.props;
 
@@ -18,11 +24,11 @@ class SEO extends Component {
           <meta property="og:type" content="website" />
           <meta name="twitter:card" content="summary_large_image" />
         </MetaTags>
-      )
+      );
     }
 
     const poster = `${THUMBNAIL_ROOT}/${playlist.playlist_thumbnail_url}`;
-    const description = playlist.description && playlist.description.replace(/(\r\n|\r|\n)/, '');
+    const description = playlist.description && playlist.description.replace(/(\r\n|\r|\n)/, "");
 
     return (
       <MetaTags>

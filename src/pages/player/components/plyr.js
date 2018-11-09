@@ -1,22 +1,31 @@
 import React from "react";
+import PropTypes from "prop-types";
 import plyr from "plyr";
 import { VIDEO_ENDED } from "../../../constants/youtube_status";
 
 class PlyrComponent extends React.Component {
+  static propTypes = {
+    videoId: PropTypes.string.isRequired,
+    onVideoEnd: PropTypes.func,
+    onPercentage: PropTypes.func,
+    resumeTime: PropTypes.number,
+    percentage: PropTypes.number,
+  }
+
   componentDidMount() {
     const options = {
       autoplay: true,
       invertTime: false,
-      settings: ['speed'],
+      settings: ["speed"],
       keyboard: { global: true },
       playsinline: true
     };
 
-    this.player = plyr.setup('.plyr-player', options);
+    this.player = plyr.setup(".plyr-player", options);
 
-    this.player[0].on('timeupdate', this.handleEvent)
-    this.player[0].on('statechange', this.handleEvent)
-    this.player[0].on('ready', this.handleEvent)
+    this.player[0].on("timeupdate", this.handleEvent);
+    this.player[0].on("statechange", this.handleEvent);
+    this.player[0].on("ready", this.handleEvent);
   }
 
   componentWillUnmount() {
@@ -30,14 +39,14 @@ class PlyrComponent extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.videoId !== this.props.videoId) {
       this.player[0].source = {
-        type: 'video',
+        type: "video",
         sources: [
           {
             src: this.props.videoId,
-            provider: 'youtube',
+            provider: "youtube",
           },
         ],
-      }
+      };
     }
   }
 
@@ -45,19 +54,25 @@ class PlyrComponent extends React.Component {
     const { onVideoEnd, onPercentage, videoId, resumeTime, percentage } = this.props;
 
     switch (evnt.type) {
-      case 'statechange':
+      case "statechange": {
         const code = evnt.detail.code;
         code === VIDEO_ENDED && onVideoEnd();
         break;
-      case 'timeupdate':
+      }
+      case "timeupdate": {
         const calculatedPercentage = this.calculatePercentage(this.player[0].currentTime, this.player[0].duration);
-        onPercentage(calculatedPercentage, this.player[0].currentTime, videoId)
+        onPercentage(calculatedPercentage, this.player[0].currentTime, videoId);
         break;
-      case 'ready':
+      }
+      case "ready": {
         this.player[0].play();
         if (resumeTime && percentage !== 100) {
           this.player[0].currentTime = resumeTime;
         }
+        break;
+      }
+      default:
+        break;
     }
   }
 

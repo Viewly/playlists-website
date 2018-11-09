@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { playlistsFetch, playlistsLoadMore, PLAYLIST_INJECT_DATA, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
+import { playlistsFetch, playlistsLoadMore, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
@@ -13,7 +14,6 @@ import { HOME_PAGE } from "../../constants/pages";
 const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch()),
   playlistsLoadMore: (query) => dispatch(playlistsLoadMore({ query })),
-  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data }),
   setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: HOME_PAGE }),
   setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: HOME_PAGE }),
 });
@@ -30,6 +30,14 @@ const prepareActions = (dispatch) => ({
   isSSR: !!state.renderedPages[HOME_PAGE]
 }), prepareActions)
 class HomePage extends Component {
+  static propTypes = {
+    playlistsFetch: PropTypes.func.isRequired,
+    playlistsLoadMore: PropTypes.func.isRequired,
+    setClientRendered: PropTypes.func.isRequired,
+    isSSR: PropTypes.bool,
+    playlists: PropTypes.object
+  }
+
   async componentDidMount() {
     const { playlistsFetch, playlistsLoadMore, isSSR, setClientRendered } = this.props;
 
@@ -44,7 +52,7 @@ class HomePage extends Component {
   render() {
     const { playlists } = this.props;
     const isReady = isLoaded(playlists);
-    const pickedPlaylists = playlists.data.filter(i => i.classification === 'staff_picked').splice(0, 3);
+    const pickedPlaylists = playlists.data.filter(i => i.classification === "staff_picked").splice(0, 3);
 
     return (
       <>
@@ -58,7 +66,7 @@ class HomePage extends Component {
                 <Link to='/create-playlist' className='c-btn c-btn--primary c-btn--large'>Create your playlist</Link>
               </div>
               <div className='o-grid__cell c-hero__grid__cell'>
-                <img className='c-hero__graphic' src={require('../../images/hero-illustration.svg')} />
+                <img className='c-hero__graphic' src={require("../../images/hero-illustration.svg")} />
               </div>
             </div>
           </div>
@@ -81,9 +89,9 @@ class HomePage extends Component {
 
           <Playlist
             title="New playlists"
-            moreButton={{ title: 'View All', url: '/new' }}
+            moreButton={{ title: "View All", url: "/new" }}
             isLoaded={isReady}
-            playlists={playlists.data.filter(i => i.classification !== 'staff_picked').splice(0, 8)}
+            playlists={playlists.data.filter(i => i.classification !== "staff_picked").splice(0, 8)}
           />
         </div>
       </>

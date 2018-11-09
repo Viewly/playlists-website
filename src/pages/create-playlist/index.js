@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { playlistCreateNew, categoriesFetch } from "../../actions";
@@ -10,11 +11,17 @@ import { playlistCreateNew, categoriesFetch } from "../../actions";
   categoriesFetch: () => dispatch(categoriesFetch())
 }))
 class CreatePlaylist extends Component {
+  static propTypes = {
+    playlistCreateNew: PropTypes.func.isRequired,
+    categoriesFetch: PropTypes.func.isRequired,
+    categories: PropTypes.object
+  }
+
   state = {
-    title: '',
-    description: '',
-    email: '',
-    category: '0',
+    title: "",
+    description: "",
+    email: "",
+    category: "0",
     suggested: false
   }
 
@@ -46,9 +53,9 @@ class CreatePlaylist extends Component {
 
         {this.state.suggested && (
           <div className='c-thank-you'>
-            <img className='c-thank-you__img' src={require('../../images/message-thank-you.svg')} />
+            <img className='c-thank-you__img' src={require("../../images/message-thank-you.svg")} />
             <h5 className='u-margin-bottom-small'>Thanks for suggesting a playlist</h5>
-            <p>We're still working on finalizing this feature, and we'll notify you as soon as it's ready.</p>
+            <p>We&#x27;re still working on finalizing this feature, and we&#x27;ll notify you as soon as it&#x27;s ready.</p>
           </div>
         )}
 

@@ -48,11 +48,13 @@ const Header = ({ title, author, duration, category, poster, description, hashta
       </div>
     </div>
   </div>
-)
+);
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  duration: PropTypes.string.isRequired,
+  hashtags: PropTypes.array,
   poster: PropTypes.string,
   description: PropTypes.string,
   category: PropTypes.object.isRequired

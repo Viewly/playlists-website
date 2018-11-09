@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import VisibilitySensor from "react-visibility-sensor";
 
-import { playlistsFetch, playlistsLoadMore, PLAYLIST_INJECT_DATA, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
+import { playlistsFetch, playlistsLoadMore, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
@@ -14,7 +15,6 @@ const LIMIT = 12;
 const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch({ page: 0, limit: LIMIT })),
   playlistsLoadMore: (page, limit) => dispatch(playlistsLoadMore({ page, limit })),
-  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data }),
   setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: NEW_PAGE }),
   setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: NEW_PAGE }),
 });
@@ -30,6 +30,13 @@ const prepareActions = (dispatch) => ({
   isSSR: !!state.renderedPages[NEW_PAGE]
 }), prepareActions)
 class LatestPlaylists extends Component {
+  static propTypes = {
+    playlistsFetch: PropTypes.func.isRequired,
+    setClientRendered: PropTypes.func.isRequired,
+    isSSR: PropTypes.bool,
+    playlists: PropTypes.object
+  }
+
   state = {
     page: 0,
     hasMore: true
@@ -57,7 +64,7 @@ class LatestPlaylists extends Component {
       if (playlists.length < LIMIT) {
         this.setState({ hasMore: false });
       }
-    })
+    });
   }
 
   render() {

@@ -1,11 +1,17 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import queryString from "query-string";
 
 @withRouter
 class SearchInput extends Component {
+  static propTypes = {
+    location: PropTypes.object,
+    history: PropTypes.object,
+  }
+
   state = {
-    searchText: ''
+    searchText: ""
   }
 
   componentDidMount() {
@@ -15,15 +21,15 @@ class SearchInput extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const thisRoute = '/search/';
+    const thisRoute = "/search/";
 
     if ((prevProps.location.pathname === thisRoute) && (this.props.location.pathname !== thisRoute)) {
-      this.setState({ searchText: '' });
+      this.setState({ searchText: "" });
     }
   }
 
   handleEnter = (evnt) => {
-    evnt.key === 'Enter' && this.doSearch();
+    evnt.key === "Enter" && this.doSearch();
   }
 
   doSearch = () => {
