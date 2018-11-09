@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { convertYoutubeDuration } from "../../../utils"
+import { convertYoutubeDuration } from "../../../utils";
 
 const PlaylistItem = ({ id, url, title, duration, thumbnail_url, percentage, onPlayNext, isCurrent }) => (
 
-  <div className={`c-video ${isCurrent ? 'is-current' : ''} ${percentage === 100 ? 'is-watched' : ''}`}>
+  <div className={`c-video ${isCurrent ? "is-current" : ""} ${percentage === 100 ? "is-watched" : ""}`}>
     <div className='c-thumbnail'>
       <Link className='c-thumbnail__link' onClick={onPlayNext} to={`/player/${url}/${id}`}></Link>
       <img className='c-thumbnail__img' src={thumbnail_url} />
@@ -31,11 +31,15 @@ const PlaylistItem = ({ id, url, title, duration, thumbnail_url, percentage, onP
     </div>
     <h4 className='c-video__title'><Link onClick={onPlayNext} to={`/player/${url}/${id}`}>{title}</Link></h4>
   </div>
-)
+);
 
 PlaylistItem.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  id: PropTypes.number,
+  duration: PropTypes.string,
+  percentage: PropTypes.number,
+  isCurrent: PropTypes.bool,
   thumbnail_url: PropTypes.string.isRequired,
   onPlayNext: PropTypes.func.isRequired
 };

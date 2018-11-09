@@ -1,4 +1,4 @@
-import { get, post } from './request';
+import { get, post } from "./request";
 
 export async function playlistFetch (baseUrl, { playlistId }) {
   const url = `${baseUrl}/playlist/${playlistId}`;
@@ -10,7 +10,7 @@ export async function playlistFetch (baseUrl, { playlistId }) {
 export async function playlistsFetch (baseUrl, params) {
   let url = params && params.query
     ? `${baseUrl}/playlists?status=published&order=publish_date&${params.query}`
-    : `${baseUrl}/playlists?status=published&order=publish_date`
+    : `${baseUrl}/playlists?status=published&order=publish_date`;
 
   if (params && params.page) {
     url += `&page=${params.page}`;
@@ -28,7 +28,7 @@ export async function playlistsFetch (baseUrl, params) {
 export async function playlistsLoadMore (baseUrl, params) {
   let url = params && params.query
     ? `${baseUrl}/playlists?status=published&order=publish_date&${params.query}`
-    : `${baseUrl}/playlists?status=published&order=publish_date`
+    : `${baseUrl}/playlists?status=published&order=publish_date`;
 
   if (params && params.page) {
     url += `&page=${params.page}`;
@@ -47,7 +47,7 @@ export async function playlistSuggestVideo (baseUrl, { playlistId, description, 
   const requestUrl = `${baseUrl}/suggestion`;
   const { body } = await post(requestUrl, {
     playlist_id: playlistId,
-    type: 'suggest-video',
+    type: "suggest-video",
     description,
     url,
     email
@@ -59,7 +59,7 @@ export async function playlistSuggestVideo (baseUrl, { playlistId, description, 
 export async function playlistCreateNew (baseUrl, { title, description, email, category }) {
   const requestUrl = `${baseUrl}/suggestion`;
   const { body } = await post(requestUrl, {
-    type: 'new-playlist',
+    type: "new-playlist",
     title,
     description,
     email,

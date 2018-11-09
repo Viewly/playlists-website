@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Route } from 'react-router-dom';
+import { Route } from "react-router-dom";
 import PlaylistInfo from "./components/info";
 import PlaylistSuggest from "./components/suggest";
 
@@ -20,6 +21,12 @@ const prepareActions = (dispatch) => ({
   playlist: state.playlist
 }), prepareActions)
 class PlaylistPage extends Component {
+  static propTypes = {
+    playlistFetch: PropTypes.func.isRequired,
+    playlist: PropTypes.object,
+    match: PropTypes.object,
+  }
+
   componentDidMount () {
     const { playlist, playlistFetch, match: { params: { playlistId } } } = this.props;
 
@@ -33,7 +40,7 @@ class PlaylistPage extends Component {
         <Route exact path='/playlist/:playlistId' component={PlaylistInfo}></Route>
         <Route path='/playlist/:playlistId/suggest' component={PlaylistSuggest}></Route>
       </>
-    )
+    );
   }
 }
 export default PlaylistPage;

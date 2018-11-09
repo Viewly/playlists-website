@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { THUMBNAIL_ROOT, NO_THUMBNAIL } from "../../constants";
 
 const PlaylistItem = ({ url, title, description, playlist_thumbnail_url, duration, noVideos, category, onPlaylistClick, big }) => (
-  <div className={`o-grid__cell u-1/2@medium u-1/3@large ${big ? '' : 'u-1/4@extralarge'} u-margin-bottom-large`} onClick={() => onPlaylistClick(url)}>
+  <div className={`o-grid__cell u-1/2@medium u-1/3@large ${big ? "" : "u-1/4@extralarge"} u-margin-bottom-large`} onClick={() => onPlaylistClick(url)}>
 
     <div className='c-video'>
       <div className='c-thumbnail'>
@@ -27,11 +27,14 @@ const PlaylistItem = ({ url, title, description, playlist_thumbnail_url, duratio
 PlaylistItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
   description: PropTypes.string,
   playlist_thumbnail_url: PropTypes.string,
   category: PropTypes.object,
   noVideos: PropTypes.number,
   duration: PropTypes.string,
+  onPlaylistClick: PropTypes.func,
+  big: PropTypes.bool,
 };
 
 export default PlaylistItem;

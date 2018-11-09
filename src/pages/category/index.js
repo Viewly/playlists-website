@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import VisibilitySensor from "react-visibility-sensor";
@@ -32,6 +33,17 @@ const prepareActions = (dispatch) => ({
   isSSR: !!state.renderedPages[CATEGORY_PAGE]
 }), prepareActions)
 class CategoryPage extends Component {
+  static propTypes = {
+    playlistsFetch: PropTypes.func.isRequired,
+    playlistsLoadMore: PropTypes.func.isRequired,
+    categoriesFetch: PropTypes.func.isRequired,
+    setClientRendered: PropTypes.func.isRequired,
+    isSSR: PropTypes.bool,
+    playlists: PropTypes.object,
+    categories: PropTypes.object,
+    match: PropTypes.object
+  }
+
   state = {
     page: 0,
     hasMore: true
@@ -60,7 +72,7 @@ class CategoryPage extends Component {
       if (playlists.length < LIMIT) {
         this.setState({ hasMore: false });
       }
-    })
+    });
   }
 
   render() {

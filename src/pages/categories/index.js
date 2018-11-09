@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { categoriesFetch, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
@@ -25,6 +26,13 @@ const prepareActions = (dispatch) => ({
   isSSR: !!state.renderedPages[CATEGORIES_PAGE]
 }), prepareActions)
 class CategoriesPage extends Component {
+  static propTypes = {
+    categoriesFetch: PropTypes.func.isRequired,
+    setClientRendered: PropTypes.func.isRequired,
+    isSSR: PropTypes.bool,
+    playlists: PropTypes.object
+  }
+
   componentDidMount() {
     const { categoriesFetch, setClientRendered, isSSR } = this.props;
 
@@ -39,11 +47,11 @@ class CategoriesPage extends Component {
     const { categories } = this.props;
 
     return (
-      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+      <div className="o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom">
         <SEO title="Browse categories" />
 
-        <h1 className='u-h3'>Browse categories</h1>
-        <div className='c-categories-grid'>
+        <h1 className="u-h3">Browse categories</h1>
+        <div className="c-categories-grid">
           {categories.data.map((item, idx) => <CategoryItem key={`category-${idx}`} {...item} />)}
         </div>
       </div>
