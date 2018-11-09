@@ -76,7 +76,7 @@ export async function categoriesFetch (baseUrl) {
 }
 
 export async function hashtagsFetch (baseUrl) {
-  const { body } = await get(`${baseUrl}/hashtags`);
+  const { body } = await get(`${baseUrl}/hashtags?limit=56`);
 
   return body;
 }
