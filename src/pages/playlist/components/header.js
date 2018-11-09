@@ -35,13 +35,13 @@ const Header = ({ title, author, duration, category, poster, description, hashta
                 </dl>
               </li>
             </ul>
-            <div>
+            <div className='c-section__description'>
+              <p>{description}</p>
+            </div>
+            <div className='c-section__hashtags'>
               {hashtags.map((item, idx) => (
                 <Link key={`hash-${idx}`} to={`/search/?query=${encodeURIComponent(item)}`}>{item}</Link>
               ))}
-            </div>
-            <div className='c-section__description'>
-              <p>{description}</p>
             </div>
           </div>
         </div>
