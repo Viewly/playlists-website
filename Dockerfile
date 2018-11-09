@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get install -y nodejs npm
 
 # install curl for redeployments
-RUN apt-get install -y curl
+RUN apt-get install -y curl --fix-missing
 
 # install pip3
 RUN apt install -y python3 python3-pip
