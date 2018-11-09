@@ -55,6 +55,28 @@
             }
         }
 
+        /**
+         * Section hashtags
+         */
+        .c-section__hashtags {
+            margin-top: $spacing-unit-small;
+
+            a {
+                color: #565656;
+                display: inline-block;
+                font-weight: 500;
+
+                &:not(:last-child) {
+                    margin-right: $spacing-unit-tiny;
+                }
+
+                &:hover {
+                    color: color('brand-primary');
+                    text-decoration: none;
+                }
+            }
+        }
+
     /**
      * Section thumbnail
      */

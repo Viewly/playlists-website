@@ -28,6 +28,7 @@ export default class PlaylistInfo extends Component {
           duration={sumVideoDurations(playlist.videos)}
           poster={playlist.playlist_thumbnail_url}
           description={playlist.description}
+          hashtags={playlist.hashtags.split(' ')}
           category={playlist.category} />
 
         <SEO playlist={playlist} />

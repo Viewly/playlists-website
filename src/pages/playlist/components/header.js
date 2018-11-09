@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { THUMBNAIL_ROOT } from "../../../constants";
 
-const Header = ({ title, author, duration, category, poster, description }) => (
+const Header = ({ title, author, duration, category, poster, description, hashtags }) => (
   <div className='c-section'>
     <div className='o-wrapper'>
       <div className='o-grid o-grid--middle'>
@@ -37,6 +37,11 @@ const Header = ({ title, author, duration, category, poster, description }) => (
             </ul>
             <div className='c-section__description'>
               <p>{description}</p>
+            </div>
+            <div className='c-section__hashtags'>
+              {hashtags.map((item, idx) => (
+                <Link key={`hash-${idx}`} to={`/search/?query=${encodeURIComponent(item)}`}>{item}</Link>
+              ))}
             </div>
           </div>
         </div>
