@@ -1,4 +1,4 @@
-import { post } from './request';
+import { post } from "./request";
 
 export async function userLogin(baseUrl, { email, password }) {
   const url = `${baseUrl}/user/login`;
