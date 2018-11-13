@@ -1,4 +1,4 @@
-import { get, post } from './request';
+import { get, post } from "./request";
 
 export async function playlistFetch (baseUrl, { playlistId }) {
   const url = `${baseUrl}/playlist/${playlistId}`;
@@ -7,15 +7,37 @@ export async function playlistFetch (baseUrl, { playlistId }) {
   return body;
 }
 
-export async function playlistsFetch (baseUrl) {
-  const url = `${baseUrl}/playlists?status=published`;
+export async function playlistsFetch (baseUrl, params) {
+  let url = params && params.query
+    ? `${baseUrl}/playlists?status=published&order=publish_date&${params.query}`
+    : `${baseUrl}/playlists?status=published&order=publish_date`;
+
+  if (params && params.page) {
+    url += `&page=${params.page}`;
+  }
+
+  if (params && params.limit) {
+    url += `&limit=${params.limit}`;
+  }
+
   const { body } = await get(url);
 
   return body;
 }
 
-export async function playlistSearch (baseUrl, { query }) {
-  const url = `${baseUrl}/playlists?status=published&title=${query}`;
+export async function playlistsLoadMore (baseUrl, params) {
+  let url = params && params.query
+    ? `${baseUrl}/playlists?status=published&order=publish_date&${params.query}`
+    : `${baseUrl}/playlists?status=published&order=publish_date`;
+
+  if (params && params.page) {
+    url += `&page=${params.page}`;
+  }
+
+  if (params && params.limit) {
+    url += `&limit=${params.limit}`;
+  }
+
   const { body } = await get(url);
 
   return body;
@@ -25,7 +47,7 @@ export async function playlistSuggestVideo (baseUrl, { playlistId, description, 
   const requestUrl = `${baseUrl}/suggestion`;
   const { body } = await post(requestUrl, {
     playlist_id: playlistId,
-    type: 'suggest-video',
+    type: "suggest-video",
     description,
     url,
     email
@@ -37,12 +59,24 @@ export async function playlistSuggestVideo (baseUrl, { playlistId, description, 
 export async function playlistCreateNew (baseUrl, { title, description, email, category }) {
   const requestUrl = `${baseUrl}/suggestion`;
   const { body } = await post(requestUrl, {
-    type: 'new-playlist',
+    type: "new-playlist",
     title,
     description,
     email,
     category
   });
+
+  return body;
+}
+
+export async function categoriesFetch (baseUrl) {
+  const { body } = await get(`${baseUrl}/categories`);
+
+  return body;
+}
+
+export async function hashtagsFetch (baseUrl) {
+  const { body } = await get(`${baseUrl}/hashtags?limit=56`);
 
   return body;
 }

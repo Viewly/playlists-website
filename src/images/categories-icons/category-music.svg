@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>category-music</title>
+    <desc>Created with Sketch.</desc>
+    <g id="category-music" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(5.000000, 9.000000)">
+            <path d="M42,5.68434189e-14 C23.8036433,5.68434189e-14 9,14.8025922 9,32.997009 C9,33.7316052 9.02033714,34.380658 9.06220772,34.980658 C10.0988037,52.3812562 24.566286,66 42,66 C60.1963567,66 75,51.195015 75,32.997009 C75,14.8025922 60.1963567,5.68434189e-14 42,5.68434189e-14 Z" id="Path" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle id="Oval" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="42" cy="33" r="15"></circle>
+            <path d="M42,28 C39.2388956,28 37,30.2375525 37,32.9970006 C37,35.7624475 39.2388956,38 42,38 C44.7611044,38 47,35.7624475 47,32.9970006 C47,30.2375525 44.7611044,28 42,28 Z" id="Path" fill="#1D1D1D"></path>
+            <path d="M2.47058824,56 C1.10823529,56 0,57.1082353 0,58.4705882 L0,65.5294118 C0,66.8917647 1.10823529,68 2.47058824,68 L9.52941176,68 C10.8917647,68 12,66.8917647 12,65.5294118 L12,58.4705882 C12,57.1082353 10.8917647,56 9.52941176,56 L2.47058824,56 Z" id="Path" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <polyline id="Path-2" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="6 55.8 6 39 13 32.5898345"></polyline>
+            <path d="M23.790654,27.3253716 L16.263277,33.710165 C15.2699983,34.4480163 13.8638508,34.2516526 13.1218835,33.2698345 L13.0919655,33.2281816 L12.9423753,33.0318179 C12.1944245,32.0499997 12.3918835,30.6457022 13.3791786,29.907851 L20.9065557,23.5230576 C21.8998344,22.7852064 23.3059819,22.98157 24.0479491,23.9633882 L24.2334409,24.2014047 C24.9754081,25.1891733 24.7779491,26.5875204 23.790654,27.3253716 Z" id="Path" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

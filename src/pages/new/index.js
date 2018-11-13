@@ -1,114 +1,97 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import VisibilitySensor from "react-visibility-sensor";
 
-import { playlistCreateNew } from "../../actions";
+import { playlistsFetch, playlistsLoadMore, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
+import { isLoaded, asyncLoad } from "../../utils";
 
-@connect(null, (dispatch) => ({
-  playlistCreateNew: (title, description, email, category) => dispatch(playlistCreateNew({ title, description, email, category })),
-}))
-class NewPlaylist extends Component {
+import Playlist from "../../components/PlaylistContainer";
+import SEO from "../../components/SEO";
+import { NEW_PAGE } from "../../constants/pages";
+
+const LIMIT = 12;
+
+const prepareActions = (dispatch) => ({
+  playlistsFetch: () => dispatch(playlistsFetch({ page: 0, limit: LIMIT })),
+  playlistsLoadMore: (page, limit) => dispatch(playlistsLoadMore({ page, limit })),
+  setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: NEW_PAGE }),
+  setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: NEW_PAGE }),
+});
+
+@asyncLoad(async (params = {}, query = {}, store) => {
+  const { playlistsFetch, setServerRendered } = prepareActions(store.dispatch);
+
+  await playlistsFetch();
+  setServerRendered();
+})
+@connect((state) => ({
+  playlists: state.playlists,
+  isSSR: !!state.renderedPages[NEW_PAGE]
+}), prepareActions)
+class LatestPlaylists extends Component {
+  static propTypes = {
+    playlistsFetch: PropTypes.func.isRequired,
+    setClientRendered: PropTypes.func.isRequired,
+    isSSR: PropTypes.bool,
+    playlists: PropTypes.object
+  }
+
   state = {
-    title: '',
-    description: '',
-    email: '',
-    category: '0',
-    suggested: false
+    page: 0,
+    hasMore: true
   }
 
-  handleChange = (evnt) => {
-    const field = evnt.target.name;
+  componentDidMount() {
+    const { playlistsFetch, setClientRendered, isSSR } = this.props;
 
-    this.setState({ [field]: evnt.target.value });
+    if (!isSSR) {
+      playlistsFetch();
+    } else {
+      setClientRendered();
+    }
   }
 
-  handleSubmit = async (evnt) => {
-    const { playlistCreateNew } = this.props;
+  loadMore = async (visible) => {
+    const { playlistsLoadMore } = this.props;
 
-    evnt.preventDefault();
-    await playlistCreateNew(this.state.title, this.state.description, this.state.email, this.state.category);
-    this.setState({ suggested: true });
+    if (visible === false) {
+      return;
+    }
+
+    this.setState({ page: this.state.page + 1 }, async () => {
+      const playlists = await playlistsLoadMore(this.state.page, LIMIT);
+      if (playlists.length < LIMIT) {
+        this.setState({ hasMore: false });
+      }
+    });
   }
 
   render() {
+    const { playlists } = this.props;
+    const isReady = isLoaded(playlists);
+
     return (
-      <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+      <>
+        <SEO title="New playlists" />
 
-        {this.state.suggested && (
-          <div className='c-thank-you'>
-            <img className='c-thank-you__img' src={require('../../images/message-thank-you.svg')} />
-            <h5 className='u-margin-bottom-small'>Thanks for suggesting a playlist</h5>
-            <p>We're still working on finalizing this feature, and we'll notify you as soon as it's ready.</p>
-          </div>
-        )}
+        <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+          <Playlist
+            isLoaded={isReady}
+            title="New playlists"
+            playlists={playlists.data}
+          />
 
-        {!this.state.suggested && (
-          <div>
-            <h1 className='c-form__title'>Create your playlist</h1>
-            <form className='c-form' onSubmit={this.handleSubmit}>
-              <ul className='c-form__list'>
-                <li>
-                  <label className='c-form__label'>Playlist title</label>
-                  <input className='c-input c-input--primary' type="text" name="title" value={this.state.title} onChange={this.handleChange} required />
-                </li>
-                <li>
-                  <label className='c-form__label'>Category</label>
-                  <div className='c-select u-1/1'>
-                    <select className='c-select__select' name="category" value={this.state.category} onChange={this.handleChange}>
-                      <option value="0">No category</option>
-                      <option value="2">Autos & Vehicles</option>
-                      <option value="1">Film & Animation</option>
-                      <option value="10">Music</option>
-                      <option value="15">Pets & Animals</option>
-                      <option value="17">Sports</option>
-                      <option value="18">Short Movies</option>
-                      <option value="19">Travel & Events</option>
-                      <option value="20">Gaming</option>
-                      <option value="21">Videoblogging</option>
-                      <option value="22">People & Blogs</option>
-                      <option value="23">Comedy</option>
-                      <option value="24">Entertainment</option>
-                      <option value="25">News & Politics</option>
-                      <option value="26">Howto & Style</option>
-                      <option value="27">Education</option>
-                      <option value="28">Science & Technology</option>
-                      <option value="29">Nonprofits & Activism</option>
-                      <option value="30">Movies</option>
-                      <option value="31">Anime/Animation</option>
-                      <option value="32">Action/Adventure</option>
-                      <option value="33">Classics</option>
-                      <option value="34">Comedy</option>
-                      <option value="35">Documentary</option>
-                      <option value="36">Drama</option>
-                      <option value="37">Family</option>
-                      <option value="38">Foreign</option>
-                      <option value="39">Horror</option>
-                      <option value="40">Sci-Fi/Fantasy</option>
-                      <option value="41">Thriller</option>
-                      <option value="42">Shorts</option>
-                      <option value="43">Shows</option>
-                      <option value="44">Trailers</option>
-                      <option value="45">Cooking</option>
-                    </select>
-                  </div>
-                </li>
-                <li>
-                  <label className='c-form__label'>Description</label>
-                  <textarea className='c-input c-input--primary c-input--textarea' type="text" name="description" value={this.state.description} onChange={this.handleChange}></textarea>
-                </li>
-                <li>
-                  <label className='c-form__label'>Your email address</label>
-                  <input className='c-input c-input--primary' type="text" name="email" value={this.state.email} onChange={this.handleChange} required />
-                </li>
-                <li className='u-text-right'>
-                  <button className='c-btn c-btn--primary'>Next</button>
-                </li>
-              </ul>
-            </form>
-          </div>
-        )}
-
-      </div>
+          {isReady && this.state.hasMore && (
+            <VisibilitySensor partialVisibility offset={{ bottom: -200 }} onChange={this.loadMore}>
+              <div className='u-text-center'>
+                <button className='c-btn c-btn--secondary c-btn--small' onClick={this.loadMore}>Load more</button>
+              </div>
+            </VisibilitySensor>
+          )}
+        </div>
+      </>
     );
   }
 }
-export default NewPlaylist;
+export default LatestPlaylists;

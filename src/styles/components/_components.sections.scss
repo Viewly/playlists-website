@@ -10,13 +10,6 @@
         padding-bottom: $spacing-unit-large + 10px;
         padding-top: $spacing-unit-large + 10px;
     }
-
-    ul,
-    p {
-        &:not(:last-child) {
-            margin-bottom: $spacing-unit;
-        }
-    }
 }
 
     /**
@@ -47,6 +40,42 @@
             padding-left: $spacing-unit;
         }
     }
+
+        /**
+         * Section description
+         */
+        .c-section__description {
+            white-space: pre-line;
+
+            ul,
+            p {
+                &:not(:last-child) {
+                    margin-bottom: $spacing-unit;
+                }
+            }
+        }
+
+        /**
+         * Section hashtags
+         */
+        .c-section__hashtags {
+            margin-top: $spacing-unit-small;
+
+            a {
+                color: #565656;
+                display: inline-block;
+                font-weight: 500;
+
+                &:not(:last-child) {
+                    margin-right: $spacing-unit-tiny;
+                }
+
+                &:hover {
+                    color: color('brand-primary');
+                    text-decoration: none;
+                }
+            }
+        }
 
     /**
      * Section thumbnail

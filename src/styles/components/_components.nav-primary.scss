@@ -1,0 +1,155 @@
+/*------------------------------------*\
+    #PRIMARY NAVIGATION
+\*------------------------------------*/
+
+/**
+ * 1. Since `$from:` is inclusive `min-width` boundary in sass-mq (as per
+ *    https://github.com/sass-mq/sass-mq#responsive-mode-on-default), and we are
+ *    using in a few breakpoints for the navigation, here we need to deduct
+ *    `1px` of buffer so that it all plays together correctly.
+ */
+.c-nav-primary {
+    color: $global-text-color;
+
+    @include mq($until: ($tweakpoint-nav-primary-medium - 1)) { /* [1] */
+        background-color: #fff;
+        border-bottom: 1px solid color('grey');
+        padding-left: $spacing-unit;
+        padding-right: $spacing-unit;
+        position: fixed;
+        top: $header-height;
+        left: 0;
+        right: 0;
+        z-index: 100;
+    }
+
+    @include mq($from: $tweakpoint-nav-primary-medium, $until: $tweakpoint-nav-primary-large) {
+        background-color: transparent;
+        margin-left: $spacing-unit;
+    }
+
+    @include mq($from: $tweakpoint-nav-primary-large) {
+        margin-left: $spacing-unit-large;
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        list-style-type: none;
+
+        @include mq(medium) {
+            justify-content: center;
+        }
+    }
+}
+
+        /**
+         * 1. Remove outline for webkit browsers.
+         */
+        .c-nav-primary__item {
+            @include mq($until: ($tweakpoint-nav-primary - 1)) {
+                width: 25%;
+            }
+
+            &:not(:last-child) {
+                @include mq(medium) {
+                    margin-right: $spacing-unit;
+                }
+
+                @include mq($from: $tweakpoint-nav-primary-medium, $until: $tweakpoint-nav-primary-large) {
+                    margin-right: $spacing-unit-small;
+                }
+            }
+
+            &:focus {
+                outline: none; /* [1] */
+            }
+        }
+
+        /**
+         * 1. Since `$from:` is inclusive `min-width` boundary in sass-mq (as per
+         *    https://github.com/sass-mq/sass-mq#responsive-mode-on-default), and we are
+         *    using in a few breakpoints for the navigation, here we need to deduct
+         *    `1px` of buffer so that it all plays together correctly.
+         */
+        .c-nav-primary__link {
+            $color: #9ea0a3;
+
+            align-items: center;
+            color: $color;
+            display: flex;
+            font-size: 14px;
+            font-weight: 700;
+            height: $header-height - 1;
+            padding-left: 3px;
+            padding-right: 3px;
+
+            @include mq($until: ($tweakpoint-nav-primary - 1)) {
+                justify-content: center;
+            }
+
+            @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+                height: $nav-height;
+            }
+
+            &:hover {
+                color: darken($color, 20%);
+                text-decoration: none;
+            }
+
+            &.is-current {
+                color: $global-text-color;
+
+                .o-icon {
+                    opacity: 1;
+                }
+            }
+        }
+
+            .c-nav-primary__icon {
+                font-size: 18px;
+                height: 1em;
+                width: 1em;
+                position: relative;
+
+                @include mq($until: ($tweakpoint-nav-primary - 1)) {
+                    font-size: 22px;
+                }
+
+                img {
+                    height: 100%;
+                    transition: $global-transition;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 10;
+
+                    .c-nav-primary__link:hover &,
+                    .c-nav-primary__link.is-current & {
+                        opacity: 0;
+                    }
+
+                    &:last-child {
+                        opacity: 0;
+                        z-index: 20;
+
+                        .c-nav-primary__link:hover &,
+                        .c-nav-primary__link.is-current & {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            .c-nav-primary__label {
+                margin-left: 8px;
+
+                @include mq($until: ($tweakpoint-nav-primary - 1)) {
+                    display: none;
+                }
+
+                @include mq($from: $tweakpoint-nav-primary-medium, $until: $tweakpoint-nav-primary-large) {
+                    display: none;
+                }
+            }

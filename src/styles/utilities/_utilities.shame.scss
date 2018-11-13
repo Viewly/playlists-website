@@ -26,6 +26,15 @@ dl {
         font-size: 11px;
         text-transform: uppercase;
     }
+
+    a {
+        color: inherit;
+
+        &:hover {
+            color: color('brand-primary');
+            text-decoration: none;
+        }
+    }
 }
 
 .c-header {
@@ -37,6 +46,10 @@ dl {
     left: 0;
     right: 0;
     z-index: 1000;
+
+    @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+        border-bottom: none;
+    }
 }
 
     .c-header__grid {
@@ -69,14 +82,7 @@ dl {
     align-items: center;
     max-width: 112px;
 }
-
-/* HACK - fixes plyr volume buttons misbehaving */
-.plyr__volume {
-    display: flex;
-    align-items: center;
-    max-width: 112px;
-}
-.plyr__poster {
+.plyr--paused .plyr__poster {
     pointer-events: none;
 }
 
@@ -191,6 +197,12 @@ dl {
     padding-bottom: $spacing-unit-large;
     text-align: center;
 
+    @include mq($until: 360px) {
+        br {
+            display: none;
+        }
+    }
+
     a {
         color: color('brand-primary');
         font-weight: 700;
@@ -244,3 +256,135 @@ dl {
             margin-bottom: $spacing-unit-large;
         }
     }
+
+
+.c-categories-grid {
+    display: -ms-grid;
+    display: grid;
+    grid-gap: $spacing-unit;
+    grid-template-columns: repeat(2, 1fr);
+
+    @include mq(medium) {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+.c-categories-grid--home {
+    $tweakpoint: 1080px;
+
+    @include mq($from: medium, $until: $tweakpoint) {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    @include mq($from: large, $until: $tweakpoint) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include mq($tweakpoint) {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+.c-categories-grid--hashtags {
+    grid-gap: $spacing-unit-small;
+
+    @include mq($until: 350px) {
+        grid-gap: $spacing-unit-tiny;
+    }
+}
+
+
+$tweakpoint-category:   large;
+
+.c-category {
+    $border-color: #dfdfdf;
+
+    background-color: #fff;
+    border: 1px solid $border-color;
+    color: #8b8b8b;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: $spacing-unit $spacing-unit-small;
+    text-align: center;
+    transition: $global-transition;
+
+    @include mq($tweakpoint-category) {
+        &:hover {
+            border-color: rgba($border-color, .5);
+            box-shadow: 0 3px 10px 0 rgba(#111214, .2);
+        }
+    }
+
+    .c-categories-grid--hashtags & {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+    .c-category__graphic {
+        display: block;
+        font-size: 68px;
+        height: 1em;
+        margin-bottom: $spacing-unit;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1em;
+        position: relative;
+
+        @include mq(medium) {
+            font-size: 86px;
+        }
+
+        img {
+            transition: $global-transition;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+
+            &:last-child {
+                @include invisible;
+                z-index: 20;
+
+                .c-category:hover & {
+                    @include visible;
+                }
+            }
+        }
+    }
+
+    .c-category__title {
+        font-size: 13px;
+        text-transform: uppercase;
+
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit-tiny;
+        }
+
+        .c-categories-grid--hashtags & {
+            @include mq($until: 350px) {
+                font-size: 12px;
+            }
+        }
+    }
+
+
+.c-heading-delimiter {
+    color: #afb1b3;
+}
+
+.c-link-secondary {
+    color: #afb1b3;
+    font-size: 14px;
+    font-weight: 500;
+
+    &:hover {
+        color: color('brand-primary');
+    }
+}

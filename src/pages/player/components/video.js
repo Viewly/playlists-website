@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import Plyr from "./plyr";
@@ -14,6 +15,14 @@ const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage }) => (
     </div>
 
   </div>
-)
+);
+
+
+VideoPlayer.propTypes = {
+  playlistUrl: PropTypes.string.isRequired,
+  video: PropTypes.object.isRequired,
+  onVideoEnd: PropTypes.func.isRequired,
+  onPercentage: PropTypes.func.isRequired,
+};
 
 export default VideoPlayer;

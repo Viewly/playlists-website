@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>category-film-and-animation-hover</title>
+    <desc>Created with Sketch.</desc>
+    <g id="category-film-and-animation-hover" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="214279" transform="translate(6.000000, 7.000000)">
+            <path d="M32,53 L32,73.2940974 C32,74.7823954 32.9691992,76 34.1538672,76 L43.8461328,76 C45.0308008,76 46,74.7823954 46,73.2940974 L46,53 L32,53 Z" id="Path" fill="#706F6F"></path>
+            <path d="M41,53 L41,73.2940974 C41,74.7823954 41.3461426,76 41.7692383,76 L45.2307617,76 C45.6538574,76 46,74.7823954 46,73.2940974 L46,53 L41,53 Z" id="Path-Copy-3" fill="#565656"></path>
+            <path d="M32,53 L32,73.2940974 C32,74.7823954 32.9691992,76 34.1538672,76 L43.8461328,76 C45.0308008,76 46,74.7823954 46,73.2940974 L46,53 L32,53 Z" id="Path-Copy-2" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M59,46 L59,50.2 C59,51.7400533 57.7914666,53 56.3142565,53 L14.6857435,53 C13.2085334,53 12,51.7400533 12,50.2 L12,46 L59,46 Z" id="Path" stroke="#1D1D1D" stroke-width="2" fill="#BFBFBF" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M4.02130918,0 L58.9786908,0 C61.1904024,0 63,1.82649282 63,4.05885384 L63,46 L4.02130918,46 C1.80959764,46 0,44.1735072 0,41.9411462 L0,4.05868208 C0.000170170927,1.82649282 1.80976781,0 4.02130918,0 Z" id="Path" fill="#706F6F"></path>
+            <path d="M50.829794,0 L62.170206,0 C62.626591,0 63,1.82649282 63,4.05885384 L63,46 L50.829794,46 C50.373409,46 50,44.1735072 50,41.9411462 L50,4.05868208 C50.0000351,1.82649282 50.3734442,0 50.829794,0 Z" id="Path-Copy-5" fill="#565656"></path>
+            <path d="M4.02130918,0 L58.9786908,0 C61.1904024,0 63,1.82649282 63,4.05885384 L63,46 L4.02130918,46 C1.80959764,46 0,44.1735072 0,41.9411462 L0,4.05868208 C0.000170170927,1.82649282 1.80976781,0 4.02130918,0 Z" id="Path-Copy" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M54,32 C55.6800731,32 57,33.3200792 57,35 C57,36.6799208 55.6799208,38 54,38 C52.3200792,38 51,36.6799208 51,35 C51,33.3200792 52.3199269,32 54,32 Z" id="Path" stroke="#1D1D1D" stroke-width="2" fill="#5290D9" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M44,32 C45.6800731,32 47,33.3200792 47,35 C47,36.6799208 45.6799208,38 44,38 C42.3200792,38 41,36.6799208 41,35 C41,33.3200792 42.3199269,32 44,32 Z" id="Path" stroke="#1D1D1D" stroke-width="2" fill="#E63950" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M50.5,7 C53.0071638,7 55,8.99283616 55,11.5 C55,14.0071638 53.0071638,16 50.5,16 C47.9928362,16 46,14.0073271 46,11.5001632 C46,8.99299938 47.9928362,7 50.5,7 Z" id="Path" stroke="#1D1D1D" stroke-width="2" fill="#00E294" stroke-linecap="round" stroke-linejoin="round"></path>
+            <polygon id="Path" stroke="#1D1D1D" stroke-width="2" fill="#E1D3CE" stroke-linecap="round" stroke-linejoin="round" points="63 14 68 14 68 32 63 32"></polygon>
+            <rect id="Rectangle-Copy" fill="#BFBFBF" x="68" y="11" width="10" height="24" rx="2"></rect>
+            <rect id="Rectangle-Copy-2" fill="#A5A5A5" x="73" y="11" width="5" height="24" rx="2"></rect>
+            <rect id="Rectangle" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x="68" y="11" width="10" height="24" rx="2"></rect>
+            <path d="M0,37 L30.0000635,37 C31.1333326,37 32,36.1333051 32,35 C32,33.8666949 31.1333326,33 30.0000635,33 L0,33 L0,37 Z" id="Path" stroke="#1D1D1D" stroke-width="2" fill="#E1D3CE" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+        <rect id="Rectangle" stroke="#1D1D1D" stroke-width="2" fill="#565656" stroke-linecap="round" stroke-linejoin="round" x="1" y="17" width="5" height="13"></rect>
+    </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>category-film-and-animation</title>
+    <desc>Created with Sketch.</desc>
+    <g id="category-film-and-animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="214279" transform="translate(1.000000, 7.000000)" stroke="#1D1D1D" stroke-width="2">
+            <path d="M37,53 L37,73.2940974 C37,74.7823954 37.9691992,76 39.1538672,76 L48.8461328,76 C50.0308008,76 51,74.7823954 51,73.2940974 L51,53 L37,53 Z" id="Shape"></path>
+            <path d="M64,46 L64,50.2 C64,51.7400533 62.7914666,53 61.3142565,53 L19.6857435,53 C18.2085334,53 17,51.7400533 17,50.2 L17,46 L64,46 Z" id="Path"></path>
+            <path d="M9.02130918,0 L63.9786908,0 C66.1904024,0 68,1.82649282 68,4.05885384 L68,46 L9.02130918,46 C6.80959764,46 5,44.1735072 5,41.9411462 L5,4.05868208 C5.00017017,1.82649282 6.80976781,0 9.02130918,0 Z" id="Path"></path>
+            <rect id="Rectangle" fill="#FFFFFF" x="0" y="10" width="5" height="13"></rect>
+            <path d="M59,32 C60.6800731,32 62,33.3200792 62,35 C62,36.6799208 60.6799208,38 59,38 C57.3200792,38 56,36.6799208 56,35 C56,33.3200792 57.3199269,32 59,32 Z" id="Path"></path>
+            <path d="M49,32 C50.6800731,32 52,33.3200792 52,35 C52,36.6799208 50.6799208,38 49,38 C47.3200792,38 46,36.6799208 46,35 C46,33.3200792 47.3199269,32 49,32 Z" id="Path"></path>
+            <path d="M55.5,7 C58.0071638,7 60,8.99283616 60,11.5 C60,14.0071638 58.0071638,16 55.5,16 C52.9928362,16 51,14.0073271 51,11.5001632 C51,8.99299938 52.9928362,7 55.5,7 Z" id="Path"></path>
+            <polygon id="Path" points="68 14 73 14 73 32 68 32"></polygon>
+            <rect id="Rectangle" x="73" y="11" width="10" height="24" rx="2"></rect>
+            <path d="M5,37 L35.0000635,37 C36.1333326,37 37,36.1333051 37,35 C37,33.8666949 36.1333326,33 35.0000635,33 L5,33 L5,37 Z" id="Path"></path>
+        </g>
+    </g>
+</svg>

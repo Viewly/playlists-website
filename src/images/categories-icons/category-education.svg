@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>category-education</title>
+    <desc>Created with Sketch.</desc>
+    <g id="category-education" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(13.000000, 4.000000)" stroke="#1D1D1D" stroke-width="2">
+            <path d="M0,1.42108547e-14 L57,1.42108547e-14 C59.209139,1.38050425e-14 61,1.790861 61,4 L61,74 C61,76.209139 59.209139,78 57,78 L0,78 L0,1.42108547e-14 Z" id="Rectangle" fill="#FFFFFF"></path>
+            <path d="M42,0 L42,18.8229835 C42,19.2469551 42.1611458,19.6381324 42.4223958,19.8466623 C42.6836458,20.0557804 43.0042708,20.0512216 43.2622917,19.8316623 L47,16.6654787 L50.7378125,19.8318093 C50.8696875,19.9438684 51.0185417,19.9996038 51.1666667,19.9996038 C51.3082292,19.9996038 51.4498958,19.9490155 51.5776042,19.8468094 C51.8388542,19.6382795 52,19.2471021 52,18.8231306 L52,0 L42,0 Z" id="Path" fill="#FFFFFF"></path>
+            <polyline id="Path-3" points="24 63 28.4009593 63 31.9291942 70 37.5066354 56 50.7432318 56"></polyline>
+            <path d="M40.9398659,61 L49.4183476,69.4784817" id="Path-4"></path>
+            <path d="M9,7 L9,71" id="Line-7"></path>
+            <path d="M40.9398659,61 L49.4183476,69.4784817" id="Path-4-Copy" transform="translate(45.179107, 65.239241) scale(-1, 1) translate(-45.179107, -65.239241) "></path>
+        </g>
+    </g>
+</svg>

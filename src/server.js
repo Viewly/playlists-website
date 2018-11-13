@@ -1,30 +1,30 @@
-import express from 'express';
+import express from "express";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import fs from "fs";
 import path from "path";
-import MetaTagsServer from 'react-meta-tags/server';
-import { Provider } from 'react-redux';
-import { StaticRouter } from 'react-router';
+import MetaTagsServer from "react-meta-tags/server";
+import { Provider } from "react-redux";
+import { StaticRouter } from "react-router";
 import { matchPath } from "react-router-dom";
-import { MetaTagsContext } from 'react-meta-tags';
+import { MetaTagsContext } from "react-meta-tags";
 
 import App from "./app";
 import { routes } from "./routes";
-import store from "./store";
+import createStore from "./store";
 
 const port = 3000;
 
 const app = express();
-app.use(express.static(path.resolve(__dirname, '..', 'dist'), { index: false }));
+app.use(express.static(path.resolve(__dirname, "..", "dist"), { index: false }));
 
-const indexPath = path.resolve(__dirname, '..', 'dist', 'index.html');
-const indexHtml = fs.readFileSync(indexPath, 'utf8');
+const indexPath = path.resolve(__dirname, "..", "dist", "index.html");
+const indexHtml = fs.readFileSync(indexPath, "utf8");
 
-app.get('*', async (req, res) => {
+app.get("*", async (req, res) => {
   const currentRoute = routes.find(route => matchPath(req.url, route)) || {};
   const metaTagsInstance = MetaTagsServer();
-
+  const store = createStore();
   let promise;
 
   if (currentRoute.component && currentRoute.component.asyncLoad) {
@@ -50,9 +50,9 @@ app.get('*', async (req, res) => {
     const meta = metaTagsInstance.renderToString();
 
     let finalHtml = indexHtml;
-    finalHtml = finalHtml.replace('<!-- ROOT_CONTAINER -->', html);
-    finalHtml = finalHtml.replace('var __INITIAL_STATE__ = false;', `var __INITIAL_STATE__ = ${JSON.stringify(store.getState())};`);
-    finalHtml = finalHtml.replace('var __HYDRATE__ = false;', 'var __HYDRATE__ = true;');
+    finalHtml = finalHtml.replace("<!-- ROOT_CONTAINER -->", html);
+    finalHtml = finalHtml.replace("var __INITIAL_STATE__ = false;", `var __INITIAL_STATE__ = ${JSON.stringify(store.getState())};`);
+    finalHtml = finalHtml.replace("var __HYDRATE__ = false;", "var __HYDRATE__ = true;");
     finalHtml = finalHtml.replace(/<!-- DEFAULT META TAGS -->[\s\S]+<!-- \/DEFAULT META TAGS -->/, meta);
     res.write(finalHtml);
     res.end();

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>category-comedy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="category-comedy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(8.000000, 8.000000)">
+            <circle id="Oval-Copy-3" fill="#FFFFFF" cx="35" cy="35" r="33"></circle>
+            <circle id="Oval" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="35" cy="35" r="35"></circle>
+            <path d="M35,58 C44.9411255,58 53,49.9411255 53,40 C53,40 17,40 17,40 C17,49.9411255 25.0588745,58 35,58 Z" id="Oval-Copy" stroke="#1D1D1D" stroke-width="2" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
+            <polyline id="Path-6" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="25.0010297 21 30.0005148 25.9994852 25 31"></polyline>
+            <polyline id="Path-6-Copy" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(42.500257, 26.000000) scale(-1, 1) translate(-42.500257, -26.000000) " points="40.0010297 21 45.0005148 25.9994852 40 31"></polyline>
+            <path d="M53.0710678,46.0710678 C55.2802068,46.0710678 57.0710678,44.2802068 57.0710678,42.0710678 C57.0710678,40.5983085 55.7377345,37.9316418 53.0710678,34.0710678 C50.4044011,37.9316418 49.0710678,40.5983085 49.0710678,42.0710678 C49.0710678,44.2802068 50.8619288,46.0710678 53.0710678,46.0710678 Z" id="Oval" stroke="#1D1D1D" stroke-width="2" fill="#FFFFFF" transform="translate(53.071068, 40.071068) rotate(-45.000000) translate(-53.071068, -40.071068) "></path>
+            <path d="M17.0710678,46.0710678 C19.2802068,46.0710678 21.0710678,44.2802068 21.0710678,42.0710678 C21.0710678,40.5983085 19.7377345,37.9316418 17.0710678,34.0710678 C14.4044011,37.9316418 13.0710678,40.5983085 13.0710678,42.0710678 C13.0710678,44.2802068 14.8619288,46.0710678 17.0710678,46.0710678 Z" id="Oval-Copy-2" stroke="#1D1D1D" stroke-width="2" fill="#FFFFFF" transform="translate(17.071068, 40.071068) scale(-1, 1) rotate(-45.000000) translate(-17.071068, -40.071068) "></path>
+        </g>
+    </g>
+</svg>

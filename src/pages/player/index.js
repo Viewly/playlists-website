@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import VideoPlayer from "./components/video";
 import Playlist from "./components/playlist";
 import SEO from "../../components/SEO";
 
 import { playlistFetch, updatePercentage } from "../../actions";
+import { LOADED } from "../../constants/status_types";
 
 @connect((state) => ({
   playlist: state.playlist
@@ -13,6 +15,14 @@ import { playlistFetch, updatePercentage } from "../../actions";
   updatePercentage: (playlistId, videoId, percentage, currentTime) => dispatch(updatePercentage({ playlistId, videoId, percentage, currentTime }))
 }))
 class PlayerPage extends Component {
+  static propTypes = {
+    playlistFetch: PropTypes.func.isRequired,
+    updatePercentage: PropTypes.func.isRequired,
+    playlist: PropTypes.object,
+    match: PropTypes.object,
+    history: PropTypes.object,
+  }
+
   state = {
     videoId: null,
     showPlaylist: false
@@ -21,8 +31,13 @@ class PlayerPage extends Component {
   componentDidMount() {
     const { playlist, playlistFetch, match: { params: { playlistId, videoId } } } = this.props;
 
+    document && document.documentElement.classList.add("is-overflow-y-hidden");
     playlist.id !== playlistId && playlistFetch(playlistId);
     this.setState({ videoId: parseInt(videoId, 10) });
+  }
+
+  componentWillUnmount() {
+    document && document.documentElement.classList.remove("is-overflow-y-hidden");
   }
 
   componentDidUpdate(prevProps) {
@@ -69,13 +84,13 @@ class PlayerPage extends Component {
   }
 
   onPlaylistClick = (evnt) => {
-    const classes = evnt.target.getAttribute('class') && evnt.target.getAttribute('class').split(' ') || [];
-    classes.includes('c-player-playlist') && this.togglePlaylist();
+    const classes = evnt.target.getAttribute("class") && evnt.target.getAttribute("class").split(" ") || [];
+    classes.includes("c-player-playlist") && this.togglePlaylist();
   }
 
   render() {
     const { playlist } = this.props;
-    const isLoaded = playlist._status === 'LOADED';
+    const isLoaded = playlist._status === LOADED;
     const currentVideo = isLoaded
       ? playlist.videos.find(item => item.id === this.state.videoId)
       : false;

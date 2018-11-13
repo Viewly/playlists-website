@@ -1,12 +1,12 @@
-import moment from 'moment';
-import 'moment-duration-format';
-import { LOADED } from './constants/status_types';
+import moment from "moment";
+import "moment-duration-format";
+import { LOADED } from "./constants/status_types";
 
 export function convertYoutubeDuration (duration) {
   return moment
     .duration(duration)
-    .format('h:mm:ss')
-    .padStart(4, '0:0');
+    .format("h:mm:ss")
+    .padStart(4, "0:0");
 }
 
 export function sumVideoDurations (videos) {
@@ -14,7 +14,7 @@ export function sumVideoDurations (videos) {
   videos.forEach(video => {
     start.add(moment.duration(video.duration));
   });
-  return convertYoutubeDuration(start.toString())
+  return convertYoutubeDuration(start.toString());
 }
 
 export function getPlaylistProgress(playlistId) {
@@ -46,7 +46,7 @@ export function updateVideosWithProgresses(videos, progresses) {
       }
 
       return item;
-    })
+    });
   }
 
   return videos;
@@ -57,5 +57,5 @@ export function isLoaded(item) {
 }
 
 export function asyncLoad (asyncFunc) {
-  return b => Object.assign(b, { asyncLoad: asyncFunc })
+  return b => Object.assign(b, { asyncLoad: asyncFunc });
 }

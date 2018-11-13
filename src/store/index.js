@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore, compose } from "redux";
 import rootReducer from "../reducers/index";
-import { createLogger } from 'redux-logger'
-import thunkMiddleware from 'redux-thunk';
+import { createLogger } from "redux-logger";
+import thunkMiddleware from "redux-thunk";
 
 const loggerMiddleware = createLogger({
   collapsed: true
@@ -22,10 +22,10 @@ const enhancer = composeEnhancers(
     )
 );
 
-const store = createStore(
-  rootReducer,
-  CLIENT && !!window.__INITIAL_STATE__ ? window.__INITIAL_STATE__ : undefined,
-  enhancer
-)
-
-export default store;
+export default function() {
+  return createStore(
+    rootReducer,
+    CLIENT && !!window.__INITIAL_STATE__ ? window.__INITIAL_STATE__ : undefined,
+    enhancer
+  );
+}

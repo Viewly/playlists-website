@@ -1,46 +1,58 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { playlistsFetch, PLAYLIST_INJECT_DATA } from "../../actions";
+import { playlistsFetch, playlistsLoadMore, SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
-import Playlist from "./components/playlist";
-import Recommended from "./components/recommended";
+import Playlist from "../../components/PlaylistContainer";
+import Categories from "./components/categories";
 import SEO from "../../components/SEO";
+import { HOME_PAGE } from "../../constants/pages";
 
 const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch()),
-  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
+  playlistsLoadMore: (query) => dispatch(playlistsLoadMore({ query })),
+  setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: HOME_PAGE }),
+  setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: HOME_PAGE }),
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
-  const { playlistsFetch } = prepareActions(store.dispatch);
+  const { playlistsFetch, playlistsLoadMore, setServerRendered } = prepareActions(store.dispatch);
 
   await playlistsFetch();
+  await playlistsLoadMore("classification=staff_picked");
+  setServerRendered();
 })
 @connect((state) => ({
-  playlists: state.playlists
+  playlists: state.playlists,
+  isSSR: !!state.renderedPages[HOME_PAGE]
 }), prepareActions)
 class HomePage extends Component {
-  componentDidMount() {
-    const { playlistsFetch } = this.props;
-
-    playlistsFetch();
+  static propTypes = {
+    playlistsFetch: PropTypes.func.isRequired,
+    playlistsLoadMore: PropTypes.func.isRequired,
+    setClientRendered: PropTypes.func.isRequired,
+    isSSR: PropTypes.bool,
+    playlists: PropTypes.object
   }
 
-  onPlaylistClick = (url) => (evnt) => {
-    const { history, injectPlaylist, playlists } = this.props;
-    const selectedPlaylist = playlists.data.find(item => item.url === url);
+  async componentDidMount() {
+    const { playlistsFetch, playlistsLoadMore, isSSR, setClientRendered } = this.props;
 
-    evnt.preventDefault();
-    injectPlaylist(selectedPlaylist);
-    history.push(`/playlist/${url}`);
+    if (!isSSR) {
+      await playlistsFetch();
+      playlistsLoadMore("classification=staff_picked");
+    } else {
+      setClientRendered();
+    }
   }
 
   render() {
     const { playlists } = this.props;
     const isReady = isLoaded(playlists);
+    const pickedPlaylists = playlists.data.filter(i => i.classification === "staff_picked").splice(0, 3);
 
     return (
       <>
@@ -51,17 +63,36 @@ class HomePage extends Component {
               <div className='o-grid__cell c-hero__grid__cell'>
                 <h1 className="c-hero__title">Collaborative <br />YouTube playlists</h1>
                 <p>Discover playlists, create your own, and contribute to others.</p>
-                <Link to='/new' className='c-btn c-btn--primary c-btn--large'>Create your playlist</Link>
+                <Link to='/create-playlist' className='c-btn c-btn--primary c-btn--large'>Create your playlist</Link>
               </div>
               <div className='o-grid__cell c-hero__grid__cell'>
-                <img className='c-hero__graphic' src={require('../../images/hero-illustration.svg')} />
+                <img className='c-hero__graphic' src={require("../../images/hero-illustration.svg")} />
               </div>
             </div>
           </div>
         </div>
         <div className='o-wrapper'>
-          <Recommended isLoaded={isReady} data={playlists.data.filter(i => i.classification === 'staff_picked').splice(0,3)} onPlaylistClick={this.onPlaylistClick} />
-          <Playlist isLoaded={isReady} data={playlists.data.filter(i => i.classification !== 'staff_picked')} onPlaylistClick={this.onPlaylistClick} />
+          <div className='u-margin-bottom-large'>
+            {pickedPlaylists.length > 0 && (
+              <Playlist
+                big
+                title="Staff picks"
+                isLoaded={isReady}
+                playlists={pickedPlaylists}
+              />
+            )}
+          </div>
+
+          <div className='u-margin-bottom-large u-padding-bottom-large'>
+            <Categories />
+          </div>
+
+          <Playlist
+            title="New playlists"
+            moreButton={{ title: "View All", url: "/new" }}
+            isLoaded={isReady}
+            playlists={playlists.data.filter(i => i.classification !== "staff_picked").splice(0, 8)}
+          />
         </div>
       </>
     );

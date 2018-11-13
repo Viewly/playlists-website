@@ -10,7 +10,7 @@ module.exports = Object.assign(baseConfig, {
   output: {
     path: path.resolve(__dirname, "dist/"),
     filename: "[name]-[hash].js",
-    publicPath: '/'
+    publicPath: 'https://assets.vidflow.io/'
   },
   plugins: [
     ...config.plugins

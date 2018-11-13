@@ -13,6 +13,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=8.4.0",
+    "npm": ">=5"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -21,8 +25,10 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "accoutrement-color": "^2.3.1",
+    "babel-eslint": "^8.2.6",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.0",
+    "eslint-plugin-react": "^7.11.1",
     "favicons-webpack-plugin": "0.0.9",
     "file-loader": "^2.0.0",
     "html-loader": "^0.5.5",
@@ -48,17 +54,20 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "axios": "^0.18.0",
+    "eslint": "^5.8.0",
     "express": "^4.16.4",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
-    "plyr": "^3.4.4",
+    "plyr": "^3.4.6",
     "query-string": "^6.2.0",
     "react-meta-tags": "^0.7.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-share": "^2.3.1",
+    "react-visibility-sensor": "^5.0.2",
     "react-youtube": "^7.8.0",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "universal-cookie": "^3.0.4"
   }
 }

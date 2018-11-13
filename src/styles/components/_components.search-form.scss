@@ -2,8 +2,8 @@
     #SEARCH FORM
 \*------------------------------------*/
 
-$tweakpoint-search-form:                    640px;
-$tweakpoint-search-form-large:              700px;
+$tweakpoint-search-form:                    740px;
+$tweakpoint-search-form-large:              860px;
 $tweakpoint-search-form-extralarge:         extralarge;
 
 $search-from-button-width:                  50px;
@@ -15,22 +15,16 @@ $search-from-button-width:                  50px;
 .c-search-form {
     position: relative;
 
-    .c-header & {
-        width: 220px;
+    @include mq($until: $tweakpoint-search-form) {
+        display: none;
+    }
 
-        @include mq($until: $tweakpoint-search-form) {
-            display: none;
-        }
+    @include mq($tweakpoint-search-form-large) {
+        width: 200px;
+    }
 
-        @include mq($tweakpoint-search-form-large) {
-            margin-left: $spacing-unit;
-            width: 260px;
-        }
-
-        @include mq($tweakpoint-search-form-extralarge) {
-            margin-left: $spacing-unit-huge;
-            width: 320px;
-        }
+    @include mq($tweakpoint-search-form-extralarge) {
+        width: 260px;
     }
 }
 

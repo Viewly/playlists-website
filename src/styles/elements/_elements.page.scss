@@ -4,9 +4,6 @@
 
 /**
  * High-, page-level styling.
- *
- * 1. Override default inuitcss styles since in this case we don't want that
- *    kind of behaviour.
  */
 html {
     @include font-smoothing;
@@ -14,7 +11,10 @@ html {
     color: $global-text-color;
     font-family: $global-font-family;
     font-weight: 400;
-    overflow-y: auto; /*[1] */
+
+    &.is-overflow-y-hidden {
+        overflow-y: hidden;
+    }
 }
 
 /**
@@ -25,4 +25,8 @@ body {
     background-color: inherit;
     overflow-x: hidden; /* [1] */
     padding-top: $header-height;
+
+    @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+        padding-top: ($header-height + $nav-height);
+    }
 }
