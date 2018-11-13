@@ -2,17 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { userLogin } from "../../actions/user";
+import { userLogin, LOGIN_SUCCESS_PERSIST } from "../../actions/user";
 
 @connect(null, (dispatch) => ({
   userLogin: (email, password) => dispatch(userLogin({ email, password })),
+  loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data })
 }))
 class LoginPage extends Component {
   state = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     error: false,
-    errorText: ''
+    errorText: ""
   }
 
   handleChange = (evnt) => {
@@ -22,16 +23,17 @@ class LoginPage extends Component {
   }
 
   handleSubmit = async (evnt) => {
-    const { userLogin } = this.props;
+    const { userLogin, history, loginSuccess } = this.props;
 
     this.setState({ error: false });
     evnt.preventDefault();
     const response = await userLogin(this.state.email, this.state.password);
 
     if (response.success) {
-      console.log('login user', response.user);
+      loginSuccess(response.user);
+      history.push("/");
     } else {
-      console.log('response', response);
+      console.log("response", response);
       this.setState({
         error: true,
         errorText: response.reason
@@ -67,7 +69,7 @@ class LoginPage extends Component {
                 <button className='c-btn c-btn--primary'>Log In</button>
               </li>
 
-              <p>Don't have an account? <Link to='/register'>Get started</Link></p>
+              <p>Don&#x27;t have an account? <Link to='/register'>Get started</Link></p>
             </ul>
           </form>
         </div>

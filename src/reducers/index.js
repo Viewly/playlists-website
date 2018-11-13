@@ -1,4 +1,5 @@
 import * as actions from "../actions";
+import * as userActions from "../actions/user";
 import { PENDING, LOADED, LOADING } from "../constants/status_types";
 import { getPlaylistProgress, updateVideosWithProgresses } from "../utils";
 
@@ -8,7 +9,9 @@ const initialState = {
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
   hashtags: { _status: PENDING, data: [] },
-  renderedPages: {}
+  renderedPages: {},
+  user: false,
+  jwt: ""
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -70,6 +73,9 @@ const rootReducer = (state = initialState, action) => {
 
     case actions.HASHTAGS_FETCH_SUCCESS:
       return { ...state, hashtags: { _status: LOADED, data: action.data } };
+
+    case userActions.LOGIN_SUCCESS_PERSIST:
+      return { ...state, jwt: action.data.jwt, user: action.data };
 
     default:
       return state;
