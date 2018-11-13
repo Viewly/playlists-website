@@ -8,6 +8,9 @@ import { Provider } from "react-redux";
 import { StaticRouter } from "react-router";
 import { matchPath } from "react-router-dom";
 import { MetaTagsContext } from "react-meta-tags";
+import Cookies from "universal-cookie";
+import { LOGIN_SUCCESS_PERSIST } from "./actions/user";
+import { COOKIE_SESSION } from "./constants";
 
 import App from "./app";
 import { routes } from "./routes";
@@ -26,6 +29,12 @@ app.get("*", async (req, res) => {
   const metaTagsInstance = MetaTagsServer();
   const store = createStore();
   let promise;
+
+  const cookies = new Cookies(req.headers.cookie);
+  const jwt = cookies.get(COOKIE_SESSION);
+  if (jwt) {
+    store.dispatch({ type: LOGIN_SUCCESS_PERSIST, data: { jwt } });
+  }
 
   if (currentRoute.component && currentRoute.component.asyncLoad) {
     const matched = matchPath(req.url, currentRoute);
