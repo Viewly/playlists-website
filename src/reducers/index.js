@@ -77,6 +77,9 @@ const rootReducer = (state = initialState, action) => {
     case userActions.LOGIN_SUCCESS_PERSIST:
       return { ...state, jwt: action.data.jwt, user: action.data };
 
+    case userActions.LOGOUT:
+      return { ...state, jwt: "", user: false };
+
     default:
       return state;
   }

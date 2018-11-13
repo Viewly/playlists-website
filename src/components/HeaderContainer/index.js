@@ -1,14 +1,41 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { Link, NavLink } from "react-router-dom";
 import SearchInput from "./searchInput";
+import { LOGOUT } from "../../actions/user";
 
+@withRouter
+@connect((state) => ({
+  user: state.user
+}), (dispatch) => ({
+  doLogout: () => dispatch({ type: LOGOUT })
+}))
 class HeaderContainer extends Component {
+  static propTypes = {
+    user: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool
+    ]),
+    doLogout: PropTypes.func,
+    history: PropTypes.object
+  }
+
   state = {
     searchText: ""
   }
 
+  logOut = () => {
+    const { doLogout, history } = this.props;
+
+    doLogout();
+    history.push("/");
+  }
+
   render() {
+    const { user } = this.props;
+
     return (
       <header className='c-header'>
         <div className='o-wrapper c-header__grid'>
@@ -70,6 +97,20 @@ class HeaderContainer extends Component {
               <div className='o-grid__cell'>
                 <Link to='/create-playlist' className='c-btn c-btn--primary c-btn--plain'>Create playlist</Link>
               </div>
+              {user && (
+                <div className='o-grid__cell'>
+                  <Link to={`/profile/${user.id}`} className='c-btn c-btn--primary c-btn--plain'>Profile</Link>
+                  &nbsp;
+                  <span onClick={this.logOut} className='c-btn c-btn--primary c-btn--plain'>Log out</span>
+                </div>
+              )}
+              {!user && (
+                <div className='o-grid__cell'>
+                  <Link to='/login' className='c-btn c-btn--primary c-btn--plain'>Login</Link>
+                  &nbsp;
+                  <Link to='/register' className='c-btn c-btn--primary c-btn--plain'>Register</Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
