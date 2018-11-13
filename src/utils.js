@@ -64,7 +64,11 @@ export function asyncLoad (asyncFunc) {
 }
 
 export function decodeJwt(jwt) {
-  return jwtDecode(jwt);
+  try {
+    return jwtDecode(jwt);
+  } catch (e) {
+    return false;
+  }
 }
 
 export function setUserCookie (jwt) {
