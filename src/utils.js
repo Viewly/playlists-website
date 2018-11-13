@@ -1,6 +1,9 @@
 import moment from "moment";
 import "moment-duration-format";
+import Cookies from "universal-cookie";
+import jwtDecode from "jwt-decode";
 import { LOADED } from "./constants/status_types";
+import { COOKIE_SESSION } from "./constants";
 
 export function convertYoutubeDuration (duration) {
   return moment
@@ -58,4 +61,26 @@ export function isLoaded(item) {
 
 export function asyncLoad (asyncFunc) {
   return b => Object.assign(b, { asyncLoad: asyncFunc });
+}
+
+export function decodeJwt(jwt) {
+  return jwtDecode(jwt);
+}
+
+export function setUserCookie (jwt) {
+  const cookies = new Cookies();
+
+  cookies.set(COOKIE_SESSION, jwt, { path: "/" });
+}
+
+export function getUserCookie() {
+  const cookies = new Cookies();
+
+  return cookies.get(COOKIE_SESSION) || "";
+}
+
+export function unsetUserCookie() {
+  const cookies = new Cookies();
+
+  cookies.remove(COOKIE_SESSION);
 }

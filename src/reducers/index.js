@@ -1,7 +1,9 @@
 import * as actions from "../actions";
 import * as userActions from "../actions/user";
 import { PENDING, LOADED, LOADING } from "../constants/status_types";
-import { getPlaylistProgress, updateVideosWithProgresses } from "../utils";
+import { getPlaylistProgress, updateVideosWithProgresses, decodeJwt, setUserCookie, getUserCookie, unsetUserCookie } from "../utils";
+
+const jwtCookie = getUserCookie();
 
 const initialState = {
   config: { apiUrl: "https://api.vidflow.io/v1/api" },
@@ -10,8 +12,8 @@ const initialState = {
   categories: { _status: PENDING, data: [] },
   hashtags: { _status: PENDING, data: [] },
   renderedPages: {},
-  user: false,
-  jwt: ""
+  user: jwtCookie ? decodeJwt(jwtCookie) : false,
+  jwt: jwtCookie
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -74,11 +76,16 @@ const rootReducer = (state = initialState, action) => {
     case actions.HASHTAGS_FETCH_SUCCESS:
       return { ...state, hashtags: { _status: LOADED, data: action.data } };
 
-    case userActions.LOGIN_SUCCESS_PERSIST:
-      return { ...state, jwt: action.data.jwt, user: action.data };
+    case userActions.LOGIN_SUCCESS_PERSIST: {
+      const decodedUser = decodeJwt(action.data.jwt);
+      setUserCookie(action.data.jwt);
+      return { ...state, jwt: action.data.jwt, user: decodedUser };
+    }
 
-    case userActions.LOGOUT:
+    case userActions.LOGOUT: {
+      unsetUserCookie();
       return { ...state, jwt: "", user: false };
+    }
 
     default:
       return state;
