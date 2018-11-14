@@ -38,6 +38,7 @@ export const routes = [
   {
     path: "/login",
     component: LoginPage,
+    fullscreen: true,
   },
   {
     path: "/account",
@@ -46,6 +47,7 @@ export const routes = [
   {
     path: "/register",
     component: RegistrationPage,
+    fullscreen: true,
   },
   {
     path: "/search/",
@@ -69,6 +71,7 @@ export const routes = [
   },
   {
     path: "/player/:playlistId/:videoId",
-    component: PlayerPage
+    component: PlayerPage,
+    fullscreen: true,
   }
 ];
