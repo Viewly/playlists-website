@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { userRegister } from "../../actions/user";
+import { userRegister, LOGIN_SUCCESS_PERSIST } from "../../actions/user";
 
 @connect(null, (dispatch) => ({
   userRegister: (name, email, password) => dispatch(userRegister({ name, email, password })),
+  loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data })
 }))
 class RegistrationPage extends Component {
   state = {
-    name: '',
-    email: '',
-    password: '',
-    password2: '',
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
     error: false,
-    errorText: ''
+    errorText: ""
   }
 
   handleChange = (evnt) => {
@@ -24,16 +25,16 @@ class RegistrationPage extends Component {
   }
 
   handleSubmit = async (evnt) => {
-    const { userRegister } = this.props;
+    const { userRegister, loginSuccess, history } = this.props;
 
     this.setState({ error: false });
     evnt.preventDefault();
     const response = await userRegister(this.state.name, this.state.email, this.state.password);
 
     if (response.success) {
-      console.log('Login this user:', response.user);
+      loginSuccess(response.user);
+      history.push("/");
     } else {
-      console.log('response', response);
       this.setState({
         error: true,
         errorText: response.reason
