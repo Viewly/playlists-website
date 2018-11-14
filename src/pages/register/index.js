@@ -78,6 +78,8 @@ class RegistrationPage extends Component {
               </li>
 
               <p>Already have an account? <Link to='/login'>Log in</Link></p>
+
+              <Link to='/'>RUN BACK TO HOME PAGE</Link>
             </ul>
           </form>
         </div>

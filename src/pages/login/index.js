@@ -70,6 +70,9 @@ class LoginPage extends Component {
               </li>
 
               <p>Don&#x27;t have an account? <Link to='/register'>Get started</Link></p>
+
+
+              <Link to='/'>RUN BACK TO HOME PAGE</Link>
             </ul>
           </form>
         </div>
