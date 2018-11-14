@@ -7,6 +7,13 @@ export async function userLogin(baseUrl, { email, password }) {
   return body;
 }
 
+export async function getGoogleLoginUrl(baseUrl) {
+  const url = `${baseUrl}/user/auth`;
+  const { body } = await get(url);
+
+  return body;
+}
+
 export async function userRegister(baseUrl, { name, email, password }) {
   const url = `${baseUrl}/user/register`;
   const { body } = await post(url, { name, email, password });

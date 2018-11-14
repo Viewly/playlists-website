@@ -36,13 +36,13 @@ export function makeApiCall (_apiCall, startActionType, successActionType, error
       const apiBaseUrl = state.config.apiUrl;
       const authenticationToken = state.jwt;
 
-      dispatch({ ...params, type: startActionType });
+      startActionType && dispatch({ ...params, type: startActionType });
       try {
         const data = await _apiCall(apiBaseUrl, { ...params, authenticationToken });
-        dispatch({ ...params, data, type: successActionType });
+        successActionType && dispatch({ ...params, data, type: successActionType });
         return data;
       } catch (error) {
-        dispatch({ ...params, error, type: errorActionType });
+        errorActionType && dispatch({ ...params, error, type: errorActionType });
         throw error;
       }
     };

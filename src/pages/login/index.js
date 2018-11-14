@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { userLogin, LOGIN_SUCCESS_PERSIST } from "../../actions/user";
+import { userLogin, LOGIN_SUCCESS_PERSIST, getGoogleLoginUrl } from "../../actions/user";
 
 @connect(null, (dispatch) => ({
   userLogin: (email, password) => dispatch(userLogin({ email, password })),
+  getGoogleLoginUrl: () => dispatch(getGoogleLoginUrl()),
   loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data })
 }))
 class LoginPage extends Component {
@@ -14,6 +15,14 @@ class LoginPage extends Component {
     password: "",
     error: false,
     errorText: ""
+  }
+
+  googleLogin = async () => {
+    const { getGoogleLoginUrl } = this.props;
+    const test = await getGoogleLoginUrl();
+
+    // console.log("YA", test);
+    window.location.href = test.url;
   }
 
   handleChange = (evnt) => {
@@ -55,6 +64,9 @@ class LoginPage extends Component {
 
         <div>
           <h1 className='c-form__title'>Log in to Vidflow</h1>
+
+          <button onClick={this.googleLogin}>Login with Google</button>
+
           <form className='c-form' onSubmit={this.handleSubmit}>
             <ul className='c-form__list'>
               <li>
