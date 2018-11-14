@@ -99,7 +99,7 @@ class HeaderContainer extends Component {
               </div>
               {user && (
                 <div className='o-grid__cell'>
-                  <Link to={`/profile/${user.id}`} className='c-btn c-btn--primary c-btn--plain'>Profile</Link>
+                  <Link to='/account' className='c-btn c-btn--primary c-btn--plain'>Profile</Link>
                   &nbsp;
                   <span onClick={this.logOut} className='c-btn c-btn--primary c-btn--plain'>Log out</span>
                 </div>

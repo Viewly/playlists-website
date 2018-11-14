@@ -5,6 +5,7 @@ import CreatePlaylist from "./pages/create-playlist";
 import CategoriesPage from "./pages/categories";
 import SearchPage from "./pages/search";
 import ProfilePage from "./pages/profile";
+import AccountPage from "./pages/account";
 import CategoryPage from "./pages/category";
 import HashtagsPage from "./pages/hashtags";
 import LatestPlaylists from "./pages/new";
@@ -36,6 +37,10 @@ export const routes = [
   {
     path: "/login",
     component: LoginPage,
+  },
+  {
+    path: "/account",
+    component: AccountPage,
   },
   {
     path: "/register",

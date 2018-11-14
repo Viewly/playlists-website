@@ -1,22 +1,29 @@
 import axios from "axios";
 
-export async function get(url) {
-  const response = await axios.get(url);
+export async function get(url, data = {}) {
+  const headers = data.authenticationToken ? { authorization: data.authenticationToken } : {};
+  const response = await axios.get(url, { headers });
   return { body: response.data };
 }
 
-export async function put(url, data) {
-  const response = await axios.put(url, data);
+export async function put(url, data = {}) {
+  const headers = data.authenticationToken ? { authorization: data.authenticationToken } : {};
+  const { authenticationToken, ...newData } = data; // eslint-disable-line no-unused-vars
+  const response = await axios.put(url, newData, { headers });
   return { body: response.data };
 }
 
-export async function post(url, data) {
-  const response = await axios.post(url, data);
+export async function post(url, data = {}) {
+  const headers = data.authenticationToken ? { authorization: data.authenticationToken } : {};
+  const { authenticationToken, ...newData } = data; // eslint-disable-line no-unused-vars
+  const response = await axios.post(url, newData, { headers });
   return { body: response.data };
 }
 
-export async function patch(url, data) {
-  const response = await axios.patch(url, data);
+export async function patch(url, data = {}) {
+  const headers = data.authenticationToken ? { authorization: data.authenticationToken } : {};
+  const { authenticationToken, ...newData } = data; // eslint-disable-line no-unused-vars
+  const response = await axios.patch(url, newData, { headers });
   return { body: response.data };
 }
 
@@ -27,11 +34,11 @@ export function makeApiCall (_apiCall, startActionType, successActionType, error
 
       // const apiBaseUrl = "http://142.93.105.235:3000/v1/api/";
       const apiBaseUrl = state.config.apiUrl;
-      // const authenticationToken = state.authToken;
+      const authenticationToken = state.jwt;
 
       dispatch({ ...params, type: startActionType });
       try {
-        const data = await _apiCall(apiBaseUrl, params);
+        const data = await _apiCall(apiBaseUrl, { ...params, authenticationToken });
         dispatch({ ...params, data, type: successActionType });
         return data;
       } catch (error) {
