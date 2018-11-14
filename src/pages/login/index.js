@@ -81,6 +81,7 @@ class LoginPage extends Component {
                 <button className='c-btn c-btn--primary'>Log In</button>
               </li>
 
+              <p><Link to='/reset-password'>Forgot password?</Link></p>
               <p>Don&#x27;t have an account? <Link to='/register'>Get started</Link></p>
 
 

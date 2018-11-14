@@ -49,3 +49,17 @@ export async function userEmailConfirm(baseUrl, { token }) {
   return body;
 }
 
+export async function userForgotPassword(baseUrl, { email }) {
+  const url = `${baseUrl}/user/reset-password-request`;
+  const { body } = await post(url, { email });
+
+  return body;
+}
+
+export async function userForgotPasswordReset(baseUrl, { token, password }) {
+  const url = `${baseUrl}/user/reset-password`;
+  const { body } = await post(url, { password_reset_token: token, password });
+
+  return body;
+}
+
