@@ -15,10 +15,11 @@ class AuthyPage extends Component {
     doGoogleLogin: PropTypes.func.isRequired,
     loginSuccess: PropTypes.func.isRequired,
     location: PropTypes.object,
+    history: PropTypes.object,
   }
 
   async componentDidMount() {
-    const { doGoogleLogin, loginSuccess, location: { search } } = this.props;
+    const { doGoogleLogin, loginSuccess, history, location: { search } } = this.props;
     const values = queryString.parse(search);
     const response = await doGoogleLogin(values.code);
 
