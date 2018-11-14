@@ -12,6 +12,7 @@ import LatestPlaylists from "./pages/new";
 import LoginPage from "./pages/login";
 import RegistrationPage from "./pages/register";
 import EmailConfirmPage from "./pages/confirm-email";
+import AuthyPage from "./pages/authy";
 
 export const routes = [
   {
@@ -38,6 +39,11 @@ export const routes = [
   {
     path: "/login",
     component: LoginPage,
+    fullscreen: true,
+  },
+  {
+    path: "/authy",
+    component: AuthyPage,
     fullscreen: true,
   },
   {

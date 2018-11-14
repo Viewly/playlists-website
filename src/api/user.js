@@ -14,6 +14,13 @@ export async function getGoogleLoginUrl(baseUrl) {
   return body;
 }
 
+export async function doGoogleLogin(baseUrl, { code }) {
+  const url = `${baseUrl}/user/youtube-login`;
+  const { body } = await post(url, { code });
+
+  return body;
+}
+
 export async function userRegister(baseUrl, { name, email, password }) {
   const url = `${baseUrl}/user/register`;
   const { body } = await post(url, { name, email, password });
