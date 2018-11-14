@@ -11,6 +11,7 @@ import HashtagsPage from "./pages/hashtags";
 import LatestPlaylists from "./pages/new";
 import LoginPage from "./pages/login";
 import RegistrationPage from "./pages/register";
+import EmailConfirmPage from "./pages/confirm-email";
 
 export const routes = [
   {
@@ -53,6 +54,10 @@ export const routes = [
   {
     path: "/profile/:profileId",
     component: ProfilePage
+  },
+  {
+    path: "/confirm-email/:token",
+    component: EmailConfirmPage
   },
   {
     path: "/category/:categorySlug",

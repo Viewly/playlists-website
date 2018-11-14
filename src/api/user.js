@@ -28,3 +28,10 @@ export async function userEmailRequest(baseUrl, { authenticationToken, email }) 
   return body;
 }
 
+export async function userEmailConfirm(baseUrl, { token }) {
+  const url = `${baseUrl}/user/confirm-email`;
+  const { body } = await post(url, { email_confirm_token: token });
+
+  return body;
+}
+

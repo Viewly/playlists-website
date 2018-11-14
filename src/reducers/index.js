@@ -13,6 +13,7 @@ const initialState = {
   hashtags: { _status: PENDING, data: [] },
   renderedPages: {},
   user: jwtCookie ? decodeJwt(jwtCookie) : false,
+  emailConfirmation: { _status: PENDING },
   jwt: jwtCookie
 };
 
@@ -76,7 +77,8 @@ const rootReducer = (state = initialState, action) => {
     case actions.HASHTAGS_FETCH_SUCCESS:
       return { ...state, hashtags: { _status: LOADED, data: action.data } };
 
-    case userActions.LOGIN_SUCCESS_PERSIST: {
+    case userActions.LOGIN_SUCCESS_PERSIST:
+    case userActions.USER_PROFILE_FETCH_SUCCESS: {
       const decodedUser = decodeJwt(action.data.jwt);
       setUserCookie(action.data.jwt);
       return { ...state, jwt: action.data.jwt, user: decodedUser };
@@ -86,6 +88,9 @@ const rootReducer = (state = initialState, action) => {
       unsetUserCookie();
       return { ...state, jwt: "", user: false };
     }
+
+    case userActions.USER_EMAIL_CONFIRM_SUCCESS:
+      return { ...state, emailConfirmation: { _status: LOADED, success: action.data.success } };
 
     default:
       return state;
