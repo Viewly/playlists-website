@@ -4,11 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot --host 0.0.0.0",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --hot --host 0.0.0.0",
     "ssr-start": "node ./dist/server",
-    "ssr-build": "webpack --mode production --config webpack.config.ssr.js",
+    "ssr-build": "cross-env NODE_ENV=production webpack --mode production --config webpack.config.ssr.js",
     "clear": "rimraf ./dist",
-    "build": "npm run clear && webpack --mode production --config webpack.config.prod.js"
+    "build": "npm run clear && cross-env NODE_ENV=production webpack --mode production --config webpack.config.prod.js",
+    "build-production": "npm run clear && cross-env NODE_ENV=production webpack --mode production --config webpack.config.prod.js",
+    "build-staging": "npm run clear && cross-env NODE_ENV=staging webpack --mode production --config webpack.config.prod.js",
+    "ssr-build-staging": "cross-env NODE_ENV=staging webpack --mode production --config webpack.config.ssr.js",
+    "ssr-universal-staging": "npm run build-staging && npm run ssr-build-staging",
+    "ssr-build-production": "cross-env NODE_ENV=production webpack --mode production --config webpack.config.ssr.js",
+    "ssr-universal-production": "npm run build-production && npm run ssr-build-production"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +33,7 @@
     "accoutrement-color": "^2.3.1",
     "babel-eslint": "^8.2.6",
     "babel-loader": "^8.0.4",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "eslint-plugin-react": "^7.11.1",
     "favicons-webpack-plugin": "0.0.9",
