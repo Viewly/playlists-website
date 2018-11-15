@@ -14,6 +14,7 @@ const initialState = {
   renderedPages: {},
   user: jwtCookie ? decodeJwt(jwtCookie) : false,
   emailConfirmation: { _status: PENDING },
+  onboarding: false,
   jwt: jwtCookie
 };
 
@@ -91,6 +92,9 @@ const rootReducer = (state = initialState, action) => {
 
     case userActions.USER_EMAIL_CONFIRM_SUCCESS:
       return { ...state, emailConfirmation: { _status: LOADED, success: action.data.success } };
+
+    case userActions.USER_ONBOARDING_FETCH_SUCCESS:
+      return { ...state, onboarding: action.data };
 
     default:
       return state;

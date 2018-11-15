@@ -70,3 +70,10 @@ export async function userSaveOnboarding(baseUrl, { authenticationToken, categor
   return body;
 }
 
+export async function userGetOnboarding(baseUrl, { authenticationToken }) {
+  const url = `${baseUrl}/user/onboarding`;
+  const { body } = await get(url, { authenticationToken });
+
+  return body;
+}
+

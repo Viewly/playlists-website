@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { zipObject, isEqual } from "lodash";
 
 import CategoryItem from "./components/category_item";
 import { categoriesFetch } from "../../actions";
-import { userSaveOnboarding } from "../../actions/user";
+import { userSaveOnboarding, userGetOnboarding } from "../../actions/user";
 import { isLoaded } from "../../utils";
 
 const MIN_SELECTED_CATEGORIES = 3;
 
 @connect((state) => ({
   categories: state.categories,
+  onboarding: state.onboarding,
 }), (dispatch) => ({
   userSaveOnboarding: (categories_ids) => dispatch(userSaveOnboarding({ categories_ids })),
+  userGetOnboarding: () => dispatch(userGetOnboarding()),
   categoriesFetch: () => dispatch(categoriesFetch()),
 }))
 class OnboardingPage extends Component {
@@ -20,14 +23,28 @@ class OnboardingPage extends Component {
   }
 
   componentDidMount() {
-    const { categories, categoriesFetch } = this.props;
+    const { onboarding, categories, userGetOnboarding, categoriesFetch } = this.props;
 
+    onboarding && this.setState({ selected_categories: this.transformArrayToObject(onboarding.categories_ids) });
     isLoaded(categories) || categoriesFetch();
+    userGetOnboarding();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { onboarding } = this.props;
+
+    if (!isEqual(prevProps.onboarding, onboarding)) {
+      this.setState({ selected_categories: this.transformArrayToObject(onboarding.categories_ids) });
+    }
   }
 
   onCategoryClick = (id) => (evnt) => {
     const newSelected = { ...this.state.selected_categories, [id]: !this.state.selected_categories[id] };
     this.setState({ selected_categories: newSelected });
+  }
+
+  transformArrayToObject = (arr) => {
+    return zipObject(arr, Array(arr.length).fill(true));
   }
 
   getSelectedIds = () => {
