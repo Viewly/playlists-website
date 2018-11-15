@@ -11,6 +11,8 @@ import Categories from "./components/categories";
 import SEO from "../../components/SEO";
 import { HOME_PAGE } from "../../constants/pages";
 
+import { pageLoad, HomepageEvent } from "../../analytics";
+
 const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch()),
   playlistsLoadMore: (query) => dispatch(playlistsLoadMore({ query })),
@@ -41,12 +43,18 @@ class HomePage extends Component {
   async componentDidMount() {
     const { playlistsFetch, playlistsLoadMore, isSSR, setClientRendered } = this.props;
 
+    pageLoad(HOME_PAGE);
+
     if (!isSSR) {
       await playlistsFetch();
       playlistsLoadMore("classification=staff_picked");
     } else {
       setClientRendered();
     }
+  }
+
+  componentWillUnmount() {
+    HomepageEvent();
   }
 
   render() {
