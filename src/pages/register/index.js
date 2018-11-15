@@ -33,7 +33,7 @@ class RegistrationPage extends Component {
 
     if (response.success) {
       loginSuccess(response.user);
-      history.push("/");
+      history.push("/onboarding");
     } else {
       this.setState({
         error: true,

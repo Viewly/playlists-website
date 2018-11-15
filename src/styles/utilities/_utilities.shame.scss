@@ -323,6 +323,12 @@ $tweakpoint-category:   large;
     &:hover {
         text-decoration: none;
     }
+
+    // much style
+    &.is-selected {
+        border: 1px dashed pink;
+        background-color: lightpink;
+    }
 }
 
     .c-category__graphic {

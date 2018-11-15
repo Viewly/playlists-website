@@ -1,4 +1,4 @@
-import { get, post } from "./request";
+import { get, post, put } from "./request";
 
 export async function userLogin(baseUrl, { email, password }) {
   const url = `${baseUrl}/user/login`;
@@ -59,6 +59,13 @@ export async function userForgotPassword(baseUrl, { email }) {
 export async function userForgotPasswordReset(baseUrl, { token, password }) {
   const url = `${baseUrl}/user/reset-password`;
   const { body } = await post(url, { password_reset_token: token, password });
+
+  return body;
+}
+
+export async function userSaveOnboarding(baseUrl, { authenticationToken, categories_ids }) {
+  const url = `${baseUrl}/user/onboarding`;
+  const { body } = await put(url, { authenticationToken, categories_ids });
 
   return body;
 }

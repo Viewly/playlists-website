@@ -14,6 +14,7 @@ import RegistrationPage from "./pages/register";
 import EmailConfirmPage from "./pages/confirm-email";
 import ResetPasswordPage from "./pages/reset-password";
 import AuthyPage from "./pages/authy";
+import OnboardingPage from "./pages/onboarding";
 
 export const routes = [
   {
@@ -59,6 +60,11 @@ export const routes = [
   {
     path: "/register",
     component: RegistrationPage,
+    fullscreen: true,
+  },
+  {
+    path: "/onboarding",
+    component: OnboardingPage,
     fullscreen: true,
   },
   {

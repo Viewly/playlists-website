@@ -27,7 +27,12 @@ class AuthyPage extends Component {
 
     if (response && response.user) {
       loginSuccess(response.user);
-      history.push("/");
+
+      if (response.registered) {
+        history.push("/onboarding");
+      } else {
+        history.push("/");
+      }
     }
   }
 
