@@ -28,7 +28,7 @@ class App extends Component {
 class LayoutWithHeader extends Component {
   render() {
     return (
-      <div>
+      <div className='has-header'>
         <HeaderContainer />
         <>
           {routes.map((route, idx) => (

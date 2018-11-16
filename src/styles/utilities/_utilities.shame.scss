@@ -394,3 +394,12 @@ $tweakpoint-category:   large;
         color: color('brand-primary');
     }
 }
+
+
+.has-header {
+    padding-top: $header-height;
+
+    @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+        padding-top: ($header-height + $nav-height);
+    }
+}
