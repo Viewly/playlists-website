@@ -97,7 +97,7 @@ class RegistrationPage extends Component {
         <div className='c-auth__footer'>
           <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
             <div className='o-grid__cell'>
-              <p>Already have an account? <Link to='/login'>Log in</Link></p>
+              <p>Have an account? <Link to='/login'>Log in</Link></p>
             </div>
             <div className='o-grid__cell'>
               <button className='c-btn c-btn--primary'>Next</button>
