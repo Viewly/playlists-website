@@ -7,6 +7,7 @@ import SearchInput from "./searchInput";
 import { LOGOUT } from "../../actions/user";
 import DropdownMenu from "../DropdownMenu";
 import UserMenu from "./userMenu";
+import BookmarksBadge from "./bookmarksBadge";
 
 @withRouter
 @connect((state) => ({
@@ -99,6 +100,11 @@ class HeaderContainer extends Component {
               <div className='o-grid__cell'>
                 <Link to='/create-playlist' className='c-btn c-btn--primary c-btn--plain'>Create playlist</Link>
               </div>
+              {user && (
+                <div className='o-grid__cell'>
+                  <BookmarksBadge />
+                </div>
+              )}
               {user && (
                 <div className='o-grid__cell'>
                   <DropdownMenu

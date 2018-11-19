@@ -77,3 +77,10 @@ export async function userGetOnboarding(baseUrl, { authenticationToken }) {
   return body;
 }
 
+export async function userGetBookmarks(baseUrl, { authenticationToken }) {
+  const url = `${baseUrl}/user/bookmarks`;
+  const { body } = await get(url, { authenticationToken });
+
+  return body;
+}
+
