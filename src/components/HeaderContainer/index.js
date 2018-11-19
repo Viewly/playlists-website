@@ -5,6 +5,8 @@ import { withRouter } from "react-router";
 import { Link, NavLink } from "react-router-dom";
 import SearchInput from "./searchInput";
 import { LOGOUT } from "../../actions/user";
+import DropdownMenu from "../DropdownMenu";
+import UserMenu from "./userMenu";
 
 @withRouter
 @connect((state) => ({
@@ -99,9 +101,14 @@ class HeaderContainer extends Component {
               </div>
               {user && (
                 <div className='o-grid__cell'>
-                  <Link to='/account' className='c-btn c-btn--primary c-btn--plain'>Profile</Link>
-                  &nbsp;
-                  <span onClick={this.logOut} className='c-btn c-btn--primary c-btn--plain'>Log out</span>
+                  <DropdownMenu
+                    toggle=<UserMenu />
+                    list={[
+                      { label: "Bookmarks", url: "/bookmarks" },
+                      { label: "Profile settings", url: "/account" },
+                      { label: "Logout", onClick: this.logOut },
+                    ]}
+                  />
                 </div>
               )}
               {!user && (
