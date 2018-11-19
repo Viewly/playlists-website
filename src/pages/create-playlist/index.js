@@ -63,7 +63,7 @@ class CreatePlaylist extends Component {
           <div>
             <h1 className='c-form__title'>Create your playlist</h1>
             <form className='c-form' onSubmit={this.handleSubmit}>
-              <ul className='c-form__list'>
+              <ul className='c-form__list c-form__list--large'>
                 <li>
                   <label className='c-form__label'>Playlist title</label>
                   <input className='c-input c-input--primary' type="text" name="title" value={this.state.title} onChange={this.handleChange} required />

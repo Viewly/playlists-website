@@ -69,7 +69,7 @@ class ResetCode extends Component {
             <ul className='c-form__list'>
               <li>
                 <label className='c-form__label'>Type new password</label>
-                <input className='c-input c-input--primary' type="password" name="password" placeholder="New password" value={this.state.password} onChange={this.handleChange} required />
+                <input className='c-input c-input--primary' type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
               </li>
 
               <li className='u-text-right'>

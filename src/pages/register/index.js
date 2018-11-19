@@ -44,47 +44,73 @@ class RegistrationPage extends Component {
 
   render() {
     return (
-      <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-
-        {this.state.error && (
-          <div className='c-thank-you'>
-            <h5 className='u-margin-bottom-small'>An error occurred</h5>
-            <p>{this.state.errorText}</p>
+      <div className='c-auth'>
+        <div className='c-auth__sidebar'>
+          <Link to='/' className='c-logo c-auth__logo'>
+            <img className='c-logo__img' src={require("../../images/logo-white.svg")} />
+          </Link>
+          <div className='c-auth__sidebar__content'>
+            <h1 className='c-auth__sidebar__title'>Collaborative YouTube playlists</h1>
+            <p>
+              Discover playlists, create your own,
+              and contribute to others.
+            </p>
           </div>
-        )}
-
-
-        <div>
-          <h1 className='c-form__title'>Create your account</h1>
-          <form className='c-form' onSubmit={this.handleSubmit}>
-            <ul className='c-form__list'>
-              {/* <li>
-                <label className='c-form__label'>Your name</label>
-                <input className='c-input c-input--primary' type="text" name="name" placeholder="Enter your name" value={this.state.name} onChange={this.handleChange} required />
-              </li> */}
-              <li>
-                <label className='c-form__label'>Email address</label>
-                <input className='c-input c-input--primary' type="email" name="email" placeholder="Email address" value={this.state.email} onChange={this.handleChange} required />
-              </li>
-              <li>
-                <label className='c-form__label'>Password</label>
-                <input className='c-input c-input--primary' type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
-              </li>
-              <li>
-                <label className='c-form__label'>Confirm password</label>
-                <input className='c-input c-input--primary' type="password" name="password2" placeholder="Confirm password" value={this.state.password2} onChange={this.handleChange} required />
-              </li>
-              <li className='u-text-right'>
-                <button className='c-btn c-btn--primary'>Create account</button>
-              </li>
-
-              <p>Already have an account? <Link to='/login'>Log in</Link></p>
-
-              <Link to='/'>RUN BACK TO HOME PAGE</Link>
-            </ul>
-          </form>
         </div>
 
+        <div className='c-auth__main'>
+
+          <div className='c-auth__main__content'>
+            <div className='c-auth__main__header' data-step='01.'>
+              <h1 className='u-h3 u-margin-bottom-tiny'>Welcome to Vidflow!</h1>
+              <p>First, let’s get you set up so you can enjoy distraction free videos.</p>
+            </div>
+
+            {this.state.error && (
+              <div className='c-thank-you'>
+                <h5 className='u-margin-bottom-small'>An error occurred</h5>
+                <p>{this.state.errorText}</p>
+              </div>
+            )}
+
+            <button onClick={this.googleLogin}>Login with Google</button>
+
+            <form className='c-form' onSubmit={this.handleSubmit}>
+              <ul className='c-form__list'>
+                {/* <li>
+                  <label className='c-form__label'>Your name</label>
+                  <input className='c-input c-input--primary' type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
+                </li> */}
+                <li>
+                  <label className='c-form__label'>Email address</label>
+                  <input className='c-input c-input--primary' type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
+                </li>
+                <li>
+                  <label className='c-form__label'>Password</label>
+                  <input className='c-input c-input--primary' type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
+                </li>
+                <li>
+                  <label className='c-form__label'>Confirm password</label>
+                  <input className='c-input c-input--primary' type="password" name="password2" value={this.state.password2} onChange={this.handleChange} required />
+                </li>
+              </ul>
+            </form>
+          </div>
+
+        </div>
+
+        <div className='c-auth__footer'>
+          <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
+            <div className='o-grid__cell'>
+              <p>Already have an account? <Link to='/login'>Log in</Link></p>
+            </div>
+            <div className='o-grid__cell'>
+              <button className='c-btn c-btn--primary'>Next</button>
+            </div>
+
+          </div>
+
+        </div>
       </div>
     );
   }

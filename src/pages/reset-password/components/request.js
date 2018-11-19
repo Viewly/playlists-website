@@ -58,7 +58,7 @@ class ResetRequest extends Component {
             <ul className='c-form__list'>
               <li>
                 <label className='c-form__label'>Email address</label>
-                <input className='c-input c-input--primary' type="email" name="email" placeholder="Email address" value={this.state.email} onChange={this.handleChange} required />
+                <input className='c-input c-input--primary' type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
               </li>
 
               <li className='u-text-right'>

@@ -169,6 +169,14 @@ dl {
 
         li {
             &:not(:last-child) {
+                margin-bottom: $spacing-unit;
+            }
+        }
+    }
+
+    .c-form__list--large {
+        li {
+            &:not(:last-child) {
                 margin-bottom: $spacing-unit-large;
             }
         }

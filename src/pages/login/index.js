@@ -71,11 +71,11 @@ class LoginPage extends Component {
             <ul className='c-form__list'>
               <li>
                 <label className='c-form__label'>Email address</label>
-                <input className='c-input c-input--primary' type="email" name="email" placeholder="Email address" value={this.state.email} onChange={this.handleChange} required />
+                <input className='c-input c-input--primary' type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
               </li>
               <li>
                 <label className='c-form__label'>Password</label>
-                <input className='c-input c-input--primary' type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
+                <input className='c-input c-input--primary' type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
               </li>
               <li className='u-text-right'>
                 <button className='c-btn c-btn--primary'>Log In</button>
