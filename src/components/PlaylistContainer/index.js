@@ -9,7 +9,9 @@ import PlaylistItem from "./item";
 import Loading from "../loading";
 
 @withRouter
-@connect(null, (dispatch) => ({
+@connect((state) => ({
+  user: state.user
+}), (dispatch) => ({
   injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data }),
   userAddBookmark: (playlist_id) => dispatch(userAddBookmark({ playlist_id })),
   userRemoveBookmark: (playlist_id) => dispatch(userRemoveBookmark({ playlist_id })),
@@ -49,7 +51,7 @@ export default class Playlist extends Component {
   }
 
   render() {
-    const { isLoaded, playlists, title, moreButton, big } = this.props;
+    const { isLoaded, playlists, title, moreButton, big, user } = this.props;
 
     return (
       <div>
@@ -68,7 +70,7 @@ export default class Playlist extends Component {
               big={big}
               key={`playlistitem-${idx}`}
               onPlaylistClick={this.onPlaylistClick}
-              onBookmarkClick={this.onBookmarkClick}
+              onBookmarkClick={user ? this.onBookmarkClick : false}
               {...item}
             />
           ))}
