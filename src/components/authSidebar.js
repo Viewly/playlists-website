@@ -9,7 +9,7 @@ const AuthSidebar = () => (
     <div className='c-auth__sidebar__content'>
       <h1 className='c-auth__sidebar__title'>Collaborative YouTube playlists</h1>
       <p>
-        Discover playlists, create your own,
+        Discover playlists, create your own, <br />
         and contribute to others.
       </p>
     </div>

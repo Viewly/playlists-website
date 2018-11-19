@@ -5,6 +5,8 @@
 $tweakpoint-auth:                       920px;
 $tweakpoint-auth-large:                 1200px;
 
+$tweakpoint-auth-sideabar-height:       640px;
+
 $auth-sidebar-width:                    360px;
 $auth-sidebar-width-large:              480px;
 
@@ -88,41 +90,48 @@ $auth-sidebar-width-large:              480px;
      */
     .c-auth__sidebar {
         background-color: #242264;
-        background-image: url('../images/hero-illustration.svg');
-        background-position: top center, bottom center;
-        background-repeat: no-repeat, no-repeat;
-        background-size: contain, contain;
+        background-image: url('../images/auth-pages/auth-sidebar-top.svg');
+        background-repeat: no-repeat;
         color: #fff;
         font-size: 14px;
         padding: $spacing-unit-small;
 
         @include mq($tweakpoint-auth) {
+            background-size: auto;
             height: 100vh;
             text-align: center;
+            padding: $spacing-unit-huge $spacing-unit-large;
             width: $auth-sidebar-width;
             position: fixed;
             top: 0;
             z-index: 100;
+
+            @media (min-height: $tweakpoint-auth-sideabar-height) {
+                background-image: url('../images/auth-pages/auth-sidebar-bottom.svg'), url('../images/auth-pages/auth-sidebar-top.svg');
+                background-position: bottom center, top left;
+                background-repeat: no-repeat, no-repeat;
+                background-size: contain, contain;
+            }
         }
 
         @include mq($tweakpoint-auth-large) {
-            padding-left: $spacing-unit-large;
-            padding-right: $spacing-unit-large;
-            padding-top: $spacing-unit-huge;
-            padding-bottom: $spacing-unit-huge;
             width: $auth-sidebar-width-large;
         }
     }
 
         .c-auth__sidebar__content {
             display: none;
-            margin-top: 15vh;
+            margin-top: 10vh;
             margin-left: auto;
             margin-right: auto;
             max-width: 300px;
 
             @include mq($tweakpoint-auth) {
                 display: block;
+
+                @media (min-height: $tweakpoint-auth-sideabar-height) {
+                    margin-top: 15vh;
+                }
             }
         }
 
