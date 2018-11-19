@@ -7,6 +7,7 @@ import SearchInput from "./searchInput";
 import { LOGOUT } from "../../actions/user";
 import DropdownMenu from "../DropdownMenu";
 import UserMenu from "./userMenu";
+import BookmarksBadge from "./bookmarksBadge";
 
 @withRouter
 @connect((state) => ({
@@ -101,8 +102,13 @@ class HeaderContainer extends Component {
               </div>
               {user && (
                 <div className='o-grid__cell'>
+                  <BookmarksBadge />
+                </div>
+              )}
+              {user && (
+                <div className='o-grid__cell'>
                   <DropdownMenu
-                    toggle=<UserMenu />
+                    toggle={<UserMenu />}
                     list={[
                       { label: "Bookmarks", url: "/bookmarks" },
                       { label: "Profile settings", url: "/account" },

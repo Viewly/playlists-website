@@ -1,15 +1,31 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
+import DropdownItem from "./item";
+import onClickOutside from "react-onclickoutside";
 
+@withRouter
+@onClickOutside
 class DropdownMenu extends Component {
   static propTypes = {
     toggle: PropTypes.node.isRequired,
-    list: PropTypes.array
+    list: PropTypes.array,
+    history: PropTypes.object
   }
 
   state = {
     isOpen: false
+  }
+
+  handleClickOutside = (evt) => {
+    this.setState({ isOpen: false });
+  }
+
+  onClick = (item) => (evnt) => {
+    const { history } = this.props;
+
+    item.onClick ? item.onClick() : history.push(item.url);
+    this.setState({ isOpen: false });
   }
 
   render() {
@@ -26,11 +42,7 @@ class DropdownMenu extends Component {
         {list && isOpen && (
           <div className='dd-list'>
             {list.map((item, idx) => (
-              <li className='dd-list-item' key={`dd-item-${idx}`}>
-                {item.onClick
-                  ? <span onClick={item.onClick}>{item.label}</span>
-                  : <Link to={item.url}>{item.label}</Link>}
-              </li>
+              <DropdownItem key={`dd-item-${idx}`} onItemClicked={this.onClick} item={item} />
             ))}
           </div>
         )}

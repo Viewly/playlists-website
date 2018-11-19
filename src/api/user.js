@@ -1,4 +1,4 @@
-import { get, post, put } from "./request";
+import { get, post, put, del } from "./request";
 
 export async function userLogin(baseUrl, { email, password }) {
   const url = `${baseUrl}/user/login`;
@@ -77,3 +77,23 @@ export async function userGetOnboarding(baseUrl, { authenticationToken }) {
   return body;
 }
 
+export async function userGetBookmarks(baseUrl, { authenticationToken }) {
+  const url = `${baseUrl}/user/bookmarks`;
+  const { body } = await get(url, { authenticationToken });
+
+  return body;
+}
+
+export async function userAddBookmark(baseUrl, { authenticationToken, playlist_id }) {
+  const url = `${baseUrl}/user/bookmark`;
+  const { body } = await post(url, { authenticationToken, playlist_id });
+
+  return body;
+}
+
+export async function userRemoveBookmark(baseUrl, { authenticationToken, playlist_id }) {
+  const url = `${baseUrl}/user/bookmark/${playlist_id}`;
+  const { body } = await del(url, { authenticationToken });
+
+  return body;
+}

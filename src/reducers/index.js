@@ -11,6 +11,7 @@ const initialState = {
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
   hashtags: { _status: PENDING, data: [] },
+  bookmarks: { _status: PENDING, data: [] },
   renderedPages: {},
   user: jwtCookie ? decodeJwt(jwtCookie) : false,
   emailConfirmation: { _status: PENDING },
@@ -77,6 +78,9 @@ const rootReducer = (state = initialState, action) => {
 
     case actions.HASHTAGS_FETCH_SUCCESS:
       return { ...state, hashtags: { _status: LOADED, data: action.data } };
+
+    case userActions.USER_BOOKMARKS_FETCH_SUCCESS:
+      return { ...state, bookmarks: { _status: LOADED, data: action.data } };
 
     case userActions.LOGIN_SUCCESS_PERSIST:
     case userActions.USER_PROFILE_FETCH_SUCCESS: {

@@ -15,6 +15,7 @@ import EmailConfirmPage from "./pages/confirm-email";
 import ResetPasswordPage from "./pages/reset-password";
 import AuthyPage from "./pages/authy";
 import OnboardingPage from "./pages/onboarding";
+import BookmarksPage from "./pages/bookmarks";
 
 export const routes = [
   {
@@ -70,6 +71,10 @@ export const routes = [
   {
     path: "/search/",
     component: SearchPage
+  },
+  {
+    path: "/bookmarks",
+    component: BookmarksPage
   },
   {
     path: "/profile/:profileId",

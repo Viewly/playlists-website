@@ -27,6 +27,13 @@ export async function patch(url, data = {}) {
   return { body: response.data };
 }
 
+export async function del(url, data = {}) {
+  const headers = data.authenticationToken ? { authorization: data.authenticationToken } : {};
+  const { authenticationToken, ...newData } = data; // eslint-disable-line no-unused-vars
+  const response = await axios.delete(url, { params: newData, headers });
+  return { body: response.data };
+}
+
 export function makeApiCall (_apiCall, startActionType, successActionType, errorActionType) {
   return function (params) {
     return async (dispatch, getState) => {
