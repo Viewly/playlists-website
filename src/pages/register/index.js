@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import AuthSidebar from "../../components/authSidebar";
-import { userRegister, LOGIN_SUCCESS_PERSIST } from "../../actions/user";
+import { userRegister, LOGIN_SUCCESS_PERSIST, getGoogleLoginUrl } from "../../actions/user";
 
 @connect(null, (dispatch) => ({
   userRegister: (name, email, password) => dispatch(userRegister({ name, email, password })),
@@ -57,7 +57,7 @@ class RegistrationPage extends Component {
             </div>
 
             {this.state.error && (
-              <div className='c-thank-you'>
+              <div className=''>
                 <h5 className='u-margin-bottom-small'>An error occurred</h5>
                 <p>{this.state.errorText}</p>
               </div>
@@ -70,7 +70,7 @@ class RegistrationPage extends Component {
               </button>
             </div>
 
-            <form className='c-form' onSubmit={this.handleSubmit}>
+            <form id='form-register' className='c-form' onSubmit={this.handleSubmit}>
               <ul className='c-form__list'>
                 {/* <li>
                   <label className='c-form__label'>Your name</label>
@@ -91,7 +91,6 @@ class RegistrationPage extends Component {
               </ul>
             </form>
           </div>
-
         </div>
 
         <div className='c-auth__footer'>
@@ -100,12 +99,11 @@ class RegistrationPage extends Component {
               <p>Have an account? <Link to='/login'>Log in</Link></p>
             </div>
             <div className='o-grid__cell'>
-              <button className='c-btn c-btn--primary'>Next</button>
+              <button form='form-register' className='c-btn c-btn--primary'>Next</button>
             </div>
-
           </div>
-
         </div>
+
       </div>
     );
   }
