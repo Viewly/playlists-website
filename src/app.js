@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { hot } from "react-hot-loader";
-import PlayerPage from "./pages/player";
 import HeaderContainer from "./components/HeaderContainer";
 import { routes } from "./routes";
 // import Cookies from "universal-cookie";
@@ -20,7 +19,9 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route path='/player/:playlistId/:videoId' component={PlayerPage} />
+        {routes.filter(item => item.fullscreen).map((route, idx) => (
+          <Route key={`fullscreen-route-${idx}`} {...route} />
+        ))}
         <Route component={LayoutWithHeader} />
       </Switch>
     );
@@ -30,7 +31,7 @@ class App extends Component {
 class LayoutWithHeader extends Component {
   render() {
     return (
-      <div>
+      <div className='has-header'>
         <HeaderContainer />
         <>
           {routes.map((route, idx) => (

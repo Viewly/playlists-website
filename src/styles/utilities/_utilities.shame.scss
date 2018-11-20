@@ -169,6 +169,14 @@ dl {
 
         li {
             &:not(:last-child) {
+                margin-bottom: $spacing-unit;
+            }
+        }
+    }
+
+    .c-form__list--large {
+        li {
+            &:not(:last-child) {
                 margin-bottom: $spacing-unit-large;
             }
         }
@@ -323,6 +331,12 @@ $tweakpoint-category:   large;
     &:hover {
         text-decoration: none;
     }
+
+    // much style
+    &.is-selected {
+        border: 1px dashed pink;
+        background-color: lightpink;
+    }
 }
 
     .c-category__graphic {
@@ -386,5 +400,14 @@ $tweakpoint-category:   large;
 
     &:hover {
         color: color('brand-primary');
+    }
+}
+
+
+.has-header {
+    padding-top: $header-height;
+
+    @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+        padding-top: ($header-height + $nav-height);
     }
 }

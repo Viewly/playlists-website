@@ -1,6 +1,9 @@
 import * as actions from "../actions";
+import * as userActions from "../actions/user";
 import { PENDING, LOADED, LOADING } from "../constants/status_types";
-import { getPlaylistProgress, updateVideosWithProgresses } from "../utils";
+import { getPlaylistProgress, updateVideosWithProgresses, decodeJwt, setUserCookie, getUserCookie, unsetUserCookie } from "../utils";
+
+const jwtCookie = getUserCookie();
 
 const initialState = {
   config: { apiUrl: "https://api.vidflow.io/v1/api" },
@@ -8,7 +11,12 @@ const initialState = {
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
   hashtags: { _status: PENDING, data: [] },
-  renderedPages: {}
+  bookmarks: { _status: PENDING, data: [] },
+  renderedPages: {},
+  user: jwtCookie ? decodeJwt(jwtCookie) : false,
+  emailConfirmation: { _status: PENDING },
+  onboarding: false,
+  jwt: jwtCookie
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -70,6 +78,27 @@ const rootReducer = (state = initialState, action) => {
 
     case actions.HASHTAGS_FETCH_SUCCESS:
       return { ...state, hashtags: { _status: LOADED, data: action.data } };
+
+    case userActions.USER_BOOKMARKS_FETCH_SUCCESS:
+      return { ...state, bookmarks: { _status: LOADED, data: action.data } };
+
+    case userActions.LOGIN_SUCCESS_PERSIST:
+    case userActions.USER_PROFILE_FETCH_SUCCESS: {
+      const decodedUser = decodeJwt(action.data.jwt);
+      setUserCookie(action.data.jwt);
+      return { ...state, jwt: action.data.jwt, user: decodedUser };
+    }
+
+    case userActions.LOGOUT: {
+      unsetUserCookie();
+      return { ...state, jwt: "", user: false };
+    }
+
+    case userActions.USER_EMAIL_CONFIRM_SUCCESS:
+      return { ...state, emailConfirmation: { _status: LOADED, success: action.data.success } };
+
+    case userActions.USER_ONBOARDING_FETCH_SUCCESS:
+      return { ...state, onboarding: action.data };
 
     default:
       return state;
