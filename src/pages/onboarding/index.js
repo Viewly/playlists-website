@@ -94,15 +94,8 @@ class OnboardingPage extends Component {
 
           </div>
 
-          <div className='c-auth__footer'>
-            <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
-              <div className='o-grid__cell'>
-
-              </div>
-              <div className='o-grid__cell'>
-                <button className='c-btn c-btn--primary' onClick={this.saveOnboarding} disabled={!this.allowNextStep()}>Save profile</button>
-              </div>
-            </div>
+          <div className='c-auth__footer u-text-right'>
+            <button className='c-btn c-btn--primary' onClick={this.saveOnboarding} disabled={!this.allowNextStep()}>Finish</button>
           </div>
 
         </div>
