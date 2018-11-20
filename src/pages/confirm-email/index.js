@@ -49,12 +49,17 @@ class EmailConfirmPage extends Component {
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1 className='u-h3'>Email confirmation</h1>
 
         {!isReady && <Loading />}
         {isReady && (
           <div>
-            {emailConfirmation.success && <p>Thanks for confirming your email</p>}
+            {emailConfirmation.success && (
+              <div className='c-thank-you'>
+                <img className='c-thank-you__img' src={require("../../images/graphic-success.svg")} />
+                <h5 className='u-margin-bottom-small'>Email confirmed!</h5>
+                <p>Thanks for confirming your email. You rock.</p>
+              </div>
+            )}
             {!emailConfirmation.success && <p>Invalid or expired token</p>}
           </div>
         )}
