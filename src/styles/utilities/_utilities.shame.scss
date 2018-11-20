@@ -316,6 +316,11 @@ $tweakpoint-category:   large;
     text-align: center;
     transition: $global-transition;
 
+    &:hover {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
     @include mq($tweakpoint-category) {
         &:hover {
             border-color: rgba($border-color, .5);

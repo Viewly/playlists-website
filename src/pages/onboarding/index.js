@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { zipObject, isEqual } from "lodash";
 
 import CategoryItem from "./components/category_item";
+import AuthSidebar from "../../components/authSidebar";
 import { categoriesFetch } from "../../actions";
 import { userSaveOnboarding, userGetOnboarding } from "../../actions/user";
 import { isLoaded } from "../../utils";
@@ -69,23 +70,42 @@ class OnboardingPage extends Component {
     const { categories } = this.props;
 
     return (
-      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1>Let&#x27;s hack your brain</h1>
-        <p>Please choose min 3 categories that you find interesting and help us find the right playlist for you</p>
+      <div className='c-auth'>
+        <AuthSidebar />
 
-        <div className="c-categories-grid">
-          {categories.data.map((item, idx) => (
-            <CategoryItem
-              key={`category-${idx}`}
-              onCategoryClick={this.onCategoryClick}
-              isSelected={this.state.selected_categories[item.id] === true}
-              {...item}
-            />
-          ))}
+        <div className='c-auth__main c-auth__main--full'>
+
+          <div className='c-auth__main__content'>
+            <div className='c-auth__main__header' data-step='02.'>
+              <h1 className='u-h3 u-margin-bottom-tiny'>Let's hack your brain</h1>
+              <p>Please choose at least 3 categories that you find interesting and help us find the right playlists for you.</p>
+            </div>
+
+            <div className="c-categories-grid">
+              {categories.data.map((item, idx) => (
+                <CategoryItem
+                  key={`category-${idx}`}
+                  onCategoryClick={this.onCategoryClick}
+                  isSelected={this.state.selected_categories[item.id] === true}
+                  {...item}
+                />
+              ))}
+            </div>
+
+          </div>
+
+          <div className='c-auth__footer'>
+            <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
+              <div className='o-grid__cell'>
+
+              </div>
+              <div className='o-grid__cell'>
+                <button className='c-btn c-btn--primary' onClick={this.saveOnboarding} disabled={!this.allowNextStep()}>Save profile</button>
+              </div>
+            </div>
+          </div>
+
         </div>
-
-        <button onClick={this.saveOnboarding} disabled={!this.allowNextStep()}>Save profile</button>
-
       </div>
     );
   }
