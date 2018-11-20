@@ -117,7 +117,7 @@ class HeaderContainer extends Component {
                   />
                 </div>
               )}
-              {!user && (
+              {!user && false && (
                 <div className='o-grid__cell'>
                   <Link to='/login' className='c-btn c-btn--primary c-btn--plain'>Login</Link>
                   &nbsp;
