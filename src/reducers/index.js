@@ -84,12 +84,11 @@ const rootReducer = (state = initialState, action) => {
 
     case userActions.USER_BOOKMARK_ADD_SUCCESS: {
       const selected = state.playlists.data.find(item => item.id === action.data.playlist_id);
-      console.log("SELECTED - ", selected);
       return { ...state, bookmarks: { ...state.bookmarks, data: [ ...state.bookmarks.data, selected ] } };
     }
 
     case userActions.USER_BOOKMARK_REMOVE_SUCCESS:
-      return { ...state, bookmarks: { ...state.bookmarks, data: state.bookmarks.data.filter(item => item.bookmark_id !== action.data.bookmark_id )} };
+      return { ...state, bookmarks: { ...state.bookmarks, data: state.bookmarks.data.filter(item => item.id !== action.data.playlist_id )} };
 
     case userActions.LOGIN_SUCCESS_PERSIST:
     case userActions.USER_PROFILE_FETCH_SUCCESS: {
