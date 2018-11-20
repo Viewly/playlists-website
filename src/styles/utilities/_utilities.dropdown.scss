@@ -1,0 +1,27 @@
+/*------------------------------------*\
+    #DROPDOWN UTILITIES
+\*------------------------------------*/
+
+.dd-menu {
+    .dd-toggle {
+        cursor: pointer;
+    }
+    .dd-list {
+        border: 1px solid #e5e5e5;
+        position: absolute;
+        top: 61px;
+        width: 200px;
+
+        .dd-list-item {
+            color: black;
+            & > a {
+                color: black;
+            }
+            cursor: pointer;
+
+            &:hover {
+                color: lignten(black, 20%);
+            }
+        }
+    }
+}

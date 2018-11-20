@@ -1,0 +1,169 @@
+/*------------------------------------*\
+    #AUTH PAGES
+\*------------------------------------*/
+
+$tweakpoint-auth:                       920px;
+$tweakpoint-auth-large:                 1200px;
+
+$tweakpoint-auth-sideabar-height:       640px;
+
+$auth-sidebar-width:                    360px;
+$auth-sidebar-width-large:              480px;
+
+
+
+
+
+.c-auth {}
+
+    /**
+     * Auth logo
+     */
+    .c-auth__logo {
+        @include mq($tweakpoint-auth) {
+            height: 43px;
+        }
+    }
+
+    /**
+     * Auth main block
+     *
+     * 1. Make room for `c-auth__footer`.
+     */
+    .c-auth__main {
+        display: flex;
+        justify-content: center;
+        padding-bottom: $spacing-unit-huge; /* [1] */
+
+        @include mq($tweakpoint-auth) {
+            align-items: center;
+            min-height: 100vh;
+            margin-left: $auth-sidebar-width;
+        }
+
+        @include mq($tweakpoint-auth-large) {
+            margin-left: $auth-sidebar-width-large;
+        }
+    }
+
+        .c-auth__main__header {
+            color: #a2a4a6;
+            margin-bottom: $spacing-unit;
+            position: relative;
+
+            @include mq($tweakpoint-auth) {
+                margin-bottom: $spacing-unit-large;
+            }
+
+            &::before {
+                @include mq($tweakpoint-auth + $spacing-unit-huge) {
+                    color: #cccdcf;
+                    content: attr(data-step);
+                    font-size: 40px;
+                    line-height: 1.3;
+                    font-weight: 300;
+                    margin-right: $spacing-unit;
+                    margin-bottom: 0;
+                    position: absolute;
+                    right: 100%;
+                    top: 0;
+                }
+            }
+        }
+
+        .c-auth__main__content {
+            max-width: 520px;
+            padding-left: $spacing-unit;
+            padding-right: $spacing-unit;
+            padding-top: $spacing-unit-large;
+            padding-bottom: $spacing-unit-large;
+            width: 100%;
+
+            @include mq($tweakpoint-auth) {
+                padding-left: $spacing-unit-large;
+                padding-right: $spacing-unit-large;
+            }
+        }
+
+    /**
+     * Auth sidebar
+     */
+    .c-auth__sidebar {
+        background-color: #242264;
+        background-image: url('../images/auth-pages/auth-sidebar-top.svg');
+        background-repeat: no-repeat;
+        color: #fff;
+        font-size: 14px;
+        padding: $spacing-unit-small;
+
+        @include mq($tweakpoint-auth) {
+            background-size: auto;
+            height: 100vh;
+            text-align: center;
+            padding: $spacing-unit-huge $spacing-unit-large;
+            width: $auth-sidebar-width;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+
+            @media (min-height: $tweakpoint-auth-sideabar-height) {
+                background-image: url('../images/auth-pages/auth-sidebar-bottom.svg'), url('../images/auth-pages/auth-sidebar-top.svg');
+                background-position: bottom center, top left;
+                background-repeat: no-repeat, no-repeat;
+                background-size: contain, contain;
+            }
+        }
+
+        @include mq($tweakpoint-auth-large) {
+            width: $auth-sidebar-width-large;
+        }
+    }
+
+        .c-auth__sidebar__content {
+            display: none;
+            margin-top: 10vh;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 300px;
+
+            @include mq($tweakpoint-auth) {
+                display: block;
+
+                @media (min-height: $tweakpoint-auth-sideabar-height) {
+                    margin-top: 15vh;
+                }
+            }
+        }
+
+        .c-auth__sidebar__title {
+            color: inherit;
+            font-size: 18px;
+
+            &:not(:last-child) {
+                margin-bottom: $spacing-unit-tiny;
+            }
+        }
+
+    /**
+     * Auth footer
+     */
+    .c-auth__footer {
+        background-color: #fff;
+        border-top: 1px solid color('grey');
+        color: #afb1b3;
+        font-size: 13px;
+        padding: $spacing-unit-small $spacing-unit;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+
+        @include mq($tweakpoint-auth) {
+            margin-left: $auth-sidebar-width;
+        }
+
+        @include mq($tweakpoint-auth-large) {
+            margin-left: $auth-sidebar-width-large;
+        }
+    }

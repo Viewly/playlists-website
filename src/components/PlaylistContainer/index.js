@@ -4,12 +4,17 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 
 import { PLAYLIST_INJECT_DATA } from "../../actions";
+import { userAddBookmark, userRemoveBookmark } from "../../actions/user";
 import PlaylistItem from "./item";
 import Loading from "../loading";
 
 @withRouter
-@connect(null, (dispatch) => ({
-  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data })
+@connect((state) => ({
+  user: state.user
+}), (dispatch) => ({
+  injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data }),
+  userAddBookmark: (playlist_id) => dispatch(userAddBookmark({ playlist_id })),
+  userRemoveBookmark: (playlist_id) => dispatch(userRemoveBookmark({ playlist_id })),
 }))
 export default class Playlist extends Component {
   static propTypes = {
@@ -38,8 +43,15 @@ export default class Playlist extends Component {
     history.push(`/playlist/${url}`);
   }
 
+  onBookmarkClick = (id) => {
+    const { userAddBookmark, userRemoveBookmark } = this.props; // eslint-disable-line
+
+    userAddBookmark(id);
+    // userRemoveBookmark(id);
+  }
+
   render() {
-    const { isLoaded, playlists, title, moreButton, big } = this.props;
+    const { isLoaded, playlists, title, moreButton, big, user } = this.props;
 
     return (
       <div>
@@ -53,7 +65,15 @@ export default class Playlist extends Component {
         </div>
 
         <div className='o-grid'>
-          {isLoaded && playlists.map((item, idx) => <PlaylistItem big={big} key={`playlistitem-${idx}`} onPlaylistClick={this.onPlaylistClick} {...item} />)}
+          {isLoaded && playlists.map((item, idx) => (
+            <PlaylistItem
+              big={big}
+              key={`playlistitem-${idx}`}
+              onPlaylistClick={this.onPlaylistClick}
+              onBookmarkClick={user ? this.onBookmarkClick : false}
+              {...item}
+            />
+          ))}
           {!isLoaded && <Loading />}
           {isLoaded && playlists.length === 0 && (
             <div className='o-grid__cell u-1/1'>

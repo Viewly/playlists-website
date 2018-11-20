@@ -62,7 +62,7 @@ export default class PlaylistInfo extends Component {
             <h1 className='u-h4 u-margin-bottom-large'>Suggest a video for &ldquo;{playlist.title}&rdquo;</h1>
 
             <form className='c-form' onSubmit={this.handleSubmit}>
-              <ul className='c-form__list'>
+              <ul className='c-form__list c-form__list--large'>
                 <li>
                   <label className='c-form__label'>Link to the video</label>
                   <input className='c-input c-input--primary' type="url" name="link" value={this.state.link} onChange={this.handleChange} required />
