@@ -14,7 +14,7 @@ import Loading from "../loading";
 }), (dispatch) => ({
   injectPlaylist: (data) => dispatch({ type: PLAYLIST_INJECT_DATA, data }),
   userAddBookmark: (playlist_id) => dispatch(userAddBookmark({ playlist_id })),
-  userRemoveBookmark: (playlist_id) => dispatch(userRemoveBookmark({ playlist_id })),
+  userRemoveBookmark: (bookmark_id) => dispatch(userRemoveBookmark({ bookmark_id })),
 }))
 export default class Playlist extends Component {
   static propTypes = {
@@ -44,10 +44,14 @@ export default class Playlist extends Component {
   }
 
   onBookmarkClick = (id) => {
-    const { userAddBookmark, userRemoveBookmark } = this.props; // eslint-disable-line
+    const { playlists, userAddBookmark, userRemoveBookmark } = this.props; // eslint-disable-line
+    const selectedPlaylist = playlists.find(item => item.id === id);
 
-    userAddBookmark(id);
-    // userRemoveBookmark(id);
+    if (selectedPlaylist.bookmark_id) {
+      userRemoveBookmark(selectedPlaylist.bookmark_id);
+    } else {
+      userAddBookmark(id);
+    }
   }
 
   render() {
