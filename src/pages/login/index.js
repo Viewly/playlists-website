@@ -87,7 +87,7 @@ class LoginPage extends Component {
                   <label className='c-form__label'>Password</label>
                   <input className='c-input c-input--primary' type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
                 </li>
-                <li><Link to='/reset-password'>Forgot password?</Link></li>
+                <li className='u-text-right'><Link to='/reset-password'>Forgot password?</Link></li>
               </ul>
             </form>
           </div>
