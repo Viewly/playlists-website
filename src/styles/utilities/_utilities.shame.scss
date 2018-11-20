@@ -337,10 +337,9 @@ $tweakpoint-category:   large;
         text-decoration: none;
     }
 
-    // much style
     &.is-selected {
-        border: 1px dashed pink;
-        background-color: lightpink;
+        background-color: color('light-grey');
+        border: 1px solid color('green');
     }
 }
 
@@ -371,7 +370,8 @@ $tweakpoint-category:   large;
                 @include invisible;
                 z-index: 20;
 
-                .c-category:hover & {
+                .c-category:hover &,
+                .c-category.is-selected & {
                     @include visible;
                 }
             }
