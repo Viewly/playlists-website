@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 
+import AuthSidebar from "../../../components/authSidebar";
 import { userForgotPasswordReset } from "../../../actions/user";
 
 @withRouter
@@ -53,34 +54,44 @@ class ResetCode extends Component {
 
   render() {
     return (
-      <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+      <div className='c-auth'>
+        <AuthSidebar />
+        <div className='c-auth__main'>
 
-        {this.state.error && (
-          <div className='c-thank-you'>
-            <h5 className='u-margin-bottom-small'>An error occurred</h5>
-            <p>{this.state.errorText}</p>
+          <div className='c-auth__main__content'>
+
+            <div className='c-auth__main__header'>
+              <h1 className='u-h3 u-margin-bottom-tiny'>Reset password</h1>
+            </div>
+
+            {this.state.error && (
+              <div className='c-thank-you'>
+                <h5 className='u-margin-bottom-small'>An error occurred</h5>
+                <p>{this.state.errorText}</p>
+              </div>
+            )}
+
+            <form className='c-form' onSubmit={this.handleSubmit}>
+              <ul className='c-form__list'>
+                <li>
+                  <label className='c-form__label'>Type new password</label>
+                  <input className='c-input c-input--primary' type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
+                </li>
+
+                <li>
+                  <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
+                    <div className='o-grid__cell'>
+                      <Link to='/login'>&larr; Back to login</Link>
+                    </div>
+                    <div className='o-grid__cell'>
+                      <button className='c-btn c-btn--primary'>Update password</button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </form>
           </div>
-        )}
-
-        <div>
-          <h1 className='c-form__title'>Reset password</h1>
-
-          <form className='c-form' onSubmit={this.handleSubmit}>
-            <ul className='c-form__list'>
-              <li>
-                <label className='c-form__label'>Type new password</label>
-                <input className='c-input c-input--primary' type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
-              </li>
-
-              <li className='u-text-right'>
-                <button className='c-btn c-btn--primary'>Update password</button>
-              </li>
-
-              <p><Link to='/login'>Back to login</Link></p>
-            </ul>
-          </form>
         </div>
-
       </div>
     );
   }
