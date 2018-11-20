@@ -76,7 +76,7 @@ class OnboardingPage extends Component {
         <div className='c-auth__main c-auth__main--full'>
 
           <div className='c-auth__main__content'>
-            <div className='c-auth__main__header' data-step='02.'>
+            <div className='c-auth__main__header'>
               <h1 className='u-h3 u-margin-bottom-tiny'>Let's hack your brain</h1>
               <p>Please choose at least 3 categories that you find interesting and help us find the right playlists for you.</p>
             </div>
