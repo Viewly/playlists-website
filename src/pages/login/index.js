@@ -71,7 +71,7 @@ class LoginPage extends Component {
             )}
 
             <div className='u-margin-bottom-large'>
-              <button className='c-btn c-btn--social c-btn--social--google' onClick={this.googleLogin}>
+              <button className='c-btn c-btn--social c-btn--social--google c-btn--full' onClick={this.googleLogin}>
                 <img className='c-btn--social__logo' src={require("../../images/soc-networks-logos/logo-google.svg")} />
                 Log in with Google
               </button>

@@ -60,7 +60,13 @@ class EmailConfirmPage extends Component {
                 <p>Thanks for confirming your email. You rock.</p>
               </div>
             )}
-            {!emailConfirmation.success && <p>Invalid or expired token</p>}
+            {!emailConfirmation.success && (
+              <div className='c-thank-you'>
+                <img className='c-thank-you__img' src={require("../../images/graphic-error.svg")} />
+                <h5 className='u-margin-bottom-small'>Something's wrong</h5>
+                <p>Invalid or expired token.</p>
+              </div>
+            )}
           </div>
         )}
       </div>
