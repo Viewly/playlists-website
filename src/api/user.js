@@ -91,9 +91,9 @@ export async function userAddBookmark(baseUrl, { authenticationToken, playlist_i
   return { body, playlist_id };
 }
 
-export async function userRemoveBookmark(baseUrl, { authenticationToken, bookmark_id }) {
-  const url = `${baseUrl}/user/bookmark/${bookmark_id}`;
+export async function userRemoveBookmark(baseUrl, { authenticationToken, playlist_id }) {
+  const url = `${baseUrl}/user/bookmark/${playlist_id}`;
   const { body } = await del(url, { authenticationToken });
 
-  return { body, bookmark_id };
+  return { body, playlist_id };
 }
