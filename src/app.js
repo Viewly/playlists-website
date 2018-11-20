@@ -4,14 +4,17 @@ import { hot } from "react-hot-loader";
 import PlayerPage from "./pages/player";
 import HeaderContainer from "./components/HeaderContainer";
 import { routes } from "./routes";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
+import { FirstLoadEvent } from "./analytics";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    const cookies = new Cookies();
-    cookies.set("ssr", "1", { path: "/" });
+    // const cookies = new Cookies();
+    // cookies.set("ssr", "1", { path: "/" });
+
+    FirstLoadEvent();
   }
 
   render() {
