@@ -21,7 +21,10 @@ export const routes = [
   {
     path: "/",
     component: HomePage,
-    exact: true
+    exact: true,
+    analytics: {
+      event_type: "HomepageEvent"
+    }
   },
   {
     path: "/create-playlist",

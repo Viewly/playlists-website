@@ -11,6 +11,7 @@ let times = {};
 function getUnixTimestamp() {
   return Math.round(+(new Date())/1000);
 }
+
 function getMeta() {
   const analyticsCookie = cookies.get(ANALYTICS_COOKIE);
   return {
@@ -18,9 +19,9 @@ function getMeta() {
   };
 }
 
-async function sendEvent(type, data) {
+async function sendEvent(event_type, data) {
   const meta = getMeta();
-  const response = await put(EVENT_URL, { type, data, meta });
+  const response = await put(EVENT_URL, { event_type, data, meta });
 
   return response;
 }
@@ -58,8 +59,20 @@ export async function FirstLoadEvent() {
   }
 }
 
-export async function HomepageEvent() {
+export async function HomepageEvent(params) {
   const time_on_page_seconds = getUnixTimestamp() - times["HOME_PAGE"];
 
   console.log("TIME SPENT ON PAGE", time_on_page_seconds);
+  console.log("playlist_id", params && params.playlist_id);
+}
+
+export async function triggerEvent(type, data) {
+  console.log("TRIGGER", type);
+  // if (type === "HomepageEvent") {
+  //   if (data.playlist_id) {
+  //     HomepageEvent({ playlist_id: data.playlist_id });
+  //   } else {
+  //     HomepageEvent();
+  //   }
+  // }
 }

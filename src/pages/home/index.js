@@ -11,8 +11,6 @@ import Categories from "./components/categories";
 import SEO from "../../components/SEO";
 import { HOME_PAGE } from "../../constants/pages";
 
-import { pageLoad, HomepageEvent } from "../../analytics";
-
 const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch()),
   playlistsLoadMore: (query) => dispatch(playlistsLoadMore({ query })),
@@ -43,8 +41,6 @@ class HomePage extends Component {
   async componentDidMount() {
     const { playlistsFetch, playlistsLoadMore, isSSR, setClientRendered } = this.props;
 
-    pageLoad(HOME_PAGE);
-
     if (!isSSR) {
       await playlistsFetch();
       playlistsLoadMore("classification=staff_picked");
@@ -53,9 +49,6 @@ class HomePage extends Component {
     }
   }
 
-  componentWillUnmount() {
-    HomepageEvent();
-  }
 
   render() {
     const { playlists } = this.props;
@@ -86,6 +79,7 @@ class HomePage extends Component {
                 big
                 title="Staff picks"
                 isLoaded={isReady}
+                onPlaylistClick={this.logPlaylistClick}
                 playlists={pickedPlaylists}
               />
             )}
@@ -99,6 +93,7 @@ class HomePage extends Component {
             title="New playlists"
             moreButton={{ title: "View All", url: "/new" }}
             isLoaded={isReady}
+            onPlaylistClick={this.logPlaylistClick}
             playlists={playlists.data.filter(i => i.classification !== "staff_picked").splice(0, 8)}
           />
         </div>

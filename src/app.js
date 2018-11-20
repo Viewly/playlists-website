@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { hot } from "react-hot-loader";
+import { withRouter } from "react-router";
 import HeaderContainer from "./components/HeaderContainer";
 import { routes } from "./routes";
 // import Cookies from "universal-cookie";
 import { FirstLoadEvent } from "./analytics";
+import AnalyticsWrapper from "./components/Analytics";
 
+@withRouter
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,13 +20,22 @@ class App extends Component {
   }
 
   render() {
+    // {/* <Route key={`dummy-route-${idx}`} {...route} component={AnalyticsWrapper} /> */}
     return (
-      <Switch>
-        {routes.filter(item => item.fullscreen).map((route, idx) => (
-          <Route key={`fullscreen-route-${idx}`} {...route} />
-        ))}
-        <Route component={LayoutWithHeader} />
-      </Switch>
+      <>
+        <Switch>
+          {routes.map((route, idx) => (
+            <Route key={`dummy-route-${idx}`} path={route.path} exact={route.exact} render={() => <AnalyticsWrapper path={route.path} {...route} />} />
+          ))}
+        </Switch>
+
+        <Switch>
+          {routes.filter(item => item.fullscreen).map((route, idx) => (
+            <Route key={`fullscreen-route-${idx}`} {...route} />
+          ))}
+          <Route component={LayoutWithHeader} />
+        </Switch>
+      </>
     );
   }
 }
