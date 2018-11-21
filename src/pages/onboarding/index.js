@@ -4,11 +4,11 @@ import { zipObject, isEqual } from "lodash";
 
 import CategoryItem from "./components/category_item";
 import AuthSidebar from "../../components/authSidebar";
+import SubmitCounter from "./components/submit_counter";
+
 import { categoriesFetch } from "../../actions";
 import { userSaveOnboarding, userGetOnboarding } from "../../actions/user";
 import { isLoaded } from "../../utils";
-
-const MIN_SELECTED_CATEGORIES = 3;
 
 @connect((state) => ({
   categories: state.categories,
@@ -52,10 +52,6 @@ class OnboardingPage extends Component {
     return Object.keys(this.state.selected_categories).filter(item => this.state.selected_categories[item] === true).map(item => parseInt(item, 10));
   }
 
-  allowNextStep = () => {
-    return (this.getSelectedIds().length >= MIN_SELECTED_CATEGORIES);
-  }
-
   saveOnboarding = async () => {
     const { userSaveOnboarding, history } = this.props;
 
@@ -68,6 +64,7 @@ class OnboardingPage extends Component {
 
   render() {
     const { categories } = this.props;
+    const isReady = isLoaded(categories);
 
     return (
       <div className='c-auth'>
@@ -77,7 +74,7 @@ class OnboardingPage extends Component {
 
           <div className='c-auth__main__content'>
             <div className='c-auth__main__header'>
-              <h1 className='u-h3 u-margin-bottom-tiny'>Let's hack your brain</h1>
+              <h1 className='u-h3 u-margin-bottom-tiny'>Let&#x27;s hack your brain</h1>
               <p>Please choose at least 3 categories that you find interesting and help us find the right playlists for you.</p>
             </div>
 
@@ -95,7 +92,7 @@ class OnboardingPage extends Component {
           </div>
 
           <div className='c-auth__footer u-text-right'>
-            <button className='c-btn c-btn--primary' onClick={this.saveOnboarding} disabled={!this.allowNextStep()}>Finish</button>
+            {isReady && <SubmitCounter selected={this.getSelectedIds().length} onSave={this.saveOnboarding} />}
           </div>
 
         </div>
