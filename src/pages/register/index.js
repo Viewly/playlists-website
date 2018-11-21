@@ -7,6 +7,7 @@ import { userRegister, LOGIN_SUCCESS_PERSIST, getGoogleLoginUrl } from "../../ac
 
 @connect(null, (dispatch) => ({
   userRegister: (name, email, password) => dispatch(userRegister({ name, email, password })),
+  getGoogleLoginUrl: (data) => dispatch(getGoogleLoginUrl()),
   loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data })
 }))
 class RegistrationPage extends Component {
@@ -17,6 +18,14 @@ class RegistrationPage extends Component {
     password2: "",
     error: false,
     errorText: ""
+  }
+
+
+  googleLogin = async () => {
+    const { getGoogleLoginUrl } = this.props;
+    const response = await getGoogleLoginUrl();
+
+    window.location.href = response.url;
   }
 
   handleChange = (evnt) => {
@@ -53,7 +62,7 @@ class RegistrationPage extends Component {
           <div className='c-auth__main__content'>
             <div className='c-auth__main__header'>
               <h1 className='u-h3 u-margin-bottom-tiny'>Welcome to Vidflow!</h1>
-              <p>First, let’s get you set up so you can enjoy distraction free videos.</p>
+              <p>First, let&#x27;s get you set up so you can enjoy distraction free videos.</p>
             </div>
 
             {this.state.error && (
