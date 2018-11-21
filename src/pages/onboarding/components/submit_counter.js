@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 const MIN_SELECTED_CATEGORIES = 3;
 const lang = {
-  3: "Choose three categories",
-  2: "Two more",
-  1: "One more"
+  3: "Choose 3 categories to continue",
+  2: "2 more categories",
+  1: "1 more category"
 };
 
 class SubmitCounter extends Component {
@@ -27,7 +27,7 @@ class SubmitCounter extends Component {
     }
 
     return (
-      <button className='c-btn c-btn--primary' disabled>{lang[MIN_SELECTED_CATEGORIES - selected]}</button>
+      <button className='c-btn c-btn--secondary' disabled>{lang[MIN_SELECTED_CATEGORIES - selected]}</button>
     );
   }
 }
