@@ -5,15 +5,18 @@ import { Provider } from "react-redux";
 import createStore from "./store/index";
 import App from "./app";
 import ScrollToTop from "./components/scrollToTop";
+import AnalyticsWrapper from "./components/analytics";
 
 const store = createStore();
 const $appContainer = document.getElementById("root");
 const Application = (
   <Provider store={store}>
     <BrowserRouter>
-      <ScrollToTop>
-        <App />
-      </ScrollToTop>
+      <AnalyticsWrapper>
+        <ScrollToTop>
+          <App />
+        </ScrollToTop>
+      </AnalyticsWrapper>
     </BrowserRouter>
   </Provider>
 );

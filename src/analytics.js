@@ -1,6 +1,7 @@
 import Cookies from "universal-cookie";
 import uuid from "uuid/v1";
 import { put } from "./api/request";
+import { PLAYLIST_PAGE } from "./constants/pages";
 
 const EVENT_URL = "https://vidflow-analytics.view.ly/log_event";
 const ANALYTICS_COOKIE = "analytics";
@@ -59,20 +60,27 @@ export async function FirstLoadEvent() {
   }
 }
 
-export async function HomepageEvent(params) {
+export async function HomepageEvent(data) {
   const time_on_page_seconds = getUnixTimestamp() - times["HOME_PAGE"];
 
-  console.log("TIME SPENT ON PAGE", time_on_page_seconds);
-  console.log("playlist_id", params && params.playlist_id);
+  let homepageData = {
+    referrer_url: document && document.referrer,
+    time_on_page_seconds
+  };
+
+  if (data.toRoute && data.toRoute.analytics && data.toRoute.analytics.pageName === PLAYLIST_PAGE) {
+    homepageData.click_playlist_id = data.toRoute.params.playlistId;
+  } else {
+    homepageData.click_other_url = data.toUrl;
+  }
+
+  sendEvent("HomepageEvent", homepageData);
 }
 
-export async function triggerEvent(type, data) {
+export async function triggerEvent(type, data = undefined) {
   console.log("TRIGGER", type);
-  // if (type === "HomepageEvent") {
-  //   if (data.playlist_id) {
-  //     HomepageEvent({ playlist_id: data.playlist_id });
-  //   } else {
-  //     HomepageEvent();
-  //   }
-  // }
+  console.log("with data", data);
+  switch (type) {
+    case "HomepageEvent": HomepageEvent(data);
+  }
 }

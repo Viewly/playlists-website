@@ -1,31 +1,61 @@
 import { Component } from "react";
-import { triggerEvent } from "../analytics";
+import PropTypes from "prop-types";
+import { matchPath, withRouter } from "react-router";
 
+import { routes } from "../routes";
+import { pageLoad, triggerEvent } from "../analytics";
+
+@withRouter
 class AnalyticsWrapper extends Component {
-
-  componentDidUpdate(prevProps) {
-    console.log("UPDATE", this.props);
+  static propTypes = {
+    location: PropTypes.object,
+    children: PropTypes.node,
   }
 
   componentDidMount() {
-    const { analytics } = this.props;
-    console.log("MOUNT");
-    if (analytics) {
-      analytics.event_type && triggerEvent(analytics.event_type);
+    const route = this.getRoute(this.props.location.pathname);
+
+    this.pageLoad(route);
+    this.pageEnter(route);
+  }
+
+  componentDidUpdate(prevProps) {
+    const fromRoute = this.getRoute(prevProps.location.pathname);
+    const toRoute = this.getRoute(this.props.location.pathname);
+
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.pageLoad(toRoute);
+      this.pageEnter(toRoute);
+      this.pageLeave(fromRoute, { toUrl: this.props.location.pathname, toRoute });
     }
-    // const route = routes.find(item => item.path === this.props.match.path);
-    // console.log("MOUNT", this.props);
-    // console.log("ENTER", route.path, route.analytics);
   }
 
-  componentWillUnmount() {
-    // const route = routes.find(item => item.path === this.props.match.path);
-
-    // console.log("EXIT", route.path, route.analytics);
+  getRoute = (path) => {
+    const matched = routes.filter(route => {
+      return matchPath(path, route);
+    });
+    return matched && { ...matched[0], ...matchPath(path, matched[0]) };
   }
 
+  pageLoad = (route) => {
+    if (route.analytics && route.analytics.pageName) {
+      pageLoad(route.analytics.pageName);
+    }
+  }
+
+  pageEnter = (route) => {
+    if (route.analytics && route.analytics.pageEnter) {
+      triggerEvent(route.analytics.pageEnter);
+    }
+  }
+
+  pageLeave = (route, data) => {
+    if (route.analytics && route.analytics.pageLeave) {
+      triggerEvent(route.analytics.pageLeave, data);
+    }
+  }
   render() {
-    return null;
+    return this.props.children;
   }
 }
 

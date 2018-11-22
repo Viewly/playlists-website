@@ -16,6 +16,7 @@ import ResetPasswordPage from "./pages/reset-password";
 import AuthyPage from "./pages/authy";
 import OnboardingPage from "./pages/onboarding";
 import BookmarksPage from "./pages/bookmarks";
+import { HOME_PAGE, PLAYLIST_PAGE } from "./constants/pages";
 
 export const routes = [
   {
@@ -23,7 +24,8 @@ export const routes = [
     component: HomePage,
     exact: true,
     analytics: {
-      event_type: "HomepageEvent"
+      pageName: HOME_PAGE,
+      pageLeave: "HomepageEvent"
     }
   },
   {
@@ -93,7 +95,10 @@ export const routes = [
   },
   {
     path: "/playlist/:playlistId",
-    component: PlaylistPage
+    component: PlaylistPage,
+    analytics: {
+      pageName: PLAYLIST_PAGE
+    }
   },
   {
     path: "/player/:playlistId/:videoId",
