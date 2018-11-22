@@ -76,7 +76,7 @@ class HomePage extends Component {
             {pickedPlaylists.length > 0 && (
               <Playlist
                 big
-                title="Staff picks"
+                title="Our picks"
                 isLoaded={isReady}
                 playlists={pickedPlaylists}
               />
