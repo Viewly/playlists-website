@@ -90,9 +90,9 @@ export async function SearchEvent(data) {
 
   if (data.toRoute && data.toRoute.params && data.toRoute.params.playlistId) {
     searchData.click_playlist_id = data.toRoute.params.playlistId;
+  } else {
+    searchData.click_other_url = data.toUrl;
   }
-
-  console.log("data", data);
 
   sendEvent("SearchEvent", searchData);
 }
