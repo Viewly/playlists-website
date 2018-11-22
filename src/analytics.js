@@ -2,7 +2,7 @@ import Cookies from "universal-cookie";
 import uuid from "uuid/v1";
 import queryString from "query-string";
 import { put } from "./api/request";
-import { PLAYLIST_PAGE } from "./constants/pages";
+import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE } from "./constants/pages";
 
 const EVENT_URL = "https://vidflow-analytics.view.ly/log_event";
 const ANALYTICS_COOKIE = "analytics";
@@ -62,7 +62,7 @@ export async function FirstLoadEvent() {
 }
 
 export async function HomepageEvent(data) {
-  const time_on_page_seconds = getUnixTimestamp() - times["HOME_PAGE"];
+  const time_on_page_seconds = getUnixTimestamp() - times[HOME_PAGE];
 
   let homepageData = {
     referrer_url: document && document.referrer,
@@ -79,7 +79,7 @@ export async function HomepageEvent(data) {
 }
 
 export async function SearchEvent(data) {
-  const time_on_page_seconds = getUnixTimestamp() - times["SEARCH_PAGE"];
+  const time_on_page_seconds = getUnixTimestamp() - times[SEARCH_PAGE];
   const parsed = queryString.parse(data.prevLocation ? data.prevLocation.search : document.location.search);
 
   let searchData = {
@@ -97,11 +97,28 @@ export async function SearchEvent(data) {
   sendEvent("SearchEvent", searchData);
 }
 
+export async function PlaylistEvent(data) {
+  const time_on_page_seconds = getUnixTimestamp() - times[PLAYLIST_PAGE];
+  let playlistData = {
+    time_on_page_seconds,
+    playlist_id: data.fromRoute.params.playlistId
+  };
+
+  if (data.toRoute && data.toRoute.params && data.toRoute.params.videoId) {
+    playlistData.click_video_id = data.toRoute.params.videoId;
+  } else {
+    playlistData.click_other_url = data.toUrl;
+  }
+
+  sendEvent("PlaylistEvent", playlistData);
+}
+
 export async function triggerEvent(type, data = undefined) {
   console.log("TRIGGER", type);
   console.log("with data", data);
   switch (type) {
     case "HomepageEvent": HomepageEvent(data); break;
     case "SearchEvent": SearchEvent(data); break;
+    case "PlaylistEvent": PlaylistEvent(data); break;
   }
 }

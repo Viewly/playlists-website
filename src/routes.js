@@ -102,7 +102,8 @@ export const routes = [
     path: "/playlist/:playlistId",
     component: PlaylistPage,
     analytics: {
-      pageName: PLAYLIST_PAGE
+      pageName: PLAYLIST_PAGE,
+      pageLeave: "PlaylistEvent"
     }
   },
   {

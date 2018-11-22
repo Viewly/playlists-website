@@ -26,7 +26,13 @@ class AnalyticsWrapper extends Component {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.pageLoad(toRoute);
       this.pageEnter(toRoute);
-      this.pageLeave(fromRoute, { toUrl: this.props.location.pathname, toRoute, location: this.props.location, prevLocation: prevProps.location });
+      this.pageLeave(fromRoute, {
+        toUrl: this.props.location.pathname,
+        location: this.props.location,
+        prevLocation: prevProps.location,
+        fromRoute,
+        toRoute
+      });
     } else if (this.props.location.search !== prevProps.location.search) {
       this.pageEnter(toRoute);
     }
