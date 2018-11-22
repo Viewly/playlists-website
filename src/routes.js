@@ -16,7 +16,7 @@ import ResetPasswordPage from "./pages/reset-password";
 import AuthyPage from "./pages/authy";
 import OnboardingPage from "./pages/onboarding";
 import BookmarksPage from "./pages/bookmarks";
-import { HOME_PAGE, PLAYLIST_PAGE } from "./constants/pages";
+import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE } from "./constants/pages";
 
 export const routes = [
   {
@@ -75,7 +75,12 @@ export const routes = [
   },
   {
     path: "/search/",
-    component: SearchPage
+    component: SearchPage,
+    analytics: {
+      pageName: SEARCH_PAGE,
+      pageEnter: "SearchEvent",
+      pageLeave: "SearchEvent"
+    }
   },
   {
     path: "/bookmarks",

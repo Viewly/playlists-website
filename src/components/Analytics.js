@@ -26,7 +26,9 @@ class AnalyticsWrapper extends Component {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.pageLoad(toRoute);
       this.pageEnter(toRoute);
-      this.pageLeave(fromRoute, { toUrl: this.props.location.pathname, toRoute });
+      this.pageLeave(fromRoute, { toUrl: this.props.location.pathname, toRoute, location: this.props.location, prevLocation: prevProps.location });
+    } else if (this.props.location.search !== prevProps.location.search) {
+      this.pageEnter(toRoute);
     }
   }
 
@@ -45,7 +47,7 @@ class AnalyticsWrapper extends Component {
 
   pageEnter = (route) => {
     if (route.analytics && route.analytics.pageEnter) {
-      triggerEvent(route.analytics.pageEnter);
+      triggerEvent(route.analytics.pageEnter, route);
     }
   }
 

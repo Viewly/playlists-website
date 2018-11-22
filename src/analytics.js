@@ -1,5 +1,6 @@
 import Cookies from "universal-cookie";
 import uuid from "uuid/v1";
+import queryString from "query-string";
 import { put } from "./api/request";
 import { PLAYLIST_PAGE } from "./constants/pages";
 
@@ -77,10 +78,30 @@ export async function HomepageEvent(data) {
   sendEvent("HomepageEvent", homepageData);
 }
 
+export async function SearchEvent(data) {
+  const time_on_page_seconds = getUnixTimestamp() - times["SEARCH_PAGE"];
+  const parsed = queryString.parse(data.prevLocation ? data.prevLocation.search : document.location.search);
+
+  let searchData = {
+    time_on_page_seconds,
+    pagination: 0,
+    query: parsed.query
+  };
+
+  if (data.toRoute && data.toRoute.params && data.toRoute.params.playlistId) {
+    searchData.click_playlist_id = data.toRoute.params.playlistId;
+  }
+
+  console.log("data", data);
+
+  sendEvent("SearchEvent", searchData);
+}
+
 export async function triggerEvent(type, data = undefined) {
   console.log("TRIGGER", type);
   console.log("with data", data);
   switch (type) {
-    case "HomepageEvent": HomepageEvent(data);
+    case "HomepageEvent": HomepageEvent(data); break;
+    case "SearchEvent": SearchEvent(data); break;
   }
 }
