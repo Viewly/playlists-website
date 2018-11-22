@@ -19,7 +19,7 @@ class CategoryItem extends Component {
           <img src={require(`../../../images/categories-icons/category-${slug}.svg`)} />
           <img src={require(`../../../images/categories-icons/category-${slug}-hover.svg`)} />
         </div>
-        <h3 className='c-category__title'>{name} {isSelected ? "yes" : "no"}</h3>
+        <h3 className='c-category__title'>{name}</h3>
       </div>
     );
   }

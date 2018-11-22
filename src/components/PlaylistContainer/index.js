@@ -45,10 +45,14 @@ export default class Playlist extends Component {
   }
 
   onBookmarkClick = (id) => {
-    const { userAddBookmark, userRemoveBookmark } = this.props; // eslint-disable-line
+    const { playlists, userAddBookmark, userRemoveBookmark } = this.props; // eslint-disable-line
+    const selectedPlaylist = playlists.find(item => item.id === id);
 
-    userAddBookmark(id);
-    // userRemoveBookmark(id);
+    if (selectedPlaylist.bookmarked) {
+      userRemoveBookmark(selectedPlaylist.id);
+    } else {
+      userAddBookmark(id);
+    }
   }
 
   render() {

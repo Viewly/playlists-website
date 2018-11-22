@@ -78,7 +78,7 @@ export async function userGetOnboarding(baseUrl, { authenticationToken }) {
 }
 
 export async function userGetBookmarks(baseUrl, { authenticationToken }) {
-  const url = `${baseUrl}/user/bookmarks`;
+  const url = `${baseUrl}/playlists?status=published&order=publish_date&bookmarked=true`;
   const { body } = await get(url, { authenticationToken });
 
   return body;
@@ -88,12 +88,12 @@ export async function userAddBookmark(baseUrl, { authenticationToken, playlist_i
   const url = `${baseUrl}/user/bookmark`;
   const { body } = await post(url, { authenticationToken, playlist_id });
 
-  return body;
+  return { body, playlist_id };
 }
 
 export async function userRemoveBookmark(baseUrl, { authenticationToken, playlist_id }) {
   const url = `${baseUrl}/user/bookmark/${playlist_id}`;
   const { body } = await del(url, { authenticationToken });
 
-  return body;
+  return { body, playlist_id };
 }

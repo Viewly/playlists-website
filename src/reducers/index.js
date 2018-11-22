@@ -82,6 +82,14 @@ const rootReducer = (state = initialState, action) => {
     case userActions.USER_BOOKMARKS_FETCH_SUCCESS:
       return { ...state, bookmarks: { _status: LOADED, data: action.data } };
 
+    case userActions.USER_BOOKMARK_ADD_SUCCESS: {
+      const selected = state.playlists.data.find(item => item.id === action.data.playlist_id);
+      return { ...state, bookmarks: { ...state.bookmarks, data: [ ...state.bookmarks.data, selected ] } };
+    }
+
+    case userActions.USER_BOOKMARK_REMOVE_SUCCESS:
+      return { ...state, bookmarks: { ...state.bookmarks, data: state.bookmarks.data.filter(item => item.id !== action.data.playlist_id )} };
+
     case userActions.LOGIN_SUCCESS_PERSIST:
     case userActions.USER_PROFILE_FETCH_SUCCESS: {
       const decodedUser = decodeJwt(action.data.jwt);

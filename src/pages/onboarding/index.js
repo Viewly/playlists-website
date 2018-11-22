@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { zipObject, isEqual } from "lodash";
 
 import CategoryItem from "./components/category_item";
+import AuthSidebar from "../../components/authSidebar";
+import SubmitCounter from "./components/submit_counter";
+
 import { categoriesFetch } from "../../actions";
 import { userSaveOnboarding, userGetOnboarding } from "../../actions/user";
 import { isLoaded } from "../../utils";
-
-const MIN_SELECTED_CATEGORIES = 3;
 
 @connect((state) => ({
   categories: state.categories,
@@ -51,10 +52,6 @@ class OnboardingPage extends Component {
     return Object.keys(this.state.selected_categories).filter(item => this.state.selected_categories[item] === true).map(item => parseInt(item, 10));
   }
 
-  allowNextStep = () => {
-    return (this.getSelectedIds().length >= MIN_SELECTED_CATEGORIES);
-  }
-
   saveOnboarding = async () => {
     const { userSaveOnboarding, history } = this.props;
 
@@ -67,25 +64,38 @@ class OnboardingPage extends Component {
 
   render() {
     const { categories } = this.props;
+    const isReady = isLoaded(categories);
 
     return (
-      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1>Let&#x27;s hack your brain</h1>
-        <p>Please choose min 3 categories that you find interesting and help us find the right playlist for you</p>
+      <div className='c-auth'>
+        <AuthSidebar />
 
-        <div className="c-categories-grid">
-          {categories.data.map((item, idx) => (
-            <CategoryItem
-              key={`category-${idx}`}
-              onCategoryClick={this.onCategoryClick}
-              isSelected={this.state.selected_categories[item.id] === true}
-              {...item}
-            />
-          ))}
+        <div className='c-auth__main c-auth__main--full'>
+
+          <div className='c-auth__main__content'>
+            <div className='c-auth__main__header'>
+              <h1 className='u-h3 u-margin-bottom-tiny'>Let&#x27;s hack your brain</h1>
+              <p>Please choose at least 3 categories that you find interesting and help us find the right playlists for you.</p>
+            </div>
+
+            <div className="c-categories-grid">
+              {categories.data.map((item, idx) => (
+                <CategoryItem
+                  key={`category-${idx}`}
+                  onCategoryClick={this.onCategoryClick}
+                  isSelected={this.state.selected_categories[item.id] === true}
+                  {...item}
+                />
+              ))}
+            </div>
+
+          </div>
+
+          <div className='c-auth__footer u-text-right'>
+            {isReady && <SubmitCounter selected={this.getSelectedIds().length} onSave={this.saveOnboarding} />}
+          </div>
+
         </div>
-
-        <button onClick={this.saveOnboarding} disabled={!this.allowNextStep()}>Save profile</button>
-
       </div>
     );
   }

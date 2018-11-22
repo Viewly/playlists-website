@@ -20,10 +20,9 @@ class LoginPage extends Component {
 
   googleLogin = async () => {
     const { getGoogleLoginUrl } = this.props;
-    const test = await getGoogleLoginUrl();
+    const response = await getGoogleLoginUrl();
 
-    // console.log("YA", test);
-    window.location.href = test.url;
+    window.location.href = response.url;
   }
 
   handleChange = (evnt) => {
@@ -96,7 +95,7 @@ class LoginPage extends Component {
         <div className='c-auth__footer'>
           <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
             <div className='o-grid__cell'>
-              <p>Don't have an account? <Link to='/register'>Get started</Link></p>
+              <p>Don&#x27;t have an account? <Link to='/register'>Get started</Link></p>
             </div>
             <div className='o-grid__cell'>
               <button form='form-login' className='c-btn c-btn--primary'>Log in</button>
