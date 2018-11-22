@@ -46,7 +46,7 @@
 
     &:not(:disabled) {
         &::placeholder {
-            color: rgba($input-color, .65);
+            color: rgba($input-color, .85);
         }
 
         &:hover {
