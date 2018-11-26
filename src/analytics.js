@@ -3,6 +3,7 @@ import uuid from "uuid/v1";
 import queryString from "query-string";
 import { put } from "./api/request";
 import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE, PLAYER_PAGE } from "./constants/pages";
+import { getLocale, getTimezone, getBrowser, getOs, getResolution, getDevice } from "./utils";
 
 const EVENT_URL = "https://vidflow-analytics.view.ly/log_event";
 const ANALYTICS_COOKIE = "analytics";
@@ -26,6 +27,7 @@ function getMeta() {
 async function sendEvent(event_type, data) {
   const meta = getMeta();
   const response = await put(EVENT_URL, { event_type, data, meta });
+  console.log("SENDING", data);
 
   return response;
 }
@@ -42,15 +44,15 @@ export async function SetUserId(current_user_id) {
 
 export async function RegisterCookie() {
   const temp = await sendEvent("RegisterCookie", {
-    locale: "en",
-    local_timezone: "",
+    locale: getLocale(),
+    local_timezone: getTimezone(),
     location: "",
-    browser: "",
-    os: "mac",
+    browser: getBrowser(),
+    os: getOs(),
     cpu: "",
     gpu: "",
-    screen_resolution: "1920x1080",
-    device_type: 1, // 1 = pc, 2 = mobile, 3 = other
+    screen_resolution: getResolution(),
+    device_type: getDevice(), // 1 = pc, 2 = mobile, 3 = other
     // is_vpn: false
   });
 
