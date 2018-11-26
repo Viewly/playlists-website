@@ -7,6 +7,7 @@ import SEO from "../../components/SEO";
 
 import { playlistFetch, updatePercentage } from "../../actions";
 import { LOADED } from "../../constants/status_types";
+import { TriggerPlayerEvent, TriggerPlayerError } from "../../analytics";
 
 @connect((state) => ({
   playlist: state.playlist
@@ -88,6 +89,16 @@ class PlayerPage extends Component {
     classes.includes("c-player-playlist") && this.togglePlaylist();
   }
 
+  logAction = (data) => {
+    const { match: { params: { playlistId, videoId } } } = this.props;
+
+    if (data.error) {
+      TriggerPlayerError({ ...data, playlist_id: playlistId, video_id: videoId });
+    } else {
+      TriggerPlayerEvent({ ...data, playlist_id: playlistId, video_id: videoId });
+    }
+  }
+
   render() {
     const { playlist } = this.props;
     const isLoaded = playlist._status === LOADED;
@@ -105,6 +116,7 @@ class PlayerPage extends Component {
               playlistUrl={`/playlist/${playlist.url}`}
               video={currentVideo}
               onVideoEnd={this.onVideoEnd}
+              logAction={this.logAction}
               onPercentage={this.onPercentage} />
             <Playlist
               onClick={this.onPlaylistClick}

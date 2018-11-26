@@ -24,7 +24,10 @@ class AnalyticsWrapper extends Component {
     const toRoute = this.getRoute(this.props.location.pathname);
 
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.pageLoad(toRoute);
+      if (toRoute.path !== fromRoute.path) {
+        this.pageLoad(toRoute);
+      }
+
       this.pageEnter(toRoute);
       this.pageLeave(fromRoute, {
         toUrl: this.props.location.pathname,

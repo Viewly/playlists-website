@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 import Plyr from "./plyr";
 
-const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage }) => (
+const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage, logAction }) => (
   <div className='c-player'>
     <div>
       <div className='c-player__container'>
-        {video && <Plyr videoId={video.video_id} percentage={video.percentage} resumeTime={video.currentTime} onVideoEnd={onVideoEnd} onPercentage={onPercentage} />}
+        {video && <Plyr videoId={video.video_id} logAction={logAction} percentage={video.percentage} resumeTime={video.currentTime} onVideoEnd={onVideoEnd} onPercentage={onPercentage} />}
       </div>
 
       <Link className='c-btn button-back' to={playlistUrl}>&times;  </Link>
@@ -22,6 +22,7 @@ VideoPlayer.propTypes = {
   playlistUrl: PropTypes.string.isRequired,
   video: PropTypes.object.isRequired,
   onVideoEnd: PropTypes.func.isRequired,
+  logAction: PropTypes.func.isRequired,
   onPercentage: PropTypes.func.isRequired,
 };
 

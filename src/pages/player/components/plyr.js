@@ -8,6 +8,7 @@ class PlyrComponent extends React.Component {
     videoId: PropTypes.string.isRequired,
     onVideoEnd: PropTypes.func,
     onPercentage: PropTypes.func,
+    logAction: PropTypes.func,
     resumeTime: PropTypes.number,
     percentage: PropTypes.number,
   }
@@ -26,9 +27,13 @@ class PlyrComponent extends React.Component {
     this.player[0].on("timeupdate", this.handleEvent);
     this.player[0].on("statechange", this.handleEvent);
     this.player[0].on("ready", this.handleEvent);
+    this.player[0].on("error", this.handleEvent);
   }
 
   componentWillUnmount() {
+    const { logAction } = this.props;
+
+    logAction({ playback_state: 0, segment_start: this.player[0].currentTime });
     if (this.player.length > 0) {
       for (const playerEl of this.player) {
         playerEl.destroy();
@@ -51,11 +56,12 @@ class PlyrComponent extends React.Component {
   }
 
   handleEvent = (evnt) => {
-    const { onVideoEnd, onPercentage, videoId, resumeTime, percentage } = this.props;
+    const { onVideoEnd, onPercentage, videoId, resumeTime, percentage, logAction } = this.props;
 
     switch (evnt.type) {
       case "statechange": {
         const code = evnt.detail.code;
+        logAction({ playback_state: code, segment_start: this.player[0].currentTime });
         code === VIDEO_ENDED && onVideoEnd();
         break;
       }
@@ -68,7 +74,12 @@ class PlyrComponent extends React.Component {
         this.player[0].play();
         if (resumeTime && percentage !== 100) {
           this.player[0].currentTime = resumeTime;
+          logAction({ segment_start: resumeTime });
         }
+        break;
+      }
+      case "error": {
+        logAction({ error: `YOUTUBE_ERROR_${evnt.detail.code}`, error_msg: evnt.detail.message });
         break;
       }
       default:

@@ -2,7 +2,7 @@ import Cookies from "universal-cookie";
 import uuid from "uuid/v1";
 import queryString from "query-string";
 import { put } from "./api/request";
-import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE } from "./constants/pages";
+import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE, PLAYER_PAGE } from "./constants/pages";
 
 const EVENT_URL = "https://vidflow-analytics.view.ly/log_event";
 const ANALYTICS_COOKIE = "analytics";
@@ -113,12 +113,51 @@ export async function PlaylistEvent(data) {
   sendEvent("PlaylistEvent", playlistData);
 }
 
+export async function PlayerEvent(data) {
+  const time_on_page_seconds = getUnixTimestamp() - times[PLAYER_PAGE];
+
+  let playlistData = {
+    time_on_page_seconds,
+    playlist_id: data.fromRoute.params.playlistId,
+    video_id: data.fromRoute.params.videoId,
+    playback_state: -1
+  };
+
+  if (data.toRoute && data.toRoute.params && data.toRoute.params.videoId) {
+    playlistData.click_video_id = data.toRoute.params.videoId;
+  } else {
+    playlistData.click_other_url = data.toUrl;
+  }
+
+  sendEvent("PlayerEvent", playlistData);
+}
+
+export async function TriggerPlayerEvent(data) {
+  const time_on_page_seconds = getUnixTimestamp() - times[PLAYER_PAGE];
+  const playlistData = {
+    time_on_page_seconds,
+    playlist_id: data.playlist_id,
+    video_id: data.video_id,
+    playback_state: -1,
+    ...data
+  };
+  sendEvent("PlayerEvent", playlistData);
+}
+
+export async function TriggerPlayerError(data) {
+  const playlistData = {
+    playlist_id: data.playlist_id,
+    video_id: data.video_id,
+    ...data
+  };
+  sendEvent("PlayerError", playlistData);
+}
+
 export async function triggerEvent(type, data = undefined) {
-  console.log("TRIGGER", type);
-  console.log("with data", data);
   switch (type) {
     case "HomepageEvent": HomepageEvent(data); break;
     case "SearchEvent": SearchEvent(data); break;
     case "PlaylistEvent": PlaylistEvent(data); break;
+    case "PlayerEvent": PlayerEvent(data); break;
   }
 }
