@@ -2,17 +2,28 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { hot } from "react-hot-loader";
 import { withRouter } from "react-router";
+import { connect } from "react-redux";
 
 import HeaderContainer from "./components/HeaderContainer";
 import { routes } from "./routes";
-import { FirstLoadEvent } from "./analytics";
+import { FirstLoadEvent, SetUserId } from "./analytics";
 
 @withRouter
+@connect((state) => ({
+  user: state.user
+}))
 class App extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    const { user } = this.props;
 
     FirstLoadEvent();
+    SetUserId(user?.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.user?.id !== prevProps.user?.id) {
+      SetUserId(this.props.user?.id);
+    }
   }
 
   render() {

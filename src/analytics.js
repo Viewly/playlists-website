@@ -9,6 +9,7 @@ const ANALYTICS_COOKIE = "analytics";
 const cookies = new Cookies();
 
 let times = {};
+let user_id = undefined;
 
 function getUnixTimestamp() {
   return Math.round(+(new Date())/1000);
@@ -17,7 +18,8 @@ function getUnixTimestamp() {
 function getMeta() {
   const analyticsCookie = cookies.get(ANALYTICS_COOKIE);
   return {
-    cookie_id: analyticsCookie
+    cookie_id: analyticsCookie,
+    user_id
   };
 }
 
@@ -32,6 +34,10 @@ export async function pageLoad(page) {
   const time = getUnixTimestamp();
 
   times[page] = time;
+}
+
+export async function SetUserId(current_user_id) {
+  user_id = current_user_id;
 }
 
 export async function RegisterCookie() {
