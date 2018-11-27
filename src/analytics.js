@@ -44,7 +44,7 @@ export async function SetUserId(current_user_id) {
 }
 
 export async function RegisterCookie() {
-  const temp = await sendEvent("RegisterCookie", {
+  sendEvent("RegisterCookie", {
     locale: getLocale(),
     local_timezone: getTimezone(),
     location: "",
@@ -56,8 +56,6 @@ export async function RegisterCookie() {
     device_type: getDevice(), // 1 = pc, 2 = mobile, 3 = other
     // is_vpn: false
   });
-
-  console.log("LOGGED", temp);
 }
 
 export async function FirstLoadEvent() {
