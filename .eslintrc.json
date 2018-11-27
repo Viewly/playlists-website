@@ -48,6 +48,7 @@
         "SERVER": true,
         "CLIENT": true,
         "DEVELOPMENT": true,
+        "PRODUCTION": true,
         "__HYDRATE__": true
     }
 }

@@ -25,11 +25,12 @@ function getMeta() {
 }
 
 async function sendEvent(event_type, data) {
-  const meta = getMeta();
-  const response = await put(EVENT_URL, { event_type, data, meta });
-  console.log("SENDING", data);
+  if (PRODUCTION) {
+    const meta = getMeta();
+    const response = await put(EVENT_URL, { event_type, data, meta });
 
-  return response;
+    return response;
+  }
 }
 
 export async function pageLoad(page) {
