@@ -49,6 +49,7 @@ class HomePage extends Component {
     }
   }
 
+
   render() {
     const { playlists } = this.props;
     const isReady = isLoaded(playlists);
@@ -78,6 +79,7 @@ class HomePage extends Component {
                 big
                 title="Our picks"
                 isLoaded={isReady}
+                onPlaylistClick={this.logPlaylistClick}
                 playlists={pickedPlaylists}
               />
             )}
@@ -91,6 +93,7 @@ class HomePage extends Component {
             title="New playlists"
             moreButton={{ title: "View All", url: "/new" }}
             isLoaded={isReady}
+            onPlaylistClick={this.logPlaylistClick}
             playlists={playlists.data.filter(i => i.classification !== "staff_picked").splice(0, 8)}
           />
         </div>

@@ -35,11 +35,12 @@ export default class Playlist extends Component {
   }
 
   onPlaylistClick = (url) => (evnt) => {
-    const { history, injectPlaylist, playlists } = this.props;
+    const { history, injectPlaylist, playlists, onPlaylistClick } = this.props;
     const selectedPlaylist = playlists.find(item => item.url === url);
 
     evnt.preventDefault();
     injectPlaylist(selectedPlaylist);
+    onPlaylistClick && onPlaylistClick(selectedPlaylist.id);
     history.push(`/playlist/${url}`);
   }
 

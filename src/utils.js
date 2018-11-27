@@ -4,6 +4,10 @@ import Cookies from "universal-cookie";
 import jwtDecode from "jwt-decode";
 import { LOADED } from "./constants/status_types";
 import { COOKIE_SESSION } from "./constants";
+import getUserLocale from "get-user-locale";
+import guessTimezone from "guess-timezone";
+import browserDetect from "browser-detect";
+import isMobile from "is-mobile";
 
 export function convertYoutubeDuration (duration) {
   return moment
@@ -87,4 +91,54 @@ export function unsetUserCookie() {
   const cookies = new Cookies();
 
   cookies.remove(COOKIE_SESSION);
+}
+
+export function getLocale() {
+  const userLocale = getUserLocale();
+
+  return userLocale;
+}
+
+export function getTimezone() {
+  return guessTimezone.calc();
+}
+
+export function getBrowser() {
+  const result = browserDetect();
+
+  if (result) {
+    return result.name;
+  } else {
+    return "unknown";
+  }
+}
+
+export function getOs() {
+  const result = browserDetect();
+
+  if (result) {
+    return result.os;
+  } else {
+    return "unknown";
+  }
+}
+
+export function getResolution() {
+  let width = window.screen.width;
+  let height = window.screen.height;
+
+  if (window.devicePixelRatio) {
+    width *= window.devicePixelRatio;
+    height *= window.devicePixelRatio;
+  }
+
+  return `${width}x${height}`;
+}
+
+export function getDevice() {
+  if (!navigator.userAgent) {
+    return 3;
+  }
+
+  return isMobile() ? 2 : 1;
 }
