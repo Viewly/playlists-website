@@ -16,7 +16,12 @@ const initialState = {
   user: jwtCookie ? decodeJwt(jwtCookie) : false,
   emailConfirmation: { _status: PENDING },
   onboarding: false,
-  jwt: jwtCookie
+  jwt: jwtCookie,
+  modals: {
+    login: {
+      isOpen: false
+    }
+  }
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -107,6 +112,11 @@ const rootReducer = (state = initialState, action) => {
 
     case userActions.USER_ONBOARDING_FETCH_SUCCESS:
       return { ...state, onboarding: action.data };
+
+    case userActions.OPEN_LOGIN_MODAL:
+      return { ...state, modals: { ...state.modals, [action.data.name]: { isOpen: true } } };
+    case userActions.CLOSE_LOGIN_MODAL:
+      return { ...state, modals: { ...state.modals, [action.data.name]: { isOpen: false } } };
 
     default:
       return state;

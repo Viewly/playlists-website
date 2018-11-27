@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import HeaderContainer from "./components/HeaderContainer";
 import { routes } from "./routes";
 import { FirstLoadEvent, SetUserId } from "./analytics";
+import LoginModal from "./components/LoginModal";
 
 @withRouter
 @connect((state) => ({
@@ -28,12 +29,16 @@ class App extends Component {
 
   render() {
     return (
-      <Switch>
-        {routes.filter(item => item.fullscreen).map((route, idx) => (
-          <Route key={`fullscreen-route-${idx}`} {...route} />
-        ))}
-        <Route component={LayoutWithHeader} />
-      </Switch>
+      <>
+        <LoginModal />
+
+        <Switch>
+          {routes.filter(item => item.fullscreen).map((route, idx) => (
+            <Route key={`fullscreen-route-${idx}`} {...route} />
+          ))}
+          <Route component={LayoutWithHeader} />
+        </Switch>
+      </>
     );
   }
 }
