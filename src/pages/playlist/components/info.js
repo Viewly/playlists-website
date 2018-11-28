@@ -14,7 +14,8 @@ import { LOADED, LOADING } from "../../../constants/status_types";
 import { userAddBookmark, userRemoveBookmark } from "../../../actions/user";
 
 @connect((state) => ({
-  playlist: state.playlist
+  playlist: state.playlist,
+  user: state.user
 }), (dispatch) => ({
   userAddBookmark: (playlist_id) => dispatch(userAddBookmark({ playlist_id })),
   userRemoveBookmark: (playlist_id) => dispatch(userRemoveBookmark({ playlist_id })),
@@ -36,7 +37,7 @@ export default class PlaylistInfo extends Component {
   }
 
   render() {
-    const { playlist, match: { params: { playlistId } } } = this.props;
+    const { playlist, user, match: { params: { playlistId } } } = this.props;
     const isLoaded = (playlist._status === LOADED) || (playlist.id === playlistId) || (playlist.url === playlistId);
     const isLoading = playlist._status === LOADING;
     if (!isLoaded) return <div>Loading ...</div>;
@@ -60,12 +61,14 @@ export default class PlaylistInfo extends Component {
                 <span><b>{playlist.videos.length} videos</b></span>
               </div>
               <div className='o-grid__cell u-margin-bottom'>
-                <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-left-none u-padding-right-none has-colored-icon ${playlist.bookmarked ? "is-active": ""}`}>
-                  <div className='c-colored-icon o-icon'>
-                    <img className='c-colored-icon__icon' src={require("../../../images/icons/bookmark.svg")} />
-                    <img className='c-colored-icon__icon' src={require("../../../images/icons/bookmark-hover.svg")} />
-                  </div>
-                </button>
+                {user && (
+                  <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-left-none u-padding-right-none has-colored-icon ${playlist.bookmarked ? "is-active" : ""}`}>
+                    <div className='c-colored-icon o-icon'>
+                      <img className='c-colored-icon__icon' src={require("../../../images/icons/bookmark.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../../images/icons/bookmark-hover.svg")} />
+                    </div>
+                  </button>
+                )}
                 <SharePlaylist playlist={playlist} />
                 <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>Suggest a video</Link>
               </div>
