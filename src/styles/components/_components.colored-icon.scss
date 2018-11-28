@@ -1,0 +1,40 @@
+/*------------------------------------*\
+    #COLORED ICON
+\*------------------------------------*/
+
+
+.c-colored-icon {
+    display: block;
+    height: 1em;
+    width: 1em;
+    position: relative;
+}
+
+    .c-colored-icon__icon {
+        height: 100%;
+        transition: $global-transition;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+
+        .has-colored-icon:hover &,
+        .has-colored-icon.is-current &,
+        .has-colored-icon.is-active &,
+        .has-colored-icon.is-selected & {
+            opacity: 0;
+        }
+
+        &:last-child {
+            opacity: 0;
+            z-index: 20;
+
+            .has-colored-icon:hover &,
+            .has-colored-icon.is-current &,
+            .has-colored-icon.is-active &,
+            .has-colored-icon.is-selected & {
+                opacity: 1;
+            }
+        }
+    }
