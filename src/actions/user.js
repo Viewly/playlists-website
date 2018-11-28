@@ -66,3 +66,5 @@ export const userRemoveBookmark = makeApiCall(userApi.userRemoveBookmark, USER_B
 
 export const LOGIN_SUCCESS_PERSIST = "USER/LOGIN_SUCCESS_PERSIST";
 export const LOGOUT = "USER/LOGOUT";
+export const OPEN_LOGIN_MODAL = "USER/OPEN_LOGIN_MODAL";
+export const CLOSE_LOGIN_MODAL = "USER/CLOSE_LOGIN_MODAL";
