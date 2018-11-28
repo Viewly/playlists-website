@@ -60,7 +60,7 @@ export default class PlaylistInfo extends Component {
                 <span><b>{playlist.videos.length} videos</b></span>
               </div>
               <div className='o-grid__cell u-margin-bottom'>
-                <button onClick={this.onBookmarkClick} className={`c-btn u-inline-block u-align-middle u-margin-right has-colored-icon ${playlist.bookmarked ? "is-active": ""}`}>
+                <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-left-none u-padding-right-none has-colored-icon ${playlist.bookmarked ? "is-active": ""}`}>
                   <div className='c-colored-icon o-icon'>
                     <img className='c-colored-icon__icon' src={require("../../../images/icons/bookmark.svg")} />
                     <img className='c-colored-icon__icon' src={require("../../../images/icons/bookmark-hover.svg")} />
