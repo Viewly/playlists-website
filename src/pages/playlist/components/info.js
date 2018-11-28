@@ -27,7 +27,7 @@ export default class PlaylistInfo extends Component {
 
   onBookmarkClick = () => {
     const { playlist, userAddBookmark, userRemoveBookmark } = this.props;
-    console.log("playlist", playlist);
+
     if (playlist.bookmarked) {
       userRemoveBookmark(playlist.id);
     } else {
