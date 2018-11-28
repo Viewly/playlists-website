@@ -8,14 +8,12 @@ import { LOGOUT } from "../../actions/user";
 import DropdownMenu from "../DropdownMenu";
 import UserMenu from "./userMenu";
 import BookmarksBadge from "./bookmarksBadge";
-import { OPEN_LOGIN_MODAL } from "../../actions/user";
 
 @withRouter
 @connect((state) => ({
   user: state.user
 }), (dispatch) => ({
-  doLogout: () => dispatch({ type: LOGOUT }),
-  openLoginModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "login" } }),
+  doLogout: () => dispatch({ type: LOGOUT })
 }))
 class HeaderContainer extends Component {
   static propTypes = {
@@ -89,11 +87,6 @@ class HeaderContainer extends Component {
                     </div>
                     <span className='c-nav-primary__label'>Explore</span>
                   </NavLink>
-                </li>
-                <li className='c-nav-primary__item'>
-                  <div className='c-nav-primary__link'>
-                    <button onClick={() => this.props.openLoginModal()}>MODAL</button>
-                  </div>
                 </li>
               </ul>
             </nav>
