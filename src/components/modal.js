@@ -28,7 +28,7 @@ export default class Modal extends Component {
         onRequestClose={onClose}>
 
         <div className="c-modal__content">
-          {showClose && <div className='c-btn c-modal__btn-close'><i className='spott-icon icon-close' onClick={onClose}>&times;</i></div>}
+          {showClose && <div className='c-btn c-modal__btn-close' onClick={onClose}>&times;</div>}
           {title && <div className="modal-title">{title}</div>}
 
           {children}

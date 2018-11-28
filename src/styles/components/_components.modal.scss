@@ -51,9 +51,8 @@
     .c-modal__content {
         background-color: #fff;
         border-radius: 4px;
-        margin-top: $spacing-unit;
         max-width: 500px;
-        padding: $spacing-unit;
+        padding: $spacing-unit-large;
         pointer-events: auto;
         transform-origin: bottom center;
         transform: scale(.95);
@@ -66,4 +65,15 @@
             transform: scale(1);
             transition: transform .25s ease-out-quart();
         }
+    }
+
+    /**
+     * Modal content.
+     */
+    .c-modal__btn-close[class] {
+        font-size: 22px;
+        padding: 0;
+        position: absolute;
+        top: $spacing-unit-small;
+        right: $spacing-unit-small;
     }
