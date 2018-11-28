@@ -1,10 +1,17 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 
 class UserMenu extends Component {
+  static propTypes = {
+    user: PropTypes.object,
+  }
+
   render() {
+    const { user } = this.props;
+
     return (
       <Fragment>
-        <img className='o-avatar ' src="http://i.pics.rs/LJXhy.png" />
+        <img className='o-avatar ' src={user.avatar_url} />
       </Fragment>
     );
   }
