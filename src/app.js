@@ -7,7 +7,9 @@ import { connect } from "react-redux";
 import HeaderContainer from "./components/HeaderContainer";
 import { routes } from "./routes";
 import { FirstLoadEvent, SetUserId } from "./analytics";
+
 import LoginModal from "./components/LoginModal";
+import UploadModal from "./components/UploadModal";
 
 @withRouter
 @connect((state) => ({
@@ -31,6 +33,7 @@ class App extends Component {
     return (
       <>
         <LoginModal />
+        <UploadModal />
 
         <Switch>
           {routes.filter(item => item.fullscreen).map((route, idx) => (

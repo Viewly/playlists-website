@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { userEmailRequest } from "../../../actions/user";
+import { userEmailRequest, OPEN_LOGIN_MODAL } from "../../../actions/user";
 
 @connect((state) => ({
   user: state.user
 }), (dispatch) => ({
   userEmailRequest: (email) => dispatch(userEmailRequest({ email })),
+  openLoginModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "upload" } }),
 }))
 class UserProfile extends Component {
   static propTypes = {
     userEmailRequest: PropTypes.func.isRequired,
+    openLoginModal: PropTypes.func,
     user: PropTypes.object
   }
 
@@ -43,6 +45,8 @@ class UserProfile extends Component {
   }
 
   render() {
+    const { openLoginModal } = this.props;
+
     return (
       <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <h1 className='u-h3'>My profile</h1>
@@ -53,7 +57,7 @@ class UserProfile extends Component {
 
         <div style={{ maxWidth: "200px" }}>
           <img src={this.state.avatar_url} />
-          <button>Upload image</button>
+          <button onClick={() => openLoginModal()}>Change image</button>
           <p>JPG, GIF or PNG. Max size of 800KB</p>
         </div>
 

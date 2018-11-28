@@ -20,6 +20,9 @@ const initialState = {
   modals: {
     login: {
       isOpen: false
+    },
+    upload: {
+      isOpen: false
     }
   }
 };
