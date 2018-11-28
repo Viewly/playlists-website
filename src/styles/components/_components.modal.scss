@@ -2,29 +2,68 @@
     #MODAL
 \*------------------------------------*/
 
-.modal__style {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    border: 1px solid rgb(204, 204, 204);
-    background: rgb(255, 255, 255);
-    overflow: auto;
-    border-radius: 4px;
-    outline: none;
-    padding: 20px;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    min-width: 500px;
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity .1s ease;
 }
 
-.modal__overlay {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    background-color: rgba(255, 255, 255, 0.75);
-    z-index: 1001;
+.ReactModal__Overlay--after-open {
+    opacity: 1;
 }
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
+
+
+.c-modal {
+    background-color: rgba(#000, .8);
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100vw;
+    will-change: opacity;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1400;
+}
+
+    /**
+     * Modal dialog.
+     */
+    .c-modal__dialog {
+        display: flex;
+        justify-content: center;
+        padding-bottom: $spacing-unit;
+        padding-top: 7vh;
+        pointer-events: none;
+
+        &:focus,
+        &:active {
+            outline: none;
+        }
+    }
+
+    /**
+     * Modal content.
+     */
+    .c-modal__content {
+        background-color: #fff;
+        border-radius: 4px;
+        margin-top: $spacing-unit;
+        max-width: 500px;
+        padding: $spacing-unit;
+        pointer-events: auto;
+        transform-origin: bottom center;
+        transform: scale(.95);
+        width: 100%;
+        will-change: transform, opacity, visibility;
+        position: relative;
+        z-index: 1500;
+
+        .in & {
+            transform: scale(1);
+            transition: transform .25s ease-out-quart();
+        }
+    }
