@@ -107,10 +107,10 @@ class LoginModal extends Component {
             <li>
               <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
                 <div className='o-grid__cell'>
-                  <p>Don&#x27;t have an account? <Link to='/register'>Get started</Link></p>
+                  <p>Have an account? <Link to='/login'>Log in</Link></p>
                 </div>
                 <div className='o-grid__cell'>
-                  <button type="submit" className='c-btn c-btn--primary'>Log in</button>
+                  <button type="submit" className='c-btn c-btn--primary'>Next</button>
                 </div>
               </div>
             </li>

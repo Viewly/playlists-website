@@ -54,7 +54,10 @@
         background-color: #fff;
         border-radius: 4px;
         max-width: 500px;
-        padding: $spacing-unit-large;
+        padding-top: $spacing-unit-large;
+        padding-bottom: $spacing-unit;
+        padding-left: $spacing-unit;
+        padding-right: $spacing-unit;
         pointer-events: auto;
         transform-origin: bottom center;
         transform: scale(.95);
@@ -62,6 +65,11 @@
         will-change: transform, opacity, visibility;
         position: relative;
         z-index: 1500;
+
+        @include mq(large) {
+            padding-left: $spacing-unit-large;
+            padding-right: $spacing-unit-large;
+        }
 
         .ReactModal__Overlay--after-open & {
             transform: scale(1);
