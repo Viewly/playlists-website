@@ -161,7 +161,10 @@ dl {
         color: color('dark-grey');
         font-size: 22px;
         font-weight: 400;
-        margin-bottom: $spacing-unit-large;
+
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit-large;
+        }
     }
 
     .c-form__list {
