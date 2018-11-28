@@ -46,6 +46,12 @@ export default class PlaylistInfo extends Component {
                 <span><b>{playlist.videos.length} videos</b></span>
               </div>
               <div className='o-grid__cell u-margin-bottom'>
+                <a href='' title='Bookmark playlist' className='u-inline-block u-align-middle u-margin-right has-colored-icon'>
+                  <div className='c-colored-icon o-icon'>
+                    <img className='c-colored-icon__icon' src={require("../../../images/icons/bookmark.svg")} />
+                    <img className='c-colored-icon__icon' src={require("../../../images/icons/bookmark-hover.svg")} />
+                  </div>
+                </a>
                 <SharePlaylist playlist={playlist} />
                 <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>Suggest a video</Link>
               </div>

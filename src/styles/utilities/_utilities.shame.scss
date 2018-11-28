@@ -104,8 +104,13 @@ dl {
 }
 
     .c-share__btn {
-        color: color('dark-grey');
+        color: #9ea0a3;
         padding: 0;
+
+        &:hover,
+        .c-share.is-active & {
+            color: #1e1e1e;
+        }
     }
 
     .c-share__socials {
