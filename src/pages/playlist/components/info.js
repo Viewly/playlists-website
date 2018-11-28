@@ -11,14 +11,28 @@ import SEO from "../../../components/SEO";
 import { sumVideoDurations } from "../../../utils";
 import Loading from "../../../components/loading";
 import { LOADED, LOADING } from "../../../constants/status_types";
+import { userAddBookmark, userRemoveBookmark } from "../../../actions/user";
 
 @connect((state) => ({
   playlist: state.playlist
+}), (dispatch) => ({
+  userAddBookmark: (playlist_id) => dispatch(userAddBookmark({ playlist_id })),
+  userRemoveBookmark: (playlist_id) => dispatch(userRemoveBookmark({ playlist_id })),
 }))
 export default class PlaylistInfo extends Component {
   static propTypes = {
     playlist: PropTypes.object,
     match: PropTypes.object
+  }
+
+  onBookmarkClick = () => {
+    const { playlist, userAddBookmark, userRemoveBookmark } = this.props;
+    console.log("playlist", playlist);
+    if (playlist.bookmarked) {
+      userRemoveBookmark(playlist.id);
+    } else {
+      userAddBookmark(playlist.id);
+    }
   }
 
   render() {
@@ -46,12 +60,12 @@ export default class PlaylistInfo extends Component {
                 <span><b>{playlist.videos.length} videos</b></span>
               </div>
               <div className='o-grid__cell u-margin-bottom'>
-                <a href='' title='Bookmark playlist' className='u-inline-block u-align-middle u-margin-right has-colored-icon'>
+                <button onClick={this.onBookmarkClick} className={`c-btn u-inline-block u-align-middle u-margin-right has-colored-icon ${playlist.bookmarked ? "is-active": ""}`}>
                   <div className='c-colored-icon o-icon'>
                     <img className='c-colored-icon__icon' src={require("../../../images/icons/bookmark.svg")} />
                     <img className='c-colored-icon__icon' src={require("../../../images/icons/bookmark-hover.svg")} />
                   </div>
-                </a>
+                </button>
                 <SharePlaylist playlist={playlist} />
                 <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>Suggest a video</Link>
               </div>
