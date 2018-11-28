@@ -344,37 +344,13 @@ $tweakpoint-category:   large;
 }
 
     .c-category__graphic {
-        display: block;
         font-size: 68px;
-        height: 1em;
         margin-bottom: $spacing-unit;
         margin-left: auto;
         margin-right: auto;
-        width: 1em;
-        position: relative;
 
         @include mq(medium) {
             font-size: 86px;
-        }
-
-        img {
-            transition: $global-transition;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-
-            &:last-child {
-                @include invisible;
-                z-index: 20;
-
-                .c-category:hover &,
-                .c-category.is-selected & {
-                    @include visible;
-                }
-            }
         }
     }
 
