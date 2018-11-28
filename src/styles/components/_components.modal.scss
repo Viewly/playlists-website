@@ -30,7 +30,7 @@
 }
 
     /**
-     * Modal dialog.
+     * Modal dialog
      */
     .c-modal__dialog {
         display: flex;
@@ -46,7 +46,7 @@
     }
 
     /**
-     * Modal content.
+     * Modal content
      */
     .c-modal__content {
         background-color: #fff;
@@ -61,19 +61,43 @@
         position: relative;
         z-index: 1500;
 
-        .in & {
+        .ReactModal__Overlay--after-open & {
             transform: scale(1);
             transition: transform .25s ease-out-quart();
         }
     }
 
-    /**
-     * Modal content.
-     */
-    .c-modal__btn-close[class] {
-        font-size: 22px;
-        padding: 0;
-        position: absolute;
-        top: $spacing-unit-small;
-        right: $spacing-unit-small;
-    }
+        /**
+         * Modal close button
+         */
+        .c-modal__btn-close[class] {
+            font-size: 22px;
+            padding: 0;
+            position: absolute;
+            top: $spacing-unit-small;
+            right: $spacing-unit-small;
+        }
+
+        /**
+         * Modal header
+         */
+        .c-modal__header {
+            color: #a2a4a6;
+            margin-bottom: $spacing-unit;
+            text-align: center;
+
+            @include mq(large) {
+                margin-bottom: $spacing-unit-large;
+            }
+        }
+
+        /**
+         * Modal title
+         */
+        .c-modal__title {
+            font-size: $font-size-h2;
+
+            &:not(:last-child) {
+                margin-bottom: $spacing-unit-small;
+            }
+        }

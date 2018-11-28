@@ -74,7 +74,12 @@ class LoginModal extends Component {
     const { modal, closeModal } = this.props;
 
     return (
-      <Modal isOpen={modal.isOpen} title="Login" onClose={() => closeModal()}>
+      <Modal isOpen={modal.isOpen} onClose={() => closeModal()}>
+
+        <div className='c-modal__header'>
+          <h3 className='c-modal__title'>Create an account</h3>
+          <p>First, let&#x27;s get you set up so that you can <br/>enjoy distraction free videos.</p>
+        </div>
         {this.state.error && (
           <div className=''>
             <h5 className='u-margin-bottom-small'>An error occurred</h5>

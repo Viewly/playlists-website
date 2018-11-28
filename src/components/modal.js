@@ -16,7 +16,7 @@ export default class Modal extends Component {
   }
 
   render() {
-    const { isOpen, title, children, showClose, onClose } = this.props;
+    const { isOpen, children, showClose, onClose } = this.props;
 
     return (
       <ReactModal
@@ -29,7 +29,6 @@ export default class Modal extends Component {
 
         <div className="c-modal__content">
           {showClose && <div className='c-btn c-modal__btn-close' onClick={onClose}>&times;</div>}
-          {title && <div className="modal-title">{title}</div>}
 
           {children}
         </div>
