@@ -36,6 +36,8 @@
         display: flex;
         justify-content: center;
         padding-bottom: $spacing-unit;
+        padding-left: $spacing-unit-small;
+        padding-right: $spacing-unit-small;
         padding-top: 7vh;
         pointer-events: none;
 
@@ -71,11 +73,17 @@
          * Modal close button
          */
         .c-modal__btn-close[class] {
-            font-size: 22px;
+            color: color('dark-grey');
+            font-size: 28px;
+            font-weight: 300;
             padding: 0;
             position: absolute;
-            top: $spacing-unit-small;
+            top: $spacing-unit-tiny;
             right: $spacing-unit-small;
+
+            &:hover {
+                color: color('brand-secondary');
+            }
         }
 
         /**
