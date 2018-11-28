@@ -177,20 +177,6 @@ $tweakpoint-video-condensed:        medium;
     }
 
     /**
-     * Bookmark video
-     */
-    .c-video__bookmark {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-
-        &:hover {
-            font-size: 20px;
-        }
-    }
-
-    /**
      * Video footer
      */
     .c-video__footer {
