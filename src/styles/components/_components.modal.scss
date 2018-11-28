@@ -1,0 +1,119 @@
+/*------------------------------------*\
+    #MODAL
+\*------------------------------------*/
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity .1s ease;
+}
+
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+
+
+.c-modal {
+    background-color: rgba(#242254, .9);
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100vw;
+    will-change: opacity;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1400;
+}
+
+    /**
+     * Modal dialog
+     */
+    .c-modal__dialog {
+        display: flex;
+        justify-content: center;
+        padding-bottom: $spacing-unit;
+        padding-left: $spacing-unit-small;
+        padding-right: $spacing-unit-small;
+        padding-top: 7vh;
+        pointer-events: none;
+
+        &:focus,
+        &:active {
+            outline: none;
+        }
+    }
+
+    /**
+     * Modal content
+     */
+    .c-modal__content {
+        background-color: #fff;
+        border-radius: 4px;
+        max-width: 500px;
+        padding-top: $spacing-unit-large;
+        padding-bottom: $spacing-unit;
+        padding-left: $spacing-unit;
+        padding-right: $spacing-unit;
+        pointer-events: auto;
+        transform-origin: bottom center;
+        transform: scale(.95);
+        width: 100%;
+        will-change: transform, opacity, visibility;
+        position: relative;
+        z-index: 1500;
+
+        @include mq(large) {
+            padding-left: $spacing-unit-large;
+            padding-right: $spacing-unit-large;
+        }
+
+        .ReactModal__Overlay--after-open & {
+            transform: scale(1);
+            transition: transform .25s ease-out-quart();
+        }
+    }
+
+        /**
+         * Modal close button
+         */
+        .c-modal__btn-close[class] {
+            color: color('dark-grey');
+            font-size: 28px;
+            font-weight: 300;
+            padding: 0;
+            position: absolute;
+            top: $spacing-unit-tiny;
+            right: $spacing-unit-small;
+
+            &:hover {
+                color: color('brand-secondary');
+            }
+        }
+
+        /**
+         * Modal header
+         */
+        .c-modal__header {
+            color: #a2a4a6;
+            margin-bottom: $spacing-unit;
+            text-align: center;
+
+            @include mq(large) {
+                margin-bottom: $spacing-unit-large;
+            }
+        }
+
+        /**
+         * Modal title
+         */
+        .c-modal__title {
+            font-size: $font-size-h2;
+
+            &:not(:last-child) {
+                margin-bottom: $spacing-unit-small;
+            }
+        }

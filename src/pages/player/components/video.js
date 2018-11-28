@@ -11,7 +11,7 @@ const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage, logAction }
         {video && <Plyr videoId={video.video_id} logAction={logAction} percentage={video.percentage} resumeTime={video.currentTime} onVideoEnd={onVideoEnd} onPercentage={onPercentage} />}
       </div>
 
-      <Link className='c-btn button-back' to={playlistUrl}>&times;  </Link>
+      <Link className='c-btn button-back' to={playlistUrl}>&times;</Link>
     </div>
 
   </div>

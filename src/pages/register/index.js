@@ -62,7 +62,7 @@ class RegistrationPage extends Component {
           <div className='c-auth__main__content'>
             <div className='c-auth__main__header'>
               <h1 className='u-h3 u-margin-bottom-tiny'>Welcome to Vidflow!</h1>
-              <p>First, let&#x27;s get you set up so you can enjoy distraction free videos.</p>
+              <p>First, let&#x27;s get you set up so that you can enjoy distraction free videos.</p>
             </div>
 
             {this.state.error && (
