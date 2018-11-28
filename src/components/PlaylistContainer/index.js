@@ -44,19 +44,8 @@ export default class Playlist extends Component {
     history.push(`/playlist/${url}`);
   }
 
-  onBookmarkClick = (id) => {
-    const { playlists, userAddBookmark, userRemoveBookmark } = this.props; // eslint-disable-line
-    const selectedPlaylist = playlists.find(item => item.id === id);
-
-    if (selectedPlaylist.bookmarked) {
-      userRemoveBookmark(selectedPlaylist.id);
-    } else {
-      userAddBookmark(id);
-    }
-  }
-
   render() {
-    const { isLoaded, playlists, title, moreButton, big, user } = this.props;
+    const { isLoaded, playlists, title, moreButton, big } = this.props;
 
     return (
       <div>
@@ -75,7 +64,6 @@ export default class Playlist extends Component {
               big={big}
               key={`playlistitem-${idx}`}
               onPlaylistClick={this.onPlaylistClick}
-              onBookmarkClick={user ? this.onBookmarkClick : false}
               {...item}
             />
           ))}

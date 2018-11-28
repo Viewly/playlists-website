@@ -14,10 +14,10 @@ class CategoryItem extends Component {
     const { id, slug, name, onCategoryClick, isSelected } = this.props;
 
     return (
-      <div to={`/category/${slug}`} className={`c-category c-categories-grid__box ${isSelected ? "is-selected" : ""}`} onClick={onCategoryClick(id)}>
-        <div className='c-category__graphic'>
-          <img src={require(`../../../images/categories-icons/category-${slug}.svg`)} />
-          <img src={require(`../../../images/categories-icons/category-${slug}-hover.svg`)} />
+      <div to={`/category/${slug}`} className={`c-category c-categories-grid__box has-colored-icon ${isSelected ? "is-selected" : ""}`} onClick={onCategoryClick(id)}>
+        <div className='c-category__graphic c-colored-icon'>
+          <img className='c-colored-icon__icon' src={require(`../../../images/categories-icons/category-${slug}.svg`)} />
+          <img className='c-colored-icon__icon' src={require(`../../../images/categories-icons/category-${slug}-hover.svg`)} />
         </div>
         <h3 className='c-category__title'>{name}</h3>
       </div>

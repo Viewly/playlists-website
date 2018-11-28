@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <g id="bookmark-header" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4,1 L14,1 C14.5522847,1 15,1.44771525 15,2 L15,15.5857864 C15,16.1380712 14.5522847,16.5857864 14,16.5857864 C13.7347835,16.5857864 13.4804296,16.4804296 13.2928932,16.2928932 L9,12 L4.70710678,16.2928932 C4.31658249,16.6834175 3.68341751,16.6834175 3.29289322,16.2928932 C3.10535684,16.1053568 3,15.8510029 3,15.5857864 L3,2 C3,1.44771525 3.44771525,1 4,1 Z" id="Rectangle" stroke="#fff" stroke-width="2" transform="translate(9.000000, 8.792893) scale(-1, 1) translate(-9.000000, -8.792893) "></path>
+    </g>
+</svg>
