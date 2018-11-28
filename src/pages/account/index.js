@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Route } from "react-router-dom";
 // import { Link } from "react-router-dom";
+
+import UserTabs from "./components/tabs";
+import UserProfile from "./components/profile";
 
 import { SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { userProfileFetch, userEmailRequest } from "../../actions/user";
@@ -52,21 +56,16 @@ class AccountPage extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    // const { user } = this.props;
 
     return (
-      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1 className='u-h3'>My profile</h1>
+      <div>
+        <UserTabs />
 
-        Email: {user.email}
-        <br />
-        First name: {user.first_name}
-        <br />
-        Last name: {user.last_name}
-        <br />
-        {!user.email_confirmed && (
-          <div>Email is NOT confirmed <button onClick={this.confirmationEmail}>Send confirmation email</button></div>
-        )}
+        <div>
+          <Route exact path='/account' component={UserProfile}></Route>
+          <Route path='/account/password' component={UserProfile}></Route>
+        </div>
       </div>
     );
   }
