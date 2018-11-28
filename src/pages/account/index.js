@@ -2,20 +2,18 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
-// import { Link } from "react-router-dom";
 
 import UserTabs from "./components/tabs";
 import UserProfile from "./components/profile";
 
 import { SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
-import { userProfileFetch, userEmailRequest } from "../../actions/user";
+import { userProfileFetch } from "../../actions/user";
 import { asyncLoad } from "../../utils";
 
 import { ACCOUNT_PAGE } from "../../constants/pages";
 
 const prepareActions = (dispatch) => ({
   userProfileFetch: () => dispatch(userProfileFetch()),
-  userEmailRequest: (email) => dispatch(userEmailRequest({ email })),
   setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: ACCOUNT_PAGE }),
   setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: ACCOUNT_PAGE }),
 });
@@ -33,7 +31,6 @@ const prepareActions = (dispatch) => ({
 class AccountPage extends Component {
   static propTypes = {
     userProfileFetch: PropTypes.func.isRequired,
-    userEmailRequest: PropTypes.func.isRequired,
     setClientRendered: PropTypes.func.isRequired,
     isSSR: PropTypes.bool,
     user: PropTypes.object
@@ -49,15 +46,7 @@ class AccountPage extends Component {
     }
   }
 
-  confirmationEmail = () => {
-    const { user, userEmailRequest } = this.props;
-    console.log("SEND");
-    userEmailRequest(user.email);
-  }
-
   render() {
-    // const { user } = this.props;
-
     return (
       <div>
         <UserTabs />
