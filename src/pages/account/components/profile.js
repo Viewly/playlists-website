@@ -48,8 +48,7 @@ class UserProfile extends Component {
     const { openLoginModal } = this.props;
 
     return (
-      <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1 className='u-h3'>My profile</h1>
+      <div>
 
         {!this.state.email_confirmed && (
           <div>Email is NOT confirmed <button onClick={this.confirmationEmail}>Send confirmation email</button></div>

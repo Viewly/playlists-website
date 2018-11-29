@@ -51,12 +51,15 @@ class AccountPage extends Component {
 
   render() {
     return (
-      <div>
-        <UserTabs />
-
-        <div>
-          <Route exact path='/account' component={UserProfile}></Route>
-          <Route path='/account/password' component={UserProfile}></Route>
+      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+        <div className='o-grid o-grid--center o-grid--small'>
+          <div className='o-grid__cell u-1/5'>
+            <UserTabs />
+          </div>
+          <div className='o-grid__cell u-2/5'>
+            <Route exact path='/account' component={UserProfile}></Route>
+            <Route path='/account/password' component={UserProfile}></Route>
+          </div>
         </div>
       </div>
     );

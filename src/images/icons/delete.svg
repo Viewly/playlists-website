@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="21px" viewBox="0 0 20 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>delete-icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="UI-Design---Setting---Profile" transform="translate(-284.000000, -533.000000)" stroke="#9EA0A3" stroke-width="2">
+            <g id="delete-icon" transform="translate(285.000000, 534.000000)">
+                <polyline id="Shape" points="0 4 2 4 18 4"></polyline>
+                <path d="M16,4 L16,17 C16,18.1045695 15.1045695,19 14,19 L4,19 C2.8954305,19 2,18.1045695 2,17 L2,4 M5,4 L5,2 C5,0.8954305 5.8954305,0 7,0 L11,0 C12.1045695,0 13,0.8954305 13,2 L13,4" id="Shape"></path>
+                <path d="M7,9 L7,15" id="Shape"></path>
+                <path d="M11,9 L11,15" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
