@@ -33,7 +33,10 @@ class AccountPage extends Component {
     userProfileFetch: PropTypes.func.isRequired,
     setClientRendered: PropTypes.func.isRequired,
     isSSR: PropTypes.bool,
-    user: PropTypes.object
+    user: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool
+    ])
   }
 
   async componentDidMount() {

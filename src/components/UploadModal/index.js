@@ -17,7 +17,10 @@ import { CLOSE_LOGIN_MODAL } from "../../actions/user";
 class UploadModal extends Component {
   static propTypes = {
     modal: PropTypes.object,
-    user: PropTypes.object,
+    user: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool
+    ]),
     closeModal: PropTypes.func,
     location: PropTypes.object
   }
