@@ -8,6 +8,7 @@ import HeaderContainer from "./components/HeaderContainer";
 import { routes } from "./routes";
 import { FirstLoadEvent, SetUserId } from "./analytics";
 import LoginModal from "./components/LoginModal";
+import RegisterModal from "./components/RegisterModal";
 
 @withRouter
 @connect((state) => ({
@@ -31,6 +32,7 @@ class App extends Component {
     return (
       <>
         <LoginModal />
+        <RegisterModal />
 
         <Switch>
           {routes.filter(item => item.fullscreen).map((route, idx) => (
