@@ -88,7 +88,7 @@ export const routes = [
     component: BookmarksPage
   },
   {
-    path: "/test",
+    path: "/_test",
     component: TestPage
   },
   {
