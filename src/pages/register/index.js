@@ -93,10 +93,6 @@ class RegistrationPage extends Component {
                   <label className='c-form__label'>Password</label>
                   <input className='c-input c-input--primary' type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
                 </li>
-                <li>
-                  <label className='c-form__label'>Confirm password</label>
-                  <input className='c-input c-input--primary' type="password" name="password2" value={this.state.password2} onChange={this.handleChange} required />
-                </li>
               </ul>
             </form>
           </div>
