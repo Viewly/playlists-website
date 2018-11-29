@@ -1,8 +1,8 @@
 import { get, post } from "./request";
 
-export async function playlistFetch (baseUrl, { playlistId }) {
+export async function playlistFetch (baseUrl, { authenticationToken, playlistId }) {
   const url = `${baseUrl}/playlist/${playlistId}`;
-  const { body } = await get(url);
+  const { body } = await get(url, { authenticationToken });
 
   return body;
 }
@@ -20,7 +20,7 @@ export async function playlistsFetch (baseUrl, params) {
     url += `&limit=${params.limit}`;
   }
 
-  const { body } = await get(url);
+  const { body } = await get(url, { authenticationToken: params.authenticationToken });
 
   return body;
 }
@@ -38,7 +38,7 @@ export async function playlistsLoadMore (baseUrl, params) {
     url += `&limit=${params.limit}`;
   }
 
-  const { body } = await get(url);
+  const { body } = await get(url, { authenticationToken: params.authenticationToken });
 
   return body;
 }

@@ -8,14 +8,12 @@ import { LOGOUT } from "../../actions/user";
 import DropdownMenu from "../DropdownMenu";
 import UserMenu from "./userMenu";
 import BookmarksBadge from "./bookmarksBadge";
-import { OPEN_LOGIN_MODAL } from "../../actions/user";
 
 @withRouter
 @connect((state) => ({
   user: state.user
 }), (dispatch) => ({
-  doLogout: () => dispatch({ type: LOGOUT }),
-  openLoginModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "login" } }),
+  doLogout: () => dispatch({ type: LOGOUT })
 }))
 class HeaderContainer extends Component {
   static propTypes = {
@@ -54,46 +52,41 @@ class HeaderContainer extends Component {
             <nav className='c-nav-primary'>
               <ul>
                 <li className='c-nav-primary__item'>
-                  <NavLink to='/' exact activeClassName='is-current' className='c-nav-primary__link'>
-                    <div className='c-nav-primary__icon'>
-                      <img src={require("../../images/nav-icons/nav-home.svg")} />
-                      <img src={require("../../images/nav-icons/nav-home-active.svg")} />
+                  <NavLink to='/' exact activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
+                    <div className='c-nav-primary__icon c-colored-icon'>
+                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-home.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-home-active.svg")} />
                     </div>
 
                     <span className='c-nav-primary__label'>Home</span>
                   </NavLink>
                 </li>
                 <li className='c-nav-primary__item'>
-                  <NavLink to='/new' activeClassName='is-current' className='c-nav-primary__link'>
-                    <div className='c-nav-primary__icon'>
-                      <img src={require("../../images/nav-icons/nav-new.svg")} />
-                      <img src={require("../../images/nav-icons/nav-new-active.svg")} />
+                  <NavLink to='/new' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
+                    <div className='c-nav-primary__icon c-colored-icon'>
+                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-new.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-new-active.svg")} />
                     </div>
                     <span className='c-nav-primary__label'>New</span>
                   </NavLink>
                 </li>
                 <li className='c-nav-primary__item'>
-                  <NavLink to='/categories' activeClassName='is-current' className='c-nav-primary__link'>
-                    <div className='c-nav-primary__icon'>
-                      <img src={require("../../images/nav-icons/nav-category.svg")} />
-                      <img src={require("../../images/nav-icons/nav-category-active.svg")} />
+                  <NavLink to='/categories' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
+                    <div className='c-nav-primary__icon c-colored-icon'>
+                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-category.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-category-active.svg")} />
                     </div>
                     <span className='c-nav-primary__label'>Categories</span>
                   </NavLink>
                 </li>
                 <li className='c-nav-primary__item'>
-                  <NavLink to='/hashtags' activeClassName='is-current' className='c-nav-primary__link'>
-                    <div className='c-nav-primary__icon'>
-                      <img src={require("../../images/nav-icons/nav-hashtag.svg")} />
-                      <img src={require("../../images/nav-icons/nav-hashtag-active.svg")} />
+                  <NavLink to='/hashtags' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
+                    <div className='c-nav-primary__icon c-colored-icon'>
+                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-hashtag.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-hashtag-active.svg")} />
                     </div>
                     <span className='c-nav-primary__label'>Explore</span>
                   </NavLink>
-                </li>
-                <li className='c-nav-primary__item'>
-                  <div className='c-nav-primary__link'>
-                    <button onClick={() => this.props.openLoginModal()}>MODAL</button>
-                  </div>
                 </li>
               </ul>
             </nav>

@@ -16,19 +16,19 @@ export default class Modal extends Component {
   }
 
   render() {
-    const { isOpen, title, children, showClose, onClose } = this.props;
+    const { isOpen, children, showClose, onClose } = this.props;
 
     return (
       <ReactModal
+        closeTimeoutMS={100}
         isOpen={isOpen}
         ariaHideApp={false}
-        className="modal__style"
-        overlayClassName="modal__overlay"
+        className="c-modal__dialog"
+        overlayClassName="c-modal"
         onRequestClose={onClose}>
 
-        {showClose && <div className='modal-close'><i className='spott-icon icon-close' onClick={onClose}>X</i></div>}
-        <div className="modal-container">
-          {title && <div className="modal-title">{title}</div>}
+        <div className="c-modal__content">
+          {showClose && <div className='c-btn c-modal__btn-close' onClick={onClose}>&times;</div>}
 
           {children}
         </div>

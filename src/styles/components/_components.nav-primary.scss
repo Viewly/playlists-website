@@ -108,37 +108,9 @@
 
             .c-nav-primary__icon {
                 font-size: 18px;
-                height: 1em;
-                width: 1em;
-                position: relative;
 
                 @include mq($until: ($tweakpoint-nav-primary - 1)) {
                     font-size: 22px;
-                }
-
-                img {
-                    height: 100%;
-                    transition: $global-transition;
-                    width: 100%;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    z-index: 10;
-
-                    .c-nav-primary__link:hover &,
-                    .c-nav-primary__link.is-current & {
-                        opacity: 0;
-                    }
-
-                    &:last-child {
-                        opacity: 0;
-                        z-index: 20;
-
-                        .c-nav-primary__link:hover &,
-                        .c-nav-primary__link.is-current & {
-                            opacity: 1;
-                        }
-                    }
                 }
             }
 

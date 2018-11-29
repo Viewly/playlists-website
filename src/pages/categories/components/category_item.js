@@ -12,10 +12,10 @@ class CategoryItem extends Component {
     const { slug, name } = this.props;
 
     return (
-      <Link to={`/category/${slug}`} className='c-category c-categories-grid__box'>
-        <div className='c-category__graphic'>
-          <img src={require(`../../../images/categories-icons/category-${slug}.svg`)} />
-          <img src={require(`../../../images/categories-icons/category-${slug}-hover.svg`)} />
+      <Link to={`/category/${slug}`} className='c-category c-categories-grid__box has-colored-icon'>
+        <div className='c-category__graphic c-colored-icon'>
+          <img className='c-colored-icon__icon' src={require(`../../../images/categories-icons/category-${slug}.svg`)} />
+          <img className='c-colored-icon__icon' src={require(`../../../images/categories-icons/category-${slug}-hover.svg`)} />
         </div>
         <h3 className='c-category__title'>{name}</h3>
       </Link>

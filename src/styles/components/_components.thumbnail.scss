@@ -171,6 +171,16 @@ $thumbnail-progress-bar-height:     3px;
         }
     }
 
+    .c-thumbnail__bookmark {
+        display: block;
+        pointer-events: none;
+        transition: inherit;
+        position: absolute;
+        top: $spacing-unit-tiny;
+        right: $spacing-unit-tiny;
+        z-index: 30;
+    }
+
     .c-thumbnail__play-icon {
         @include invisible;
         background-color: rgba(#000, .9);

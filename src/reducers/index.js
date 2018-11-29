@@ -92,11 +92,19 @@ const rootReducer = (state = initialState, action) => {
 
     case userActions.USER_BOOKMARK_ADD_SUCCESS: {
       const selected = state.playlists.data.find(item => item.id === action.data.playlist_id);
-      return { ...state, bookmarks: { ...state.bookmarks, data: [ ...state.bookmarks.data, selected ] } };
+      return {
+        ...state,
+        playlist: { ...state.playlist, bookmarked: true },
+        bookmarks: { ...state.bookmarks, data: selected ? [ ...state.bookmarks.data, selected ] : state.bookmarks.data }
+      };
     }
 
     case userActions.USER_BOOKMARK_REMOVE_SUCCESS:
-      return { ...state, bookmarks: { ...state.bookmarks, data: state.bookmarks.data.filter(item => item.id !== action.data.playlist_id )} };
+      return {
+        ...state,
+        playlist: { ...state.playlist, bookmarked: false },
+        bookmarks: { ...state.bookmarks, data: state.bookmarks.data.filter(item => item.id !== action.data.playlist_id )}
+      };
 
     case userActions.LOGIN_SUCCESS_PERSIST:
     case userActions.USER_PROFILE_FETCH_SUCCESS: {
