@@ -28,7 +28,7 @@ class UserTabs extends Component {
           </li>
           <li className='c-nav-account__item'>
             <NavLink activeClassName='is-current' className='c-nav-account__link has-colored-icon' to="/account/password">
-            <div className='c-nav-account__icon c-colored-icon'>
+              <div className='c-nav-account__icon c-colored-icon'>
                 <img className='c-colored-icon__icon' src={require("../../../images/icons/nav-account/account-password.svg")} />
                 <img className='c-colored-icon__icon' src={require("../../../images/icons/nav-account/account-password-hover.svg")} />
               </div>

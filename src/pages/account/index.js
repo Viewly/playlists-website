@@ -5,6 +5,8 @@ import { Route } from "react-router-dom";
 
 import UserTabs from "./components/tabs";
 import UserProfile from "./components/profile";
+import UserPassword from "./components/password";
+import UserCustomization from "./components/customization";
 
 import { SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { userProfileFetch } from "../../actions/user";
@@ -58,7 +60,8 @@ class AccountPage extends Component {
           </div>
           <div className='o-grid__cell u-2/5'>
             <Route exact path='/account' component={UserProfile}></Route>
-            <Route path='/account/password' component={UserProfile}></Route>
+            <Route path='/account/password' component={UserPassword}></Route>
+            <Route path='/account/customization' component={UserCustomization}></Route>
           </div>
         </div>
       </div>
