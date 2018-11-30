@@ -102,11 +102,6 @@ class HeaderContainer extends Component {
               </div>
               {user && (
                 <div className='o-grid__cell'>
-                  <BookmarksBadge />
-                </div>
-              )}
-              {user && (
-                <div className='o-grid__cell'>
                   <DropdownMenu
                     toggle={<UserMenu user={user} />}
                     list={[
