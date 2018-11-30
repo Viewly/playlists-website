@@ -1,0 +1,84 @@
+/*------------------------------------*\
+    #ACCOUNT PAGE NAVIGATION
+\*------------------------------------*/
+
+.c-nav-account {
+    margin-bottom: $spacing-unit-large;
+
+    ul {
+        display: flex;
+        list-style-type: none;
+
+        @include mq(large) {
+            display: block;
+            width: 240px;
+        }
+    }
+}
+
+        /**
+         * 1. Remove outline for webkit browsers.
+         */
+        .c-nav-account__item {
+            margin-right: $spacing-unit-tiny;
+
+            &:not(:last-child) {
+                @include mq(large) {
+                    margin-right: 0;
+                    margin-bottom: $spacing-unit-tiny;
+                }
+            }
+
+            &:focus {
+                outline: none; /* [1] */
+            }
+        }
+
+        /**
+         * 1. Since `$from:` is inclusive `min-width` boundary in sass-mq (as per
+         *    https://github.com/sass-mq/sass-mq#responsive-mode-on-default), and we are
+         *    using in a few breakpoints for the navigation, here we need to deduct
+         *    `1px` of buffer so that it all plays together correctly.
+         */
+        .c-nav-account__link {
+            $color: #9ea0a3;
+
+            align-items: center;
+            border-radius: $input-border-radius;
+            color: $color;
+            display: flex;
+            font-size: 13px;
+            font-weight: 500;
+            padding: ($spacing-unit-tiny + 2);
+
+            @include mq(large) {
+                font-size: 14px;
+                font-weight: 700;
+                padding-left: $spacing-unit;
+                padding-right: $spacing-unit;
+                padding-top: $spacing-unit-small;
+                padding-bottom: $spacing-unit-small;
+            }
+
+            &:hover {
+                color: darken($color, 20%);
+                text-decoration: none;
+            }
+
+            &.is-current {
+                background-color: $input-background-color;
+                color: $global-text-color;
+
+                .o-icon {
+                    opacity: 1;
+                }
+            }
+        }
+
+            .c-nav-account__icon[class] {
+                font-size: 18px;
+            }
+
+            .c-nav-account__label {
+                margin-left: 8px;
+            }
