@@ -63,12 +63,16 @@ class UserProfile extends Component {
         <form className='c-form' onSubmit={this.handleSubmit}>
           <ul className='c-form__list c-form__list--large'>
             <li>
-              <label className='c-form__label'>First name</label>
-              <input className='c-input c-input--primary' type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
-            </li>
-            <li>
-              <label className='c-form__label'>Last name</label>
-              <input className='c-input c-input--primary' type="text" name="last_name" value={this.state.last_name} onChange={this.handleChange} />
+              <div className='o-grid'>
+                <div className='o-grid__cell u-1/2@medium u-margin-bottom-large u-margin-bottom-none@medium'>
+                  <label className='c-form__label'>First name</label>
+                  <input className='c-input c-input--primary' type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
+                </div>
+                <div className='o-grid__cell u-1/2@medium'>
+                  <label className='c-form__label'>Last name</label>
+                  <input className='c-input c-input--primary' type="text" name="last_name" value={this.state.last_name} onChange={this.handleChange} />
+                </div>
+              </div>
             </li>
 
             <li>
