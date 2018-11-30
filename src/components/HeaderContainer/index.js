@@ -98,9 +98,9 @@ class HeaderContainer extends Component {
                 <SearchInput />
               </div>
               <div className='o-grid__cell'>
-                <Link to='/create-playlist' className='c-btn c-btn--primary c-btn--plain c-btn--with-icon has-colored-icon'>
-                  <img className='o-icon o-icon--small u-margin-right-tiny' src={require("../../images/icons/create-playlist-hover.svg")} />
-                  Create playlist
+                <Link to='/create-playlist' className='c-header__cta-btn c-btn c-btn--primary c-btn--plain c-btn--with-icon has-colored-icon'>
+                  <img className='c-header__cta-btn__icon o-icon o-icon--small' src={require("../../images/icons/create-playlist-hover.svg")} />
+                  <span className='c-header__cta-btn__label'>Create playlist</span>
                 </Link>
               </div>
               {user && (
