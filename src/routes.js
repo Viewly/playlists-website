@@ -16,6 +16,7 @@ import ResetPasswordPage from "./pages/reset-password";
 import AuthyPage from "./pages/authy";
 import OnboardingPage from "./pages/onboarding";
 import BookmarksPage from "./pages/bookmarks";
+import TestPage from "./pages/test";
 import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE, PLAYER_PAGE } from "./constants/pages";
 
 export const routes = [
@@ -85,6 +86,10 @@ export const routes = [
   {
     path: "/bookmarks",
     component: BookmarksPage
+  },
+  {
+    path: "/_test",
+    component: TestPage
   },
   {
     path: "/profile/:profileId",

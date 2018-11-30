@@ -10,6 +10,7 @@ import { FirstLoadEvent, SetUserId } from "./analytics";
 
 import LoginModal from "./components/LoginModal";
 import UploadModal from "./components/UploadModal";
+import RegisterModal from "./components/RegisterModal";
 
 @withRouter
 @connect((state) => ({
@@ -34,6 +35,7 @@ class App extends Component {
       <>
         <LoginModal />
         <UploadModal />
+        <RegisterModal />
 
         <Switch>
           {routes.filter(item => item.fullscreen).map((route, idx) => (

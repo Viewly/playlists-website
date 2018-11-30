@@ -18,6 +18,9 @@ const initialState = {
   onboarding: false,
   jwt: jwtCookie,
   modals: {
+    register: {
+      isOpen: false
+    },
     login: {
       isOpen: false
     },

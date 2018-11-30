@@ -5,27 +5,30 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
 import Modal from "../modal";
-import { userLogin, LOGIN_SUCCESS_PERSIST, getGoogleLoginUrl, CLOSE_LOGIN_MODAL } from "../../actions/user";
+import { userRegister, getGoogleLoginUrl, LOGIN_SUCCESS_PERSIST, CLOSE_LOGIN_MODAL } from "../../actions/user";
 
 @withRouter
 @connect((state) => ({
-  modal: state.modals.login
+  modal: state.modals.register
 }), (dispatch) => ({
-  userLogin: (email, password) => dispatch(userLogin({ email, password })),
+  userRegister: (name, email, password) => dispatch(userRegister({ name, email, password })),
   getGoogleLoginUrl: () => dispatch(getGoogleLoginUrl()),
   loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data }),
-  closeModal: () => dispatch({ type: CLOSE_LOGIN_MODAL, data: { name: "login" } }),
+  closeModal: () => dispatch({ type: CLOSE_LOGIN_MODAL, data: { name: "register" } }),
 }))
-class LoginModal extends Component {
+class RegisterModal extends Component {
   static propTypes = {
     modal: PropTypes.object,
     closeModal: PropTypes.func,
-    location: PropTypes.object
+    location: PropTypes.object,
+    history: PropTypes.object
   }
 
   state = {
+    name: "",
     email: "",
     password: "",
+    password2: "",
     error: false,
     errorText: ""
   }
@@ -52,15 +55,17 @@ class LoginModal extends Component {
   }
 
   handleSubmit = async (evnt) => {
-    const { userLogin, closeModal, loginSuccess } = this.props;
+    const { userRegister, closeModal, loginSuccess, history } = this.props;
 
     this.setState({ error: false });
     evnt.preventDefault();
-    const response = await userLogin(this.state.email, this.state.password);
+    // const response = await userLogin(this.state.email, this.state.password);
+    const response = await userRegister(this.state.name, this.state.email, this.state.password);
 
     if (response.success) {
       loginSuccess(response.user);
       closeModal();
+      history.push("/onboarding");
     } else {
       console.log("response", response);
       this.setState({
@@ -77,8 +82,10 @@ class LoginModal extends Component {
       <Modal isOpen={modal.isOpen} onClose={() => closeModal()}>
 
         <div className='c-modal__header'>
-          <h3 className='c-modal__title'>Log in to Vidflow</h3>
+          <h3 className='c-modal__title'>Create an account</h3>
+          <p>First, let&#x27;s get you set up so that you can <br/>enjoy distraction free videos.</p>
         </div>
+
         {this.state.error && (
           <div className=''>
             <h5 className='u-margin-bottom-small'>An error occurred</h5>
@@ -106,10 +113,10 @@ class LoginModal extends Component {
             <li>
               <div className='o-grid o-grid--middle o-grid--auto o-grid--between'>
                 <div className='o-grid__cell'>
-                  <p>Don&#x27;t have an account? <Link to='/register'>Get started</Link></p>
+                  <p>Have an account? <Link to='/login'>Log in</Link></p>
                 </div>
                 <div className='o-grid__cell'>
-                  <button type="submit" className='c-btn c-btn--primary'>Log in</button>
+                  <button type="submit" className='c-btn c-btn--primary'>Next</button>
                 </div>
               </div>
             </li>
@@ -121,4 +128,4 @@ class LoginModal extends Component {
     );
   }
 }
-export default LoginModal;
+export default RegisterModal;
