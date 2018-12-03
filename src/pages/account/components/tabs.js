@@ -16,6 +16,7 @@ class UserTabs extends Component {
               <span className='c-nav-account__label'>Profile</span>
             </NavLink>
           </li>
+          {/*
           <li className='c-nav-account__item'>
             <NavLink activeClassName='is-current' className='c-nav-account__link has-colored-icon' to="/account/customization">
               <div className='c-nav-account__icon c-colored-icon'>
@@ -26,6 +27,7 @@ class UserTabs extends Component {
               <span className='c-nav-account__label'>Customization</span>
             </NavLink>
           </li>
+          */}
           <li className='c-nav-account__item'>
             <NavLink activeClassName='is-current' className='c-nav-account__link has-colored-icon' to="/account/password">
               <div className='c-nav-account__icon c-colored-icon'>
