@@ -42,6 +42,13 @@ export async function userProfileUpdate(baseUrl, { authenticationToken, first_na
   return body;
 }
 
+export async function userProfileUpdatePassword(baseUrl, { authenticationToken, current_password, new_password }) {
+  const url = `${baseUrl}/user/change-password`;
+  const { body } = await put(url, { authenticationToken, current_password, new_password });
+
+  return body;
+}
+
 export async function userEmailRequest(baseUrl, { authenticationToken, email }) {
   const url = `${baseUrl}/user/confirm-email-request`;
   const { body } = await post(url, { authenticationToken, email });
