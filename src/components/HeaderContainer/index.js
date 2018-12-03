@@ -115,11 +115,16 @@ class HeaderContainer extends Component {
                   />
                 </div>
               )}
-              {!user && false && (
+              {!user && (
                 <div className='o-grid__cell'>
-                  <Link to='/login' className='c-btn c-btn--primary c-btn--plain'>Login</Link>
-                  &nbsp;
-                  <Link to='/register' className='c-btn c-btn--primary c-btn--plain'>Register</Link>
+                  <div className='o-grid o-grid--middle o-grid--auto'>
+                    <div className='o-grid__cell'>
+                      <Link to='/login' className='c-btn c-btn--secondary c-btn--plain'>Login</Link>
+                    </div>
+                    <div className='o-grid__cell'>
+                      <Link to='/register' className='c-btn c-btn--secondary'>Register</Link>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
