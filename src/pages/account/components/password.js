@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect }from "react-redux";
+import { userProfileUpdatePassword } from "../../../actions/user";
+import { withRouter } from "react-router-dom";
 
+@withRouter
+@connect((state) => ({
+  user: state.user
+}), (dispatch) => ({
+  userProfileUpdatePassword: (data) => dispatch(userProfileUpdatePassword(data))
+}))
 class UserPassword extends Component {
   static propTypes = {
     user: PropTypes.object
@@ -8,7 +17,9 @@ class UserPassword extends Component {
 
   state = {
     new_password: "",
-    old_password: ""
+    current_password: "",
+    error: false,
+    errorText: ""
   }
 
   handleChange = (evnt) => {
@@ -18,19 +29,40 @@ class UserPassword extends Component {
   }
 
   handleSubmit = async (evnt) => {
+    const { userProfileUpdatePassword, history } = this.props;
+    const { current_password, new_password } = this.state;
+
+    this.setState({ error: false });
     evnt.preventDefault();
-    alert("SAVE");
+    const response = await userProfileUpdatePassword({ current_password, new_password });
+
+    if (response.success) {
+      // loginSuccess(response.user);
+      history.push("/account");
+    } else {
+      this.setState({
+        error: true,
+        errorText: response.message
+      });
+    }
+
   }
 
   render() {
     return (
       <div>
+        {this.state.error && (
+          <div className=''>
+            <h5 className='u-margin-bottom-small'>An error occurred</h5>
+            <p>{this.state.errorText}</p>
+          </div>
+        )}
 
         <form className='c-form' onSubmit={this.handleSubmit}>
           <ul className='c-form__list c-form__list--large'>
             <li>
               <label className='c-form__label'>Old password</label>
-              <input className='c-input c-input--primary' type="password" name="old_password" value={this.state.old_password} onChange={this.handleChange} />
+              <input className='c-input c-input--primary' type="password" name="current_password" value={this.state.current_password} onChange={this.handleChange} />
             </li>
             <li>
               <label className='c-form__label'>New password</label>

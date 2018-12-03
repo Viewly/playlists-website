@@ -21,9 +21,9 @@ export async function doGoogleLogin(baseUrl, { code }) {
   return body;
 }
 
-export async function userRegister(baseUrl, { name, email, password }) {
+export async function userRegister(baseUrl, { first_name, last_name, email, password }) {
   const url = `${baseUrl}/user/register`;
-  const { body } = await post(url, { name, email, password });
+  const { body } = await post(url, { first_name, last_name, email, password });
 
   return body;
 }
@@ -31,6 +31,20 @@ export async function userRegister(baseUrl, { name, email, password }) {
 export async function userProfileFetch(baseUrl, { authenticationToken }) {
   const url = `${baseUrl}/user/info`;
   const { body } = await get(url, { authenticationToken });
+
+  return body;
+}
+
+export async function userProfileUpdate(baseUrl, { authenticationToken, first_name, last_name, avatar_url }) {
+  const url = `${baseUrl}/user/info`;
+  const { body } = await put(url, { authenticationToken, first_name, last_name, avatar_url });
+
+  return body;
+}
+
+export async function userProfileUpdatePassword(baseUrl, { authenticationToken, current_password, new_password }) {
+  const url = `${baseUrl}/user/change-password`;
+  const { body } = await put(url, { authenticationToken, current_password, new_password });
 
   return body;
 }
