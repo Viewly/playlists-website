@@ -33,17 +33,19 @@ class DropdownMenu extends Component {
     const { isOpen } = this.state;
     const showArrow = true;
     return (
-      <div className='dd-menu'>
-        <div className='dd-toggle' onClick={() => this.setState({ isOpen: !this.state.isOpen })}>
+      <div className='c-dropdown dd-menu'>
+        <div className='c-dropdown__toggle dd-toggle' onClick={() => this.setState({ isOpen: !this.state.isOpen })}>
           {toggle}
           {showArrow && !isOpen && <span>v</span>}
           {showArrow && isOpen && <span>^</span>}
         </div>
         {list && isOpen && (
-          <div className='dd-list'>
-            {list.map((item, idx) => (
-              <DropdownItem key={`dd-item-${idx}`} onItemClicked={this.onClick} item={item} />
-            ))}
+          <div className='c-dropdown__menu'>
+            <ul className='dd-list'>
+              {list.map((item, idx) => (
+                <DropdownItem key={`dd-item-${idx}`} onItemClicked={this.onClick} item={item} />
+              ))}
+            </ul>
           </div>
         )}
       </div>

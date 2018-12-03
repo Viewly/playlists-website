@@ -93,7 +93,7 @@ class HeaderContainer extends Component {
           </div>
 
           <div className='c-header__grid__item c-header__grid__item--right'>
-            <div className='o-grid o-grid--auto o-grid--middle o-grid--large'>
+            <div className='o-grid o-grid--auto o-grid--middle'>
               <div className='o-grid__cell'>
                 <SearchInput />
               </div>
