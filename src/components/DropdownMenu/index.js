@@ -34,10 +34,8 @@ class DropdownMenu extends Component {
     const showArrow = true;
     return (
       <div className='c-dropdown dd-menu'>
-        <div className='c-dropdown__toggle dd-toggle' onClick={() => this.setState({ isOpen: !this.state.isOpen })}>
+        <div className='c-dropdown__toggle c-dropdown__toggle--with-arrow  dd-toggle' onClick={() => this.setState({ isOpen: !this.state.isOpen })}>
           {toggle}
-          {showArrow && !isOpen && <span>v</span>}
-          {showArrow && isOpen && <span>^</span>}
         </div>
         {list && isOpen && (
           <div className='c-dropdown__menu'>

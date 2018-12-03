@@ -4,7 +4,6 @@
 
 .c-dropdown {
     position: relative;
-
 }
 
     .c-dropdown__toggle {
@@ -13,12 +12,34 @@
         }
     }
 
+    .c-dropdown__toggle--with-arrow {
+        $arrow-color: color('dark-grey');
+        $arrow-size: 5px;
+
+        padding-right: ($arrow-size + $spacing-unit-small);
+        position: relative;
+
+        &::after {
+            border: $arrow-size solid transparent;
+            border-top-color: rgba($arrow-color, .65);
+            content: '';
+            display: block;
+            height: 0;
+            pointer-events: none;
+            transition: inherit;
+            width: 0;
+            position: absolute;
+            top: calc(50% - #{$arrow-size / 2});
+            right: 0;
+        }
+    }
+
     .c-dropdown__menu {
         user-select: none;
         background-color: #fff;
         border-radius: 2px;
         border: 1px solid color('grey');
-        margin-top: $spacing-unit-small;
+        margin-top: $spacing-unit-tiny;
         min-width: 150px;
         padding: $spacing-unit-tiny $spacing-unit-small;
         position: absolute;
