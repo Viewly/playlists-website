@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect }from "react-redux";
 import { userProfileUpdatePassword } from "../../../actions/user";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
+
 
 @withRouter
 @connect((state) => ({
@@ -62,10 +63,13 @@ class UserPassword extends Component {
         )}
 
         <form className='c-form' onSubmit={this.handleSubmit}>
-          <ul className='c-form__list c-form__list--large'>
+          <ul className='c-form__list'>
             <li>
-              <label className='c-form__label'>Old password</label>
+              <label className='c-form__label'>Current password</label>
               <input className='c-input c-input--primary' type="password" name="current_password" value={this.state.current_password} onChange={this.handleChange} />
+              <div className='c-annotation u-text-right u-margin-top-tiny'>
+                <Link to='/reset-password'>Forgot current password?</Link>
+              </div>
             </li>
             <li>
               <label className='c-form__label'>New password</label>
