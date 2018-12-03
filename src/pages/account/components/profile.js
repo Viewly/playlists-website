@@ -68,8 +68,6 @@ class UserProfile extends Component {
             <div className='o-flag__img'>
               {this.state.avatar_url && <img className='o-avatar o-avatar--huge' src={this.state.avatar_url} />}
               {!this.state.avatar_url && <img className='o-avatar o-avatar--huge' src={require("../../../images/avatar-default.jpg")} />}
-              {/*<img src={this.state.avatar_url} />*/}
-              {/*<img className='o-avatar o-avatar--huge' src={require("../../../images/avatar-default.jpg")}/>*/}
             </div>
             <div className='o-flag__body'>
               <button
