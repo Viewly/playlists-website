@@ -72,17 +72,31 @@ dl {
             margin-left: auto;
         }
 
-        .c-header__cta-btn__icon {
+        .c-header__hide-on-extrasmallscreen {
+            @include mq($until: 380px) {
+                display: none;
+            }
+        }
+
+        .c-header__btn-cta__icon {
             @include mq($until: medium) {
                 font-size: 22px;
             }
         }
 
-        .c-header__cta-btn__label {
+        .c-header__btn-cta__label {
             margin-left: $spacing-unit-tiny;
 
             @include mq($until: medium) {
                 display: none;
+            }
+        }
+
+        .c-header__btn-register {
+            padding: .5em 1em;
+
+            @include mq(large) {
+                padding: .8em 1.25em;
             }
         }
 

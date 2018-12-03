@@ -94,13 +94,13 @@ class HeaderContainer extends Component {
 
           <div className='c-header__grid__item c-header__grid__item--right'>
             <div className='o-grid o-grid--auto o-grid--middle'>
-              <div className='o-grid__cell'>
+              <div className='o-grid__cell c-header__hide-on-extrasmallscreen'>
                 <SearchInput />
               </div>
               <div className='o-grid__cell'>
-                <Link to='/create-playlist' className='c-header__cta-btn c-btn c-btn--primary c-btn--plain c-btn--with-icon has-colored-icon'>
-                  <img className='c-header__cta-btn__icon o-icon o-icon--small' src={require("../../images/icons/create-playlist-hover.svg")} />
-                  <span className='c-header__cta-btn__label'>Create playlist</span>
+                <Link to='/create-playlist' className='c-header__btn-cta c-btn c-btn--primary c-btn--plain c-btn--with-icon has-colored-icon'>
+                  <img className='c-header__btn-cta__icon o-icon o-icon--small' src={require("../../images/icons/create-playlist-hover.svg")} />
+                  <span className='c-header__btn-cta__label'>Create playlist</span>
                 </Link>
               </div>
               {user && (
@@ -118,11 +118,11 @@ class HeaderContainer extends Component {
               {!user && (
                 <div className='o-grid__cell'>
                   <div className='o-grid o-grid--middle o-grid--auto'>
-                    <div className='o-grid__cell'>
+                    <div className='o-grid__cell c-header__hide-on-extrasmallscreen'>
                       <Link to='/login' className='c-btn c-btn--secondary c-btn--plain'>Login</Link>
                     </div>
                     <div className='o-grid__cell'>
-                      <Link to='/register' className='c-btn c-btn--secondary'>Register</Link>
+                      <Link to='/register' className='c-btn c-btn--secondary c-header__btn-register'>Register</Link>
                     </div>
                   </div>
                 </div>
