@@ -14,7 +14,7 @@ module.exports = Object.assign(config, {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: isProduction ? "./src/index-production.html" : "./src/index.html",
       filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
