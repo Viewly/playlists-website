@@ -414,6 +414,12 @@ $tweakpoint-category:   large;
     font-weight: 500;
 }
 
+.c-inline-message {}
+
+.c-inline-message--error {
+    color: color('red');
+}
+
 .has-header {
     padding-top: $header-height;
 

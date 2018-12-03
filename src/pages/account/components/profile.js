@@ -62,7 +62,7 @@ class UserProfile extends Component {
             </div>
             <div className='o-flag__body'>
               <button className='c-btn c-btn--secondary c-btn--hollow c-btn--small c-btn--padding-small u-margin-bottom-tiny' onClick={() => openLoginModal()}>Change image</button>
-              <p class='c-annotation'>JPG, GIF or PNG. Max size of 800KB</p>
+              <p class='c-annotation c-inline-message c-inline-message--error'>JPG, GIF or PNG. Max size of 800KB</p>
             </div>
           </div>
         </div>
