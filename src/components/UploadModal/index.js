@@ -56,7 +56,11 @@ class UploadModal extends Component {
     const { modal, closeModal } = this.props;
 
     return (
-      <Modal isOpen={modal.isOpen} title="Upload" onClose={() => closeModal()}>
+      <Modal isOpen={modal.isOpen} onClose={() => closeModal()}>
+        <div className='c-modal__header'>
+          <h3 className='c-modal__title'>Under construction</h3>
+        </div>
+        {/*
         {this.state.newImage && (
           <div>
             <AvatarEditor
@@ -83,6 +87,8 @@ class UploadModal extends Component {
             <input name="newImage" type="file" onChange={this.handleNewImage} />
           </div>
         )}
+        */}
+
       </Modal>
     );
   }
