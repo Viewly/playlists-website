@@ -30,10 +30,10 @@ class UploadModal extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { closeModal, location } = this.props;
+    const { modal, closeModal, location } = this.props;
 
     if (location.pathname !== prevProps.location.pathname) {
-      closeModal();
+      modal.isOpen && closeModal();
     }
   }
 
