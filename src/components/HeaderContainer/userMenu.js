@@ -11,9 +11,8 @@ class UserMenu extends Component {
 
     return (
       <Fragment>
-        {/*<img className='o-avatar ' src={user.avatar_url} />*/}
-        <img className='o-avatar o-avatar--large' src={require("../../images/avatar-default.jpg")} />
-
+        {user.avatar_url && <img className='o-avatar o-avatar--large' src={user.avatar_url} />}
+        {!user.avatar_url && <img className='o-avatar o-avatar--large' src={require("../../images/avatar-default.jpg")} />}
       </Fragment>
     );
   }
