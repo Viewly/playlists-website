@@ -67,7 +67,7 @@ class AccountPage extends Component {
           <div className='o-grid__cell u-1/1 u-4/5@medium u-3/5@large u-2/5@extralarge'>
             <Route exact path='/account' component={UserProfile} />
             <Route path='/account/password' component={UserPassword} />
-            <Route path='/account/customization' component={UserCustomization} /s>
+            <Route path='/account/customization' component={UserCustomization} />
           </div>
         </div>
       </div>
