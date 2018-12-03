@@ -98,7 +98,7 @@ class LoginPage extends Component {
               <p>Don&#x27;t have an account? <Link to='/register'>Get started</Link></p>
             </div>
             <div className='o-grid__cell'>
-              <button form='form-login' className='c-btn c-btn--primary'>Log in</button>
+              <button form='form-login' className='c-btn c-btn--secondary'>Log in</button>
             </div>
           </div>
         </div>

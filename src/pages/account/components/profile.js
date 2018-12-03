@@ -80,7 +80,7 @@ class UserProfile extends Component {
               <input className='c-input c-input--primary' type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
             </li>
             <li className='u-text-right'>
-              <button className='c-btn c-btn--primary'>Save Changes</button>
+              <button className='c-btn c-btn--secondary'>Save Changes</button>
             </li>
           </ul>
         </form>

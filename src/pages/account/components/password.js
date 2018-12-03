@@ -38,7 +38,7 @@ class UserPassword extends Component {
             </li>
 
             <li className='u-text-right'>
-              <button className='c-btn c-btn--primary'>Change password</button>
+              <button className='c-btn c-btn--secondary'>Change password</button>
             </li>
           </ul>
         </form>

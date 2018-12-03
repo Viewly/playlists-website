@@ -84,7 +84,7 @@ class ResetCode extends Component {
                       <Link to='/login'>&larr; Back to login</Link>
                     </div>
                     <div className='o-grid__cell'>
-                      <button className='c-btn c-btn--primary'>Update password</button>
+                      <button className='c-btn c-btn--secondary'>Update password</button>
                     </div>
                   </div>
                 </li>

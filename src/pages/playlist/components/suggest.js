@@ -83,7 +83,7 @@ export default class PlaylistInfo extends Component {
                       <Link className='c-btn c-btn--secondary c-btn--plain' to={`/playlist/${playlist.url}`}>&larr; Back to playlist</Link>
                     </div>
                     <div className='o-grid__cell'>
-                      <button className='c-btn c-btn--primary'>Submit</button>
+                      <button className='c-btn c-btn--secondary'>Submit</button>
                     </div>
                   </div>
                 </li>

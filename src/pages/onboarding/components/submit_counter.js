@@ -23,7 +23,7 @@ class SubmitCounter extends Component {
     const { onSave, selected } = this.props;
 
     if (this.allowNextStep()) {
-      return <button className='c-btn c-btn--primary' onClick={onSave}>Finish</button>;
+      return <button className='c-btn c-btn--secondary' onClick={onSave}>Finish</button>;
     }
 
     return (

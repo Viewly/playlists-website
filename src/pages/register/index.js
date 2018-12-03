@@ -112,7 +112,7 @@ class RegistrationPage extends Component {
               <p>Have an account? <Link to='/login'>Log in</Link></p>
             </div>
             <div className='o-grid__cell'>
-              <button form='form-register' className='c-btn c-btn--primary'>Next</button>
+              <button form='form-register' className='c-btn c-btn--secondary'>Next</button>
             </div>
           </div>
         </div>

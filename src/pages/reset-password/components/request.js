@@ -75,7 +75,7 @@ class ResetRequest extends Component {
                       <Link to='/login'>&larr; Back to login</Link>
                     </div>
                     <div className='o-grid__cell'>
-                      <button className='c-btn c-btn--primary'>Send email</button>
+                      <button className='c-btn c-btn--secondary'>Send email</button>
                     </div>
                   </div>
                 </li>
