@@ -35,6 +35,13 @@ export async function userProfileFetch(baseUrl, { authenticationToken }) {
   return body;
 }
 
+export async function userProfileUpdate(baseUrl, { authenticationToken, first_name, last_name, avatar_url }) {
+  const url = `${baseUrl}/user/info`;
+  const { body } = await put(url, { authenticationToken, first_name, last_name, avatar_url });
+
+  return body;
+}
+
 export async function userEmailRequest(baseUrl, { authenticationToken, email }) {
   const url = `${baseUrl}/user/confirm-email-request`;
   const { body } = await post(url, { authenticationToken, email });
