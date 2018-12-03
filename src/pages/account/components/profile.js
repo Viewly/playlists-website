@@ -100,8 +100,19 @@ class UserProfile extends Component {
               <input className='c-input c-input--primary' type="email" name="email" value={this.state.email}
                      onChange={this.handleChange} required/>
             </li>
-            <li className='u-text-right'>
-              <button className='c-btn c-btn--secondary'>Save Changes</button>
+            <li>
+              <div className='o-grid o-grid--tiny o-grid--auto o-grid--middle o-grid--between'>
+                <div className='o-grid__cell'>
+                  {/*<button className='c-btn c-btn--plain c-btn--danger c-btn--with-icon'>
+                    <img className='o-icon o-icon--small u-margin-right-tiny' src={require("../../../images/icons/delete.svg")} />
+                    Delete account
+                  </button>*/}
+                </div>
+                <div className='o-grid__cell'>
+                  <button className='c-btn c-btn--secondary'>Save Changes</button>
+                </div>
+              </div>
+
             </li>
           </ul>
         </form>
