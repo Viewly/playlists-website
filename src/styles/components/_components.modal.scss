@@ -17,7 +17,7 @@
 
 
 .c-modal {
-    background-color: rgba(#242254, .9);
+    background-color: rgba(mix(#000, color('brand-secondary'), 80%), .88);
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;

@@ -34,10 +34,10 @@ class RegisterModal extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { closeModal, location } = this.props;
+    const { modal, closeModal, location } = this.props;
 
     if (location.pathname !== prevProps.location.pathname) {
-      closeModal();
+      modal.isOpen && closeModal();
     }
   }
 
@@ -116,7 +116,7 @@ class RegisterModal extends Component {
                   <p>Have an account? <Link to='/login'>Log in</Link></p>
                 </div>
                 <div className='o-grid__cell'>
-                  <button type="submit" className='c-btn c-btn--primary'>Next</button>
+                  <button type="submit" className='c-btn c-btn--secondary'>Next</button>
                 </div>
               </div>
             </li>

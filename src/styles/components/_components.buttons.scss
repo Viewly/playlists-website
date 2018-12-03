@@ -37,6 +37,10 @@
         opacity: .6;
     }
 
+    &.c-btn--padding-small {
+        padding: .5em 1.2em;
+    }
+
     &.c-btn--small {
         font-size: 12px;
     }
@@ -55,6 +59,12 @@
     border-radius: 40px;
     color: #fff;
 
+    &:disabled {
+        background-color: color('grey');
+        border-color: color('grey');
+        color: color('dark-grey');
+    }
+
     &:not(:disabled) {
         &:hover {
             background-color: darken(color('brand-primary'), 6%);
@@ -67,15 +77,21 @@
  * Secondary button.
  */
 .c-btn--secondary {
-    background-color: color('grey');
-    border: 1px solid color('grey');
-    color: color('dark-grey');
+    background-color: color('brand-secondary');
+    border: 1px solid color('brand-secondary');
+    color: #fff;
     border-radius: 40px;
+
+    &:disabled {
+        background-color: color('grey');
+        border-color: color('grey');
+        color: color('dark-grey');
+    }
 
     &:not(:disabled) {
         &:hover {
-            background-color: darken(color('grey'), 4%);
-            border-color: darken(color('grey'), 4%);
+            background-color: darken(color('brand-secondary'), 6%);
+            border-color: darken(color('brand-secondary'), 6%);
         }
     }
 }
@@ -93,12 +109,20 @@
  */
 .c-btn--hollow {
     background-color: transparent;
-    border: 1px solid currentColor;
+    border: 2px solid currentColor;
 
     &:not(:disabled) {
         &:hover {
             background-color: transparent;
         }
+    }
+
+    &.c-btn--primary {
+        color: color('brand-primary');
+    }
+
+    &.c-btn--secondary {
+        color: color('brand-secondary');
     }
 }
 
@@ -107,9 +131,9 @@
  */
 .c-btn--plain {
     background-color: transparent;
+    color: color('dark-grey');
     border: none;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
 
     &:not(:disabled) {
         &:hover {
@@ -124,6 +148,10 @@
     &.c-btn--primary {
         color: color('brand-primary');
     }
+
+    &.c-btn--secondary {
+        color: color('brand-secondary');
+    }
 }
 
 
@@ -134,7 +162,7 @@
     align-items: center;
     border-radius: 40px;
     display: inline-flex;
-    font-weight: 400;
+    font-weight: 500;
     padding-left: 1.2em;
     padding-right: 1.2em;
 }
@@ -144,7 +172,7 @@
     }
 
 .c-btn--social--google {
-    $color: #a6a8aa;
+    $color: color('dark-grey');
 
     border: 1px solid color('grey');
     color: $color;

@@ -86,7 +86,7 @@ class CreatePlaylist extends Component {
                   <input className='c-input c-input--primary' type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
                 </li>
                 <li className='u-text-right'>
-                  <button className='c-btn c-btn--primary'>Next</button>
+                  <button className='c-btn c-btn--secondary'>Next</button>
                 </li>
               </ul>
             </form>

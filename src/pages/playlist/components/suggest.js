@@ -53,7 +53,7 @@ export default class PlaylistInfo extends Component {
             <img className='c-thank-you__img' src={require("../../../images/message-thank-you.svg")} />
             <h5 className='u-margin-bottom-small'>Thanks for suggesting a video</h5>
             <p>We&#x27;ve notified the author about your suggestion. You will get an email when the video is added to the playlist.</p>
-            <Link className='c-btn c-btn--primary c-btn--plain' to={`/playlist/${playlist.id}`}>&larr; Go back to the playlist</Link>
+            <Link className='c-btn c-btn--secondary c-btn--plain' to={`/playlist/${playlist.id}`}>&larr; Go back to the playlist</Link>
           </div>
         )}
 
@@ -83,7 +83,7 @@ export default class PlaylistInfo extends Component {
                       <Link className='c-btn c-btn--secondary c-btn--plain' to={`/playlist/${playlist.url}`}>&larr; Back to playlist</Link>
                     </div>
                     <div className='o-grid__cell'>
-                      <button className='c-btn c-btn--primary'>Submit</button>
+                      <button className='c-btn c-btn--secondary'>Submit</button>
                     </div>
                   </div>
                 </li>

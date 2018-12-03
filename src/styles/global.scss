@@ -47,6 +47,8 @@
 // Components
 @import 'components/components.logo';
 @import 'components/components.nav-primary';
+@import 'components/components.nav-account';
+@import 'components/components.dropdown';
 @import 'components/components.thumbnail';
 @import 'components/components.video';
 @import 'components/components.modal';
@@ -65,7 +67,6 @@
 // Utilities
 @import '../../node_modules/inuitcss/utilities/utilities.widths';
 @import '../../node_modules/inuitcss/utilities/utilities.spacings';
-@import 'utilities/utilities.dropdown';
 @import 'utilities/utilities.headings';
 @import 'utilities/utilities.spacings-responsive';
 @import 'utilities/utilities.type';

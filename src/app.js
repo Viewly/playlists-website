@@ -7,7 +7,9 @@ import { connect } from "react-redux";
 import HeaderContainer from "./components/HeaderContainer";
 import { routes } from "./routes";
 import { FirstLoadEvent, SetUserId } from "./analytics";
+
 import LoginModal from "./components/LoginModal";
+import UploadModal from "./components/UploadModal";
 import RegisterModal from "./components/RegisterModal";
 
 @withRouter
@@ -32,6 +34,7 @@ class App extends Component {
     return (
       <>
         <LoginModal />
+        <UploadModal />
         <RegisterModal />
 
         <Switch>

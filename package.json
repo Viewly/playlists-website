@@ -73,6 +73,7 @@
     "moment-duration-format": "^2.2.2",
     "plyr": "^3.4.6",
     "query-string": "^6.2.0",
+    "react-avatar-editor": "^11.0.4",
     "react-meta-tags": "^0.7.1",
     "react-modal": "^3.6.1",
     "react-onclickoutside": "^6.7.1",

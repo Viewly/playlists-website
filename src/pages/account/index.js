@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { Link } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
+
+import UserTabs from "./components/tabs";
+import UserProfile from "./components/profile";
+import UserPassword from "./components/password";
+import UserCustomization from "./components/customization";
 
 import { SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
-import { userProfileFetch, userEmailRequest } from "../../actions/user";
+import { userProfileFetch } from "../../actions/user";
 import { asyncLoad } from "../../utils";
 
 import { ACCOUNT_PAGE } from "../../constants/pages";
 
 const prepareActions = (dispatch) => ({
   userProfileFetch: () => dispatch(userProfileFetch()),
-  userEmailRequest: (email) => dispatch(userEmailRequest({ email })),
   setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: ACCOUNT_PAGE }),
   setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: ACCOUNT_PAGE }),
 });
@@ -29,10 +33,12 @@ const prepareActions = (dispatch) => ({
 class AccountPage extends Component {
   static propTypes = {
     userProfileFetch: PropTypes.func.isRequired,
-    userEmailRequest: PropTypes.func.isRequired,
     setClientRendered: PropTypes.func.isRequired,
     isSSR: PropTypes.bool,
-    user: PropTypes.object
+    user: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool
+    ])
   }
 
   async componentDidMount() {
@@ -45,28 +51,25 @@ class AccountPage extends Component {
     }
   }
 
-  confirmationEmail = () => {
-    const { user, userEmailRequest } = this.props;
-    console.log("SEND");
-    userEmailRequest(user.email);
-  }
-
   render() {
     const { user } = this.props;
 
+    if (!user) {
+      return <Redirect to="/login" />;
+    }
+
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1 className='u-h3'>My profile</h1>
-
-        Email: {user.email}
-        <br />
-        First name: {user.first_name}
-        <br />
-        Last name: {user.last_name}
-        <br />
-        {!user.email_confirmed && (
-          <div>Email is NOT confirmed <button onClick={this.confirmationEmail}>Send confirmation email</button></div>
-        )}
+        <div className='o-grid o-grid--center o-grid--huge o-grid--auto'>
+          <div className='o-grid__cell'>
+            <UserTabs />
+          </div>
+          <div className='o-grid__cell u-1/1 u-4/5@medium u-3/5@large u-2/5@extralarge'>
+            <Route exact path='/account' component={UserProfile} />
+            <Route path='/account/password' component={UserPassword} />
+            <Route path='/account/customization' component={UserCustomization} />
+          </div>
+        </div>
       </div>
     );
   }

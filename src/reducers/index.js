@@ -23,6 +23,9 @@ const initialState = {
     },
     login: {
       isOpen: false
+    },
+    upload: {
+      isOpen: false
     }
   }
 };

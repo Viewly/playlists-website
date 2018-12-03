@@ -31,10 +31,10 @@ class LoginModal extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { closeModal, location } = this.props;
+    const { modal, closeModal, location } = this.props;
 
     if (location.pathname !== prevProps.location.pathname) {
-      closeModal();
+      modal.isOpen && closeModal();
     }
   }
 
@@ -109,7 +109,7 @@ class LoginModal extends Component {
                   <p>Don&#x27;t have an account? <Link to='/register'>Get started</Link></p>
                 </div>
                 <div className='o-grid__cell'>
-                  <button type="submit" className='c-btn c-btn--primary'>Log in</button>
+                  <button type="submit" className='c-btn c-btn--secondary'>Log in</button>
                 </div>
               </div>
             </li>

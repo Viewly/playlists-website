@@ -2,34 +2,33 @@
     #SEARCH FORM
 \*------------------------------------*/
 
-$tweakpoint-search-form:                    740px;
-$tweakpoint-search-form-large:              860px;
+$tweakpoint-search-form:                    640px;
+$tweakpoint-search-form-large:              890px;
 $tweakpoint-search-form-extralarge:         extralarge;
 
-$search-from-button-width:                  50px;
+$search-from-button-width:                  46px;
 
 
 
 
 
 .c-search-form {
+    width: 200px;
     position: relative;
 
-    @include mq($until: $tweakpoint-search-form) {
+    @include mq($until: $tweakpoint-search-form-large) {
         display: none;
     }
 
-    @include mq($tweakpoint-search-form-large) {
-        width: 200px;
-    }
-
     @include mq($tweakpoint-search-form-extralarge) {
-        width: 260px;
+        width: 220px;
     }
 }
 
     .c-search-form__input {
         padding-left: $search-from-button-width;
+        padding-top: $spacing-unit-small;
+        padding-bottom: $spacing-unit-small;
         width: 100%;
     }
 

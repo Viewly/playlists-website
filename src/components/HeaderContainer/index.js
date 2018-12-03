@@ -54,8 +54,8 @@ class HeaderContainer extends Component {
                 <li className='c-nav-primary__item'>
                   <NavLink to='/' exact activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
                     <div className='c-nav-primary__icon c-colored-icon'>
-                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-home.svg")} />
-                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-home-active.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-home.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-home-active.svg")} />
                     </div>
 
                     <span className='c-nav-primary__label'>Home</span>
@@ -64,8 +64,8 @@ class HeaderContainer extends Component {
                 <li className='c-nav-primary__item'>
                   <NavLink to='/new' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
                     <div className='c-nav-primary__icon c-colored-icon'>
-                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-new.svg")} />
-                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-new-active.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-new.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-new-active.svg")} />
                     </div>
                     <span className='c-nav-primary__label'>New</span>
                   </NavLink>
@@ -73,8 +73,8 @@ class HeaderContainer extends Component {
                 <li className='c-nav-primary__item'>
                   <NavLink to='/categories' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
                     <div className='c-nav-primary__icon c-colored-icon'>
-                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-category.svg")} />
-                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-category-active.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-category.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-category-active.svg")} />
                     </div>
                     <span className='c-nav-primary__label'>Categories</span>
                   </NavLink>
@@ -82,8 +82,8 @@ class HeaderContainer extends Component {
                 <li className='c-nav-primary__item'>
                   <NavLink to='/hashtags' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
                     <div className='c-nav-primary__icon c-colored-icon'>
-                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-hashtag.svg")} />
-                      <img className='c-colored-icon__icon' src={require("../../images/nav-icons/nav-hashtag-active.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-hashtag.svg")} />
+                      <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-hashtag-active.svg")} />
                     </div>
                     <span className='c-nav-primary__label'>Explore</span>
                   </NavLink>
@@ -93,22 +93,20 @@ class HeaderContainer extends Component {
           </div>
 
           <div className='c-header__grid__item c-header__grid__item--right'>
-            <div className='o-grid o-grid--auto o-grid--middle o-grid--large'>
-              <div className='o-grid__cell'>
+            <div className='o-grid o-grid--auto o-grid--middle'>
+              <div className='o-grid__cell c-header__hide-on-extrasmallscreen'>
                 <SearchInput />
               </div>
               <div className='o-grid__cell'>
-                <Link to='/create-playlist' className='c-btn c-btn--primary c-btn--plain'>Create playlist</Link>
+                <Link to='/create-playlist' className='c-header__btn-cta c-btn c-btn--primary c-btn--plain c-btn--with-icon has-colored-icon'>
+                  <img className='c-header__btn-cta__icon o-icon o-icon--small' src={require("../../images/icons/create-playlist-hover.svg")} />
+                  <span className='c-header__btn-cta__label'>Create playlist</span>
+                </Link>
               </div>
               {user && (
                 <div className='o-grid__cell'>
-                  <BookmarksBadge />
-                </div>
-              )}
-              {user && (
-                <div className='o-grid__cell'>
                   <DropdownMenu
-                    toggle={<UserMenu />}
+                    toggle={<UserMenu user={user} />}
                     list={[
                       { label: "Bookmarks", url: "/bookmarks" },
                       { label: "Profile settings", url: "/account" },
@@ -117,11 +115,16 @@ class HeaderContainer extends Component {
                   />
                 </div>
               )}
-              {!user && false && (
+              {!user && (
                 <div className='o-grid__cell'>
-                  <Link to='/login' className='c-btn c-btn--primary c-btn--plain'>Login</Link>
-                  &nbsp;
-                  <Link to='/register' className='c-btn c-btn--primary c-btn--plain'>Register</Link>
+                  <div className='o-grid o-grid--middle o-grid--auto'>
+                    <div className='o-grid__cell c-header__hide-on-extrasmallscreen'>
+                      <Link to='/login' className='c-btn c-btn--secondary c-btn--plain'>Login</Link>
+                    </div>
+                    <div className='o-grid__cell'>
+                      <Link to='/register' className='c-btn c-btn--secondary c-header__btn-register'>Register</Link>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
