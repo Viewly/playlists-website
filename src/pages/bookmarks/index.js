@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { userGetBookmarks } from "../../actions/user";
@@ -23,6 +24,7 @@ const prepareActions = (dispatch) => ({
 })
 @connect((state) => ({
   bookmarks: state.bookmarks,
+  user: state.user,
   isSSR: !!state.renderedPages[BOOKMARKS_PAGE]
 }), prepareActions)
 class BookmarksPage extends Component {
@@ -44,8 +46,12 @@ class BookmarksPage extends Component {
   }
 
   render() {
-    const { bookmarks } = this.props;
+    const { bookmarks, user } = this.props;
     const isReady = isLoaded(bookmarks);
+
+    if (!user) {
+      return <Redirect to="/login" />;
+    }
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>

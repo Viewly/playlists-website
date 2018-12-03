@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 import UserTabs from "./components/tabs";
 import UserProfile from "./components/profile";
@@ -52,6 +52,12 @@ class AccountPage extends Component {
   }
 
   render() {
+    const { user } = this.props;
+    
+    if (!user) {
+      return <Redirect to="/login" />;
+    }
+
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <div className='o-grid o-grid--center o-grid--huge o-grid--auto'>
@@ -59,9 +65,9 @@ class AccountPage extends Component {
             <UserTabs />
           </div>
           <div className='o-grid__cell u-1/1 u-4/5@medium u-3/5@large u-1/2@extralarge'>
-            <Route exact path='/account' component={UserProfile}></Route>
-            <Route path='/account/password' component={UserPassword}></Route>
-            <Route path='/account/customization' component={UserCustomization}></Route>
+            <Route exact path='/account' component={UserProfile} />
+            <Route path='/account/password' component={UserPassword} />
+            <Route path='/account/customization' component={UserCustomization} />
           </div>
         </div>
       </div>

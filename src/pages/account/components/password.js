@@ -12,7 +12,10 @@ import { withRouter } from "react-router-dom";
 }))
 class UserPassword extends Component {
   static propTypes = {
-    user: PropTypes.object
+    user: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool
+    ])
   }
 
   state = {

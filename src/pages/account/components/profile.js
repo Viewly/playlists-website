@@ -15,7 +15,10 @@ class UserProfile extends Component {
     userEmailRequest: PropTypes.func.isRequired,
     userProfileUpdate: PropTypes.func.isRequired,
     openLoginModal: PropTypes.func,
-    user: PropTypes.object
+    user: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool
+    ])
   };
 
   constructor(props) {

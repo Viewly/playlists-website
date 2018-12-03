@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 
 class UserCustomization extends Component {
   static propTypes = {
-    user: PropTypes.object
+    user: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool
+    ])
   }
 
   render() {
