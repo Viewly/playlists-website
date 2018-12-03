@@ -51,13 +51,20 @@ class UserProfile extends Component {
       <div>
 
         {!this.state.email_confirmed && (
-          <div>Email is NOT confirmed <button onClick={this.confirmationEmail}>Send confirmation email</button></div>
+          <div className='u-margin-bottom-large'>Email is NOT confirmed <button onClick={this.confirmationEmail}>Send confirmation email</button></div>
         )}
 
-        <div style={{ maxWidth: "200px" }}>
-          <img src={this.state.avatar_url} />
-          <button onClick={() => openLoginModal()}>Change image</button>
-          <p>JPG, GIF or PNG. Max size of 800KB</p>
+        <div className='u-margin-bottom-large'>
+          <div className='o-flag'>
+            <div className='o-flag__img'>
+              {/*<img src={this.state.avatar_url} />*/}
+              <img className='o-avatar o-avatar--huge' src={require("../../../images/avatar-default.jpg")} />
+            </div>
+            <div className='o-flag__body'>
+              <button className='c-btn c-btn--secondary c-btn--hollow c-btn--small c-btn--padding-small u-margin-bottom-tiny' onClick={() => openLoginModal()}>Change image</button>
+              <p class='c-annotation'>JPG, GIF or PNG. Max size of 800KB</p>
+            </div>
+          </div>
         </div>
 
         <form className='c-form' onSubmit={this.handleSubmit}>

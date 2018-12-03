@@ -211,8 +211,8 @@ dl {
     }
 
     .c-form__annotation {
-        display: block;
         color: #afb1b3;
+        display: block;
         font-size: 13px;
         font-weight: 500;
         margin-top: $spacing-unit-tiny;
@@ -403,9 +403,16 @@ $tweakpoint-category:   large;
 
     &:hover {
         color: color('brand-primary');
+        text-decoration: none;
     }
 }
 
+.c-annotation {
+    color: #afb1b3;
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+}
 
 .has-header {
     padding-top: $header-height;

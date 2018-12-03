@@ -37,6 +37,10 @@
         opacity: .6;
     }
 
+    &.c-btn--padding-small {
+        padding: .5em 1.2em;
+    }
+
     &.c-btn--small {
         font-size: 12px;
     }
@@ -105,12 +109,20 @@
  */
 .c-btn--hollow {
     background-color: transparent;
-    border: 1px solid currentColor;
+    border: 2px solid currentColor;
 
     &:not(:disabled) {
         &:hover {
             background-color: transparent;
         }
+    }
+
+    &.c-btn--primary {
+        color: color('brand-primary');
+    }
+
+    &.c-btn--secondary {
+        color: color('brand-secondary');
     }
 }
 
