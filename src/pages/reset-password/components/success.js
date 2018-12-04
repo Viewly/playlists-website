@@ -13,9 +13,9 @@ class ResetSuccess extends Component {
           <div className='c-auth__main__content'>
             <div className='c-thank-you'>
               <img className='c-thank-you__img' src={require("../../../images/graphic-success.svg")} />
-              <h1 className='u-h3 u-margin-bottom-tiny'>Success</h1>
-              <p>Password successfully changed</p>
-              <Link to="/login" className='c-btn c-btn--secondary'>Click here to login</Link>
+              <h1 className='u-h3 u-margin-bottom-tiny'>Success!</h1>
+              <p>Your password has been updated.</p>
+              <Link to="/login" className='c-btn c-btn--secondary'>Login</Link>
             </div>
           </div>
         </div>
