@@ -2,28 +2,26 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { playlistCreateNew, categoriesFetch } from "../../actions";
+import { categoriesFetch } from "../../actions";
 
 @connect((state) => ({
   categories: state.categories
 }), (dispatch) => ({
-  playlistCreateNew: (title, description, email, category) => dispatch(playlistCreateNew({ title, description, email, category })),
   categoriesFetch: () => dispatch(categoriesFetch())
 }))
 class CreatePlaylist extends Component {
   static propTypes = {
-    playlistCreateNew: PropTypes.func.isRequired,
     categoriesFetch: PropTypes.func.isRequired,
     categories: PropTypes.object
-  }
+  };
 
   state = {
-    title: "",
-    description: "",
-    email: "",
-    category: "0",
-    suggested: false
-  }
+    playlist_name: "",
+    category_id: "0",
+    thumbnail_url: "",
+    hashtags: "",
+    youtube_url: ""
+  };
 
   componentDidMount() {
     const { categoriesFetch } = this.props;
@@ -35,15 +33,12 @@ class CreatePlaylist extends Component {
     const field = evnt.target.name;
 
     this.setState({ [field]: evnt.target.value });
-  }
+  };
 
   handleSubmit = async (evnt) => {
-    const { playlistCreateNew } = this.props;
-
     evnt.preventDefault();
-    await playlistCreateNew(this.state.title, this.state.description, this.state.email, this.state.category);
-    this.setState({ suggested: true });
-  }
+    alert("Submit");
+  };
 
   render() {
     const { categories } = this.props;
@@ -51,50 +46,95 @@ class CreatePlaylist extends Component {
     return (
       <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
 
-        {this.state.suggested && (
-          <div className='c-thank-you'>
-            <img className='c-thank-you__img' src={require("../../images/message-thank-you.svg")} />
-            <h5 className='u-margin-bottom-small'>Thanks for suggesting a playlist</h5>
-            <p>We&#x27;re still working on finalizing this feature, and we&#x27;ll notify you as soon as it&#x27;s ready.</p>
-          </div>
-        )}
+        <form onSubmit={this.handleSubmit}>
 
-        {!this.state.suggested && (
-          <div>
-            <h1 className='c-form__title'>Create your playlist</h1>
-            <form className='c-form' onSubmit={this.handleSubmit}>
-              <ul className='c-form__list c-form__list--large'>
-                <li>
-                  <label className='c-form__label'>Playlist title</label>
-                  <input className='c-input c-input--primary' type="text" name="title" value={this.state.title} onChange={this.handleChange} required />
-                </li>
-                <li>
-                  <label className='c-form__label'>Category</label>
-                  <div className='c-select u-1/1'>
-                    <select className='c-select__select' name="category" value={this.state.category} onChange={this.handleChange}>
-                      <option value="0">No category</option>
-                      {categories.data.map((item, idx) => <option key={`category-${idx}`} value={item.id}>{item.name}</option>)}
-                    </select>
-                  </div>
-                </li>
-                <li>
-                  <label className='c-form__label'>Description</label>
-                  <textarea className='c-input c-input--primary c-input--textarea' type="text" name="description" value={this.state.description} onChange={this.handleChange}></textarea>
-                </li>
-                <li>
-                  <label className='c-form__label'>Your email address</label>
-                  <input className='c-input c-input--primary' type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
-                </li>
-                <li className='u-text-right'>
-                  <button className='c-btn c-btn--secondary'>Next</button>
-                </li>
-              </ul>
-            </form>
+          <div className="o-grid o-grid--center o-grid--huge o-grid--auto">
+
+            <ul className='o-grid__cell c-form__list c-form__list--large'>
+              <li>
+                <label className='c-form__label'>Playlist name</label>
+                <input
+                  className='c-input c-input--primary'
+                  type="text"
+                  name="playlist_name"
+                  value={this.state.playlist_name}
+                  onChange={this.handleChange}
+                  required/>
+              </li>
+
+              <li>
+                <label className='c-form__label'>Playlist thumbnail</label>
+                <div>
+                  drag and drop here or browse
+                </div>
+              </li>
+
+              <li>
+                <label className='c-form__label'>Category</label>
+                <div className='c-select u-1/1'>
+                  <select
+                    className='c-select__select'
+                    name="category"
+                    value={this.state.category}
+                    onChange={this.handleChange}>
+
+                    <option value="0">No category</option>
+                    {categories.data.map((item, idx) => (
+                      <option key={`category-${idx}`} value={item.id}>{item.name}</option>
+                    ))}
+
+                  </select>
+                </div>
+              </li>
+
+              <li>
+                <label className='c-form__label'>Hashtags</label>
+                <input
+                  className='c-input c-input--primary'
+                  type="text"
+                  name="hashtags"
+                  value={this.state.hashtags}
+                  onChange={this.handleChange}
+                  required/>
+              </li>
+
+              <li className='u-text-right'>
+                <button className='c-btn c-btn--secondary'>Next</button>
+              </li>
+            </ul>
+
+            <ul className='o-grid__cell c-form__list c-form__list--large'>
+              <li>
+                <label className='c-form__label'>Playlist name</label>
+                <input
+                  className='c-input c-input--primary'
+                  type="text"
+                  name="playlist_name"
+                  value={this.state.playlist_name}
+                  onChange={this.handleChange}
+                  required/>
+              </li>
+
+              <li>
+                video
+              </li>
+              <li>
+                video
+              </li>
+              <li>
+                video
+              </li>
+              <li>
+                video
+              </li>
+            </ul>
           </div>
-        )}
+        </form>
+
 
       </div>
     );
   }
 }
+
 export default CreatePlaylist;
