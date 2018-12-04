@@ -9,6 +9,9 @@ class ToastItem extends Component {
         <span>X</span>
         <h2>Toast header</h2>
         <p>Toast text</p>
+        <div>
+          <button>CTA button</button>
+        </div>
       </div>
     );
   }
