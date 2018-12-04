@@ -4,17 +4,22 @@ import ResetRequest from "./components/request";
 import ResetRequested from "./components/requested";
 import ResetCode from "./components/code";
 import ResetSuccess from "./components/success";
+import SEO from "../../components/SEO";
 
 class ResetPasswordPage extends Component {
   render() {
     return (
-      <Switch>
-        <Route path='/reset-password/success' component={ResetSuccess} />
-        <Route path='/reset-password/requested' component={ResetRequested} />
-        <Route path='/reset-password/:token' component={ResetCode} />
-        <Route path='/reset-password' component={ResetRequest} />
-      </Switch>
+      <>
+        <SEO/>
+        <Switch>
+          <Route path='/reset-password/success' component={ResetSuccess} />
+          <Route path='/reset-password/requested' component={ResetRequested}/>
+          <Route path='/reset-password/:token' component={ResetCode}/>
+          <Route path='/reset-password' component={ResetRequest}/>
+        </Switch>
+      </>
     );
   }
 }
+
 export default ResetPasswordPage;

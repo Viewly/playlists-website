@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import AuthSidebar from "../../components/authSidebar";
 import { userRegister, LOGIN_SUCCESS_PERSIST, getGoogleLoginUrl } from "../../actions/user";
+import SEO from "../../components/SEO";
 
 @connect(null, (dispatch) => ({
   userRegister: (first_name, last_name, email, password) => dispatch(userRegister({ first_name, last_name, email, password })),
@@ -56,6 +57,7 @@ class RegistrationPage extends Component {
     return (
       <div className='c-auth'>
         <AuthSidebar />
+        <SEO title="Welcome to VidFlow" />
 
         <div className='c-auth__main'>
 
