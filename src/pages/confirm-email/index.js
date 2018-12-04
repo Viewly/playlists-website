@@ -8,6 +8,7 @@ import { asyncLoad, isLoaded } from "../../utils";
 
 import { EMAIL_CONFIRM_PAGE } from "../../constants/pages";
 import Loading from "../../components/loading";
+import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
   userEmailConfirm: (token) => dispatch(userEmailConfirm({ token })),
@@ -49,7 +50,8 @@ class EmailConfirmPage extends Component {
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-
+        <SEO />
+        
         {!isReady && <Loading />}
         {isReady && (
           <div>

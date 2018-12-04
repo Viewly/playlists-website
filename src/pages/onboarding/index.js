@@ -9,6 +9,7 @@ import SubmitCounter from "./components/submit_counter";
 import { categoriesFetch } from "../../actions";
 import { userSaveOnboarding, userGetOnboarding } from "../../actions/user";
 import { isLoaded } from "../../utils";
+import SEO from "../../components/SEO";
 
 @connect((state) => ({
   categories: state.categories,
@@ -69,6 +70,7 @@ class OnboardingPage extends Component {
     return (
       <div className='c-auth'>
         <AuthSidebar />
+        <SEO />
 
         <div className='c-auth__main c-auth__main--full'>
 
