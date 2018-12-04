@@ -11,6 +11,7 @@ import { FirstLoadEvent, SetUserId } from "./analytics";
 import LoginModal from "./components/LoginModal";
 import UploadModal from "./components/UploadModal";
 import RegisterModal from "./components/RegisterModal";
+import Toasts from "./components/Toasts";
 
 @withRouter
 @connect((state) => ({
@@ -53,6 +54,7 @@ class LayoutWithHeader extends Component {
     return (
       <div className='has-header'>
         <HeaderContainer />
+        <Toasts />
         <>
           {routes.map((route, idx) => (
             <Route key={`route-${idx}`} {...route} />
