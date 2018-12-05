@@ -17,7 +17,7 @@ class Toasts extends Component {
     toasts: PropTypes.object
   };
 
-  closeToast = (id) => (evnt) => {
+  closeToast = (id) => () => {
     const { closeToast } = this.props;
     closeToast(id);
   };
@@ -27,7 +27,7 @@ class Toasts extends Component {
     const { openToast } = this.props;
     const types = ['success', 'error', 'warning', 'info'];
 
-    openToast({ type: types[Math.floor(Math.random()*types.length)], message: "This is a toast notification yay" });
+    openToast({ type: types[Math.floor(Math.random()*types.length)], title: "YaY", message: "This is a toast notification yay" });
   };
 
   render() {

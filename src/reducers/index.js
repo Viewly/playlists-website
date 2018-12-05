@@ -37,12 +37,7 @@ const initialState = {
       isOpen: false
     }
   },
-  toasts: {
-    data: [
-      { id: "1", title: "Yay", message: "This is a success message", type: "success" },
-      { id: "2", title: "Nooo", message: "This is an error message :(", type: "error" },
-    ]
-  }
+  toasts: { data: [] }
 };
 
 const rootReducer = (state = initialState, action) => {
