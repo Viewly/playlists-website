@@ -509,3 +509,12 @@ $tweakpoint-category:   large;
             cursor: pointer;
         }
     }
+
+    .c-alert__title {
+        color: inherit;
+        font-size: $font-size-h5;
+
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit-tiny;
+        }
+    }

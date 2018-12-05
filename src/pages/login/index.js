@@ -64,19 +64,25 @@ class LoginPage extends Component {
               <h1 className='u-h3 u-margin-bottom-tiny'>Log in to Vidflow</h1>
             </div>
 
-            {this.state.error && (
-              <div className=''>
-                <h5 className='u-margin-bottom-small'>An error occurred</h5>
-                <p>{this.state.errorText}</p>
-              </div>
-            )}
-
             <div className='u-margin-bottom-large'>
               <button className='c-btn c-btn--social c-btn--social--google c-btn--full' onClick={this.googleLogin}>
                 <img className='c-btn--social__logo' src={require("../../images/soc-networks-logos/logo-google.svg")} />
                 Log in with Google
               </button>
             </div>
+
+            {this.state.error && (
+              <div className='c-alert c-alert--error u-margin-bottom'>
+                <div className='o-flag o-flag--tiny'>
+                  <div className='o-flag__img u-align-top'>
+                    <img className='o-icon o-icon--small' src={require('../../images/icons/alert/alert-error.svg')} />
+                  </div>
+                  <div className='o-flag__body'>
+                    <p>{this.state.errorText}</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <form id='form-login' className='c-form' onSubmit={this.handleSubmit}>
               <ul className='c-form__list'>
