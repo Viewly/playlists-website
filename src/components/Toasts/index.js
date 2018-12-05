@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ToastItem from "./components/toast";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ToastItem from './components/toast';
 
 class Toasts extends Component {
   static propTypes = {
@@ -9,10 +9,11 @@ class Toasts extends Component {
 
   render() {
     return (
-      <div className="toasts--container" style={{ border: '1px dashed black'}}>
-        <ToastItem type="info" />
-        <ToastItem type="warning" />
-        <ToastItem type="success" />
+      <div className='c-toasts'>
+        <ToastItem type='info' />
+        <ToastItem type='warning' />
+        <ToastItem type='success' />
+        <ToastItem type='error' />
       </div>
     );
   }

@@ -5,10 +5,9 @@ class ToastItem extends Component {
     const { type } = this.props;
 
     return (
-      <div className={`toast toast--${type}`} style={{ border: '1px solid pink' }}>
+      <div className={`c-toasts__toast c-alert c-alert--${type}`}>
         <span>X</span>
-        <h2>Toast header</h2>
-        <p>Toast text</p>
+        <p><b>Success!</b> This alert box indicates a successful or positive action.</p>
         <div>
           <button>CTA button</button>
         </div>

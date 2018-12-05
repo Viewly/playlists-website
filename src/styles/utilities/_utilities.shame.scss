@@ -441,3 +441,19 @@ $tweakpoint-category:   large;
         padding-top: ($header-height + $nav-height);
     }
 }
+
+.c-toasts {
+    max-width: 600px;
+    transform: translateX(-50%);
+    width: 100%;
+    position: fixed;
+    top: ($header-height + $spacing-unit);
+    left: 50%;
+    z-index: 1000;
+}
+
+    .c-toasts__toast {
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit;
+        }
+    }
