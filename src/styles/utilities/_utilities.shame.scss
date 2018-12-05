@@ -444,14 +444,18 @@ $tweakpoint-category:   large;
 
 .c-toasts {
     max-width: 600px;
+    margin-top: $spacing-unit;
+    padding-left: 5px;
+    padding-right: 5px;
     transform: translateX(-50%);
     width: 100%;
     position: fixed;
-    top: ($header-height + $spacing-unit);
+    top: $header-height;
     left: 50%;
     z-index: 1000;
 
     @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+        margin-top: 5px;
         top: ($header-height + $nav-height);
     }
 }
