@@ -10,10 +10,10 @@ class Toasts extends Component {
   render() {
     return (
       <div className='c-toasts'>
-        <ToastItem type='info' />
-        <ToastItem type='warning' />
         <ToastItem type='success' />
         <ToastItem type='error' />
+        <ToastItem type='info' />
+        <ToastItem type='warning' />
       </div>
     );
   }
