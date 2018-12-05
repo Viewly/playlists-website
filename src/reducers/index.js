@@ -1,7 +1,16 @@
 import * as actions from "../actions";
 import * as userActions from "../actions/user";
+import * as toastActions from "../actions/toast";
 import { PENDING, LOADED, LOADING } from "../constants/status_types";
-import { getPlaylistProgress, updateVideosWithProgresses, decodeJwt, setUserCookie, getUserCookie, unsetUserCookie } from "../utils";
+import {
+  getPlaylistProgress,
+  updateVideosWithProgresses,
+  decodeJwt,
+  setUserCookie,
+  getUserCookie,
+  unsetUserCookie,
+  generateUuid
+} from "../utils";
 
 const jwtCookie = getUserCookie();
 
@@ -27,6 +36,12 @@ const initialState = {
     upload: {
       isOpen: false
     }
+  },
+  toasts: {
+    data: [
+      { id: "1", title: "Yay", message: "This is a success message", type: "success" },
+      { id: "2", title: "Nooo", message: "This is an error message :(", type: "error" },
+    ]
   }
 };
 
@@ -131,6 +146,16 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, modals: { ...state.modals, [action.data.name]: { isOpen: true } } };
     case userActions.CLOSE_LOGIN_MODAL:
       return { ...state, modals: { ...state.modals, [action.data.name]: { isOpen: false } } };
+
+    case toastActions.OPEN_TOAST: {
+      if (!action.data.id) {
+        action.data.id = generateUuid();
+      }
+      return { ...state, toasts: { ...state.toasts, data: [ ...state.toasts.data, action.data ] } }
+    }
+    case toastActions.CLOSE_TOAST: {
+      return { ...state, toasts: { ...state.toasts, data: state.toasts.data.filter(item => item.id !== action.data) } }
+    }
 
     default:
       return state;
