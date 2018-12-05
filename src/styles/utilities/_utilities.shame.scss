@@ -442,6 +442,23 @@ $tweakpoint-category:   large;
     }
 }
 
+
+/* TOAST FADE STUFF */
+.fade-enter {
+    opacity: 0.01;
+}
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}
+
 .c-toasts {
     max-width: 600px;
     margin-top: $spacing-unit;

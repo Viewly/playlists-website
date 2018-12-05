@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import {
+  CSSTransition,
+  TransitionGroup,
+} from "react-transition-group";
 
 import ToastItem from "./components/toast";
 import { CLOSE_TOAST, OPEN_TOAST } from "../../actions/toast";
@@ -25,9 +29,13 @@ class Toasts extends Component {
   // DEBUG REMOVE ME
   onNew = () => {
     const { openToast } = this.props;
-    const types = ['success', 'error', 'warning', 'info'];
+    const types = ["success", "error", "warning", "info"];
 
-    openToast({ type: types[Math.floor(Math.random()*types.length)], title: "YaY", message: "This is a toast notification yay" });
+    openToast({
+      type: types[Math.floor(Math.random() * types.length)],
+      title: "YaY",
+      message: "This is a toast notification yay"
+    });
   };
 
   render() {
@@ -35,12 +43,22 @@ class Toasts extends Component {
 
     return (
       <div className='c-toasts'>
-        {toasts.data.map((item, idx) => (
-          <ToastItem onClose={this.closeToast} key={`toast-${idx}`} type='success' {...item} />
-        ))}
+        <TransitionGroup className="todo-list">
+          {toasts.data.map((item, idx) => (
+            <CSSTransition
+              key={item.id}
+              timeout={300}
+              classNames="fade"
+            >
+              <ToastItem onClose={this.closeToast} key={`toast-${idx}`} type='success' {...item} />
+            </CSSTransition>
+          ))}
 
-        {/* DEBUG */}
-        <ToastItem type='info' onNew={this.onNew} />
+          {/* DEBUG */}
+          <ToastItem type='info' onNew={this.onNew}/>
+
+        </TransitionGroup>
+
       </div>
     );
   }
