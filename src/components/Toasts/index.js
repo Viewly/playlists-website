@@ -50,7 +50,7 @@ class Toasts extends Component {
               timeout={300}
               classNames="fade"
             >
-              <ToastItem onClose={this.closeToast} key={`toast-${idx}`} type='success' {...item} />
+              <ToastItem onClose={this.closeToast} key={`toast-${item.id}`} type='success' {...item} />
             </CSSTransition>
           ))}
 
