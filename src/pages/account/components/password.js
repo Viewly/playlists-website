@@ -3,13 +3,15 @@ import PropTypes from "prop-types";
 import { connect }from "react-redux";
 import { userProfileUpdatePassword } from "../../../actions/user";
 import { withRouter, Link } from "react-router-dom";
+import { OPEN_TOAST } from "../../../actions/toast";
 
 
 @withRouter
 @connect((state) => ({
   user: state.user
 }), (dispatch) => ({
-  userProfileUpdatePassword: (data) => dispatch(userProfileUpdatePassword(data))
+  userProfileUpdatePassword: (data) => dispatch(userProfileUpdatePassword(data)),
+  openToast: (data) => dispatch({ type: OPEN_TOAST, data })
 }))
 class UserPassword extends Component {
   static propTypes = {
@@ -21,9 +23,7 @@ class UserPassword extends Component {
 
   state = {
     new_password: "",
-    current_password: "",
-    error: false,
-    errorText: ""
+    current_password: ""
   }
 
   handleChange = (evnt) => {
@@ -33,7 +33,7 @@ class UserPassword extends Component {
   }
 
   handleSubmit = async (evnt) => {
-    const { userProfileUpdatePassword, history } = this.props;
+    const { userProfileUpdatePassword, history, openToast } = this.props;
     const { current_password, new_password } = this.state;
 
     this.setState({ error: false });
@@ -42,12 +42,10 @@ class UserPassword extends Component {
 
     if (response.success) {
       // loginSuccess(response.user);
+      openToast({ type: "success", message: "Password changed successfully" });
       history.push("/account");
     } else {
-      this.setState({
-        error: true,
-        errorText: response.message
-      });
+      openToast({ type: "error", message: response.message });
     }
 
   }
@@ -55,13 +53,6 @@ class UserPassword extends Component {
   render() {
     return (
       <div>
-        {this.state.error && (
-          <div className=''>
-            <h5 className='u-margin-bottom-small'>An error occurred</h5>
-            <p>{this.state.errorText}</p>
-          </div>
-        )}
-
         <form className='c-form' onSubmit={this.handleSubmit}>
           <ul className='c-form__list'>
             <li>
