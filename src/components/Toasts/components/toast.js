@@ -9,7 +9,29 @@ class ToastItem extends Component {
     message: PropTypes.string,
     cta: PropTypes.string,
     onClose: PropTypes.func,
+    autoClose: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.bool
+    ])
   };
+
+  static defaultProps = {
+    autoClose: 3000
+  }
+
+  componentDidMount() {
+    const { autoClose, onClose, id } = this.props;
+
+    if (onClose && autoClose) {
+      this.autoclose = setTimeout(() => {
+        onClose && onClose(id);
+      }, autoClose);
+    }
+  }
+
+  componentWillUnmount() {
+    this.autoclose && clearTimeout(this.autoclose);
+  }
 
   render() {
     const { id, type, title, message, cta, onClose, onNew } = this.props;

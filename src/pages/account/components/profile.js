@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { userEmailRequest, OPEN_LOGIN_MODAL, userProfileUpdate } from "../../../actions/user";
+import { OPEN_TOAST } from "../../../actions/toast";
 
 @connect((state) => ({
   user: state.user
@@ -9,6 +10,7 @@ import { userEmailRequest, OPEN_LOGIN_MODAL, userProfileUpdate } from "../../../
   userProfileUpdate: (data) => dispatch(userProfileUpdate(data)),
   userEmailRequest: (email) => dispatch(userEmailRequest({ email })),
   openLoginModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "upload" } }),
+  openToast: (data) => dispatch({ type: OPEN_TOAST, data })
 }))
 class UserProfile extends Component {
   static propTypes = {
@@ -45,11 +47,13 @@ class UserProfile extends Component {
   };
 
   handleSubmit = async (evnt) => {
-    const { userProfileUpdate } = this.props;
+    const { userProfileUpdate, openToast } = this.props;
     const { first_name, last_name } = this.state;
 
     evnt.preventDefault();
-    userProfileUpdate({ first_name, last_name });
+    await userProfileUpdate({ first_name, last_name });
+
+    openToast({ type: "success", message: "Profile saved successfully" });
   };
 
   render() {
