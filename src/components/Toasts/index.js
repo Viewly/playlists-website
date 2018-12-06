@@ -44,7 +44,7 @@ class Toasts extends Component {
     return (
       <div className='c-toasts'>
         <TransitionGroup className="todo-list">
-          {toasts.data.map((item, idx) => (
+          {toasts.data.map((item) => (
             <CSSTransition
               key={item.id}
               timeout={300}
