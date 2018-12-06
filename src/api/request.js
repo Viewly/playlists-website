@@ -27,6 +27,14 @@ export async function patch(url, data = {}) {
   return { body: response.data };
 }
 
+export async function upload(url, formData) {
+  var request = new XMLHttpRequest();
+  request.open("PUT", url);
+  request.send(formData);
+  // const response = await axios.put(url, formData);
+  // return { body: response.data };
+}
+
 export async function del(url, data = {}) {
   const headers = data.authenticationToken ? { authorization: data.authenticationToken } : {};
   const { authenticationToken, ...newData } = data; // eslint-disable-line no-unused-vars
