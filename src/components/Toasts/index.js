@@ -21,7 +21,7 @@ class Toasts extends Component {
     toasts: PropTypes.object
   };
 
-  closeToast = (id) => () => {
+  closeToast = (id) => {
     const { closeToast } = this.props;
     closeToast(id);
   };

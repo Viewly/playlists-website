@@ -17,7 +17,7 @@ class ToastItem extends Component {
     return (
       <div className={`c-toasts__toast c-alert c-alert--${type}`}>
         {onClose && (
-          <span onClick={onClose(id)} className='c-alert__close'><img className='o-icon o-icon--tiny' src={require("../../../images/icons/close.svg")} /></span>
+          <span onClick={() => onClose(id)} className='c-alert__close'><img className='o-icon o-icon--tiny' src={require("../../../images/icons/close.svg")} /></span>
         )}
         <div className='o-flag o-flag--tiny'>
           <div className='o-flag__img u-align-top'>
