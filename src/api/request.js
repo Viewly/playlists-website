@@ -27,12 +27,15 @@ export async function patch(url, data = {}) {
   return { body: response.data };
 }
 
-export async function upload(url, formData) {
-  var request = new XMLHttpRequest();
-  request.open("PUT", url);
-  request.send(formData);
-  // const response = await axios.put(url, formData);
-  // return { body: response.data };
+export async function upload(url, formData, callback) {
+  const config = {
+    onUploadProgress: evnt => {
+      const percentage = Math.round(100 * evnt.loaded / evnt.total);
+      callback && callback(percentage);
+    }
+  }
+  const response = await axios.put(url, formData, config);
+  return { body: response.data };
 }
 
 export async function del(url, data = {}) {

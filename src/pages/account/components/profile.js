@@ -53,6 +53,10 @@ class UserProfile extends Component {
     userProfileUpdate({ first_name, last_name });
   };
 
+  updateAvatar = (avatar_url) => {
+    this.setState({ avatar_url });
+  }
+
   render() {
     return (
       <div>
@@ -63,7 +67,7 @@ class UserProfile extends Component {
         )}
 
         <div className='u-margin-bottom-large'>
-          <UserAvatar avatar_url={this.state.avatar_url}/>
+          <UserAvatar updateAvatar={this.updateAvatar} avatar_url={this.state.avatar_url}/>
         </div>
 
         <form className='c-form' onSubmit={this.handleSubmit}>

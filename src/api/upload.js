@@ -7,8 +7,8 @@ export async function getUploadUrl(baseUrl, { key, type }) {
   return body;
 }
 
-export async function uploadFile(baseUrl, { url, data }) {
-  const { body } = await upload(url, data);
+export async function uploadFile(baseUrl, { url, data, callback}) {
+  const { body } = await upload(url, data, callback);
 
   return body;
 }
