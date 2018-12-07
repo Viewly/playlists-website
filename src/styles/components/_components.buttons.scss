@@ -105,6 +105,14 @@
 }
 
 /**
+ * Square button.
+ */
+.c-btn--square {
+    border-radius: $input-border-radius;
+    padding: 1em;
+}
+
+/**
  * Hollow (or ghost) button.
  */
 .c-btn--hollow {
@@ -119,10 +127,22 @@
 
     &.c-btn--primary {
         color: color('brand-primary');
+
+        &:not(:disabled) {
+            &:hover {
+                color: darken(color('brand-primary'), 6%);
+            }
+        }
     }
 
     &.c-btn--secondary {
         color: color('brand-secondary');
+
+        &:not(:disabled) {
+            &:hover {
+                color: darken(color('brand-secondary'), 6%);
+            }
+        }
     }
 }
 
