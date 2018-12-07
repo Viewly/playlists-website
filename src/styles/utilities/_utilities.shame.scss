@@ -39,14 +39,21 @@
         background-color: color('light-grey');
 
         .c-input {
-            background-color: #fff;
+            &:not(:focus),
+            &:not(:active) {
+                background-color: darken($input-background-color, 4%);
+            }
+
+            &:focus {
+                background-color: #fff;
+            }
         }
+
     }
 }
 
     .c-video-link-preview__thumbnail {
         border-radius: $global-border-radius;
-        //width: 100px;
     }
 
 .c-faux-link {
