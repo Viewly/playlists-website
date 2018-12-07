@@ -31,8 +31,13 @@
 
 .c-video-link-preview {
     border-radius: $global-border-radius;
-    padding: $spacing-unit-small;
+    padding: $spacing-unit-tiny;
     transition: $global-transition;
+    margin-left: -$spacing-unit-small;
+
+    @include mq(medium) {
+        padding: $spacing-unit-small;
+    }
 
     &:hover,
     &:active {
@@ -48,7 +53,6 @@
                 background-color: #fff;
             }
         }
-
     }
 }
 
