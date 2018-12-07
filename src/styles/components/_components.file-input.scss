@@ -2,11 +2,16 @@
     #FILE INPUT
 \*------------------------------------*/
 
+/**
+ * 1. When uploaded image is shown cut its corners to preserve border radius on
+ *    `o-file-input`
+ */
 .c-file-input {
     background-color: $input-background-color;
-    border: 1px solid transparent;
     border-radius: $input-border-radius;
+    border: 1px solid transparent;
     display: block;
+    overflow: hidden; /* [1] */
     transition: $global-transition;
 
     &:not(:disabled) {
@@ -25,8 +30,6 @@
     &:disabled {
         opacity: .5;
     }
-
-
 }
 
     .c-file-input__container {
@@ -48,7 +51,7 @@
         }
     }
 
-        .c-file-input__img {
+        .c-file-input__graphic {
             margin-bottom: $spacing-unit-small;
             width: 68px;
 
@@ -69,3 +72,16 @@
                 margin-top: $spacing-unit;
             }
         }
+
+
+    .c-file-input__upload-progress {
+        background-color: color('brand-secondary');
+        display: block;
+        height: 3px;
+        pointer-events: none;
+        transition: inherit;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 30;
+    }
