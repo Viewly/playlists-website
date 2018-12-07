@@ -63,11 +63,13 @@
 @import 'components/components.colored-icon';
 @import 'components/components.player';
 @import 'components/components.player-playlist';
+@import 'components/components.file-input';
 
 
 // Utilities
 @import '../../node_modules/inuitcss/utilities/utilities.widths';
 @import '../../node_modules/inuitcss/utilities/utilities.spacings';
+@import '../../node_modules/inuitcss/utilities/utilities.hide';
 @import 'utilities/utilities.headings';
 @import 'utilities/utilities.spacings-responsive';
 @import 'utilities/utilities.type';

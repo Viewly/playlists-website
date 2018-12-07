@@ -1,0 +1,47 @@
+/*------------------------------------*\
+    #FILE INPUT
+\*------------------------------------*/
+
+.c-file-input {
+    background-color: $input-background-color;
+    border-radius: $input-border-radius;
+    display: block;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+    .c-file-input__container {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .c-file-input__input {
+        @include hidden-visually;
+    }
+
+    .c-file-input__content {
+        padding: $spacing-unit $spacing-unit-small $spacing-unit $spacing-unit-small;
+        text-align: center;
+
+        span {
+            color: color('brand-secondary');
+            font-weight: 500;
+        }
+    }
+
+        .c-file-input__img {
+            margin-bottom: $spacing-unit;
+            width: 68px;
+        }
+
+        .c-file-input__annotation {
+            color: #afb1b3;
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            margin-top: $spacing-unit;
+            text-transform: uppercase;
+        }

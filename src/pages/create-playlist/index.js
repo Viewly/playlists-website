@@ -82,9 +82,16 @@ class CreatePlaylist extends Component {
 
                 <li>
                   <label className='c-form__label'>Playlist thumbnail</label>
-                  <div>
-                    drag and drop here or browse
-                  </div>
+                  <label className='c-file-input o-ratio o-ratio--16:9'>
+                    <div className='c-file-input__container o-ratio__content'>
+                      <input className='c-file-input__input' type="file" id="file" />
+                      <div className='c-file-input__content'>
+                        <img className='c-file-input__img' src={require("../../images/graphic-add-photo.png")} />
+                        <p>Drag and drop or <span>browse</span> <br />for the thumbnail to upload</p>
+                        <small className='c-file-input__annotation'>JPG, GIF or PNG. Max size 5mb</small>
+                      </div>
+                    </div>
+                  </label>
                 </li>
 
                 <li>
