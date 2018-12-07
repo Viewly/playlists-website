@@ -284,6 +284,7 @@ class CreatePlaylist extends Component {
             </div>
           </div>
           <div className='u-text-right u-horizontally-center u-margin-top u-margin-top-large@large u-4/5@medium u-1/1@large u-4/5@extralarge'>
+            <hr className='u-margin-bottom' />
             <button className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
             <button className='c-btn c-btn--secondary'>Publish</button>
           </div>

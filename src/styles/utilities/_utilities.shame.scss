@@ -66,6 +66,17 @@
     }
 }
 
+/**
+ * Horizontal rules
+ */
+hr {
+    background-color: none;
+    border: none;
+    border-bottom: 1px solid color('grey');
+    height: 1px;
+    margin-bottom: $spacing-unit;
+}
+
 dl {
     font-size: 13px;
     font-weight: 700;
