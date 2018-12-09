@@ -278,6 +278,10 @@ dl {
     padding-bottom: $spacing-unit;
     text-align: center;
 
+    p:not(:last-child) {
+        margin-bottom: $spacing-unit;
+    }
+
     a:not(.c-btn) {
         color: color('brand-primary');
         font-weight: 700;

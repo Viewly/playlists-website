@@ -41,7 +41,7 @@ class ResetCode extends Component {
     const response = await userForgotPasswordReset(this.state.token, this.state.password);
 
     if (response.success) {
-      history.push("/login");
+      history.push("/reset-password/success");
     } else {
       console.log("response", response);
       this.setState({

@@ -59,7 +59,7 @@ class UserPassword extends Component {
               <label className='c-form__label'>Current password</label>
               <input className='c-input c-input--primary' type="password" name="current_password" value={this.state.current_password} onChange={this.handleChange} />
               <div className='c-annotation u-text-right u-margin-top-tiny'>
-                <Link to='/reset-password'>Forgot current password?</Link>
+                <Link to='/reset-password' tabIndex="-1">Forgot current password?</Link>
               </div>
             </li>
             <li>

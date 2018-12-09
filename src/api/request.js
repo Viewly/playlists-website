@@ -27,6 +27,17 @@ export async function patch(url, data = {}) {
   return { body: response.data };
 }
 
+export async function upload(url, formData, callback) {
+  const config = {
+    onUploadProgress: evnt => {
+      const percentage = Math.round(100 * evnt.loaded / evnt.total);
+      callback && callback(percentage);
+    }
+  }
+  const response = await axios.put(url, formData, config);
+  return { body: response.data };
+}
+
 export async function del(url, data = {}) {
   const headers = data.authenticationToken ? { authorization: data.authenticationToken } : {};
   const { authenticationToken, ...newData } = data; // eslint-disable-line no-unused-vars
