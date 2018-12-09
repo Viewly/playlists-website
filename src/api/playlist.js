@@ -80,3 +80,9 @@ export async function hashtagsFetch (baseUrl) {
 
   return body;
 }
+
+export async function playlistCreate (baseUrl, data) {
+  const { body } = await post(`${baseUrl}/playlist`, data);
+
+  return body;
+}
