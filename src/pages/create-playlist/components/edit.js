@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { categoriesFetch } from "../../../actions";
+import { categoriesFetch, playlistFetch } from "../../../actions";
 import { playlistCreate } from "../../../actions/playlist";
 import PlaylistName from "./formElements/playlistName";
 import PlaylistCategory from "./formElements/playlistCategory";
@@ -13,8 +13,10 @@ import PlaylistAddVideos from "./formElements/playlistAddVideos";
 import PlaylistVideoPreview from "./formElements/playlistVideoPreview";
 
 @connect((state) => ({
-  categories: state.categories
+  categories: state.categories,
+  playlist: state.playlist,
 }), (dispatch) => ({
+  playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
   categoriesFetch: () => dispatch(categoriesFetch()),
   playlistCreate: (data) => dispatch(playlistCreate(data))
 }))
@@ -26,18 +28,26 @@ class EditPlaylist extends Component {
 
   state = {
     playlist_id: "",
-    playlist_name: "",
+    title: "",
     description: "",
-    category_id: "0",
+    category: { id: 0 },
     thumbnail_url: "",
     hashtags: "",
     youtube_url: ""
   };
 
   componentDidMount() {
-    const { categoriesFetch } = this.props;
+    const { categoriesFetch, playlist, playlistFetch, match: { params: { playlistId }} } = this.props;
 
     categoriesFetch();
+
+    playlistFetch(playlistId);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.playlist.id !== this.props.playlist.id) {
+      this.setState({ ...this.state, ...this.props.playlist });
+    }
   }
 
   handleChange = (evnt) => {
@@ -47,22 +57,22 @@ class EditPlaylist extends Component {
   };
 
   handleSubmit = async (evnt) => {
-    const { playlistCreate } = this.props;
+    // const { playlistCreate } = this.props;
     evnt.preventDefault();
-    // alert("Submit");
+    alert("Submit");
+    //
+    // const response = await playlistCreate({
+    //   "title": this.state.title,
+    //   "url": "string",
+    //   "description": this.state.description,
+    //   "category_id": this.state.category_id,
+    //   "hashtags": "",
+    //   // "status": "",
+    //   "playlist_thumbnail_url": "url",
+    //   // "publish_date": "playlist.status === 'published' ? new Date(): null"
+    // });
 
-    const response = await playlistCreate({
-      "title": this.state.playlist_name,
-      "url": "string",
-      "description": this.state.description,
-      "category_id": this.state.category_id,
-      "hashtags": "",
-      // "status": "",
-      "playlist_thumbnail_url": "url",
-      // "publish_date": "playlist.status === 'published' ? new Date(): null"
-    });
-
-    console.log("DONE", response);
+    // console.log("DONE", response);
   };
 
   render() {
@@ -76,8 +86,8 @@ class EditPlaylist extends Component {
 
             <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
               <ul className='c-form__list c-form__list--large'>
-                <PlaylistName value={this.state.playlist_name} onChange={this.handleChange} />
-                <PlaylistCategory categories={categories.data} value={this.state.category} onChange={this.handleChange} />
+                <PlaylistName value={this.state.title} onChange={this.handleChange} />
+                <PlaylistCategory categories={categories.data} value={this.state.category.id} onChange={this.handleChange} />
                 <PlaylistThumbnail />
                 <PlaylistDescription value={this.state.description} onChange={this.handleChange} />
                 <PlaylistHashtags value={this.state.hashtags} onChange={this.handleChange} />

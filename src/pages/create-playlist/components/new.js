@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import { categoriesFetch } from "../../../actions";
 import { playlistCreate } from "../../../actions/playlist";
 import PlaylistName from "./formElements/playlistName";
 import PlaylistCategory from "./formElements/playlistCategory";
-import PlaylistThumbnail from "./formElements/playlistThumbnail";
 import PlaylistDescription from "./formElements/playlistDescription";
-import PlaylistHashtags from "./formElements/playlistHashtags";
+// import PlaylistThumbnail from "./formElements/playlistThumbnail";
+// import PlaylistHashtags from "./formElements/playlistHashtags";
 
+@withRouter
 @connect((state) => ({
   categories: state.categories
 }), (dispatch) => ({
@@ -23,11 +25,10 @@ class NewPlaylist extends Component {
   };
 
   state = {
-    created: false,
     playlist_id: "",
-    playlist_name: "",
+    title: "",
     description: "",
-    category_id: "0",
+    category: { id: 0 },
     thumbnail_url: "",
     hashtags: "",
     youtube_url: ""
@@ -46,21 +47,23 @@ class NewPlaylist extends Component {
   };
 
   handleSubmit = async (evnt) => {
-    const { playlistCreate } = this.props;
+    const { history, playlistCreate } = this.props;
     evnt.preventDefault();
 
     const response = await playlistCreate({
-      "title": this.state.playlist_name,
+      "title": this.state.title,
       "url": "string",
       "description": this.state.description,
-      "category_id": this.state.category_id,
+      "category": {
+        id: parseInt(this.state.category, 10)
+      },
       "hashtags": "",
       // "status": "",
       "playlist_thumbnail_url": "url",
       // "publish_date": "playlist.status === 'published' ? new Date(): null"
     });
 
-    console.log("DONE", response);
+    history.push(`/create-playlist/${response.id}`);
   };
 
   render() {
@@ -73,19 +76,18 @@ class NewPlaylist extends Component {
           <div className="o-grid o-grid--center o-grid--large">
             <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
               <ul className='c-form__list c-form__list--large'>
-                <PlaylistName value={this.state.playlist_name} onChange={this.handleChange} />
-                <PlaylistCategory categories={categories.data} value={this.state.category} onChange={this.handleChange} />
-                <PlaylistThumbnail />
+                <PlaylistName value={this.state.title} onChange={this.handleChange} />
+                <PlaylistCategory categories={categories.data} value={this.state.category_id} onChange={this.handleChange} />
+                {/*<PlaylistThumbnail />*/}
                 <PlaylistDescription value={this.state.description} onChange={this.handleChange} />
-                <PlaylistHashtags value={this.state.hashtags} onChange={this.handleChange} />
+                {/*<PlaylistHashtags value={this.state.hashtags} onChange={this.handleChange} />*/}
               </ul>
             </div>
           </div>
 
           <div className='u-text-right u-horizontally-center u-margin-top u-margin-top-large@large u-4/5@medium u-1/1@large u-4/5@extralarge'>
             <hr className='u-margin-bottom' />
-            <button className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
-            <button className='c-btn c-btn--secondary'>Publish</button>
+            <button className='c-btn c-btn--secondary'>Next</button>
           </div>
         </form>
 

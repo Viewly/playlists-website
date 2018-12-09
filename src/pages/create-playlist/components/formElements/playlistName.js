@@ -6,7 +6,7 @@ const PlaylistName = ({ value, onChange }) => (
     <input
       className='c-input c-input--primary'
       type="text"
-      name="playlist_name"
+      name="title"
       value={value}
       onChange={onChange}
       required/>

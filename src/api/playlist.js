@@ -84,5 +84,10 @@ export async function hashtagsFetch (baseUrl) {
 export async function playlistCreate (baseUrl, data) {
   const { body } = await post(`${baseUrl}/playlist`, data);
 
-  return body;
+  // should only return body, but this is temporary hack until response includes this data
+  const { authenticationToken, ...playlistData } = data; // eslint-disable-line
+  return {
+    ...playlistData,
+    id: body.id
+  }
 }

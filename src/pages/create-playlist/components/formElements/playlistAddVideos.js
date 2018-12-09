@@ -15,8 +15,7 @@ const PlaylistAddVideos = ({ value, onChange }) => (
           type="text"
           name=""
           value=""
-          onChange={onChange}
-          required/>
+          readOnly/>
       </div>
     </div>
     <small className='c-form__annotation'>Copy video URL and paste it here</small>

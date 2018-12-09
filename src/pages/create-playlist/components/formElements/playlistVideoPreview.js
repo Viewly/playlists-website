@@ -25,7 +25,7 @@ const PlaylistVideoPreview = ({ value, categories, onChange }) => (
                 type="text"
                 name=""
                 value='Premier League Preview - GW 13'
-                required/>
+                readOnly/>
             </div>
           </div>
         </div>

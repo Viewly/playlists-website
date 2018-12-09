@@ -1,6 +1,7 @@
 import * as actions from "../actions";
 import * as userActions from "../actions/user";
 import * as toastActions from "../actions/toast";
+import * as playlistActions from "../actions/playlist";
 import { PENDING, LOADED, LOADING } from "../constants/status_types";
 import {
   getPlaylistProgress,
@@ -37,7 +38,8 @@ const initialState = {
       isOpen: false
     }
   },
-  toasts: { data: [] }
+  toasts: { data: [] },
+  playlistCreator: { _status: PENDING }
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -151,6 +153,9 @@ const rootReducer = (state = initialState, action) => {
     case toastActions.CLOSE_TOAST: {
       return { ...state, toasts: { ...state.toasts, data: state.toasts.data.filter(item => item.id !== action.data) } }
     }
+
+    case playlistActions.PLAYLIST_CREATE_SUCCESS:
+      return { ...state, playlist: { status: LOADED, ...action.data } }
 
     default:
       return state;
