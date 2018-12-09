@@ -8,6 +8,7 @@ import getUserLocale from "get-user-locale";
 import guessTimezone from "guess-timezone";
 import browserDetect from "browser-detect";
 import isMobile from "is-mobile";
+import uuid from "uuid/v1";
 
 export function convertYoutubeDuration (duration) {
   return moment
@@ -141,4 +142,8 @@ export function getDevice() {
   }
 
   return isMobile() ? 2 : 1;
+}
+
+export function generateUuid() {
+  return uuid();
 }
