@@ -55,7 +55,7 @@ class Toasts extends Component {
           ))}
 
           {/* DEBUG */}
-          <ToastItem type='info' onNew={this.onNew}/>
+          {/*<ToastItem type='info' onNew={this.onNew}/>*/}
 
         </TransitionGroup>
 
