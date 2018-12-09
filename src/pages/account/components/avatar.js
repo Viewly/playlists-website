@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { userProfileUpdate } from "../../../actions/user";
+import { LOGIN_SUCCESS_PERSIST, userProfileUpdate } from "../../../actions/user";
 import { getUploadUrl, uploadFile } from "../../../actions/upload";
 import uuid from "uuid";
 
@@ -11,7 +11,8 @@ const S3_endpoint = "https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/
 }), (dispatch) => ({
   getUploadUrl: (key, type) => dispatch(getUploadUrl({ key, type })),
   userProfileUpdate: (data) => dispatch(userProfileUpdate(data)),
-  uploadFile: (url, data, callback) => dispatch(uploadFile({ url, data, callback }))
+  uploadFile: (url, data, callback) => dispatch(uploadFile({ url, data, callback })),
+  loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data })
 }))
 class UserAvatar extends Component {
 
@@ -22,7 +23,7 @@ class UserAvatar extends Component {
   }
 
   onUpload = async () => {
-    const { updateAvatar, userProfileUpdate, getUploadUrl, uploadFile } = this.props;
+    const { loginSuccess, updateAvatar, userProfileUpdate, getUploadUrl, uploadFile } = this.props;
 
     const avatar_extension = this.state.selectedFile.name.split(".").pop();
     const avatar_name = `${uuid()}_profile_avatar.${avatar_extension}`;
@@ -36,9 +37,11 @@ class UserAvatar extends Component {
         this.setState({ percentage });
       });
 
-      await userProfileUpdate({ avatar_url: S3_endpoint + "/" + avatar_name });
+      const newProfile = await userProfileUpdate({ avatar_url: S3_endpoint + "/" + avatar_name });
       this.setState({ uploading: false });
-      updateAvatar(S3_endpoint + "/" + avatar_name); //temporary hack
+
+      loginSuccess(newProfile.user);
+      updateAvatar(S3_endpoint + "/" + avatar_name);
     } else {
       console.log("wtf");
     }
