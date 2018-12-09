@@ -12,6 +12,7 @@ import { sumVideoDurations } from "../../../utils";
 import Loading from "../../../components/loading";
 import { LOADED, LOADING } from "../../../constants/status_types";
 import { userAddBookmark, userRemoveBookmark } from "../../../actions/user";
+import { OPEN_TOAST } from "../../../actions/toast";
 
 @connect((state) => ({
   playlist: state.playlist,
@@ -19,6 +20,7 @@ import { userAddBookmark, userRemoveBookmark } from "../../../actions/user";
 }), (dispatch) => ({
   userAddBookmark: (playlist_id) => dispatch(userAddBookmark({ playlist_id })),
   userRemoveBookmark: (playlist_id) => dispatch(userRemoveBookmark({ playlist_id })),
+  openToast: (data) => dispatch({ type: OPEN_TOAST, data })
 }))
 export default class PlaylistInfo extends Component {
   static propTypes = {
@@ -27,12 +29,14 @@ export default class PlaylistInfo extends Component {
   }
 
   onBookmarkClick = () => {
-    const { playlist, userAddBookmark, userRemoveBookmark } = this.props;
+    const { openToast, playlist, userAddBookmark, userRemoveBookmark } = this.props;
 
     if (playlist.bookmarked) {
       userRemoveBookmark(playlist.id);
+      openToast({ type: "info", message: "Playlist removed from bookmarks" });
     } else {
       userAddBookmark(playlist.id);
+      openToast({ type: "info", message: "Playlist added to bookmarks" });
     }
   }
 

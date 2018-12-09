@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { userEmailRequest, OPEN_LOGIN_MODAL, userProfileUpdate, LOGIN_SUCCESS_PERSIST } from "../../../actions/user";
+import { OPEN_TOAST } from "../../../actions/toast";
 import UserAvatar from "./avatar";
 
 @connect((state) => ({
@@ -10,6 +11,7 @@ import UserAvatar from "./avatar";
   userProfileUpdate: (data) => dispatch(userProfileUpdate(data)),
   userEmailRequest: (email) => dispatch(userEmailRequest({ email })),
   openLoginModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "upload" } }),
+  openToast: (data) => dispatch({ type: OPEN_TOAST, data }),
   loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data })
 }))
 class UserProfile extends Component {
@@ -47,12 +49,13 @@ class UserProfile extends Component {
   };
 
   handleSubmit = async (evnt) => {
-    const { userProfileUpdate, loginSuccess } = this.props;
+
+    const { userProfileUpdate, openToast, loginSuccess } = this.props;
     const { first_name, last_name } = this.state;
 
     evnt.preventDefault();
-
     const response = await userProfileUpdate({ first_name, last_name });
+    openToast({ type: "success", message: "Profile saved successfully" });
     loginSuccess(response.user);
   };
 

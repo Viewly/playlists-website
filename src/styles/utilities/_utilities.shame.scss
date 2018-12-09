@@ -445,3 +445,97 @@ $tweakpoint-category:   large;
         padding-top: ($header-height + $nav-height);
     }
 }
+
+
+/* TOAST FADE STUFF */
+.fade-enter {
+    opacity: 0.01;
+}
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}
+
+.c-toasts {
+    max-width: 600px;
+    margin-top: $spacing-unit;
+    padding-left: 5px;
+    padding-right: 5px;
+    transform: translateX(-50%);
+    width: 100%;
+    position: fixed;
+    top: $header-height;
+    left: 50%;
+    z-index: 1000;
+
+    @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+        margin-top: 5px;
+        top: ($header-height + $nav-height);
+    }
+}
+
+    .c-toasts__toast {
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit-tiny;
+        }
+    }
+
+
+.c-alert {
+    border-radius: 2px;
+    color: #fff;
+    padding: $spacing-unit-small;
+    padding-right: $spacing-unit-large;
+    position: relative;
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.c-alert--success {
+    background-color: color('alert-success');
+}
+
+.c-alert--error {
+    background-color: color('alert-error');
+}
+
+.c-alert--warning {
+    background-color: color('alert-warning');
+}
+
+.c-alert--info {
+    background-color: color('alert-info');
+}
+
+    .c-alert__close {
+        position: absolute;
+        top: $spacing-unit-small;
+        right: $spacing-unit-small;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .c-alert__title {
+        color: inherit;
+        font-size: $font-size-h5;
+
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit-tiny;
+        }
+    }
