@@ -11,6 +11,7 @@ import PlaylistDescription from "./formElements/playlistDescription";
 import PlaylistHashtags from "./formElements/playlistHashtags";
 import PlaylistAddVideos from "./formElements/playlistAddVideos";
 import PlaylistVideoPreview from "./formElements/playlistVideoPreview";
+import Loading from "../../../components/loading";
 
 @connect((state) => ({
   categories: state.categories,
@@ -27,20 +28,22 @@ class EditPlaylist extends Component {
   };
 
   state = {
-    playlist_id: "",
+    id: "",
     title: "",
     description: "",
     category: { id: 0 },
-    thumbnail_url: "",
+    playlist_thumbnail_url: "",
     hashtags: "",
     youtube_url: ""
   };
 
   componentDidMount() {
-    const { categoriesFetch, playlist, playlistFetch, match: { params: { playlistId }} } = this.props;
+    const { categoriesFetch, playlist, playlistFetch, match: { params: { playlistId } } } = this.props;
 
     if (playlist.id === playlistId) {
-      this.setState({ ...this.state, ...playlist });
+      this.setState({ ...this.state, ...playlist }, () => {
+        console.log("did mount state", this.state);
+      });
     }
 
     categoriesFetch();
@@ -50,8 +53,9 @@ class EditPlaylist extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.playlist.id !== this.props.playlist.id) {
-      this.setState({ ...this.state, ...this.props.playlist });
-      console.log('state', this.state);
+      this.setState({ ...this.state, ...this.props.playlist }, () => {
+        console.log("did update state", this.state);
+      });
     }
   }
 
@@ -82,7 +86,7 @@ class EditPlaylist extends Component {
 
   render() {
     const { categories } = this.props;
-console.log('stateee', this.state);
+
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
 
@@ -91,31 +95,34 @@ console.log('stateee', this.state);
 
             <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
               <ul className='c-form__list c-form__list--large'>
-                <PlaylistName value={this.state.title} onChange={this.handleChange} />
-                <PlaylistCategory categories={categories.data} value={this.state.category.id} onChange={this.handleChange} />
+                <PlaylistName value={this.state.title} onChange={this.handleChange}/>
+                <PlaylistCategory categories={categories.data} value={this.state.category.id}
+                                  onChange={this.handleChange}/>
                 <PlaylistThumbnail />
-                <PlaylistDescription value={this.state.description} onChange={this.handleChange} />
-                <PlaylistHashtags value={this.state.hashtags} onChange={this.handleChange} />
+                <PlaylistDescription value={this.state.description} onChange={this.handleChange}/>
+                <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.handleChange}/>
               </ul>
             </div>
 
 
-            <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge u-margin-top-large u-margin-top-none@large'>
+            <div
+              className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge u-margin-top-large u-margin-top-none@large'>
 
               <ul className='c-form__list c-form__list--large'>
-                <PlaylistAddVideos />
+                <PlaylistAddVideos/>
               </ul>
 
               <ul className='u-margin-top-large c-form__list c-form__list--small'>
-                <PlaylistVideoPreview />
-                <PlaylistVideoPreview />
-                <PlaylistVideoPreview />
-                <PlaylistVideoPreview />
+                <PlaylistVideoPreview/>
+                <PlaylistVideoPreview/>
+                <PlaylistVideoPreview/>
+                <PlaylistVideoPreview/>
               </ul>
             </div>
           </div>
 
-          <div className='u-text-right u-horizontally-center u-margin-top u-margin-top-large@large u-4/5@medium u-1/1@large u-4/5@extralarge'>
+          <div
+            className='u-text-right u-horizontally-center u-margin-top u-margin-top-large@large u-4/5@medium u-1/1@large u-4/5@extralarge'>
             <hr className='u-margin-bottom'/>
             <button className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
             <button className='c-btn c-btn--secondary'>Publish</button>
