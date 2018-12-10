@@ -3,14 +3,15 @@ import { connect } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import PlaylistVideoPreview from "./playlistVideoPreview";
-import { playlistReorderVideos } from "../../../../actions/playlist";
+import { playlistReorderVideos, UPDATE_REORDERED_VIDEOS } from "../../../../actions/playlist";
 
 @connect(null, (dispatch) => ({
   playlistReorderVideos: (playlist_id, videos) => dispatch(playlistReorderVideos({ playlist_id, videos })),
+  updateReorderedVideos: (videos) => dispatch({ type: UPDATE_REORDERED_VIDEOS, data: videos })
 }))
 export default class PlaylistVideosContainer extends Component {
-  onDragEnd = (result) => {
-    const { videos, playlistId, playlistReorderVideos } = this.props;
+  onDragEnd = async (result) => {
+    const { videos, playlistId, playlistReorderVideos, updateReorderedVideos } = this.props;
 
     if (!result.destination) {
       return;
@@ -18,10 +19,11 @@ export default class PlaylistVideosContainer extends Component {
 
     let newVideos = this.reorder(videos, result.source.index, result.destination.index);
 
-    newVideos = newVideos.map((item, index) => ({ id: item.id, position: index }));
+    newVideos = newVideos.map((item, index) => ({ ...item, position: index }));
     console.log("new videos", newVideos);
 
     playlistReorderVideos(playlistId, newVideos);
+    updateReorderedVideos(newVideos);
   };
 
   reorder = (list, startIndex, endIndex) => {
