@@ -155,7 +155,14 @@ const rootReducer = (state = initialState, action) => {
     }
 
     case playlistActions.PLAYLIST_CREATE_SUCCESS:
-      return { ...state, playlist: { status: LOADED, ...action.data } }
+      return { ...state, playlist: { _status: LOADED, ...action.data } }
+
+    case playlistActions.PLAYLIST_VIDEOS_FETCH_SUCCESS:
+      return { ...state, playlist: { _status: LOADED, ...state.playlist, videos: action.data.videos } }
+
+    case playlistActions.PLAYLIST_REMOVE_VIDEO_SUCCESS:
+      const videos = state.playlist.videos.filter(item => item.id !== action.video_id);
+      return { ...state, playlist: { _status: LOADED, ...state.playlist, videos } }
 
     default:
       return state;

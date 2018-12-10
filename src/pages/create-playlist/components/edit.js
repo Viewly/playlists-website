@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { categoriesFetch, playlistFetch } from "../../../actions";
-import { playlistUpdate } from "../../../actions/playlist";
+import { playlistAddVideo, playlistRemoveVideo, playlistUpdate, playlistVideosFetch } from "../../../actions/playlist";
 import PlaylistName from "./formElements/playlistName";
 import PlaylistCategory from "./formElements/playlistCategory";
 import PlaylistThumbnail from "./formElements/playlistThumbnail";
@@ -12,14 +12,20 @@ import PlaylistHashtags from "./formElements/playlistHashtags";
 import PlaylistAddVideos from "./formElements/playlistAddVideos";
 import PlaylistVideoPreview from "./formElements/playlistVideoPreview";
 import { set } from "lodash";
+import { isLoaded } from "../../../utils";
+import { OPEN_TOAST } from "../../../actions/toast";
 
 @connect((state) => ({
   categories: state.categories,
   playlist: state.playlist,
 }), (dispatch) => ({
   playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
+  playlistVideosFetch: (playlistId) => dispatch(playlistVideosFetch({ playlistId })),
   categoriesFetch: () => dispatch(categoriesFetch()),
-  playlistUpdate: (data) => dispatch(playlistUpdate(data))
+  openToast: (data) => dispatch({ type: OPEN_TOAST, data }),
+  playlistUpdate: (data) => dispatch(playlistUpdate(data)),
+  playlistAddVideo: (data) => dispatch(playlistAddVideo(data)),
+  playlistRemoveVideo: (video_id, playlist_id) => dispatch(playlistRemoveVideo({ video_id, playlist_id })),
 }))
 class EditPlaylist extends Component {
   static propTypes = {
@@ -61,7 +67,7 @@ class EditPlaylist extends Component {
 
   updateThumbnail = (playlist_thumbnail_url) => {
     this.setState({ playlist_thumbnail_url });
-  }
+  };
 
   handleChange = (evnt) => {
     const field = evnt.target.name;
@@ -90,9 +96,28 @@ class EditPlaylist extends Component {
     console.log("DONE", response);
   };
 
-  render() {
-    const { categories } = this.props;
+  onAddVideo = async (video) => {
+    const { openToast, playlistVideosFetch, playlistAddVideo, match: { params: { playlistId } } } = this.props;
 
+    const response = await playlistAddVideo({ ...video, playlist_id: playlistId });
+    if (response.success) {
+      openToast({ type: 'info', message: "New video added to playlist" });
+      playlistVideosFetch(playlistId);
+    } else {
+      openToast({ type: 'error', message: response.reason });
+    }
+  }
+
+  onDelete = (videoId) => async () => {
+    const { openToast, playlistRemoveVideo, match: { params: { playlistId } } } = this.props;
+
+    await playlistRemoveVideo(videoId, playlistId);
+    openToast({ type: 'info', message: "Video removed from playlist" });
+  };
+
+  render() {
+    const { playlist, categories, match: { params: { playlistId } } } = this.props;
+    const isReady = isLoaded(playlist);
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
 
@@ -104,7 +129,8 @@ class EditPlaylist extends Component {
                 <PlaylistName value={this.state.title} onChange={this.handleChange}/>
                 <PlaylistCategory categories={categories.data} value={this.state.category.id || 0}
                                   onChange={this.handleChange}/>
-                <PlaylistThumbnail onChange={this.updateThumbnail} playlist_thumbnail_url={this.state.playlist_thumbnail_url} />
+                <PlaylistThumbnail onChange={this.updateThumbnail}
+                                   playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
                 <PlaylistDescription value={this.state.description} onChange={this.handleChange}/>
                 <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.handleChange}/>
               </ul>
@@ -115,14 +141,12 @@ class EditPlaylist extends Component {
               className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge u-margin-top-large u-margin-top-none@large'>
 
               <ul className='c-form__list c-form__list--large'>
-                <PlaylistAddVideos/>
+                <PlaylistAddVideos onAddVideo={this.onAddVideo} playlistId={playlistId}/>
               </ul>
 
               <ul className='u-margin-top-large c-form__list c-form__list--small'>
-                <PlaylistVideoPreview/>
-                <PlaylistVideoPreview/>
-                <PlaylistVideoPreview/>
-                <PlaylistVideoPreview/>
+                {isReady && playlist.videos.map(video => <PlaylistVideoPreview key={`video-${video.id}`} {...video}
+                                                                               onDelete={this.onDelete}/>)}
               </ul>
             </div>
           </div>

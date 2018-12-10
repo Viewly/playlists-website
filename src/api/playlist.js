@@ -102,3 +102,31 @@ export async function playlistUpdate (baseUrl, data) {
     // id: body.id
   }
 }
+
+export async function videoPrefil (baseUrl, { url }) {
+  const { body } = await get(`${baseUrl}/video-prefill?url=${url}`);
+
+  return body;
+}
+
+export async function playlistAddVideo (baseUrl, { video_id, playlist_id, title, description, thumbnail_url, position }) {
+  const { body } = await post(`${baseUrl}/add-video`, {
+    video_id,
+    playlist_id,
+    title,
+    description,
+    thumbnail_url,
+    position
+  });
+
+  return body;
+}
+
+export async function playlistRemoveVideo (baseUrl, { video_id, playlist_id }) {
+  const { body } = await post(`${baseUrl}/remove-video`, {
+    video_id,
+    playlist_id
+  });
+
+  return body;
+}

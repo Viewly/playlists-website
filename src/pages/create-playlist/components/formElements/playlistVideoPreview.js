@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlaylistVideoPreview = ({ value, categories, onChange }) => (
+const PlaylistVideoPreview = ({ id, title, thumbnail_url, onDelete }) => (
   <li>
     <div className='c-video-link-preview'>
       <div className='o-grid o-grid--auto o-grid--nowrap o-grid--middle o-grid--small'>
@@ -15,8 +15,7 @@ const PlaylistVideoPreview = ({ value, categories, onChange }) => (
           <div className='o-grid o-grid--small o-grid--auto o-grid--nowrap o-grid--middle'>
             <div className='o-grid__cell u-1/3'>
                 <span className='o-ratio o-ratio--16:9'>
-                  <img className='c-video-link-preview__thumbnail o-ratio__content'
-                       src='https://i.ytimg.com/vi/fFcml2J5ElE/mqdefault.jpg'/>
+                  <img className='c-video-link-preview__thumbnail o-ratio__content' src={thumbnail_url} />
                 </span>
             </div>
             <div className='o-grid__cell u-2/3'>
@@ -24,14 +23,14 @@ const PlaylistVideoPreview = ({ value, categories, onChange }) => (
                 className='c-input c-input--primary c-input--small'
                 type="text"
                 name=""
-                value='Premier League Preview - GW 13'
+                value={title}
                 readOnly/>
             </div>
           </div>
         </div>
         <div className='o-grid__cell'>
           <div className='c-faux-link'>
-            <img className='o-icon o-icon--small' src={require("../../../../images/icons/delete.svg")}/>
+            <img onClick={onDelete(id)} className='o-icon o-icon--small' src={require("../../../../images/icons/delete.svg")}/>
           </div>
         </div>
       </div>
