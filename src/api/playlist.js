@@ -1,4 +1,4 @@
-import { get, post } from "./request";
+import { get, post, put } from "./request";
 
 export async function playlistFetch (baseUrl, { authenticationToken, playlistId }) {
   const url = `${baseUrl}/playlist/${playlistId}`;
@@ -89,5 +89,16 @@ export async function playlistCreate (baseUrl, data) {
   return {
     ...playlistData,
     id: body.id
+  }
+}
+
+export async function playlistUpdate (baseUrl, data) {
+  const { body } = await put(`${baseUrl}/playlist`, data);
+
+  // should only return body, but this is temporary hack until response includes this data
+  const { authenticationToken, ...playlistData } = data; // eslint-disable-line
+  return {
+    ...playlistData,
+    // id: body.id
   }
 }

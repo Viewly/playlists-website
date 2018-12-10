@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { categoriesFetch, playlistFetch } from "../../../actions";
-import { playlistCreate } from "../../../actions/playlist";
+import { playlistUpdate } from "../../../actions/playlist";
 import PlaylistName from "./formElements/playlistName";
 import PlaylistCategory from "./formElements/playlistCategory";
 import PlaylistThumbnail from "./formElements/playlistThumbnail";
@@ -11,6 +11,7 @@ import PlaylistDescription from "./formElements/playlistDescription";
 import PlaylistHashtags from "./formElements/playlistHashtags";
 import PlaylistAddVideos from "./formElements/playlistAddVideos";
 import PlaylistVideoPreview from "./formElements/playlistVideoPreview";
+import { set } from "lodash";
 
 @connect((state) => ({
   categories: state.categories,
@@ -18,7 +19,7 @@ import PlaylistVideoPreview from "./formElements/playlistVideoPreview";
 }), (dispatch) => ({
   playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
   categoriesFetch: () => dispatch(categoriesFetch()),
-  playlistCreate: (data) => dispatch(playlistCreate(data))
+  playlistUpdate: (data) => dispatch(playlistUpdate(data))
 }))
 class EditPlaylist extends Component {
   static propTypes = {
@@ -60,27 +61,29 @@ class EditPlaylist extends Component {
 
   handleChange = (evnt) => {
     const field = evnt.target.name;
+    const state = this.state;
 
-    this.setState({ [field]: evnt.target.value });
+    set(state, field, evnt.target.value);
+    this.setState(state);
   };
 
   handleSubmit = async (evnt) => {
-    // const { playlistCreate } = this.props;
+    const { playlistUpdate } = this.props;
     evnt.preventDefault();
-    alert("Submit");
-    //
-    // const response = await playlistCreate({
-    //   "title": this.state.title,
-    //   "url": "string",
-    //   "description": this.state.description,
-    //   "category_id": this.state.category_id,
-    //   "hashtags": "",
-    //   // "status": "",
-    //   "playlist_thumbnail_url": "url",
-    //   // "publish_date": "playlist.status === 'published' ? new Date(): null"
-    // });
 
-    // console.log("DONE", response);
+    const response = await playlistUpdate({
+      "id": this.state.id,
+      "title": this.state.title,
+      // "url": "string",
+      "description": this.state.description,
+      "category": this.state.category,
+      // "hashtags": "",
+      // "status": "",
+      // "playlist_thumbnail_url": "url",
+      // "publish_date": "playlist.status === 'published' ? new Date(): null"
+    });
+
+    console.log("DONE", response);
   };
 
   render() {
