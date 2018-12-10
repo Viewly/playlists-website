@@ -150,7 +150,7 @@ class EditPlaylist extends Component {
               </ul>
 
               <ul className='u-margin-top-large c-form__list c-form__list--small'>
-                {isReady && <PlaylistVideosContainer videos={playlist.videos} onDelete={this.onDelete}/>}
+                {isReady && <PlaylistVideosContainer playlistId={playlistId} videos={playlist.videos} onDelete={this.onDelete}/>}
               </ul>
             </div>
           </div>

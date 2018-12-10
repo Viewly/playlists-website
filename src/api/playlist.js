@@ -130,3 +130,9 @@ export async function playlistRemoveVideo (baseUrl, { video_id, playlist_id }) {
 
   return body;
 }
+
+export async function playlistReorderVideos (baseUrl, { videos, playlist_id }) {
+  const { body } = await post(`${baseUrl}/playlist-reorder/${playlist_id}`, videos);
+
+  return body;
+}
