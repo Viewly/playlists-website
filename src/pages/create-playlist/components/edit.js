@@ -11,7 +11,6 @@ import PlaylistDescription from "./formElements/playlistDescription";
 import PlaylistHashtags from "./formElements/playlistHashtags";
 import PlaylistAddVideos from "./formElements/playlistAddVideos";
 import PlaylistVideoPreview from "./formElements/playlistVideoPreview";
-import Loading from "../../../components/loading";
 
 @connect((state) => ({
   categories: state.categories,
