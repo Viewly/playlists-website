@@ -10,10 +10,10 @@ import PlaylistThumbnail from "./formElements/playlistThumbnail";
 import PlaylistDescription from "./formElements/playlistDescription";
 import PlaylistHashtags from "./formElements/playlistHashtags";
 import PlaylistAddVideos from "./formElements/playlistAddVideos";
-import PlaylistVideoPreview from "./formElements/playlistVideoPreview";
 import { set } from "lodash";
 import { isLoaded } from "../../../utils";
 import { OPEN_TOAST } from "../../../actions/toast";
+import PlaylistVideosContainer from "./formElements/playlistVideosContainer";
 
 @connect((state) => ({
   categories: state.categories,
@@ -100,24 +100,24 @@ class EditPlaylist extends Component {
     const { openToast, playlistVideosFetch, playlistAddVideo, match: { params: { playlistId } } } = this.props;
 
     if (video.success === false) {
-      openToast({ type: 'error', message: video.reason });
+      openToast({ type: "error", message: video.reason });
     } else {
       const response = await playlistAddVideo({ ...video, playlist_id: playlistId });
 
       if (response.success) {
-        openToast({ type: 'info', message: "New video added to playlist" });
+        openToast({ type: "info", message: "New video added to playlist" });
         playlistVideosFetch(playlistId);
       } else {
-        openToast({ type: 'error', message: response.reason });
+        openToast({ type: "error", message: response.reason });
       }
     }
-  }
+  };
 
   onDelete = (videoId) => async () => {
     const { openToast, playlistRemoveVideo, match: { params: { playlistId } } } = this.props;
 
     await playlistRemoveVideo(videoId, playlistId);
-    openToast({ type: 'info', message: "Video removed from playlist" });
+    openToast({ type: "info", message: "Video removed from playlist" });
   };
 
   render() {
@@ -150,8 +150,7 @@ class EditPlaylist extends Component {
               </ul>
 
               <ul className='u-margin-top-large c-form__list c-form__list--small'>
-                {isReady && playlist.videos.map(video => <PlaylistVideoPreview key={`video-${video.id}`} {...video}
-                                                                               onDelete={this.onDelete}/>)}
+                {isReady && <PlaylistVideosContainer videos={playlist.videos} onDelete={this.onDelete}/>}
               </ul>
             </div>
           </div>
