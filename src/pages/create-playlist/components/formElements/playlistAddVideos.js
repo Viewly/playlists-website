@@ -20,7 +20,6 @@ export default class PlaylistAddVideos extends Component {
     onAddVideo(response);
   };
 
-
   render() {
     return (
       <li>
