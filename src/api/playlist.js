@@ -1,8 +1,8 @@
 import { get, post, put } from "./request";
 
-export async function playlistFetch (baseUrl, { authenticationToken, playlistId }) {
+export async function playlistFetch (baseUrl, { authorization, playlistId }) {
   const url = `${baseUrl}/playlist/${playlistId}`;
-  const { body } = await get(url, { authenticationToken });
+  const { body } = await get(url, {}, { authorization });
 
   return body;
 }
@@ -20,7 +20,7 @@ export async function playlistsFetch (baseUrl, params) {
     url += `&limit=${params.limit}`;
   }
 
-  const { body } = await get(url, { authenticationToken: params.authenticationToken });
+  const { body } = await get(url, {}, { authorization: params.authorization });
 
   return body;
 }
@@ -38,7 +38,7 @@ export async function playlistsLoadMore (baseUrl, params) {
     url += `&limit=${params.limit}`;
   }
 
-  const { body } = await get(url, { authenticationToken: params.authenticationToken });
+  const { body } = await get(url, {}, { authorization: params.authorization });
 
   return body;
 }
@@ -85,7 +85,7 @@ export async function playlistCreate (baseUrl, data) {
   const { body } = await post(`${baseUrl}/playlist`, data);
 
   // should only return body, but this is temporary hack until response includes this data
-  const { authenticationToken, ...playlistData } = data; // eslint-disable-line
+  const { authorization, ...playlistData } = data; // eslint-disable-line
   return {
     ...playlistData,
     id: body.id
@@ -96,7 +96,7 @@ export async function playlistUpdate (baseUrl, data) {
   const { body } = await put(`${baseUrl}/playlist`, data);
 
   // should only return body, but this is temporary hack until response includes this data
-  const { authenticationToken, ...playlistData } = data; // eslint-disable-line
+  const { authorization, ...playlistData } = data; // eslint-disable-line
   return {
     ...playlistData,
     // id: body.id
