@@ -10,6 +10,7 @@ import PlaylistCategory from "./formElements/playlistCategory";
 import PlaylistDescription from "./formElements/playlistDescription";
 // import PlaylistThumbnail from "./formElements/playlistThumbnail";
 // import PlaylistHashtags from "./formElements/playlistHashtags";
+import { set, get } from "lodash";
 
 @withRouter
 @connect((state) => ({
@@ -42,8 +43,10 @@ class NewPlaylist extends Component {
 
   handleChange = (evnt) => {
     const field = evnt.target.name;
+    const state = this.state;
 
-    this.setState({ [field]: evnt.target.value });
+    set(state, field, evnt.target.value);
+    this.setState(state);
   };
 
   handleSubmit = async (evnt) => {
@@ -52,15 +55,11 @@ class NewPlaylist extends Component {
 
     const response = await playlistCreate({
       "title": this.state.title,
-      "url": "string",
+      // "url": "string",
       "description": this.state.description,
-      "category": {
-        id: parseInt(this.state.category, 10)
-      },
-      "hashtags": "",
-      // "status": "",
-      "playlist_thumbnail_url": "url",
-      // "publish_date": "playlist.status === 'published' ? new Date(): null"
+      "category_id": parseInt(this.state.category.id, 10),
+      "category": this.state.category,
+      // "playlist_thumbnail_url": "url",
     });
 
     history.push(`/create-playlist/${response.id}`);
@@ -77,7 +76,7 @@ class NewPlaylist extends Component {
             <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
               <ul className='c-form__list c-form__list--large'>
                 <PlaylistName value={this.state.title} onChange={this.handleChange} />
-                <PlaylistCategory categories={categories.data} value={this.state.category_id} onChange={this.handleChange} />
+                <PlaylistCategory categories={categories.data} value={this.state.category.id} onChange={this.handleChange} />
                 {/*<PlaylistThumbnail />*/}
                 <PlaylistDescription value={this.state.description} onChange={this.handleChange} />
                 {/*<PlaylistHashtags value={this.state.hashtags} onChange={this.handleChange} />*/}

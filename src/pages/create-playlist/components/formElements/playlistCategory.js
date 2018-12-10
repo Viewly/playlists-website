@@ -6,7 +6,7 @@ const PlaylistCategory = ({ value, categories, onChange }) => (
     <div className='c-select u-1/1'>
       <select
         className='c-select__select'
-        name="category"
+        name="category.id"
         value={value}
         onChange={onChange}>
 

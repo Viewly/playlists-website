@@ -39,6 +39,10 @@ class EditPlaylist extends Component {
   componentDidMount() {
     const { categoriesFetch, playlist, playlistFetch, match: { params: { playlistId }} } = this.props;
 
+    if (playlist.id === playlistId) {
+      this.setState({ ...this.state, ...playlist });
+    }
+
     categoriesFetch();
 
     playlistFetch(playlistId);
@@ -47,6 +51,7 @@ class EditPlaylist extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.playlist.id !== this.props.playlist.id) {
       this.setState({ ...this.state, ...this.props.playlist });
+      console.log('state', this.state);
     }
   }
 
@@ -77,7 +82,7 @@ class EditPlaylist extends Component {
 
   render() {
     const { categories } = this.props;
-
+console.log('stateee', this.state);
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
 
