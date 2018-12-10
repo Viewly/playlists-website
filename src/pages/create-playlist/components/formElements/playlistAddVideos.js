@@ -14,20 +14,12 @@ export default class PlaylistAddVideos extends Component {
 
   getVideo = async () => {
     const { videoPrefil, onAddVideo } = this.props;
-
     const response = await videoPrefil(this.state.url);
 
-    // console.log("RESP", response);
-    // this.addVideo(response);
-
+    this.setState({ url: "" });
     onAddVideo(response);
   };
 
-  addVideo = (video) => {
-    const { playlistAddVideo, playlistId } = this.props;
-
-    playlistAddVideo({ ...video, playlist_id: playlistId });
-  };
 
   render() {
     return (

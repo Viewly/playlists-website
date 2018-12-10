@@ -99,12 +99,17 @@ class EditPlaylist extends Component {
   onAddVideo = async (video) => {
     const { openToast, playlistVideosFetch, playlistAddVideo, match: { params: { playlistId } } } = this.props;
 
-    const response = await playlistAddVideo({ ...video, playlist_id: playlistId });
-    if (response.success) {
-      openToast({ type: 'info', message: "New video added to playlist" });
-      playlistVideosFetch(playlistId);
+    if (video.success === false) {
+      openToast({ type: 'error', message: video.reason });
     } else {
-      openToast({ type: 'error', message: response.reason });
+      const response = await playlistAddVideo({ ...video, playlist_id: playlistId });
+
+      if (response.success) {
+        openToast({ type: 'info', message: "New video added to playlist" });
+        playlistVideosFetch(playlistId);
+      } else {
+        openToast({ type: 'error', message: response.reason });
+      }
     }
   }
 
