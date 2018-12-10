@@ -59,6 +59,10 @@ class EditPlaylist extends Component {
     }
   }
 
+  updateThumbnail = (playlist_thumbnail_url) => {
+    this.setState({ playlist_thumbnail_url });
+  }
+
   handleChange = (evnt) => {
     const field = evnt.target.name;
     const state = this.state;
@@ -79,7 +83,7 @@ class EditPlaylist extends Component {
       "category": this.state.category,
       // "hashtags": "",
       // "status": "",
-      // "playlist_thumbnail_url": "url",
+      "playlist_thumbnail_url": this.state.playlist_thumbnail_url,
       // "publish_date": "playlist.status === 'published' ? new Date(): null"
     });
 
@@ -98,9 +102,9 @@ class EditPlaylist extends Component {
             <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
               <ul className='c-form__list c-form__list--large'>
                 <PlaylistName value={this.state.title} onChange={this.handleChange}/>
-                <PlaylistCategory categories={categories.data} value={this.state.category.id}
+                <PlaylistCategory categories={categories.data} value={this.state.category.id || 0}
                                   onChange={this.handleChange}/>
-                <PlaylistThumbnail />
+                <PlaylistThumbnail onChange={this.updateThumbnail} playlist_thumbnail_url={this.state.playlist_thumbnail_url} />
                 <PlaylistDescription value={this.state.description} onChange={this.handleChange}/>
                 <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.handleChange}/>
               </ul>
