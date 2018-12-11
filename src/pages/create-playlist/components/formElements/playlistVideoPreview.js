@@ -69,7 +69,7 @@ export default class PlaylistVideoPreview extends Component {
               <img
                 onClick={onDelete(id)}
                 className='o-icon o-icon--small'
-                src={require("../../../../images/icons/delete.svg")}/>
+                src={require("../../../../images/icons/delete-2.svg")}/>
             </div>
           </div>
         </div>

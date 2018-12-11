@@ -59,7 +59,7 @@ export default class PlaylistThumbnail extends Component {
           <div className='c-file-input__container o-ratio__content'>
             <input className='c-file-input__input' type="file" id="file" onChange={this.handleSelectedFile} />
             <div className='c-file-input__content'>
-              <img className='c-file-input__graphic' src={require("../../../../images/graphic-add-photo.png")}/>
+              <img className='c-file-input__graphic' src={require("../../../../images/graphic-add-photo.svg")}/>
               <p>Drag and drop or <span>browse</span> <br/>for the thumbnail to upload</p>
               <small className='c-file-input__annotation'>JPG, GIF or PNG. Max size 5mb</small>
             </div>

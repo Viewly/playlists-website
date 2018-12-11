@@ -71,14 +71,13 @@ class NewPlaylist extends Component {
               <ul className='c-form__list c-form__list--large'>
                 <PlaylistName value={this.state.title} onChange={this.handleChange} />
                 <PlaylistCategory categories={categories.data} value={this.state.category.id} onChange={this.handleChange} />
+                <li className='u-text-right'>
+                  <button className='c-btn c-btn--secondary'>Next</button>
+                </li>
               </ul>
             </div>
           </div>
 
-          <div className='u-text-right u-horizontally-center u-margin-top u-margin-top-large@large u-4/5@medium u-1/1@large u-4/5@extralarge'>
-            <hr className='u-margin-bottom' />
-            <button className='c-btn c-btn--secondary'>Next</button>
-          </div>
         </form>
 
 
