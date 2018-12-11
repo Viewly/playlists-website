@@ -611,3 +611,12 @@ $tweakpoint-category:   large;
             margin-bottom: $spacing-unit-tiny;
         }
     }
+
+
+.c-btn--delete-playlist {
+    @include mq($until: 560px) {
+        .c-btn__label {
+            display: none;
+        }
+    }
+}
