@@ -7,10 +7,7 @@ import { categoriesFetch } from "../../../actions";
 import { playlistCreate } from "../../../actions/playlist";
 import PlaylistName from "./formElements/playlistName";
 import PlaylistCategory from "./formElements/playlistCategory";
-import PlaylistDescription from "./formElements/playlistDescription";
-// import PlaylistThumbnail from "./formElements/playlistThumbnail";
-// import PlaylistHashtags from "./formElements/playlistHashtags";
-import { set, get } from "lodash";
+import { set } from "lodash";
 
 @withRouter
 @connect((state) => ({
@@ -55,11 +52,8 @@ class NewPlaylist extends Component {
 
     const response = await playlistCreate({
       "title": this.state.title,
-      // "url": "string",
-      "description": this.state.description,
       "category_id": parseInt(this.state.category.id, 10),
       "category": this.state.category,
-      // "playlist_thumbnail_url": "url",
     });
 
     history.push(`/create-playlist/${response.id}`);
@@ -77,9 +71,6 @@ class NewPlaylist extends Component {
               <ul className='c-form__list c-form__list--large'>
                 <PlaylistName value={this.state.title} onChange={this.handleChange} />
                 <PlaylistCategory categories={categories.data} value={this.state.category.id} onChange={this.handleChange} />
-                {/*<PlaylistThumbnail />*/}
-                <PlaylistDescription value={this.state.description} onChange={this.handleChange} />
-                {/*<PlaylistHashtags value={this.state.hashtags} onChange={this.handleChange} />*/}
               </ul>
             </div>
           </div>
