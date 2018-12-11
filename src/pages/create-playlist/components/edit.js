@@ -11,7 +11,7 @@ import PlaylistDescription from "./formElements/playlistDescription";
 import PlaylistHashtags from "./formElements/playlistHashtags";
 import PlaylistAddVideos from "./formElements/playlistAddVideos";
 import { set } from "lodash";
-import { isLoaded } from "../../../utils";
+import { isLoaded, slugUrl } from "../../../utils";
 import { OPEN_TOAST } from "../../../actions/toast";
 import PlaylistVideosContainer from "./formElements/playlistVideosContainer";
 
@@ -36,6 +36,7 @@ class EditPlaylist extends Component {
   state = {
     id: "",
     title: "",
+    url: "",
     description: "",
     category: { id: 0 },
     playlist_thumbnail_url: "",
@@ -84,11 +85,10 @@ class EditPlaylist extends Component {
     const response = await playlistUpdate({
       "id": this.state.id,
       "title": this.state.title,
-      // "url": "string",
+      "url": this.getSlug(),
       "description": this.state.description,
       "category": this.state.category,
       // "hashtags": "",
-      // "status": "",
       "playlist_thumbnail_url": this.state.playlist_thumbnail_url,
       // "publish_date": "playlist.status === 'published' ? new Date(): null"
     });
@@ -121,6 +121,10 @@ class EditPlaylist extends Component {
     await playlistRemoveVideo(videoId, playlistId);
     openToast({ type: "info", message: "Video removed from playlist" });
   };
+
+  getSlug = () => {
+    return slugUrl(this.state.id, this.state.title);
+  }
 
   render() {
     const { playlist, categories, match: { params: { playlistId } } } = this.props;
