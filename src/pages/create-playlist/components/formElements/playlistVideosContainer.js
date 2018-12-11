@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import PlaylistVideoPreview from "./playlistVideoPreview";
-import { playlistReorderVideos, UPDATE_REORDERED_VIDEOS } from "../../../../actions/playlist";
+import { playlistReorderVideos, playlistUpdateVideo, UPDATE_REORDERED_VIDEOS } from "../../../../actions/playlist";
 
 @connect(null, (dispatch) => ({
   playlistReorderVideos: (playlist_id, videos) => dispatch(playlistReorderVideos({ playlist_id, videos })),
+  playlistUpdateVideo: (id, title, description) => dispatch(playlistUpdateVideo({ id, title, description })),
   updateReorderedVideos: (videos) => dispatch({ type: UPDATE_REORDERED_VIDEOS, data: videos })
 }))
 export default class PlaylistVideosContainer extends Component {
@@ -34,6 +35,12 @@ export default class PlaylistVideosContainer extends Component {
     return result;
   };
 
+  onUpdateTitle = (videoId, title) => {
+    const { playlistUpdateVideo } = this.props;
+
+    playlistUpdateVideo(videoId, title, "");
+  }
+
   render() {
     const { videos, onDelete } = this.props;
 
@@ -60,6 +67,7 @@ export default class PlaylistVideosContainer extends Component {
                     >
                       <PlaylistVideoPreview
                         {...video}
+                        onUpdateTitle={this.onUpdateTitle}
                         onDelete={onDelete}/>
                     </li>
                   )}

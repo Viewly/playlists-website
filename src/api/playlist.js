@@ -136,3 +136,9 @@ export async function playlistReorderVideos (baseUrl, { videos, playlist_id }) {
 
   return body;
 }
+
+export async function playlistUpdateVideo (baseUrl, { id, title, description }) {
+  const { body } = await put(`${baseUrl}/video`, { id, title, description });
+
+  return body;
+}
