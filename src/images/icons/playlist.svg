@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>playlist-icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="UI-Design---Create-playlist" transform="translate(-723.000000, -116.000000)">
+            <g id="playlist-icon" transform="translate(723.000000, 116.000000)">
+                <rect id="Rectangle" stroke="#9EA0A3" stroke-width="2" x="1" y="1" width="16" height="16" rx="2"></rect>
+                <polygon id="Triangle" fill="#9EA0A3" transform="translate(9.205931, 9.000000) rotate(-270.000000) translate(-9.205931, -9.000000) " points="9.2059309 5.7059309 12.2059309 11.2059309 6.2059309 11.2059309"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
