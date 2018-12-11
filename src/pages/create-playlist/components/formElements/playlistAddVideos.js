@@ -24,7 +24,7 @@ export default class PlaylistAddVideos extends Component {
     return (
       <li>
         <label className='c-form__label'>Add videos</label>
-        <div className='o-flag o-flag--reverse'>
+        <div className='o-flag o-flag--small o-flag--reverse'>
           <div className='o-flag__img'>
             <button type="button" onClick={this.getVideo} className='c-btn c-btn--secondary c-btn--square'>
               <img className='o-icon o-icon--small' src={require("../../../../images/icons/plus.svg")}/>
