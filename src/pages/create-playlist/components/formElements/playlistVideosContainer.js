@@ -37,6 +37,10 @@ export default class PlaylistVideosContainer extends Component {
   render() {
     const { videos, onDelete } = this.props;
 
+    if (!videos) {
+      return null;
+    }
+
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
