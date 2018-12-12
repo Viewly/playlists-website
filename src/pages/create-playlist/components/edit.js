@@ -111,7 +111,6 @@ class EditPlaylist extends Component {
       const response = await playlistAddVideo({ ...video, playlist_id: playlistId });
 
       if (response.success) {
-        openToast({ type: "info", message: "New video added to playlist" });
         playlistVideosFetch(playlistId);
       } else {
         openToast({ type: "error", message: response.reason });
@@ -120,10 +119,9 @@ class EditPlaylist extends Component {
   };
 
   onDelete = (videoId) => async () => {
-    const { openToast, playlistRemoveVideo, match: { params: { playlistId } } } = this.props;
+    const { playlistRemoveVideo, match: { params: { playlistId } } } = this.props;
 
     await playlistRemoveVideo(videoId, playlistId);
-    openToast({ type: "info", message: "Video removed from playlist" });
   };
 
   getSlug = () => {
