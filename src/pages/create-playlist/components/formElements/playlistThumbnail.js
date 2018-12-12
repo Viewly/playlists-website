@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import uuid from "uuid";
 import { getUploadUrl, uploadFile } from "../../../../actions/upload";
 import { THUMBNAIL_ROOT } from "../../../../constants";
+import { OPEN_LOGIN_MODAL } from "../../../../actions/user";
 
 @connect(null, (dispatch) => ({
   getUploadUrl: (key, type) => dispatch(getUploadUrl({ key, type })),
   uploadFile: (url, data, callback) => dispatch(uploadFile({ url, data, callback })),
+  openCropModal: (thumbnail_url, callback) => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "crop", thumbnail_url, callback } })
 }))
 export default class PlaylistThumbnail extends Component {
   state = {
@@ -15,7 +17,7 @@ export default class PlaylistThumbnail extends Component {
     percentage: 0,
   }
 
-  onUpload = async () => {
+  onUpload = async (croppedImageURL) => {
     const { getUploadUrl, uploadFile, onChange } = this.props;
 
     const thumbnail_extension = this.state.selectedFile.name.split(".").pop();
@@ -25,26 +27,35 @@ export default class PlaylistThumbnail extends Component {
     this.setState({ uploading: true, percentage: 0 });
 
     if (response.url) {
-      await uploadFile(response.url, this.state.selectedFile, (percentage) => {
-        console.log('perc', percentage);
+      await uploadFile(response.url, croppedImageURL, (percentage) => {
         this.setState({ percentage });
       });
 
-      // const thumbnail_url = S3_endpoint + "/" + thumbnail_name;
-      this.setState({ uploading: false });
+      this.setState({ uploading: false, selectedFile: null });
       onChange(thumbnail_name);
     } else {
-      console.log("wtf");
+      console.log("An error occurred", response);
     }
   }
 
   handleSelectedFile = (event) => {
-    if (event.target.files[0]) {
+    const { openCropModal } = this.props;
+    const file = event.target.files[0];
+
+    if (file) {
       this.setState({
-        selectedFile: event.target.files[0],
+        selectedFile: file,
         loaded: 0,
       }, () => {
-        this.onUpload();
+        if (file) {
+          let reader = new FileReader();
+          reader.onload = (e) => {
+            openCropModal(e.target.result, (cropped) => {
+              this.onUpload(cropped);
+            });
+          };
+          reader.readAsDataURL(file);
+        }
       });
     }
   }

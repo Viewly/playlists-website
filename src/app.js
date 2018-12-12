@@ -12,6 +12,7 @@ import LoginModal from "./components/LoginModal";
 import UploadModal from "./components/UploadModal";
 import RegisterModal from "./components/RegisterModal";
 import Toasts from "./components/Toasts";
+import CropModal from "./components/CropModal";
 
 @withRouter
 @connect((state) => ({
@@ -37,6 +38,7 @@ class App extends Component {
         <LoginModal />
         <UploadModal />
         <RegisterModal />
+        <CropModal />
 
         <Switch>
           {routes.filter(item => item.fullscreen).map((route, idx) => (

@@ -36,6 +36,9 @@ const initialState = {
     },
     upload: {
       isOpen: false
+    },
+    crop: {
+      isOpen: false
     }
   },
   toasts: { data: [] },
@@ -140,7 +143,7 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, onboarding: action.data };
 
     case userActions.OPEN_LOGIN_MODAL:
-      return { ...state, modals: { ...state.modals, [action.data.name]: { isOpen: true } } };
+      return { ...state, modals: { ...state.modals, [action.data.name]: { isOpen: true, ...action.data } } };
     case userActions.CLOSE_LOGIN_MODAL:
       return { ...state, modals: { ...state.modals, [action.data.name]: { isOpen: false } } };
 

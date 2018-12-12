@@ -75,6 +75,7 @@
     "query-string": "^6.2.0",
     "react-avatar-editor": "^11.0.4",
     "react-beautiful-dnd": "^10.0.2",
+    "react-cropper": "^1.0.1",
     "react-meta-tags": "^0.7.1",
     "react-modal": "^3.6.1",
     "react-onclickoutside": "^6.7.1",

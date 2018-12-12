@@ -48,9 +48,7 @@ class EditPlaylist extends Component {
     const { categoriesFetch, playlist, playlistFetch, match: { params: { playlistId } } } = this.props;
 
     if (playlist.id === playlistId) {
-      this.setState({ ...this.state, ...playlist }, () => {
-        console.log("did mount state", this.state);
-      });
+      this.setState({ ...this.state, ...playlist });
     }
 
     categoriesFetch();
@@ -60,9 +58,7 @@ class EditPlaylist extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.playlist.id !== this.props.playlist.id) {
-      this.setState({ ...this.state, ...this.props.playlist }, () => {
-        console.log("did update state", this.state);
-      });
+      this.setState({ ...this.state, ...this.props.playlist });
     }
   }
 
