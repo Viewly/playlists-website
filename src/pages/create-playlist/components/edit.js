@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import { categoriesFetch, playlistFetch } from "../../../actions";
 import { playlistAddVideo, playlistRemoveVideo, playlistUpdate, playlistVideosFetch } from "../../../actions/playlist";
@@ -15,6 +16,7 @@ import { isLoaded, slugUrl } from "../../../utils";
 import { OPEN_TOAST } from "../../../actions/toast";
 import PlaylistVideosContainer from "./formElements/playlistVideosContainer";
 
+@withRouter
 @connect((state) => ({
   categories: state.categories,
   playlist: state.playlist,
@@ -76,7 +78,7 @@ class EditPlaylist extends Component {
 
   handleSubmit = async (evnt) => {
     const { playlistUpdate } = this.props;
-    evnt.preventDefault();
+    evnt && evnt.preventDefault();
 
     const response = await playlistUpdate({
       "id": this.state.id,
@@ -84,13 +86,19 @@ class EditPlaylist extends Component {
       "url": this.getSlug(),
       "description": this.state.description,
       "category": this.state.category,
-      // "hashtags": "",
       "playlist_thumbnail_url": this.state.playlist_thumbnail_url,
-      // "publish_date": "playlist.status === 'published' ? new Date(): null"
     });
 
-    console.log("DONE", response);
+    return response;
   };
+
+  previewPlaylist = async (evnt) => {
+    const { history } = this.props;
+    evnt && evnt.preventDefault();
+
+    const response = await this.handleSubmit();
+    history.push(`/playlist/${response.id}`);
+  }
 
   onAddVideo = async (video) => {
     const { openToast, playlistVideosFetch, playlistAddVideo, match: { params: { playlistId } } } = this.props;
@@ -168,6 +176,7 @@ class EditPlaylist extends Component {
                 </button>
               </div>*/}
               <div className='o-grid__cell'>
+                <button onClick={this.previewPlaylist} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Preview</button>
                 <button className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
                 <button className='c-btn c-btn--secondary'>Publish</button>
               </div>

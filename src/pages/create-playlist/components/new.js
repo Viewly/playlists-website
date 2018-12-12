@@ -23,13 +23,9 @@ class NewPlaylist extends Component {
   };
 
   state = {
-    playlist_id: "",
     title: "",
-    description: "",
     category: { id: 0 },
-    thumbnail_url: "",
-    hashtags: "",
-    youtube_url: ""
+    thumbnail_url: ""
   };
 
   componentDidMount() {
@@ -54,6 +50,7 @@ class NewPlaylist extends Component {
       "title": this.state.title,
       "category_id": parseInt(this.state.category.id, 10),
       "category": this.state.category,
+      "description": ""
     });
 
     history.push(`/create-playlist/${response.id}`);
