@@ -82,10 +82,10 @@ export async function hashtagsFetch (baseUrl) {
 }
 
 export async function playlistCreate (baseUrl, data) {
-  const { body } = await post(`${baseUrl}/playlist`, data);
+  const { authorization, ...playlistData } = data; // eslint-disable-line
+  const { body } = await post(`${baseUrl}/playlist`, playlistData, { authorization });
 
   // should only return body, but this is temporary hack until response includes this data
-  const { authorization, ...playlistData } = data; // eslint-disable-line
   return {
     ...playlistData,
     id: body.id
@@ -93,10 +93,10 @@ export async function playlistCreate (baseUrl, data) {
 }
 
 export async function playlistUpdate (baseUrl, data) {
-  const { body } = await put(`${baseUrl}/playlist`, data);
+  const { authorization, ...playlistData } = data; // eslint-disable-line
+  const { body } = await put(`${baseUrl}/playlist`, playlistData, { authorization });
 
   // should only return body, but this is temporary hack until response includes this data
-  const { authorization, ...playlistData } = data; // eslint-disable-line
   return {
     ...playlistData,
     // id: body.id
