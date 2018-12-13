@@ -35,13 +35,17 @@ export default class Playlist extends Component {
   }
 
   onPlaylistClick = (url) => (evnt) => {
-    const { history, injectPlaylist, playlists, onPlaylistClick } = this.props;
+    const { history, injectPlaylist, playlists, onPlaylistClick, customClickHandler } = this.props;
     const selectedPlaylist = playlists.find(item => item.url === url);
 
-    evnt.preventDefault();
-    injectPlaylist(selectedPlaylist);
-    onPlaylistClick && onPlaylistClick(selectedPlaylist.id);
-    history.push(`/playlist/${url}`);
+    if (customClickHandler) {
+      customClickHandler(evnt, selectedPlaylist);
+    } else {
+      evnt.preventDefault();
+      injectPlaylist(selectedPlaylist);
+      onPlaylistClick && onPlaylistClick(selectedPlaylist.id);
+      history.push(`/playlist/${url}`);
+    }
   }
 
   render() {

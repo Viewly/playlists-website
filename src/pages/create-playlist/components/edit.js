@@ -101,6 +101,14 @@ class EditPlaylist extends Component {
     history.push(`/playlist/${response.url}`);
   };
 
+  saveAndShowAll = async (evnt) => {
+    const { history } = this.props;
+    evnt && evnt.preventDefault();
+
+    await this.handleSubmit();
+    history.push(`/my-playlists`);
+  }
+
   onAddVideo = async (video) => {
     const { openToast, playlistVideosFetch, playlistAddVideo, match: { params: { playlistId } } } = this.props;
 
@@ -180,11 +188,14 @@ class EditPlaylist extends Component {
                 </button>
               </div>*/}
               <div className='o-grid__cell'>
-                <button onClick={this.previewPlaylist}
-                        className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Preview
+                <button
+                  onClick={this.previewPlaylist}
+                  className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>
+                  Preview
                 </button>
-                <button className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
-                <button className='c-btn c-btn--secondary'>Publish</button>
+                {/*<button className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>*/}
+                {/*<button className='c-btn c-btn--secondary'>Publish</button>*/}
+                <button onClick={this.saveAndShowAll} className='c-btn c-btn--secondary'>Save</button>
               </div>
             </div>
           </div>

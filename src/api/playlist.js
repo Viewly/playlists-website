@@ -109,7 +109,7 @@ export async function videoPrefil (baseUrl, { url }) {
   return body;
 }
 
-export async function playlistAddVideo (baseUrl, { video_id, playlist_id, title, description, thumbnail_url, position }) {
+export async function playlistAddVideo (baseUrl, { authorization, video_id, playlist_id, title, description, thumbnail_url, position }) {
   const { body } = await post(`${baseUrl}/add-video`, {
     video_id,
     playlist_id,
@@ -117,28 +117,28 @@ export async function playlistAddVideo (baseUrl, { video_id, playlist_id, title,
     description,
     thumbnail_url,
     position
-  });
+  }, { authorization });
 
   return body;
 }
 
-export async function playlistRemoveVideo (baseUrl, { video_id, playlist_id }) {
+export async function playlistRemoveVideo (baseUrl, { authorization, video_id, playlist_id }) {
   const { body } = await post(`${baseUrl}/remove-video`, {
     video_id,
     playlist_id
-  });
+  }, { authorization });
 
   return body;
 }
 
-export async function playlistReorderVideos (baseUrl, { videos, playlist_id }) {
-  const { body } = await post(`${baseUrl}/playlist-reorder/${playlist_id}`, videos);
+export async function playlistReorderVideos (baseUrl, { authorization, videos, playlist_id }) {
+  const { body } = await post(`${baseUrl}/playlist-reorder/${playlist_id}`, videos, { authorization });
 
   return body;
 }
 
-export async function playlistUpdateVideo (baseUrl, { id, title, description }) {
-  const { body } = await put(`${baseUrl}/video`, { id, title, description });
+export async function playlistUpdateVideo (baseUrl, { authorization, id, title, description }) {
+  const { body } = await put(`${baseUrl}/video`, { id, title, description }, { authorization });
 
   return body;
 }

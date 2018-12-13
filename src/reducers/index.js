@@ -47,8 +47,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case userActions.USER_MY_PLAYLISTS_FETCH_START:
     case actions.PLAYLISTS_FETCH_START:
       return { ...state, playlists: { ...state.playlists, _status: LOADING } };
+
+    case userActions.USER_MY_PLAYLISTS_FETCH_SUCCESS:
     case actions.PLAYLISTS_FETCH_SUCCESS:
       return { ...state, playlists: { data: action.data, _status: LOADED } };
 

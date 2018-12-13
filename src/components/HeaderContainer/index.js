@@ -108,6 +108,7 @@ class HeaderContainer extends Component {
                   <DropdownMenu
                     toggle={<UserMenu user={user} />}
                     list={[
+                      { label: "My playlists", url: "/my-playlists" },
                       { label: "Bookmarks", url: "/bookmarks" },
                       { label: "Profile settings", url: "/account" },
                       { label: "Logout", onClick: this.logOut },

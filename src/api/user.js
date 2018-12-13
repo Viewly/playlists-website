@@ -111,3 +111,10 @@ export async function userRemoveBookmark(baseUrl, { authorization, playlist_id }
 
   return { body, playlist_id };
 }
+
+export async function fetchMyPlaylists(baseUrl, { authorization }) {
+  const url = `${baseUrl}/playlists?order=publish_date&mine=true`;
+  const { body } = await get(url, {}, { authorization });
+
+  return body;
+}
