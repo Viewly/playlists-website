@@ -97,7 +97,7 @@ class EditPlaylist extends Component {
     evnt && evnt.preventDefault();
 
     const response = await this.handleSubmit();
-    history.push(`/playlist/${response.id}`);
+    history.push(`/playlist/${response.url}`);
   }
 
   onAddVideo = async (video) => {
