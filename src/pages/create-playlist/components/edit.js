@@ -86,6 +86,7 @@ class EditPlaylist extends Component {
       "url": this.getSlug(),
       "description": this.state.description,
       "category": this.state.category,
+      "hashtags": this.state.hashtags,
       "playlist_thumbnail_url": this.state.playlist_thumbnail_url,
     });
 
@@ -98,7 +99,7 @@ class EditPlaylist extends Component {
 
     const response = await this.handleSubmit();
     history.push(`/playlist/${response.url}`);
-  }
+  };
 
   onAddVideo = async (video) => {
     const { openToast, playlistVideosFetch, playlistAddVideo, match: { params: { playlistId } } } = this.props;
@@ -126,7 +127,11 @@ class EditPlaylist extends Component {
 
   getSlug = () => {
     return slugUrl(this.state.id, this.state.title);
-  }
+  };
+
+  changeHashtags = (hashtags) => {
+    this.setState({ "hashtags": hashtags.map(item => item.name).join(" ") });
+  };
 
   render() {
     const { playlist, categories, match: { params: { playlistId } } } = this.props;
@@ -145,7 +150,7 @@ class EditPlaylist extends Component {
                 <PlaylistThumbnail onChange={this.updateThumbnail}
                                    playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
                 <PlaylistDescription value={this.state.description} onChange={this.handleChange}/>
-                <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.handleChange}/>
+                <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.changeHashtags}/>
               </ul>
             </div>
 
@@ -158,7 +163,8 @@ class EditPlaylist extends Component {
               </ul>
 
               <ul className='u-margin-top-large c-form__list c-form__list--small'>
-                {isReady && <PlaylistVideosContainer playlistId={playlistId} videos={playlist.videos} onDelete={this.onDelete}/>}
+                {isReady &&
+                <PlaylistVideosContainer playlistId={playlistId} videos={playlist.videos} onDelete={this.onDelete}/>}
               </ul>
             </div>
           </div>
@@ -174,7 +180,9 @@ class EditPlaylist extends Component {
                 </button>
               </div>*/}
               <div className='o-grid__cell'>
-                <button onClick={this.previewPlaylist} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Preview</button>
+                <button onClick={this.previewPlaylist}
+                        className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Preview
+                </button>
                 <button className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
                 <button className='c-btn c-btn--secondary'>Publish</button>
               </div>
