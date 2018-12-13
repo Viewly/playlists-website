@@ -103,8 +103,8 @@ export async function playlistUpdate (baseUrl, data) {
   }
 }
 
-export async function videoPrefil (baseUrl, { url }) {
-  const { body } = await get(`${baseUrl}/video-prefill?url=${url}`);
+export async function videoPrefil (baseUrl, { authorization, url }) {
+  const { body } = await get(`${baseUrl}/video-prefill?url=${url}`, {}, { authorization });
 
   return body;
 }
