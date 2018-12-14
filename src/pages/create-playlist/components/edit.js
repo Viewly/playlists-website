@@ -95,16 +95,18 @@ class EditPlaylist extends Component {
   };
 
   saveDraft = async (evnt) => {
-    const { history } = this.props;
+    const { history, openToast } = this.props;
 
     await this.handleSubmit(evnt, { status: 'draft' });
+    openToast({ type: "info", message: "Playlist saved to drafts" });
     history.push(`/my-playlists/drafts`);
   }
 
   savePublish = async (evnt) => {
-    const { history } = this.props;
+    const { history, openToast } = this.props;
 
     const response = await this.handleSubmit(evnt, { status: 'published' });
+    openToast({ type: "success", title: "Congratulations", message: "Your playlist is now live " });
     history.push(`/playlist/${response.url}`);
   }
 
