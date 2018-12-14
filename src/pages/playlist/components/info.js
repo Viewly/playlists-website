@@ -40,10 +40,16 @@ export default class PlaylistInfo extends Component {
     }
   }
 
+  isOwner = () => {
+    const { user, playlist } = this.props;
+    return user && user.id === playlist.user_id;
+  }
+
   render() {
     const { playlist, user, match: { params: { playlistId } } } = this.props;
     const isLoaded = (playlist._status === LOADED) || (playlist.id === playlistId) || (playlist.url === playlistId);
     const isLoading = playlist._status === LOADING;
+    const isOwner = this.isOwner();
     if (!isLoaded) return <div>Loading ...</div>;
 
     return (
@@ -74,7 +80,15 @@ export default class PlaylistInfo extends Component {
                   </button>
                 )}
                 <SharePlaylist playlist={playlist} />
-                <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>Suggest a video</Link>
+
+                {isOwner
+                  ? <Link to={`/create-playlist/${playlist.id}`} className='c-btn c-btn--secondary u-margin-left'>
+                      Edit playlist
+                    </Link>
+                  : <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>
+                      Suggest a video
+                    </Link>
+                }
               </div>
             </div>
             <div className='o-grid'>
