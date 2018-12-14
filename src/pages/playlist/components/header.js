@@ -8,7 +8,10 @@ const Header = ({ title, author, duration, category, poster, description, hashta
     <div className='o-wrapper'>
       <div className='o-grid o-grid--middle'>
         <div className='o-grid__cell u-margin-bottom u-margin-bottom-none@large u-2/5@large u-align-self-flex-start'>
-          <img className='c-section__thumbnail' src={`${THUMBNAIL_ROOT}/${poster}`} />
+          {poster
+            ? <img className='c-section__thumbnail' src={`${THUMBNAIL_ROOT}/${poster}`} />
+            : <img className='c-section__thumbnail' src={require("../../../images/playlist-default.svg")} />
+          }
         </div>
         <div className='o-grid__cell u-3/5@large'>
           <div className='c-section__intro'>

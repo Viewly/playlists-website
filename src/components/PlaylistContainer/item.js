@@ -10,7 +10,7 @@ const PlaylistItem = ({ id, url, title, description, playlist_thumbnail_url, dur
         <Link onClick={onPlaylistClick(url)} className='c-thumbnail__link' to={`/playlist/${url}`}></Link>
         {playlist_thumbnail_url
           ? <img className='c-thumbnail__img' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
-          : <img className='c-thumbnail__img' src={NO_THUMBNAIL} />
+          : <img className='c-thumbnail__img' src={require("../../images/playlist-default.svg")} />
         }
         <p className='c-thumbnail__description c-video__description'>{description}</p>
         <span className='c-thumbnail__total-videos'>{noVideos} videos</span>
