@@ -76,7 +76,7 @@ class EditPlaylist extends Component {
     this.setState(state);
   };
 
-  handleSubmit = async (evnt) => {
+  handleSubmit = async (evnt, customData = {}) => {
     const { playlistUpdate } = this.props;
     evnt && evnt.preventDefault();
 
@@ -88,25 +88,24 @@ class EditPlaylist extends Component {
       "category": this.state.category,
       "hashtags": this.state.hashtags,
       "playlist_thumbnail_url": this.state.playlist_thumbnail_url,
+      ...customData
     });
 
     return response;
   };
 
-  previewPlaylist = async (evnt) => {
+  saveDraft = async (evnt) => {
     const { history } = this.props;
-    evnt && evnt.preventDefault();
 
-    const response = await this.handleSubmit();
+    await this.handleSubmit(evnt, { status: 'draft' });
+    history.push(`/my-playlists/drafts`);
+  }
+
+  savePublish = async (evnt) => {
+    const { history } = this.props;
+
+    const response = await this.handleSubmit(evnt, { status: 'published' });
     history.push(`/playlist/${response.url}`);
-  };
-
-  saveAndShowAll = async (evnt) => {
-    const { history } = this.props;
-    evnt && evnt.preventDefault();
-
-    await this.handleSubmit();
-    history.push(`/my-playlists`);
   }
 
   onAddVideo = async (video) => {
@@ -188,14 +187,8 @@ class EditPlaylist extends Component {
                 </button>
               </div>*/}
               <div className='o-grid__cell'>
-                <button
-                  onClick={this.previewPlaylist}
-                  className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>
-                  Preview
-                </button>
-                {/*<button className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>*/}
-                {/*<button className='c-btn c-btn--secondary'>Publish</button>*/}
-                <button onClick={this.saveAndShowAll} className='c-btn c-btn--secondary'>Save</button>
+                <button onClick={this.saveDraft} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
+                <button onClick={this.savePublish} className='c-btn c-btn--secondary'>Publish</button>
               </div>
             </div>
           </div>
