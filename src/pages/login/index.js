@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import AuthSidebar from "../../components/authSidebar";
-import { userLogin, LOGIN_SUCCESS_PERSIST, getGoogleLoginUrl } from "../../actions/user";
+import { userLogin, LOGIN_SUCCESS_PERSIST, getGoogleLoginUrl, doGoogleLogin } from "../../actions/user";
 import SEO from "../../components/SEO";
 
 @connect(null, (dispatch) => ({
   userLogin: (email, password) => dispatch(userLogin({ email, password })),
-  getGoogleLoginUrl: () => dispatch(getGoogleLoginUrl()),
+  doGoogleLogin: () => dispatch(doGoogleLogin()),
   loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data })
 }))
 class LoginPage extends Component {
@@ -20,8 +20,8 @@ class LoginPage extends Component {
   }
 
   googleLogin = async () => {
-    const { getGoogleLoginUrl } = this.props;
-    const response = await getGoogleLoginUrl();
+    const { doGoogleLogin } = this.props;
+    const response = await doGoogleLogin();
 
     window.location.href = response.url;
   }

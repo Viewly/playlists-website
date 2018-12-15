@@ -14,9 +14,18 @@ export async function getGoogleLoginUrl(baseUrl) {
   return body;
 }
 
-export async function doGoogleLogin(baseUrl, { code }) {
-  const url = `${baseUrl}/user/youtube-login`;
-  const { body } = await post(url, { code });
+export async function doGoogleLogin(baseUrl) {
+  const url = `http://localhost:3001/v1/api/user/auth?platform=google`;
+  window.location.replace(url);
+}
+
+export async function passLoginInfo(baseUrl, { platform, params }) {
+  console.log(platform, params, "???");
+  const url = `${baseUrl}/user/auth/${platform || 'google'}`;
+
+  let things = Object.keys(params).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`).join('&');
+
+  const { body } = await get(url + `?${things}`);
 
   return body;
 }

@@ -52,7 +52,7 @@ export const routes = [
     fullscreen: true,
   },
   {
-    path: "/authy",
+    path: "/authy/:platform",
     component: AuthyPage,
     fullscreen: true,
   },
