@@ -68,7 +68,7 @@ export default class PlaylistInfo extends Component {
           <div className='o-wrapper'>
             <div className='o-grid o-grid--small o-grid--auto o-grid--middle o-grid--between u-margin-bottom u-margin-bottom-small@large'>
               <div className='o-grid__cell u-margin-bottom'>
-                <span><b>{playlist.videos.length} videos</b></span>
+                <span><b>{playlist.videos && playlist.videos.length} videos</b></span>
               </div>
               <div className='o-grid__cell u-margin-bottom'>
                 {user && (

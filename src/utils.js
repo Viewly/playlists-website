@@ -17,7 +17,7 @@ export function convertYoutubeDuration (duration) {
     .padStart(4, "0:0");
 }
 
-export function sumVideoDurations (videos) {
+export function sumVideoDurations (videos = []) {
   const start = moment.duration();
   videos.forEach(video => {
     start.add(moment.duration(video.duration));
