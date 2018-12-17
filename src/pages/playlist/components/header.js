@@ -21,7 +21,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
                 <dl>
                   <dt>Author</dt>
                   <dd>
-                    <Link to={`/profile/${author}`}>{author}</Link>
+                    <Link to={`/profile/${author.id}`}>{author.alias ? author.alias : `${author.first_name} ${author.last_name}`}</Link>
                   </dd>
                 </dl>
               </li>
@@ -55,7 +55,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  author: PropTypes.object,
   duration: PropTypes.string.isRequired,
   hashtags: PropTypes.array,
   poster: PropTypes.string,

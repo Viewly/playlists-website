@@ -56,7 +56,7 @@ export default class PlaylistInfo extends Component {
       <div>
         <Header
           title={playlist.title}
-          author={playlist.user_id}
+          author={playlist.user}
           duration={sumVideoDurations(playlist.videos)}
           poster={playlist.playlist_thumbnail_url}
           description={playlist.description}
