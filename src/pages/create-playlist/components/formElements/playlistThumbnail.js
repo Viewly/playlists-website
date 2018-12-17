@@ -21,7 +21,7 @@ export default class PlaylistThumbnail extends Component {
     const { getUploadUrl, uploadFile, onChange } = this.props;
 
     const thumbnail_extension = this.state.selectedFile.name.split(".").pop();
-    const thumbnail_name = `${uuid()}_profile_avatar.${thumbnail_extension}`;
+    const thumbnail_name = `${uuid()}_thumbnail.${thumbnail_extension}`;
     const response = await getUploadUrl(thumbnail_name, thumbnail_extension);
 
     this.setState({ uploading: true, percentage: 0 });
