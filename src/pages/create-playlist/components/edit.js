@@ -112,9 +112,29 @@ class EditPlaylist extends Component {
   savePublish = async (evnt) => {
     const { history, openToast } = this.props;
 
-    const response = await this.handleSubmit(evnt, { status: 'published' });
-    openToast({ type: "success", title: "Congratulations", message: "Your playlist is now live " });
-    history.push(`/playlist/${response.url}`);
+    const validation = this.validateSubmit();
+
+    if (validation.success) {
+      const response = await this.handleSubmit(evnt, { status: 'published' });
+      openToast({ type: "success", title: "Congratulations", message: "Your playlist is now live " });
+      history.push(`/playlist/${response.url}`);
+    } else {
+      openToast({ type: "error", message: validation.message });
+    }
+  }
+
+  /* hacky validation */
+  validateSubmit = () => {
+    if (!this.state.playlist_thumbnail_url) {
+      return {
+        success: false,
+        message: "Thumbnail is required"
+      }
+    };
+
+    return {
+      "success": true
+    };
   }
 
   deletePlaylist = async () => {
