@@ -16,7 +16,7 @@ import {
 const jwtCookie = getUserCookie();
 
 const initialState = {
-  config: { apiUrl: "http://localhost:3001/v1/api" },
+  config: { apiUrl: "https://api.vidflow.io/v1/api" },
   playlists: { _status: PENDING, data: [] },
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },

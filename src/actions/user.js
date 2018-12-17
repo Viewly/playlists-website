@@ -1,15 +1,13 @@
 import { makeApiCall } from "../api/request";
 import * as userApi from "../api/user";
-import * as playlistApi from "../api/playlist";
 
 export const USER_LOGIN_START = "USER/USER_LOGIN_START";
 export const USER_LOGIN_SUCCESS = "USER/USER_LOGIN_SUCCESS";
 export const USER_LOGIN_ERROR = "USER/USER_LOGIN_ERROR";
 export const userLogin = makeApiCall(userApi.userLogin, USER_LOGIN_START, USER_LOGIN_SUCCESS, USER_LOGIN_ERROR);
 
-export const getGoogleLoginUrl = makeApiCall(userApi.getGoogleLoginUrl);
-export const doGoogleLogin = userApi.doGoogleLogin;
-export const passLoginInfo = makeApiCall(userApi.passLoginInfo)// userApi.passLoginInfo;
+export const getSocialLoginUrl = makeApiCall(userApi.getSocialLoginUrl);
+export const doSocialLogin = makeApiCall(userApi.doSocialLogin);
 
 export const USER_REGISTRATION_START = "USER/USER_REGISTRATION_START";
 export const USER_REGISTRATION_SUCCESS = "USER/USER_REGISTRATION_SUCCESS";
