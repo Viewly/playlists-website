@@ -21,7 +21,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
                 <dl>
                   <dt>Author</dt>
                   <dd>
-                    <Link to={`/profile/${author.id}`}>{author.alias ? author.alias : `${author.first_name} ${author.last_name}`}</Link>
+                    <Link to={`/profile/${author?.id}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link>
                   </dd>
                 </dl>
               </li>
