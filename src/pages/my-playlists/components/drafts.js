@@ -26,7 +26,7 @@ class MyPlaylistsDrafts extends Component {
     const isReady = isLoaded(playlists);
 
     return (
-      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+      <div className=''>
 
         <Playlist
           isLoaded={isReady}
