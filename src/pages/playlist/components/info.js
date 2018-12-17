@@ -42,7 +42,7 @@ export default class PlaylistInfo extends Component {
 
   isOwner = () => {
     const { user, playlist } = this.props;
-    return user && user.id === playlist.user_id;
+    return user?.id === playlist?.user?.id;
   }
 
   render() {
