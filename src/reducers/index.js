@@ -163,6 +163,9 @@ const rootReducer = (state = initialState, action) => {
     case playlistActions.PLAYLIST_CREATE_SUCCESS:
       return { ...state, playlist: { _status: LOADED, ...action.data } }
 
+      case playlistActions.PLAYLIST_UPDATE_SUCCESS:
+      return { ...state, playlist: { _status: LOADED, ...action.data } }
+
     case playlistActions.PLAYLIST_VIDEOS_FETCH_SUCCESS:
       return { ...state, playlist: { _status: LOADED, ...state.playlist, videos: action.data.videos } }
 
