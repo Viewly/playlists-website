@@ -7,20 +7,6 @@ export async function userLogin(baseUrl, { email, password }) {
   return body;
 }
 
-export async function getGoogleLoginUrl(baseUrl) {
-  const url = `${baseUrl}/user/auth`;
-  const { body } = await get(url);
-
-  return body;
-}
-
-export async function doGoogleLogin(baseUrl, { code }) {
-  const url = `${baseUrl}/user/youtube-login`;
-  const { body } = await post(url, { code });
-
-  return body;
-}
-
 export async function userRegister(baseUrl, { first_name, last_name, email, password }) {
   const url = `${baseUrl}/user/register`;
   const { body } = await post(url, { first_name, last_name, email, password });
@@ -28,30 +14,30 @@ export async function userRegister(baseUrl, { first_name, last_name, email, pass
   return body;
 }
 
-export async function userProfileFetch(baseUrl, { authenticationToken }) {
+export async function userProfileFetch(baseUrl, { authorization }) {
   const url = `${baseUrl}/user/info`;
-  const { body } = await get(url, { authenticationToken });
+  const { body } = await get(url, {}, { authorization });
 
   return body;
 }
 
-export async function userProfileUpdate(baseUrl, { authenticationToken, first_name, last_name, avatar_url }) {
+export async function userProfileUpdate(baseUrl, { authorization, first_name, last_name, avatar_url }) {
   const url = `${baseUrl}/user/info`;
-  const { body } = await put(url, { authenticationToken, first_name, last_name, avatar_url });
+  const { body } = await put(url, { first_name, last_name, avatar_url }, { authorization });
 
   return body;
 }
 
-export async function userProfileUpdatePassword(baseUrl, { authenticationToken, current_password, new_password }) {
+export async function userProfileUpdatePassword(baseUrl, { authorization, current_password, new_password }) {
   const url = `${baseUrl}/user/change-password`;
-  const { body } = await put(url, { authenticationToken, current_password, new_password });
+  const { body } = await put(url, { current_password, new_password }, { authorization });
 
   return body;
 }
 
-export async function userEmailRequest(baseUrl, { authenticationToken, email }) {
+export async function userEmailRequest(baseUrl, { authorization, email }) {
   const url = `${baseUrl}/user/confirm-email-request`;
-  const { body } = await post(url, { authenticationToken, email });
+  const { body } = await post(url, { email }, { authorization });
 
   return body;
 }
@@ -77,37 +63,57 @@ export async function userForgotPasswordReset(baseUrl, { token, password }) {
   return body;
 }
 
-export async function userSaveOnboarding(baseUrl, { authenticationToken, categories_ids }) {
+export async function userSaveOnboarding(baseUrl, { authorization, categories_ids }) {
   const url = `${baseUrl}/user/onboarding`;
-  const { body } = await put(url, { authenticationToken, categories_ids });
+  const { body } = await put(url, { categories_ids }, { authorization });
 
   return body;
 }
 
-export async function userGetOnboarding(baseUrl, { authenticationToken }) {
+export async function userGetOnboarding(baseUrl, { authorization }) {
   const url = `${baseUrl}/user/onboarding`;
-  const { body } = await get(url, { authenticationToken });
+  const { body } = await get(url, {}, { authorization });
 
   return body;
 }
 
-export async function userGetBookmarks(baseUrl, { authenticationToken }) {
+export async function userGetBookmarks(baseUrl, { authorization }) {
   const url = `${baseUrl}/playlists?status=published&order=publish_date&bookmarked=true`;
-  const { body } = await get(url, { authenticationToken });
+  const { body } = await get(url, {}, { authorization });
 
   return body;
 }
 
-export async function userAddBookmark(baseUrl, { authenticationToken, playlist_id }) {
+export async function userAddBookmark(baseUrl, { authorization, playlist_id }) {
   const url = `${baseUrl}/user/bookmark`;
-  const { body } = await post(url, { authenticationToken, playlist_id });
+  const { body } = await post(url, { playlist_id }, { authorization });
 
   return { body, playlist_id };
 }
 
-export async function userRemoveBookmark(baseUrl, { authenticationToken, playlist_id }) {
+export async function userRemoveBookmark(baseUrl, { authorization, playlist_id }) {
   const url = `${baseUrl}/user/bookmark/${playlist_id}`;
-  const { body } = await del(url, { authenticationToken });
+  const { body } = await del(url, {}, { authorization });
 
   return { body, playlist_id };
+}
+
+export async function fetchMyPlaylists(baseUrl, { authorization }) {
+  const url = `${baseUrl}/playlists?order=publish_date&mine=true`;
+  const { body } = await get(url, {}, { authorization });
+
+  return body;
+}
+
+export async function getSocialLoginUrl(baseUrl, { platform = 'google' }) {
+  return `${baseUrl}/user/auth?platform=${platform}`;
+}
+
+export async function doSocialLogin(baseUrl, { platform = 'google', params }) {
+  const url = `${baseUrl}/user/auth/${platform}`;
+  const queryUrl = Object.keys(params).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`).join('&');
+
+  const { body } = await get(`${url}?${queryUrl}`);
+
+  return body;
 }

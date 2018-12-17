@@ -1,6 +1,7 @@
 import * as actions from "../actions";
 import * as userActions from "../actions/user";
 import * as toastActions from "../actions/toast";
+import * as playlistActions from "../actions/playlist";
 import { PENDING, LOADED, LOADING } from "../constants/status_types";
 import {
   getPlaylistProgress,
@@ -35,15 +36,22 @@ const initialState = {
     },
     upload: {
       isOpen: false
+    },
+    crop: {
+      isOpen: false
     }
   },
-  toasts: { data: [] }
+  toasts: { data: [] },
+  playlistCreator: { _status: PENDING }
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case userActions.USER_MY_PLAYLISTS_FETCH_START:
     case actions.PLAYLISTS_FETCH_START:
       return { ...state, playlists: { ...state.playlists, _status: LOADING } };
+
+    case userActions.USER_MY_PLAYLISTS_FETCH_SUCCESS:
     case actions.PLAYLISTS_FETCH_SUCCESS:
       return { ...state, playlists: { data: action.data, _status: LOADED } };
 
@@ -138,7 +146,7 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, onboarding: action.data };
 
     case userActions.OPEN_LOGIN_MODAL:
-      return { ...state, modals: { ...state.modals, [action.data.name]: { isOpen: true } } };
+      return { ...state, modals: { ...state.modals, [action.data.name]: { isOpen: true, ...action.data } } };
     case userActions.CLOSE_LOGIN_MODAL:
       return { ...state, modals: { ...state.modals, [action.data.name]: { isOpen: false } } };
 
@@ -151,6 +159,22 @@ const rootReducer = (state = initialState, action) => {
     case toastActions.CLOSE_TOAST: {
       return { ...state, toasts: { ...state.toasts, data: state.toasts.data.filter(item => item.id !== action.data) } }
     }
+
+    case playlistActions.PLAYLIST_CREATE_SUCCESS:
+      return { ...state, playlist: { _status: LOADED, ...action.data } }
+
+      case playlistActions.PLAYLIST_UPDATE_SUCCESS:
+      return { ...state, playlist: { _status: LOADED, ...action.data } }
+
+    case playlistActions.PLAYLIST_VIDEOS_FETCH_SUCCESS:
+      return { ...state, playlist: { _status: LOADED, ...state.playlist, videos: action.data.videos } }
+
+    case playlistActions.UPDATE_REORDERED_VIDEOS:
+      return { ...state, playlist: { _status: LOADED, ...state.playlist, videos: action.data } }
+
+    case playlistActions.PLAYLIST_REMOVE_VIDEO_SUCCESS:
+      const videos = state.playlist.videos.filter(item => item.id !== action.video_id);
+      return { ...state, playlist: { _status: LOADED, ...state.playlist, videos } }
 
     default:
       return state;

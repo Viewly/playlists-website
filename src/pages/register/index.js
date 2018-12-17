@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import AuthSidebar from "../../components/authSidebar";
-import { userRegister, LOGIN_SUCCESS_PERSIST, getGoogleLoginUrl } from "../../actions/user";
+import { userRegister, LOGIN_SUCCESS_PERSIST, getSocialLoginUrl } from "../../actions/user";
 import SEO from "../../components/SEO";
 
 @connect(null, (dispatch) => ({
   userRegister: (first_name, last_name, email, password) => dispatch(userRegister({ first_name, last_name, email, password })),
-  getGoogleLoginUrl: (data) => dispatch(getGoogleLoginUrl()),
+  getSocialLoginUrl: (platform) => dispatch(getSocialLoginUrl({ platform })),
   loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data })
 }))
 class RegistrationPage extends Component {
@@ -21,12 +21,10 @@ class RegistrationPage extends Component {
     errorText: ""
   }
 
+  socialLoginClick = (platform) => async () => {
+    const { getSocialLoginUrl } = this.props;
 
-  googleLogin = async () => {
-    const { getGoogleLoginUrl } = this.props;
-    const response = await getGoogleLoginUrl();
-
-    window.location.href = response.url;
+    window.location.href = await getSocialLoginUrl(platform);
   }
 
   handleChange = (evnt) => {
@@ -75,7 +73,7 @@ class RegistrationPage extends Component {
             )}
 
             <div className='u-margin-bottom-large'>
-              <button className='c-btn c-btn--social c-btn--social--google c-btn--full' onClick={this.googleLogin}>
+              <button className='c-btn c-btn--social c-btn--social--google c-btn--full' onClick={this.socialLoginClick("google")}>
                 <img className='c-btn--social__logo' src={require("../../images/soc-networks-logos/logo-google.svg")} />
                 Log in with Google
               </button>

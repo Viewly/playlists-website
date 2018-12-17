@@ -9,3 +9,7 @@
 @mixin clearfix() {
     @include inuit-clearfix();
 }
+
+@mixin hidden-visually() {
+    @include inuit-hidden-visually();
+}

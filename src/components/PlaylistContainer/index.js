@@ -35,13 +35,34 @@ export default class Playlist extends Component {
   }
 
   onPlaylistClick = (url) => (evnt) => {
-    const { history, injectPlaylist, playlists, onPlaylistClick } = this.props;
+    const { history, injectPlaylist, playlists, onPlaylistClick, customClickHandler } = this.props;
     const selectedPlaylist = playlists.find(item => item.url === url);
 
-    evnt.preventDefault();
-    injectPlaylist(selectedPlaylist);
-    onPlaylistClick && onPlaylistClick(selectedPlaylist.id);
-    history.push(`/playlist/${url}`);
+    if (customClickHandler) {
+      customClickHandler(evnt, selectedPlaylist);
+    } else {
+      evnt.preventDefault();
+      injectPlaylist(selectedPlaylist);
+      onPlaylistClick && onPlaylistClick(selectedPlaylist.id);
+      history.push(`/playlist/${url}`);
+    }
+  }
+
+  renderNoPlaylists = () => {
+    const { customEmptyContainer } = this.props;
+
+    if (customEmptyContainer) {
+      return customEmptyContainer;
+    }
+
+    return (
+      <div className='o-grid__cell u-1/1'>
+        <div className='c-no-results'>
+          <img className='c-no-results__img' src={require("../../images/message-no-playlists-yet.svg")} />
+          <p>There are no playlists in this category yet. <br />Try browsing other categories or <Link to='/create-playlist'>create a playlist</Link> <br />in this one.</p>
+        </div>
+      </div>
+    );
   }
 
   render() {
@@ -68,14 +89,7 @@ export default class Playlist extends Component {
             />
           ))}
           {!isLoaded && <Loading />}
-          {isLoaded && playlists.length === 0 && (
-            <div className='o-grid__cell u-1/1'>
-              <div className='c-no-results'>
-                <img className='c-no-results__img' src={require("../../images/message-no-playlists-yet.svg")} />
-                <p>There are no playlists in this category yet. <br />Try browsing other categories or <Link to='/create-playlist'>create a playlist</Link> <br />in this one.</p>
-              </div>
-            </div>
-          )}
+          {isLoaded && playlists.length === 0 && this.renderNoPlaylists()}
         </div>
       </div>
     );

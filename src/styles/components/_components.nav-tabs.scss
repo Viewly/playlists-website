@@ -1,0 +1,45 @@
+/*------------------------------------*\
+    #TABS NAVIGATION
+\*------------------------------------*/
+
+.c-nav-tabs {
+    margin-bottom: $spacing-unit-large;
+
+    ul {
+        display: flex;
+        list-style-type: none;
+    }
+}
+
+        /**
+         * 1. Remove outline for webkit browsers.
+         */
+        .c-nav-tabs__item {
+            margin-right: $spacing-unit-tiny;
+
+            &:focus {
+                outline: none; /* [1] */
+            }
+        }
+
+        .c-nav-tabs__link {
+            $color: #afb1b3;
+
+            border-radius: $input-border-radius;
+            color: $color;
+            font-size: 14px;
+            font-weight: 700;
+            padding: $spacing-unit-small;
+
+            &:hover {
+                color: darken($color, 20%);
+                text-decoration: none;
+            }
+
+            &.is-current {
+                background-color: $input-background-color;
+
+                color: $global-text-color;
+            }
+        }
+

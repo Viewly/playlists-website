@@ -8,7 +8,10 @@ const Header = ({ title, author, duration, category, poster, description, hashta
     <div className='o-wrapper'>
       <div className='o-grid o-grid--middle'>
         <div className='o-grid__cell u-margin-bottom u-margin-bottom-none@large u-2/5@large u-align-self-flex-start'>
-          <img className='c-section__thumbnail' src={`${THUMBNAIL_ROOT}/${poster}`} />
+          {poster
+            ? <img className='c-section__thumbnail' src={`${THUMBNAIL_ROOT}/${poster}`} />
+            : <img className='c-section__thumbnail' src={require("../../../images/playlist-thumbnail-default.jpg")} />
+          }
         </div>
         <div className='o-grid__cell u-3/5@large'>
           <div className='c-section__intro'>
@@ -18,7 +21,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
                 <dl>
                   <dt>Author</dt>
                   <dd>
-                    <Link to={`/profile/${author}`}>{author}</Link>
+                    <Link to={`/profile/${author?.id}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link>
                   </dd>
                 </dl>
               </li>
@@ -52,7 +55,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  author: PropTypes.object,
   duration: PropTypes.string.isRequired,
   hashtags: PropTypes.array,
   poster: PropTypes.string,

@@ -40,17 +40,23 @@ export default class PlaylistInfo extends Component {
     }
   }
 
+  isOwner = () => {
+    const { user, playlist } = this.props;
+    return user?.id === playlist?.user?.id;
+  }
+
   render() {
     const { playlist, user, match: { params: { playlistId } } } = this.props;
     const isLoaded = (playlist._status === LOADED) || (playlist.id === playlistId) || (playlist.url === playlistId);
     const isLoading = playlist._status === LOADING;
+    const isOwner = this.isOwner();
     if (!isLoaded) return <div>Loading ...</div>;
 
     return (
       <div>
         <Header
           title={playlist.title}
-          author={playlist.user_id}
+          author={playlist.user}
           duration={sumVideoDurations(playlist.videos)}
           poster={playlist.playlist_thumbnail_url}
           description={playlist.description}
@@ -62,7 +68,7 @@ export default class PlaylistInfo extends Component {
           <div className='o-wrapper'>
             <div className='o-grid o-grid--small o-grid--auto o-grid--middle o-grid--between u-margin-bottom u-margin-bottom-small@large'>
               <div className='o-grid__cell u-margin-bottom'>
-                <span><b>{playlist.videos.length} videos</b></span>
+                <span><b>{playlist.videos && playlist.videos.length} videos</b></span>
               </div>
               <div className='o-grid__cell u-margin-bottom'>
                 {user && (
@@ -74,7 +80,15 @@ export default class PlaylistInfo extends Component {
                   </button>
                 )}
                 <SharePlaylist playlist={playlist} />
-                <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>Suggest a video</Link>
+
+                {isOwner
+                  ? <Link to={`/create-playlist/${playlist.id}`} className='c-btn c-btn--secondary u-margin-left'>
+                      Edit playlist
+                    </Link>
+                  : <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>
+                      Suggest a video
+                    </Link>
+                }
               </div>
             </div>
             <div className='o-grid'>

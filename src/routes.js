@@ -18,6 +18,7 @@ import OnboardingPage from "./pages/onboarding";
 import BookmarksPage from "./pages/bookmarks";
 import TestPage from "./pages/test";
 import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE, PLAYER_PAGE } from "./constants/pages";
+import MyPlaylistsPage from "./pages/my-playlists";
 
 export const routes = [
   {
@@ -51,7 +52,7 @@ export const routes = [
     fullscreen: true,
   },
   {
-    path: "/authy",
+    path: "/authy/:platform",
     component: AuthyPage,
     fullscreen: true,
   },
@@ -73,6 +74,10 @@ export const routes = [
     path: "/onboarding",
     component: OnboardingPage,
     fullscreen: true,
+  },
+  {
+    path: "/my-playlists",
+    component: MyPlaylistsPage,
   },
   {
     path: "/search/",

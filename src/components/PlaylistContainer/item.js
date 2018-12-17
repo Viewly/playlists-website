@@ -7,10 +7,10 @@ const PlaylistItem = ({ id, url, title, description, playlist_thumbnail_url, dur
   <div className={`o-grid__cell u-1/2@medium u-1/3@large ${big ? "" : "u-1/4@extralarge"} u-margin-bottom-large`} onClick={() => onPlaylistClick(url)}>
     <div className='c-video'>
       <div className='c-thumbnail'>
-        <Link onClick={onPlaylistClick(url)} className='c-thumbnail__link' to={`/playlist/${url}`}></Link>
+        <Link onClick={onPlaylistClick(url)} className='c-thumbnail__link' to={`/playlist/${url}`} />
         {playlist_thumbnail_url
           ? <img className='c-thumbnail__img' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
-          : <img className='c-thumbnail__img' src={NO_THUMBNAIL} />
+          : <img className='c-thumbnail__img' src={require("../../images/playlist-thumbnail-default.jpg")} />
         }
         <p className='c-thumbnail__description c-video__description'>{description}</p>
         <span className='c-thumbnail__total-videos'>{noVideos} videos</span>
@@ -31,7 +31,7 @@ const PlaylistItem = ({ id, url, title, description, playlist_thumbnail_url, dur
 PlaylistItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   description: PropTypes.string,
   playlist_thumbnail_url: PropTypes.string,
   category: PropTypes.object,

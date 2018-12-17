@@ -17,7 +17,7 @@ export function convertYoutubeDuration (duration) {
     .padStart(4, "0:0");
 }
 
-export function sumVideoDurations (videos) {
+export function sumVideoDurations (videos = []) {
   const start = moment.duration();
   videos.forEach(video => {
     start.add(moment.duration(video.duration));
@@ -146,4 +146,19 @@ export function getDevice() {
 
 export function generateUuid() {
   return uuid();
+}
+
+export function slugify(text)  {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
+
+export function slugUrl(id, title) {
+  return title
+    ? slugify(title).slice(0, 40) + "-" + id.slice(0,4)
+    : "";
 }

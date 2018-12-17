@@ -97,17 +97,20 @@ class HeaderContainer extends Component {
               <div className='o-grid__cell c-header__hide-on-extrasmallscreen'>
                 <SearchInput />
               </div>
-              <div className='o-grid__cell c-header__hide-on-extrasmallscreen'>
-                <Link to='/create-playlist' className='c-header__btn-cta c-btn c-btn--primary c-btn--plain c-btn--with-icon has-colored-icon'>
-                  <img className='c-header__btn-cta__icon o-icon o-icon--small' src={require("../../images/icons/create-playlist-hover.svg")} />
-                  <span className='c-header__btn-cta__label'>Create playlist</span>
-                </Link>
-              </div>
+              {user && (
+                <div className='o-grid__cell'>
+                  <Link to='/create-playlist' className='c-header__btn-cta c-btn c-btn--primary c-btn--plain c-btn--with-icon has-colored-icon'>
+                    <img className='c-header__btn-cta__icon o-icon o-icon--small' src={require("../../images/icons/create-playlist-hover.svg")} />
+                    <span className='c-header__btn-cta__label'>Create playlist</span>
+                  </Link>
+                </div>
+              )}
               {user && (
                 <div className='o-grid__cell'>
                   <DropdownMenu
                     toggle={<UserMenu user={user} />}
                     list={[
+                      { label: "My playlists", url: "/my-playlists" },
                       { label: "Bookmarks", url: "/bookmarks" },
                       { label: "Profile settings", url: "/account" },
                       { label: "Logout", onClick: this.logOut },
