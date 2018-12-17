@@ -23,6 +23,9 @@ class MyPlaylistsPublished extends Component {
 
         <Playlist
           isLoaded={isReady}
+          customEmptyContainer={(
+            <div>No published playlists</div>
+          )}
           playlists={playlists.data.filter(item => item.status === 'published')}
         />
       </div>

@@ -31,6 +31,9 @@ class MyPlaylistsDrafts extends Component {
         <Playlist
           isLoaded={isReady}
           customClickHandler={this.onPlaylistClick}
+          customEmptyContainer={(
+            <div>No drafts</div>
+          )}
           playlists={playlists.data.filter(item => item.status !== 'published')}
         />
       </div>
