@@ -5,15 +5,20 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
 import Modal from "../modal";
-import { userLogin, LOGIN_SUCCESS_PERSIST, getGoogleLoginUrl, CLOSE_LOGIN_MODAL } from "../../actions/user";
+import {
+  userLogin,
+  LOGIN_SUCCESS_PERSIST,
+  CLOSE_LOGIN_MODAL,
+  getSocialLoginUrl
+} from "../../actions/user";
 
 @withRouter
 @connect((state) => ({
   modal: state.modals.login
 }), (dispatch) => ({
   userLogin: (email, password) => dispatch(userLogin({ email, password })),
-  getGoogleLoginUrl: () => dispatch(getGoogleLoginUrl()),
   loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data }),
+  getSocialLoginUrl: (platform) => dispatch(getSocialLoginUrl({ platform })),
   closeModal: () => dispatch({ type: CLOSE_LOGIN_MODAL, data: { name: "login" } }),
 }))
 class LoginModal extends Component {
@@ -38,11 +43,10 @@ class LoginModal extends Component {
     }
   }
 
-  googleLogin = async () => {
-    const { getGoogleLoginUrl } = this.props;
-    const response = await getGoogleLoginUrl();
+  socialLoginClick = (platform) => async () => {
+    const { getSocialLoginUrl } = this.props;
 
-    window.location.href = response.url;
+    window.location.href = await getSocialLoginUrl(platform);
   }
 
   handleChange = (evnt) => {
@@ -87,7 +91,7 @@ class LoginModal extends Component {
         )}
 
         <div className='u-margin-bottom-large'>
-          <button className='c-btn c-btn--social c-btn--social--google c-btn--full' onClick={this.googleLogin}>
+          <button className='c-btn c-btn--social c-btn--social--google c-btn--full' onClick={this.socialLoginClick("google")}>
             <img className='c-btn--social__logo' src={require("../../images/soc-networks-logos/logo-google.svg")} />
             Log in with Google
           </button>

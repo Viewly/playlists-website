@@ -7,20 +7,6 @@ export async function userLogin(baseUrl, { email, password }) {
   return body;
 }
 
-export async function getGoogleLoginUrl(baseUrl) {
-  const url = `${baseUrl}/user/auth`;
-  const { body } = await get(url);
-
-  return body;
-}
-
-export async function doGoogleLogin(baseUrl, { code }) {
-  const url = `${baseUrl}/user/youtube-login`;
-  const { body } = await post(url, { code });
-
-  return body;
-}
-
 export async function userRegister(baseUrl, { first_name, last_name, email, password }) {
   const url = `${baseUrl}/user/register`;
   const { body } = await post(url, { first_name, last_name, email, password });
@@ -115,6 +101,19 @@ export async function userRemoveBookmark(baseUrl, { authorization, playlist_id }
 export async function fetchMyPlaylists(baseUrl, { authorization }) {
   const url = `${baseUrl}/playlists?order=publish_date&mine=true`;
   const { body } = await get(url, {}, { authorization });
+
+  return body;
+}
+
+export async function getSocialLoginUrl(baseUrl, { platform = 'google' }) {
+  return `${baseUrl}/user/auth?platform=${platform}`;
+}
+
+export async function doSocialLogin(baseUrl, { platform = 'google', params }) {
+  const url = `${baseUrl}/user/auth/${platform}`;
+  const queryUrl = Object.keys(params).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`).join('&');
+
+  const { body } = await get(`${url}?${queryUrl}`);
 
   return body;
 }

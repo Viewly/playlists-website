@@ -121,7 +121,7 @@ class HeaderContainer extends Component {
               {!user && (
                 <div className='o-grid__cell'>
                   <div className='o-grid o-grid--middle o-grid--auto'>
-                    <div className='o-grid__cell c-header__hide-on-extrasmallscreen'>
+                    <div className='o-grid__cell'>
                       <Link to='/login' className='c-btn c-btn--secondary c-btn--plain'>Login</Link>
                     </div>
                     <div className='o-grid__cell'>

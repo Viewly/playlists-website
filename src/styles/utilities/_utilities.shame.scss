@@ -137,7 +137,7 @@ dl {
         }
 
         .c-header__hide-on-extrasmallscreen {
-            @include mq($until: 380px) {
+            @include mq($until: 395px) {
                 display: none;
             }
         }
