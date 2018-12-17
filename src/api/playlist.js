@@ -1,8 +1,15 @@
-import { get, post, put } from "./request";
+import { del, get, post, put } from "./request";
 
 export async function playlistFetch (baseUrl, { authorization, playlistId }) {
   const url = `${baseUrl}/playlist/${playlistId}`;
   const { body } = await get(url, {}, { authorization });
+
+  return body;
+}
+
+export async function playlistRemove (baseUrl, { authorization, playlistId }) {
+  const url = `${baseUrl}/playlist/${playlistId}`;
+  const { body } = await del(url, {}, { authorization });
 
   return body;
 }

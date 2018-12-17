@@ -4,7 +4,13 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { categoriesFetch, playlistFetch } from "../../../actions";
-import { playlistAddVideo, playlistRemoveVideo, playlistUpdate, playlistVideosFetch } from "../../../actions/playlist";
+import {
+  playlistAddVideo,
+  playlistRemove,
+  playlistRemoveVideo,
+  playlistUpdate,
+  playlistVideosFetch
+} from "../../../actions/playlist";
 import PlaylistName from "./formElements/playlistName";
 import PlaylistCategory from "./formElements/playlistCategory";
 import PlaylistThumbnail from "./formElements/playlistThumbnail";
@@ -22,6 +28,7 @@ import PlaylistVideosContainer from "./formElements/playlistVideosContainer";
   playlist: state.playlist,
 }), (dispatch) => ({
   playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
+  playlistRemove: (playlistId) => dispatch(playlistRemove({ playlistId })),
   playlistVideosFetch: (playlistId) => dispatch(playlistVideosFetch({ playlistId })),
   categoriesFetch: () => dispatch(categoriesFetch()),
   openToast: (data) => dispatch({ type: OPEN_TOAST, data }),
@@ -110,6 +117,19 @@ class EditPlaylist extends Component {
     history.push(`/playlist/${response.url}`);
   }
 
+  deletePlaylist = async () => {
+    const { playlistRemove, openToast, history, match: { params: { playlistId } } } = this.props;
+    if (confirm("Are you sure you want to delete this playlist?")) {
+      const resp = await playlistRemove(playlistId);
+
+      if (resp.success) {
+        history.push("/my-playlists");
+      } else {
+        openToast({ type: "error", message: "An error occurred while trying to delete playlist" });
+      }
+    }
+  }
+
   onAddVideo = async (video) => {
     const { openToast, playlistVideosFetch, playlistAddVideo, match: { params: { playlistId } } } = this.props;
 
@@ -181,13 +201,14 @@ class EditPlaylist extends Component {
           <div
             className='u-horizontally-center u-margin-top u-margin-top-large@large u-4/5@medium u-1/1@large u-4/5@extralarge'>
             <hr className='u-margin-bottom'/>
-            <div className='o-grid o-grid--auto o-grid--small o-grid--middle o-grid--right'>
-              {/*<div className='o-grid__cell'>
+            <div className='o-grid o-grid--auto o-grid--small o-grid--middle o-grid--between'>
+              <div onClick={this.deletePlaylist} className='o-grid__cell'>
                 <button className='c-btn c-btn--plain c-btn--danger c-btn--with-icon c-btn--delete-playlist'>
                   <img className='o-icon o-icon--small u-margin-right-tiny' src={require("../../../images/icons/delete.svg")} />
                   <span className='c-btn__label'>Delete playlist</span>
                 </button>
-              </div>*/}
+              </div>
+
               <div className='o-grid__cell'>
                 <button onClick={this.saveDraft} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
                 <button onClick={this.savePublish} className='c-btn c-btn--secondary'>Publish</button>
