@@ -1,5 +1,6 @@
 import { makeApiCall } from "../api/request";
 import * as userApi from "../api/user";
+import * as playlistApi from "../api/playlist";
 
 export const USER_LOGIN_START = "USER/USER_LOGIN_START";
 export const USER_LOGIN_SUCCESS = "USER/USER_LOGIN_SUCCESS";
@@ -7,7 +8,8 @@ export const USER_LOGIN_ERROR = "USER/USER_LOGIN_ERROR";
 export const userLogin = makeApiCall(userApi.userLogin, USER_LOGIN_START, USER_LOGIN_SUCCESS, USER_LOGIN_ERROR);
 
 export const getGoogleLoginUrl = makeApiCall(userApi.getGoogleLoginUrl);
-export const doGoogleLogin = makeApiCall(userApi.doGoogleLogin);
+export const doGoogleLogin = userApi.doGoogleLogin;
+export const passLoginInfo = makeApiCall(userApi.passLoginInfo)// userApi.passLoginInfo;
 
 export const USER_REGISTRATION_START = "USER/USER_REGISTRATION_START";
 export const USER_REGISTRATION_SUCCESS = "USER/USER_REGISTRATION_SUCCESS";
@@ -73,6 +75,11 @@ export const USER_BOOKMARK_REMOVE_START = "USER/USER_BOOKMARK_REMOVE_START";
 export const USER_BOOKMARK_REMOVE_SUCCESS = "USER/USER_BOOKMARK_REMOVE_SUCCESS";
 export const USER_BOOKMARK_REMOVE_ERROR = "USER/USER_BOOKMARK_REMOVE_ERROR";
 export const userRemoveBookmark = makeApiCall(userApi.userRemoveBookmark, USER_BOOKMARK_REMOVE_START, USER_BOOKMARK_REMOVE_SUCCESS, USER_BOOKMARK_REMOVE_ERROR);
+
+export const USER_MY_PLAYLISTS_FETCH_START = "PLAYLIST/USER_MY_PLAYLISTS_FETCH_START";
+export const USER_MY_PLAYLISTS_FETCH_SUCCESS = "PLAYLIST/USER_MY_PLAYLISTS_FETCH_SUCCESS";
+export const USER_MY_PLAYLISTS_FETCH_ERROR = "PLAYLIST/USER_MY_PLAYLISTS_FETCH_ERROR";
+export const fetchMyPlaylists = makeApiCall(userApi.fetchMyPlaylists, USER_MY_PLAYLISTS_FETCH_START, USER_MY_PLAYLISTS_FETCH_SUCCESS, USER_MY_PLAYLISTS_FETCH_ERROR);
 
 export const LOGIN_SUCCESS_PERSIST = "USER/LOGIN_SUCCESS_PERSIST";
 export const LOGOUT = "USER/LOGOUT";

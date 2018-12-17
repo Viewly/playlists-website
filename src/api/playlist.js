@@ -1,8 +1,8 @@
-import { get, post } from "./request";
+import { get, post, put } from "./request";
 
-export async function playlistFetch (baseUrl, { authenticationToken, playlistId }) {
+export async function playlistFetch (baseUrl, { authorization, playlistId }) {
   const url = `${baseUrl}/playlist/${playlistId}`;
-  const { body } = await get(url, { authenticationToken });
+  const { body } = await get(url, {}, { authorization });
 
   return body;
 }
@@ -20,7 +20,7 @@ export async function playlistsFetch (baseUrl, params) {
     url += `&limit=${params.limit}`;
   }
 
-  const { body } = await get(url, { authenticationToken: params.authenticationToken });
+  const { body } = await get(url, {}, { authorization: params.authorization });
 
   return body;
 }
@@ -38,7 +38,7 @@ export async function playlistsLoadMore (baseUrl, params) {
     url += `&limit=${params.limit}`;
   }
 
-  const { body } = await get(url, { authenticationToken: params.authenticationToken });
+  const { body } = await get(url, {}, { authorization: params.authorization });
 
   return body;
 }
@@ -75,8 +75,70 @@ export async function categoriesFetch (baseUrl) {
   return body;
 }
 
-export async function hashtagsFetch (baseUrl) {
-  const { body } = await get(`${baseUrl}/hashtags?limit=56`);
+export async function hashtagsFetch (baseUrl, { limit = 56 }) {
+  const { body } = await get(`${baseUrl}/hashtags?limit=${limit}`);
+
+  return body;
+}
+
+export async function playlistCreate (baseUrl, data) {
+  const { authorization, ...playlistData } = data; // eslint-disable-line
+  const { body } = await post(`${baseUrl}/playlist`, playlistData, { authorization });
+
+  // should only return body, but this is temporary hack until response includes this data
+  return {
+    ...playlistData,
+    id: body.id
+  }
+}
+
+export async function playlistUpdate (baseUrl, data) {
+  const { authorization, ...playlistData } = data; // eslint-disable-line
+  const { body } = await put(`${baseUrl}/playlist`, playlistData, { authorization });
+
+  // should only return body, but this is temporary hack until response includes this data
+  return {
+    ...playlistData,
+    // id: body.id
+  }
+}
+
+export async function videoPrefil (baseUrl, { authorization, url }) {
+  const { body } = await get(`${baseUrl}/video-prefill?url=${url}`, {}, { authorization });
+
+  return body;
+}
+
+export async function playlistAddVideo (baseUrl, { authorization, video_id, playlist_id, title, description, thumbnail_url, position }) {
+  const { body } = await post(`${baseUrl}/add-video`, {
+    video_id,
+    playlist_id,
+    title,
+    description,
+    thumbnail_url,
+    position
+  }, { authorization });
+
+  return body;
+}
+
+export async function playlistRemoveVideo (baseUrl, { authorization, video_id, playlist_id }) {
+  const { body } = await post(`${baseUrl}/remove-video`, {
+    video_id,
+    playlist_id
+  }, { authorization });
+
+  return body;
+}
+
+export async function playlistReorderVideos (baseUrl, { authorization, videos, playlist_id }) {
+  const { body } = await post(`${baseUrl}/playlist-reorder/${playlist_id}`, videos, { authorization });
+
+  return body;
+}
+
+export async function playlistUpdateVideo (baseUrl, { authorization, id, title, description }) {
+  const { body } = await put(`${baseUrl}/video`, { id, title, description }, { authorization });
 
   return body;
 }

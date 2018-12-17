@@ -1,4 +1,4 @@
-import { post, upload } from "./request";
+import { get, post, upload } from "./request";
 
 export async function getUploadUrl(baseUrl, { key, type }) {
   const url = `${baseUrl}/upload-file`;

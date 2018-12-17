@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="14px" viewBox="0 0 18 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>preview-icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="UI-Design---Create-playlist" transform="translate(-281.000000, -26.000000)">
+            <g id="Header">
+                <g id="preview-icon" transform="translate(282.000000, 27.000000)">
+                    <path d="M0,6 C0,6 2.90909091,0 8,0 C13.0909091,0 16,6 16,6 C16,6 13.0909091,12 8,12 C2.90909091,12 0,6 0,6 Z" id="Shape" stroke="#9EA0A3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <circle id="Oval" fill="#A7A9AC" cx="8" cy="6" r="2"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

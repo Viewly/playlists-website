@@ -1,0 +1,87 @@
+/*------------------------------------*\
+    #FILE INPUT
+\*------------------------------------*/
+
+/**
+ * 1. When uploaded image is shown cut its corners to preserve border radius on
+ *    `o-file-input`
+ */
+.c-file-input {
+    background-color: $input-background-color;
+    border-radius: $input-border-radius;
+    border: 1px solid transparent;
+    display: block;
+    overflow: hidden; /* [1] */
+    transition: $global-transition;
+
+    &:not(:disabled) {
+
+        &:hover {
+            background-color: lighten($input-background-color, 1%);
+            border-color: darken($input-background-color, 3%);
+            cursor: pointer;
+        }
+
+        &.c-input--error {
+            border-color: color('red');
+        }
+    }
+
+    &:disabled {
+        opacity: .5;
+    }
+}
+
+    .c-file-input__container {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .c-file-input__input {
+        @include hidden-visually;
+    }
+
+    .c-file-input__content {
+        text-align: center;
+
+        span {
+            color: color('brand-secondary');
+            font-weight: 500;
+        }
+    }
+
+        .c-file-input__graphic {
+            margin-bottom: $spacing-unit-small;
+            width: 68px;
+
+            @include mq(medium) {
+                margin-bottom: $spacing-unit;
+            }
+        }
+
+        .c-file-input__annotation {
+            color: #afb1b3;
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            margin-top: $spacing-unit-small;
+            text-transform: uppercase;
+
+            @include mq(medium) {
+                margin-top: $spacing-unit;
+            }
+        }
+
+
+    .c-file-input__upload-progress {
+        background-color: color('brand-secondary');
+        display: block;
+        height: 3px;
+        pointer-events: none;
+        transition: inherit;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 30;
+    }

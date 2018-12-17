@@ -147,3 +147,18 @@ export function getDevice() {
 export function generateUuid() {
   return uuid();
 }
+
+export function slugify(text)  {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
+
+export function slugUrl(id, title) {
+  return title
+    ? slugify(title).slice(0, 40) + "-" + id.slice(0,4)
+    : "";
+}
