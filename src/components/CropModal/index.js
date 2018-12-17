@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Cropper from 'react-cropper';
-import 'cropperjs/dist/cropper.css';
 
 import Modal from "../modal";
 import { CLOSE_LOGIN_MODAL } from "../../actions/user";
