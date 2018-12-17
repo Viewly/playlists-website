@@ -84,11 +84,11 @@
             padding-left: 3px;
             padding-right: 3px;
 
-            @include mq($until: ($tweakpoint-nav-primary - 1)) {
+            @include mq($until: ($tweakpoint-nav-primary - 1)) { /* [1] */
                 justify-content: center;
             }
 
-            @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+            @include mq($until: ($tweakpoint-nav-primary-medium - 1)) { /* [1] */
                 height: $nav-height;
             }
 

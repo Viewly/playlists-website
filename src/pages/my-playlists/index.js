@@ -37,6 +37,8 @@ class MyPlaylistsPage extends Component {
   render() {
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+        <h1 className='u-h3 u-margin-bottom-large'>My playlists</h1>
+
         <PlaylistsTabs/>
 
         <div className=''>

@@ -20,7 +20,6 @@ class MyPlaylistsPublished extends Component {
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1 className='u-h3'>Published</h1>
 
         <Playlist
           isLoaded={isReady}

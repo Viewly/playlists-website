@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 class PlaylistsTabs extends Component {
   render() {
     return (
-      <nav className=''>
+      <nav className='c-nav-tabs'>
         <ul>
-          <li className=''>
-            <NavLink exact activeClassName='is-current' className="" to="/my-playlists">Published</NavLink>
-            <NavLink activeClassName='is-current' className="" to="/my-playlists/drafts">Drafts</NavLink>
+          <li className='c-nav-tabs__item'>
+            <NavLink exact activeClassName='is-current' className='c-nav-tabs__link' to='/my-playlists'>Published</NavLink>
+          </li>
+          <li className='c-nav-tabs__item'>
+            <NavLink activeClassName='is-current' className='c-nav-tabs__link' to='/my-playlists/drafts'>Drafts</NavLink>
           </li>
         </ul>
       </nav>
