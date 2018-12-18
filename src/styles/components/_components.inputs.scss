@@ -77,6 +77,29 @@
         font-size: $global-font-size - 2;
         padding: round($input-padding / 1.5);
     }
+
+    &.c-input--inversed {
+        $background-color: #fff;
+        $border-color: color('grey');
+
+        background-color: $background-color;
+        border-color: $border-color;
+
+
+        &:not(:disabled) {
+            &:hover {
+                &:not(:focus) {
+                    border-color: darken($border-color, 3%);
+                }
+            }
+
+            &:hover,
+            &:focus {
+                background-color: $background-color;
+            }
+
+        }
+    }
 }
 
 .c-input--textarea {

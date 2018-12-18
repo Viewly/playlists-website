@@ -49,24 +49,21 @@ export default class PlaylistComments extends Component {
     const isReady = comments.playlist_id === playlist.id && isLoaded(comments);
 
     return (
-      <div className=''>
+      <div className='u-3/4@medium u-3/5@large u-1/2@extralarge'>
         <div>
           <textarea
-            className='c-input c-input--primary c-input--textarea'
+            className='c-input c-input--primary c-input--inversed c-input--textarea u-margin-bottom'
             name="comment"
-            placeholder="Write something funny"
+            placeholder="Write a comment"
             value={this.state.comment}
             onChange={this.handleChange} />
 
-          <input type="button" className="c-btn c-btn--secondary" value="Send" onClick={this.submitComment} />
+            <div className='u-text-right'>
+              <button type="submit" className="c-btn c-btn--secondary" onClick={this.submitComment}>Comment</button>
+            </div>
         </div>
 
-        {/* MUCH PADDING */}
-        {/* SUCH SEPARATORS */}
-        {/* WOW */}
-        <br /><hr /><br /><br /><br />
-
-        <div>
+        <div className='u-margin-top-large'>
           {!isReady && <Loading />}
           {isReady && comments.data.map(item => (
             <div key={`comment-${item.id}`}>
