@@ -24,6 +24,7 @@ const initialState = {
   hashtags: { _status: PENDING, data: [] },
   bookmarks: { _status: PENDING, data: [] },
   notifications: { _status: PENDING, data: [] },
+  comments: { _status: PENDING, data: [] },
   renderedPages: {},
   user: jwtCookie ? decodeJwt(jwtCookie) : false,
   emailConfirmation: { _status: PENDING },
@@ -180,6 +181,9 @@ const rootReducer = (state = initialState, action) => {
 
     case notificationActions.NOTIFICATIONS_FETCH_SUCCESS:
       return { ...state, notifications: { _status: LOADED, data: action.data } }
+
+    case playlistActions.PLAYLIST_COMMENTS_FETCH_SUCCESS:
+      return { ...state, comments: { _status: LOADED, playlist_id: action.playlist_id, data: action.data } }
 
     default:
       return state;

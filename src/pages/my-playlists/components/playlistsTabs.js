@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 class PlaylistsTabs extends Component {
   render() {
     return (
-      <nav className='c-nav-tabs'>
+      <nav className='c-nav-tabs u-margin-bottom-large'>
         <ul>
           <li className='c-nav-tabs__item'>
             <NavLink exact activeClassName='is-current' className='c-nav-tabs__link' to='/my-playlists'>Published</NavLink>
