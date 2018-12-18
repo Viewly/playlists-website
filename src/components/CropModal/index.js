@@ -34,7 +34,7 @@ class CropModal extends Component {
           ref={(ref) => this.ref = ref}
           src={modal.thumbnail_url}
           style={{height: 400, width: '100%'}}
-          aspectRatio={16 / 9}
+          aspectRatio={modal.aspectRatio || (16 / 9)}
           guides={false} />
 
         <div className="u-text-right u-margin-top">

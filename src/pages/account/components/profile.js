@@ -29,6 +29,7 @@ class UserProfile extends Component {
     super(props);
 
     this.state = {
+      alias: props.user.alias,
       email: props.user.email,
       first_name: props.user.first_name,
       last_name: props.user.last_name,
@@ -49,35 +50,49 @@ class UserProfile extends Component {
   };
 
   handleSubmit = async (evnt) => {
-
     const { userProfileUpdate, openToast, loginSuccess } = this.props;
-    const { first_name, last_name } = this.state;
+    const { first_name, last_name, alias } = this.state;
 
     evnt.preventDefault();
-    const response = await userProfileUpdate({ first_name, last_name });
-    openToast({ type: "success", message: "Profile saved successfully" });
-    loginSuccess(response.user);
+    const response = await userProfileUpdate({ alias, first_name, last_name });
+    if (response.success) {
+      openToast({ type: "success", message: "Profile saved successfully" });
+      loginSuccess(response.user);
+    } else {
+      openToast({ type: "error", message: response.message });
+    }
   };
 
-  updateAvatar = (avatar_url) => {
+  updateAvatar = async (avatar_url) => {
     this.setState({ avatar_url });
   }
 
   render() {
+    const { user } = this.props;
+
     return (
       <div>
 
         {!this.state.email_confirmed && (
-          <div className='u-margin-bottom-large'>Email is NOT confirmed <button onClick={this.confirmationEmail}>Send
-            confirmation email</button></div>
+          <div className='u-margin-bottom-large'>
+            Email is NOT confirmed
+            <button onClick={this.confirmationEmail}>Send confirmation email</button>
+          </div>
         )}
 
-        <div className='u-margin-bottom-large'>
-          <UserAvatar updateAvatar={this.updateAvatar} avatar_url={this.state.avatar_url}/>
-        </div>
+        {user.alias && (
+          <div className='u-margin-bottom-large'>
+            <UserAvatar onChange={this.updateAvatar} avatar_url={this.state.avatar_url}/>
+          </div>
+        )}
 
         <form className='c-form' onSubmit={this.handleSubmit}>
           <ul className='c-form__list c-form__list--large'>
+            <li>
+              <label className='c-form__label'>Username</label>
+              <input className='c-input c-input--primary' type="text" name="alias" value={this.state.alias} onChange={this.handleChange} />
+            </li>
+
             <li>
               <div className='o-grid'>
                 <div className='o-grid__cell u-1/2@medium u-margin-bottom-large u-margin-bottom-none@medium'>

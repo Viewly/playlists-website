@@ -21,9 +21,9 @@ export async function userProfileFetch(baseUrl, { authorization }) {
   return body;
 }
 
-export async function userProfileUpdate(baseUrl, { authorization, first_name, last_name, avatar_url }) {
+export async function userProfileUpdate(baseUrl, { authorization, alias, first_name, last_name, avatar_url }) {
   const url = `${baseUrl}/user/info`;
-  const { body } = await put(url, { first_name, last_name, avatar_url }, { authorization });
+  const { body } = await put(url, { alias, first_name, last_name, avatar_url }, { authorization });
 
   return body;
 }
