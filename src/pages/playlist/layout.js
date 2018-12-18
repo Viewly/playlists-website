@@ -72,7 +72,7 @@ export default class PlaylistLayout extends Component {
           <div className='o-wrapper'>
             <div className='o-grid o-grid--small o-grid--auto o-grid--middle o-grid--between u-margin-bottom u-margin-bottom-small@large'>
               <div className='o-grid__cell u-margin-bottom'>
-                <PlaylistTabs videos={playlist?.videos?.length} url={playlist.url} />
+                <PlaylistTabs comments={playlist?.comment_count} videos={playlist?.videos?.length} url={playlist.url} />
               </div>
               <div className='o-grid__cell u-margin-bottom'>
                 {user && (

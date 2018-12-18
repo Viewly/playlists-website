@@ -65,8 +65,8 @@ export default class PlaylistComments extends Component {
 
         <div className='u-margin-top-large'>
           {!isReady && <Loading />}
-          {isReady && comments.data.map(item => (
-            <div className='o-flag o-flag--small u-margin-top' key={`comment-${item.id}`}>
+          {isReady && comments.data.map((item, idx) => (
+            <div className='o-flag o-flag--small u-margin-top' key={`comment-${item.id}-${idx}`}>
               <div className='o-flag__img'>
                 <img className='o-avatar o-avatar--large' src={require("../../../images/avatar-default.jpg")} />
               </div>
