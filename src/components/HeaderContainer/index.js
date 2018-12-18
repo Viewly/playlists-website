@@ -8,6 +8,7 @@ import { LOGOUT } from "../../actions/user";
 import DropdownMenu from "../DropdownMenu";
 import UserMenu from "./userMenu";
 import BookmarksBadge from "./bookmarksBadge";
+import NotificationsBadge from "./notificationsBadge";
 
 @withRouter
 @connect((state) => ({
@@ -97,6 +98,11 @@ class HeaderContainer extends Component {
               <div className='o-grid__cell c-header__hide-on-extrasmallscreen'>
                 <SearchInput />
               </div>
+              {user && (
+                <div className='o-grid_cell'>
+                  <NotificationsBadge />
+                </div>
+              )}
               {user && (
                 <div className='o-grid__cell'>
                   <Link to='/create-playlist' className='c-header__btn-cta c-btn c-btn--primary c-btn--plain c-btn--with-icon has-colored-icon'>

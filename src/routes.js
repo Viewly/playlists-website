@@ -19,6 +19,7 @@ import BookmarksPage from "./pages/bookmarks";
 import TestPage from "./pages/test";
 import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE, PLAYER_PAGE } from "./constants/pages";
 import MyPlaylistsPage from "./pages/my-playlists";
+import NotificationsPage from "./pages/notifications";
 
 export const routes = [
   {
@@ -78,6 +79,10 @@ export const routes = [
   {
     path: "/my-playlists",
     component: MyPlaylistsPage,
+  },
+  {
+    path: "/notifications",
+    component: NotificationsPage,
   },
   {
     path: "/search/",
