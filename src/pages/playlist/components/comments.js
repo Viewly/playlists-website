@@ -49,7 +49,6 @@ export default class PlaylistComments extends Component {
     const isReady = comments.playlist_id === playlist.id && isLoaded(comments);
 
     return (
-
       <div className=''>
         <div>
           <textarea
@@ -69,10 +68,15 @@ export default class PlaylistComments extends Component {
 
         <div>
           {!isReady && <Loading />}
-          {isReady && comments.data.map(item => <div key={`comment-${item.id}`}>{item.user?.alias} - {item.description}</div>)}
+          {isReady && comments.data.map(item => (
+            <div key={`comment-${item.id}`}>
+              <span>{item.user?.alias}</span>
+              :
+              <p>{item.description}</p>
+            </div>
+          ))}
         </div>
       </div>
-
     );
   }
 }
