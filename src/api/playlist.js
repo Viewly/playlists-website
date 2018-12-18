@@ -149,3 +149,15 @@ export async function playlistUpdateVideo (baseUrl, { authorization, id, title, 
 
   return body;
 }
+
+export async function playlistCommentsFetch (baseUrl, { authorization, playlist_id }) {
+  const { body } = await get(`${baseUrl}/reviews/${playlist_id}`, {}, { authorization });
+
+  return body;
+}
+
+export async function playlistAddComment (baseUrl, { authorization, playlist_id, title = "", description = "" }) {
+  const { body } = await post(`${baseUrl}/review`, { playlist_id, title, description }, { authorization });
+
+  return body;
+}
