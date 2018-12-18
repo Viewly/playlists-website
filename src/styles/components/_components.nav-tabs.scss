@@ -3,6 +3,8 @@
 \*------------------------------------*/
 
 .c-nav-tabs {
+    display: block;
+
     ul {
         display: flex;
         list-style-type: none;
@@ -29,6 +31,7 @@
 
             border-radius: $input-border-radius;
             color: $color;
+            display: block;
             font-size: 14px;
             font-weight: 700;
             padding: $spacing-unit-small;
