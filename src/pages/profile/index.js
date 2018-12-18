@@ -14,7 +14,7 @@ const prepareActions = (dispatch) => ({
 @asyncLoad(async (params = {}, query = {}, store) => {
   const { playlistsFetch } = prepareActions(store.dispatch);
 
-  await playlistsFetch(`user_id=${params.profileId}`);
+  await playlistsFetch(`alias=${params.profileId}`);
 })
 @connect((state) => ({
   playlists: state.playlists
@@ -30,7 +30,7 @@ class ProfilePage extends Component {
   componentDidMount() {
     const { playlistsFetch, match: { params: { profileId } } } = this.props;
 
-    playlistsFetch(`user_id=${profileId}`);
+    playlistsFetch(`alias=${profileId}`);
   }
 
   render() {
@@ -43,7 +43,7 @@ class ProfilePage extends Component {
 
         <Playlist
           isLoaded={isReady}
-          playlists={playlists.data.filter(i => i.user_id === profileId)}
+          playlists={playlists.data.filter(i => i.user.alias === profileId)}
         />
       </div>
     );
