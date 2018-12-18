@@ -96,7 +96,7 @@ export default class PlaylistLayout extends Component {
               </div>
             </div>
 
-            <div className='o-grid'>
+            <div>
               <Switch>
                 <Route exact path='/playlist/:playlistId' component={PlaylistInfo}/>
                 {playlist.id && <Route path='/playlist/:playlistId/comments' component={PlaylistComments}/>}
