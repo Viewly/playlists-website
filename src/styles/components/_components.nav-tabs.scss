@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .c-nav-tabs {
-    margin-bottom: $spacing-unit-large;
+    display: block;
 
     ul {
         display: flex;
@@ -20,6 +20,10 @@
             &:focus {
                 outline: none; /* [1] */
             }
+
+            .c-nav-tabs--secondary & {
+                margin-right: 0;
+            }
         }
 
         .c-nav-tabs__link {
@@ -27,9 +31,15 @@
 
             border-radius: $input-border-radius;
             color: $color;
+            display: block;
             font-size: 14px;
             font-weight: 700;
             padding: $spacing-unit-small;
+
+            .c-nav-tabs--secondary & {
+                border-radius: 0;
+                border-bottom: 1px solid currentColor;
+            }
 
             &:hover {
                 color: darken($color, 20%);

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import PlaylistInfo from "./components/info";
+import PlaylistLayout from "./layout";
 import PlaylistSuggest from "./components/suggest";
+import PlaylistComments from "./components/comments";
 
 import { asyncLoad } from "../../utils";
 import { playlistFetch } from "../../actions";
@@ -25,22 +27,24 @@ class PlaylistPage extends Component {
     playlistFetch: PropTypes.func.isRequired,
     playlist: PropTypes.object,
     match: PropTypes.object,
-  }
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     const { playlist, playlistFetch, match: { params: { playlistId } } } = this.props;
 
     if (!playlist.isServerRendered || (playlist.url !== playlistId)) {
       playlistFetch(playlistId);
     }
   }
+
   render() {
     return (
-      <>
-        <Route exact path='/playlist/:playlistId' component={PlaylistInfo}></Route>
-        <Route path='/playlist/:playlistId/suggest' component={PlaylistSuggest}></Route>
-      </>
+      <Switch>
+        <Route path='/playlist/:playlistId/suggest' component={PlaylistSuggest}/>
+        <Route path='/playlist/:playlistId' component={PlaylistLayout}/>
+      </Switch>
     );
   }
 }
+
 export default PlaylistPage;
