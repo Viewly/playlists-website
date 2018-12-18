@@ -6,7 +6,7 @@ class PlaylistTabs extends Component {
     const { url, videos } = this.props;
 
     return (
-      <nav className='c-nav-tabs'>
+      <nav className='c-nav-tabs c-nav-tabs--secondary'>
         <ul>
           <li className='c-nav-tabs__item'>
             <NavLink exact activeClassName='is-current' className='c-nav-tabs__link' to={`/playlist/${url}`}>Videos {videos}</NavLink>
