@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { LOGIN_SUCCESS_PERSIST, userProfileUpdate } from "../../../actions/user";
+import { LOGIN_SUCCESS_PERSIST, OPEN_LOGIN_MODAL, userProfileUpdate } from "../../../actions/user";
 import { getUploadUrl, uploadFile } from "../../../actions/upload";
 import uuid from "uuid";
-
-const S3_endpoint = "https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/upload";
+import { S3_ROOT } from "../../../constants";
 
 @connect((state) => ({
   user: state.user
@@ -12,7 +11,11 @@ const S3_endpoint = "https://s3.eu-central-1.amazonaws.com/viewly-playlists-eu1/
   getUploadUrl: (key, type) => dispatch(getUploadUrl({ key, type })),
   userProfileUpdate: (data) => dispatch(userProfileUpdate(data)),
   uploadFile: (url, data, callback) => dispatch(uploadFile({ url, data, callback })),
-  loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data })
+  loginSuccess: (data) => dispatch({ type: LOGIN_SUCCESS_PERSIST, data }),
+  openCropModal: (thumbnail_url, callback) => dispatch({
+    type: OPEN_LOGIN_MODAL,
+    data: { name: "crop", thumbnail_url, callback, aspectRatio: 1 }
+  })
 }))
 class UserAvatar extends Component {
 
@@ -20,43 +23,63 @@ class UserAvatar extends Component {
     selectedFile: null,
     uploading: false,
     percentage: 0,
-  }
+    error: false,
+    errorMessage: ""
+  };
 
-  onUpload = async () => {
-    const { loginSuccess, updateAvatar, userProfileUpdate, getUploadUrl, uploadFile } = this.props;
+  onUpload = async (croppedImageURL) => {
+    const { user, loginSuccess, onChange, userProfileUpdate, getUploadUrl, uploadFile } = this.props;
 
     const avatar_extension = this.state.selectedFile.name.split(".").pop();
     const avatar_name = `${uuid()}_profile_avatar.${avatar_extension}`;
     const response = await getUploadUrl(avatar_name, avatar_extension);
+    const avatar_url = S3_ROOT + "/" + avatar_name;
 
     this.setState({ uploading: true, percentage: 0 });
 
     if (response.url) {
-      await uploadFile(response.url, this.state.selectedFile, (percentage) => {
-        console.log('percentage', percentage);
+      await uploadFile(response.url, croppedImageURL, (percentage) => {
+        console.log("percentage", percentage);
         this.setState({ percentage });
       });
 
-      const newProfile = await userProfileUpdate({ avatar_url: S3_endpoint + "/" + avatar_name });
+      const newProfile = await userProfileUpdate({ ...user, avatar_url });
       this.setState({ uploading: false });
 
-      loginSuccess(newProfile.user);
-      updateAvatar(S3_endpoint + "/" + avatar_name);
+      if (newProfile.success) {
+        loginSuccess(newProfile.user);
+        onChange(avatar_url);
+      } else {
+        this.setState({ error: true, errorMessage: newProfile.message });
+      }
+
     } else {
       console.log("wtf");
     }
-  }
+  };
 
   handleSelectedFile = (event) => {
-    if (event.target.files[0]) {
+    const { openCropModal } = this.props;
+    const file = event.target.files[0];
+
+    if (file) {
       this.setState({
-        selectedFile: event.target.files[0],
+        selectedFile: file,
         loaded: 0,
+        error: false
       }, () => {
-        this.onUpload();
+        if (file) {
+          let reader = new FileReader();
+          reader.onload = (e) => {
+            openCropModal(e.target.result, (cropped) => {
+              this.onUpload(cropped);
+            });
+          };
+          reader.readAsDataURL(file);
+        }
       });
     }
-  }
+  };
 
   render() {
     const { avatar_url } = this.props;
@@ -70,7 +93,11 @@ class UserAvatar extends Component {
           <img className='o-avatar o-avatar--huge' src={require("../../../images/avatar-default.jpg")}/>}
         </div>
         <div className='o-flag__body'>
-          <input style={{ visibility: 'hidden', width: 0, height: 0 }} ref={(ref) => this.fileInput = ref} type="file" onChange={this.handleSelectedFile} />
+          <input
+            style={{ visibility: "hidden", width: 0, height: 0 }}
+            ref={(ref) => this.fileInput = ref}
+            type="file"
+            onChange={this.handleSelectedFile} />
 
           <button
             className='c-btn c-btn--secondary c-btn--hollow c-btn--small c-btn--padding-small u-margin-bottom-tiny'
@@ -78,7 +105,8 @@ class UserAvatar extends Component {
             {this.state.uploading && <>Uploading {this.state.percentage}%</>}
             {!this.state.uploading && <>Change image</>}
           </button>
-          <p className='c-annotation c-inline-message c-inline-message--error'>JPG, GIF or PNG. Max size of 800KB</p>
+          {this.state.error &&
+          <p className='c-annotation c-inline-message c-inline-message--error'>{this.state.errorMessage}</p>}
         </div>
       </div>
 
