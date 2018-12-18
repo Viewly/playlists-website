@@ -171,7 +171,9 @@ class EditPlaylist extends Component {
   onDelete = (videoId) => async () => {
     const { playlistRemoveVideo, match: { params: { playlistId } } } = this.props;
 
-    await playlistRemoveVideo(videoId, playlistId);
+    if (confirm("Remove this video from playlist?")) {
+      await playlistRemoveVideo(videoId, playlistId);
+    }
   };
 
   getSlug = () => {
