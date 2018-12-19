@@ -12,6 +12,10 @@ import NotificationTemplateComment from "./components/comment_template";
 export default class NotificationsPage extends Component {
 
   componentDidMount() {
+    this.reloadNotifications();
+  }
+
+  reloadNotifications = () => {
     const { notificationsFetch } = this.props;
 
     notificationsFetch();
@@ -32,7 +36,7 @@ export default class NotificationsPage extends Component {
         </div>
         <ul className='c-notifications'>
           {notifications.data.map(item => (
-            <NotificationTemplateComment key={`notification-${item.id}`} {...item} />
+            <NotificationTemplateComment onClick={this.reloadNotifications} key={`notification-${item.id}`} {...item} />
           ))}
         </ul>
       </div>

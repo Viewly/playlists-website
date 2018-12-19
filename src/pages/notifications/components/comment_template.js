@@ -10,9 +10,10 @@ import moment from "moment";
 }))
 export default class NotificationTemplateComment extends Component {
   onClick = async () => {
-    const { id, metadata, history, notificationsMarkRead } = this.props;
+    const { id, metadata, history, notificationsMarkRead, onClick } = this.props;
 
     await notificationsMarkRead(id)
+    onClick();
     history.push(`/playlist/${metadata.playlist_url}/comments`);
   };
 
