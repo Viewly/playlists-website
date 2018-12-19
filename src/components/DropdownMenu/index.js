@@ -32,7 +32,7 @@ class DropdownMenu extends Component {
     this.setState({ isOpen: false });
   };
 
-  onClick = (item) => (evnt) => {
+  onClick = (item = {}) => () => {
     const { history } = this.props;
 
     item.onClick ? item.onClick() : history.push(item.url);
@@ -62,7 +62,7 @@ class DropdownMenu extends Component {
               {list.length === 0 && emptyList && emptyList}
             </ul>
             {dropdownFooter && (
-              <div className='dd-footer'>
+              <div className='dd-footer' onClick={this.onClick()}>
                 {dropdownFooter}
               </div>
             )}
