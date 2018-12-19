@@ -21,14 +21,21 @@ export default class NotificationTemplateComment extends Component {
     console.log("Notification props", this.props);
 
     return (
-      <div
-        onClick={this.onClick}
-        style={{ cursor: 'pointer', padding: '5px', margin: '5px', border: '1px solid black', backgroundColor: isUnread ? 'gray' : 'white' /* REMOVE ENTIRE LINE */ }}
-        className={`item ${isUnread ? 'is-unread' : ''}`}>
-        <p
-          style={{ fontWeight: isUnread ? 'bold' : 'regular' /* REMOVE ENTIRE LINE */ }}
-        >{title}</p>
-      </div>
+      <li className='c-notifications__item'>
+        <div
+          onClick={this.onClick}
+          className={`c-notifications__link ${isUnread ? 'is-unread' : ''}`}>
+          <div className='o-flag o-flag--small'>
+            <div className='o-flag__img u-align-top'>
+              <img className='o-avatar o-avatar--large' src={require("../../../images/avatar-default.jpg")} />
+            </div>
+            <div className='o-flag__body'>
+              <p>{title}</p>
+              <time className='c-notifications__time'>5h ago</time>
+            </div>
+          </div>
+        </div>
+      </li>
     );
   }
 }

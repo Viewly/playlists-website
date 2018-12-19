@@ -99,7 +99,7 @@ class HeaderContainer extends Component {
                 <SearchInput />
               </div>
               {user && (
-                <div className='o-grid_cell'>
+                <div className='o-grid__cell'>
                   <NotificationsBadge />
                 </div>
               )}

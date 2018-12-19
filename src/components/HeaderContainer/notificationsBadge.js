@@ -26,7 +26,7 @@ export default class NotificationsBadge extends Component {
     const { notifications } = this.props;
 
     return (        // PLEASE DELETE THIS INLINE STYLE <3
-      <div style={{ border: "1px solid pink", textAlign: "center", borderRadius: '50%', height: '30px', width: '30px', lineHeight: '30px' }}>
+      <div>
         <Link to='/notifications'>{notifications.data.filter(item => item.status === 'unread').length}</Link>
       </div>
     );
