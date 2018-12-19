@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { notificationsFetch } from "../../actions/notification";
+import { notificationsFetch, notificationsMarkRead } from "../../actions/notification";
 import NotificationTemplateComment from "./components/comment_template";
 
 @connect((state) => ({
   notifications: state.notifications
 }), (dispatch) => ({
-  notificationsFetch: () => dispatch(notificationsFetch())
+  notificationsFetch: () => dispatch(notificationsFetch()),
+  notificationsMarkRead: (ids) => dispatch(notificationsMarkRead({ notifications_ids: ids }))
 }))
 export default class NotificationsPage extends Component {
 
@@ -21,6 +22,14 @@ export default class NotificationsPage extends Component {
     notificationsFetch();
   }
 
+  markAllRead = async () => {
+    const { notifications, notificationsMarkRead, reloadNotifications } = this.props;
+    const ids = notifications.data.filter(item => item.status === 'unread').map(item => item.id);
+
+    await notificationsMarkRead(ids);
+    this.reloadNotifications();
+  }
+
   render() {
     const { notifications } = this.props;
     console.log("notifications", notifications);
@@ -31,7 +40,7 @@ export default class NotificationsPage extends Component {
             <h1 className='u-h3'>Notifications</h1>
           </div>
           <div className='o-grid__cell'>
-            <button className='c-btn c-btn--secondary c-btn--plain' to=''>Mark all as read</button>
+            <button className='c-btn c-btn--secondary c-btn--plain' onClick={this.markAllRead}>Mark all as read</button>
           </div>
         </div>
         <ul className='c-notifications'>
