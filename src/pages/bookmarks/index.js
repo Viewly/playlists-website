@@ -60,6 +60,14 @@ class BookmarksPage extends Component {
           title="Bookmarks"
           isLoaded={isReady}
           playlists={bookmarks.data}
+          customEmptyContainer={(
+            <div className='o-grid__cell u-1/1'>
+              <div className='c-no-results'>
+                <img className='c-no-results__img' src={require("../../images/message-no-bookmarks-yet.svg")} />
+                <p>Bookmark playlists to watch them later and to <br />be notified when new videos are added.</p>
+              </div>
+            </div>
+          )}
         />
       </div>
     );
