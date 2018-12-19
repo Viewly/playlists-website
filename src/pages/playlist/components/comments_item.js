@@ -13,7 +13,7 @@ export default class PlaylistCommentItem extends Component {
 
     return (
       <div className='o-flag o-flag--small u-margin-top'>
-        <div className='o-flag__img'>
+        <div className='o-flag__img u-align-top'>
           {user.avatar_url && <img alt='' className='o-avatar o-avatar--large' src={user.avatar_url} />}
           {!user.avatar_url && <img alt='' className='o-avatar o-avatar--large' src={require("../../../images/avatar-default.jpg")}/>}
         </div>
