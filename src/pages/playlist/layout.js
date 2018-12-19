@@ -11,7 +11,7 @@ import SEO from "../../components/SEO";
 import { sumVideoDurations } from "../../utils";
 import Loading from "../../components/loading";
 import { LOADED, LOADING } from "../../constants/status_types";
-import { userAddBookmark, userRemoveBookmark } from "../../actions/user";
+import { OPEN_LOGIN_MODAL, userAddBookmark, userRemoveBookmark } from "../../actions/user";
 import { OPEN_TOAST } from "../../actions/toast";
 import PlaylistTabs from "./components/tabs";
 import PlaylistSuggest from "./components/suggest";
@@ -24,7 +24,8 @@ import PlaylistComments from "./components/comments";
 }), (dispatch) => ({
   userAddBookmark: (playlist_id) => dispatch(userAddBookmark({ playlist_id })),
   userRemoveBookmark: (playlist_id) => dispatch(userRemoveBookmark({ playlist_id })),
-  openToast: (data) => dispatch({ type: OPEN_TOAST, data })
+  openToast: (data) => dispatch({ type: OPEN_TOAST, data }),
+  openRegisterModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "register" } }),
 }))
 export default class PlaylistLayout extends Component {
   static propTypes = {
@@ -33,14 +34,18 @@ export default class PlaylistLayout extends Component {
   }
 
   onBookmarkClick = () => {
-    const { openToast, playlist, userAddBookmark, userRemoveBookmark } = this.props;
+    const { openRegisterModal, user, openToast, playlist, userAddBookmark, userRemoveBookmark } = this.props;
 
-    if (playlist.bookmarked) {
-      userRemoveBookmark(playlist.id);
-      openToast({ type: "info", message: "Playlist removed from bookmarks" });
+    if (!user) {
+      openRegisterModal();
     } else {
-      userAddBookmark(playlist.id);
-      openToast({ type: "info", message: "Playlist added to bookmarks" });
+      if (playlist.bookmarked) {
+        userRemoveBookmark(playlist.id);
+        openToast({ type: "info", message: "Playlist removed from bookmarks" });
+      } else {
+        userAddBookmark(playlist.id);
+        openToast({ type: "info", message: "Playlist added to bookmarks" });
+      }
     }
   }
 
@@ -50,9 +55,8 @@ export default class PlaylistLayout extends Component {
   }
 
   render() {
-    const { playlist, user, match: { params: { playlistId } } } = this.props;
+    const { playlist, match: { params: { playlistId } } } = this.props;
     const isLoaded = (playlist._status === LOADED) || (playlist.id === playlistId) || (playlist.url === playlistId);
-    const isLoading = playlist._status === LOADING;
     const isOwner = this.isOwner();
     if (!isLoaded) return <div>Loading ...</div>;
 
@@ -75,14 +79,14 @@ export default class PlaylistLayout extends Component {
                 <PlaylistTabs comments={playlist?.comment_count} videos={playlist?.videos?.length} url={playlist.url} />
               </div>
               <div className='o-grid__cell u-margin-bottom'>
-                {user && (
-                  <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-left-none u-padding-right-none has-colored-icon ${playlist.bookmarked ? "is-active" : ""}`}>
-                    <div className='c-colored-icon o-icon'>
-                      <img className='c-colored-icon__icon' src={require("../../images/icons/bookmark.svg")} />
-                      <img className='c-colored-icon__icon' src={require("../../images/icons/bookmark-hover.svg")} />
-                    </div>
-                  </button>
-                )}
+
+                <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-left-none u-padding-right-none has-colored-icon ${playlist.bookmarked ? "is-active" : ""}`}>
+                  <div className='c-colored-icon o-icon'>
+                    <img alt='' className='c-colored-icon__icon' src={require("../../images/icons/bookmark.svg")} />
+                    <img alt='' className='c-colored-icon__icon' src={require("../../images/icons/bookmark-hover.svg")} />
+                  </div>
+                </button>
+
                 <SharePlaylist playlist={playlist} />
 
                 {isOwner
