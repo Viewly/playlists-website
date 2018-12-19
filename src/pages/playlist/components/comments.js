@@ -56,7 +56,7 @@ export default class PlaylistComments extends Component {
     const isReady = comments.playlist_id === playlist.id && isLoaded(comments);
 
     return (
-      <div className='u-3/4@medium u-3/5@large u-1/2@extralarge'>
+      <div className='u-3/4@medium u-3/5@large u-1/2@extralarge u-horizontally-center u-padding-top@large'>
         <div>
           <textarea
             className='c-input c-input--primary c-input--inversed c-input--textarea u-margin-bottom'
