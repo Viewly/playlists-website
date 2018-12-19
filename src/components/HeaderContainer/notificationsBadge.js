@@ -27,7 +27,7 @@ export default class NotificationsBadge extends Component {
 
     return (
       <div>
-        <Link to='/notifications' className={`c-notification-badge ${notifications.data.length > 0 ? 'is-unread' : ''}`}>
+        <Link to='/notifications' className={`c-notification-badge ${notifications.data.filter(item => item.status === 'unread').length > 0 ? 'is-unread' : ''}`}>
           <img className='c-notification-badge__icon' src={require("../../images/icons/bell.svg")} />
           <img className='c-notification-badge__icon' src={require("../../images/icons/bell-active.svg")} />
         </Link>
