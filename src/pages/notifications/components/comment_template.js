@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import connect from "react-redux/es/connect/connect";
+import { connect } from "react-redux";
 import { notificationsMarkRead } from "../../../actions/notification";
 import moment from "moment";
 
