@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
 import { notificationsMarkRead } from "../../../actions/notification";
+import moment from "moment";
 
 @withRouter
 @connect(null, (dispatch) => ({
@@ -16,9 +17,9 @@ export default class NotificationTemplateComment extends Component {
   };
 
   render() {
-    const { title, status } = this.props;
+    const { title, status, created_at } = this.props;
     const isUnread = status === 'unread';
-    console.log("Notification props", this.props);
+    const timeAgo = moment(created_at).startOf("minute").fromNow();
 
     return (
       <li className='c-notifications__item'>
@@ -31,7 +32,7 @@ export default class NotificationTemplateComment extends Component {
             </div>
             <div className='o-flag__body'>
               <p>{title}</p>
-              <time className='c-notifications__time'>5h ago</time>
+              <time className='c-notifications__time'>{timeAgo}</time>
             </div>
           </div>
         </div>
