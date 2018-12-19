@@ -7,6 +7,7 @@ import { isLoaded } from "../../../utils";
 import Loading from "../../../components/loading";
 import { set } from "lodash";
 import PlaylistCommentItem from "./comments_item";
+import { OPEN_LOGIN_MODAL } from "../../../actions/user";
 
 @connect((state) => ({
   playlist: state.playlist,
@@ -14,7 +15,8 @@ import PlaylistCommentItem from "./comments_item";
   user: state.user
 }), (dispatch) => ({
   playlistCommentsFetch: (playlist_id) => dispatch(playlistCommentsFetch({ playlist_id })),
-  playlistAddComment: (playlist_id, description) => dispatch(playlistAddComment({ playlist_id, description }))
+  playlistAddComment: (playlist_id, description) => dispatch(playlistAddComment({ playlist_id, description })),
+  openLoginModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "login" } })
 }))
 export default class PlaylistComments extends Component {
   static propTypes = {
@@ -38,11 +40,15 @@ export default class PlaylistComments extends Component {
   };
 
   submitComment = async () => {
-    const { playlistCommentsFetch, playlistAddComment, playlist } = this.props;
+    const { user, openLoginModal, playlistCommentsFetch, playlistAddComment, playlist } = this.props;
 
-    await playlistAddComment(playlist.id, this.state.comment);
-    this.setState({ comment: "" });
-    playlistCommentsFetch(playlist.id);
+    if (user) {
+      await playlistAddComment(playlist.id, this.state.comment);
+      this.setState({ comment: "" });
+      playlistCommentsFetch(playlist.id);
+    } else {
+      openLoginModal();
+    }
   }
 
   render() {
