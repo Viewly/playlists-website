@@ -20,6 +20,14 @@ export default class NotificationsBadge extends Component {
     const { notificationsFetch } = this.props;
 
     notificationsFetch();
+
+    this.reloadInterval = setInterval(() => {
+      notificationsFetch();
+    }, 10000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.reloadInterval);
   }
 
   render() {
