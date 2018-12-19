@@ -63,14 +63,14 @@ class LoginPage extends Component {
               <h1 className='u-h3 u-margin-bottom-tiny'>Log in to Vidflow</h1>
             </div>
 
-            <div className='o-grid u-margin-bottom-large'>
-              <div className='o-grid__cell u-1/2@medium u-margin-bottom-large u-margin-bottom-none@medium'>
+            <div className='o-grid o-grid--small u-margin-bottom-large'>
+              <div className='o-grid__cell u-1/2@medium'>
                 <button className='c-btn c-btn--social c-btn--social--google c-btn--full' onClick={this.socialLoginClick("google")}>
                   <img className='c-btn--social__logo' src={require("../../images/soc-networks-logos/logo-google.svg")} />
                   Log in with Google
                 </button>
               </div>
-              <div className='o-grid__cell u-1/2@medium u-margin-bottom-large u-margin-bottom-none@medium'>
+              <div className='o-grid__cell u-1/2@medium u-margin-top u-margin-top-none@medium'>
                 <button className='c-btn c-btn--social c-btn--social--google c-btn--full' onClick={this.socialLoginClick("facebook")}>
                   <img className='c-btn--social__logo' src={require("../../images/soc-networks-logos/logo-facebook.svg")} />
                   Log in with Facebook
