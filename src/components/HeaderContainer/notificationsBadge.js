@@ -25,9 +25,12 @@ export default class NotificationsBadge extends Component {
   render() {
     const { notifications } = this.props;
 
-    return (        // PLEASE DELETE THIS INLINE STYLE <3
+    return (
       <div>
-        <Link to='/notifications'>{notifications.data.filter(item => item.status === 'unread').length}</Link>
+        <Link to='/notifications' className='c-notification-badge'>
+          <img className='c-notification-badge__icon' src={require("../../images/icons/bell.svg")} />
+          <img className='c-notification-badge__icon' src={require("../../images/icons/bell-active.svg")} />
+        </Link>
       </div>
     );
   }
