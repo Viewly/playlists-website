@@ -9,45 +9,68 @@ import onClickOutside from "react-onclickoutside";
 class DropdownMenu extends Component {
   static propTypes = {
     toggle: PropTypes.node.isRequired,
+    showArrow: PropTypes.bool,
+    wide: PropTypes.bool,
     list: PropTypes.array,
+    emptyList: PropTypes.node,
+    dropdownFooter: PropTypes.node,
     history: PropTypes.object
-  }
+  };
+
+  static defaultProps = {
+    showArrow: true,
+    wide: false,
+    emptyList: null,
+    dropdownFooter: null
+  };
 
   state = {
     isOpen: false
-  }
+  };
 
   handleClickOutside = (evt) => {
     this.setState({ isOpen: false });
-  }
+  };
 
   onClick = (item) => (evnt) => {
     const { history } = this.props;
 
     item.onClick ? item.onClick() : history.push(item.url);
     this.setState({ isOpen: false });
-  }
+  };
 
   render() {
-    const { toggle, list } = this.props;
+    const { toggle, list, showArrow, wide, emptyList, dropdownFooter } = this.props;
     const { isOpen } = this.state;
-    const showArrow = true;
+
     return (
       <div className='c-dropdown dd-menu'>
-        <div className='c-dropdown__toggle c-dropdown__toggle--with-arrow  dd-toggle' onClick={() => this.setState({ isOpen: !this.state.isOpen })}>
+        <div className={`c-dropdown__toggle dd-toggle ${showArrow ? "c-dropdown__toggle--with-arrow " : ""}`}
+             onClick={() => this.setState({ isOpen: !this.state.isOpen })}>
           {toggle}
         </div>
         {list && isOpen && (
-          <div className='c-dropdown__menu'>
+          <div className={`c-dropdown__menu ${wide ? "c-dropdown__menu--wide" : ""}`}>
             <ul className='dd-list'>
-              {list.map((item, idx) => (
-                <DropdownItem key={`dd-item-${idx}`} onItemClicked={this.onClick} item={item} />
-              ))}
+              {list.map((item, idx) => {
+                return (
+                  React.isValidElement(item)
+                    ? <item.type key={`dd-item-${idx}`} {...item.props} onClick={this.onClick(item.props)} />
+                    : <DropdownItem key={`dd-item-${idx}`} onItemClicked={this.onClick} item={item}/>
+                );
+              })}
+              {list.length === 0 && emptyList && emptyList}
             </ul>
+            {dropdownFooter && (
+              <div className='dd-footer'>
+                {dropdownFooter}
+              </div>
+            )}
           </div>
         )}
       </div>
     );
   }
 }
+
 export default DropdownMenu;
