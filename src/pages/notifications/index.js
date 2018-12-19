@@ -22,7 +22,14 @@ export default class NotificationsPage extends Component {
     console.log("notifications", notifications);
     return (
       <div className='o-wrapper o-wrapper--middle u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-        <h1 className='u-h3'>Notifications</h1>
+        <div className='o-grid o-grid--auto o-grid--middle o-grid--between u-margin-bottom'>
+          <div className='o-grid__cell'>
+            <h1 className='u-h3'>Notifications</h1>
+          </div>
+          <div className='o-grid__cell'>
+            <button className='c-btn c-btn--secondary c-btn--plain' to=''>Mark all as read</button>
+          </div>
+        </div>
         <ul className='c-notifications'>
           {notifications.data.map(item => (
             <NotificationTemplateComment key={`notification-${item.id}`} {...item} />
