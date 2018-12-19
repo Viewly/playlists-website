@@ -9,10 +9,10 @@ class PlaylistTabs extends Component {
       <nav className='c-nav-tabs c-nav-tabs--secondary'>
         <ul>
           <li className='c-nav-tabs__item'>
-            <NavLink exact activeClassName='is-current' className='c-nav-tabs__link' to={`/playlist/${url}`}>Videos {videos}</NavLink>
+            <NavLink exact activeClassName='is-current' className='c-nav-tabs__link' to={`/playlist/${url}`}>{videos} videos</NavLink>
           </li>
           <li className='c-nav-tabs__item'>
-            <NavLink activeClassName='is-current' className='c-nav-tabs__link' to={`/playlist/${url}/comments`}>Comments {comments}</NavLink>
+            <NavLink activeClassName='is-current' className='c-nav-tabs__link' to={`/playlist/${url}/comments`}>{comments} comments</NavLink>
           </li>
         </ul>
       </nav>
