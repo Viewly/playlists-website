@@ -48,8 +48,7 @@ export default class NotificationsBadge extends Component {
               <img alt='' className='c-notification-badge__icon' src={require("../../images/icons/bell-active.svg")} />
             </div>
           )}
-          // list={unreadNotifications.slice(0, 5).map(item => (
-          list={notifications.data.slice(0, 5).map(item => (
+          list={unreadNotifications.slice(0, 5).map(item => (
             <NotificationTemplateComment key={`notification-${item.id}`} {...item} />
           ))}
           emptyList={(
