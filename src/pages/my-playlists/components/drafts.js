@@ -32,7 +32,12 @@ class MyPlaylistsDrafts extends Component {
           isLoaded={isReady}
           customClickHandler={this.onPlaylistClick}
           customEmptyContainer={(
-            <div>No drafts</div>
+            <div className='o-grid__cell u-1/1'>
+              <div className='c-no-results'>
+                <img className='c-no-results__img' src={require("../../../images/message-no-playlists-yet.svg")} />
+                <p>Not ready to publish your playlist yet? <br />Save it to drafts first.</p>
+              </div>
+            </div>
           )}
           playlists={playlists.data.filter(item => item.status !== 'published')}
         />
