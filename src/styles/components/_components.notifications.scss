@@ -1,0 +1,43 @@
+/*------------------------------------*\
+    #NOTIFICATIONS
+\*------------------------------------*/
+
+.c-notifications {
+    list-style-type: none;
+}
+
+    .c-notifications__item {
+        border-top: 1px solid color('grey');
+
+        &:last-child {
+            border-bottom: 1px solid color('grey');
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+        .c-notifications__link {
+            display: block;
+            padding: $spacing-unit-small $spacing-unit-tiny;
+
+            @include mq(medium) {
+                padding-left: $spacing-unit-small;
+                padding-right: $spacing-unit-small;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.is-unread {
+                background-color: #f7f7f7;
+            }
+        }
+
+        .c-notifications__time {
+            color: #9ea0a3;
+            font-size: 12px;
+            font-weight: 500;
+        }
