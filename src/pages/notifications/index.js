@@ -27,13 +27,23 @@ export default class NotificationsPage extends Component {
             <h1 className='u-h3'>Notifications</h1>
           </div>
           <div className='o-grid__cell'>
-            <button className='c-btn c-btn--secondary c-btn--plain' to=''>Mark all as read</button>
+            {notifications.data.length !== 0 && (
+              <button className='c-btn c-btn--secondary c-btn--plain' to=''>Mark all as read</button>
+            )}
           </div>
         </div>
         <ul className='c-notifications'>
           {notifications.data.map(item => (
             <NotificationTemplateComment key={`notification-${item.id}`} {...item} />
           ))}
+          {notifications.data.length === 0 && (
+           <li>
+            <div className='c-thank-you'>
+              <img className='c-thank-you__img' src={require("../../images/graphic-error.svg")} />
+              <p>You have no notifications yet</p>
+            </div>
+           </li>
+          )}
         </ul>
       </div>
     );
