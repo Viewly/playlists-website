@@ -6,6 +6,8 @@ import { playlistAddComment, playlistCommentsFetch } from "../../../actions/play
 import { isLoaded } from "../../../utils";
 import Loading from "../../../components/loading";
 import { set } from "lodash";
+import PlaylistCommentItem from "./comments_item";
+import { OPEN_LOGIN_MODAL } from "../../../actions/user";
 
 @connect((state) => ({
   playlist: state.playlist,
@@ -13,7 +15,8 @@ import { set } from "lodash";
   user: state.user
 }), (dispatch) => ({
   playlistCommentsFetch: (playlist_id) => dispatch(playlistCommentsFetch({ playlist_id })),
-  playlistAddComment: (playlist_id, description) => dispatch(playlistAddComment({ playlist_id, description }))
+  playlistAddComment: (playlist_id, description) => dispatch(playlistAddComment({ playlist_id, description })),
+  openLoginModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "login" } })
 }))
 export default class PlaylistComments extends Component {
   static propTypes = {
@@ -37,11 +40,15 @@ export default class PlaylistComments extends Component {
   };
 
   submitComment = async () => {
-    const { playlistCommentsFetch, playlistAddComment, playlist } = this.props;
+    const { user, openLoginModal, playlistCommentsFetch, playlistAddComment, playlist } = this.props;
 
-    await playlistAddComment(playlist.id, this.state.comment);
-    this.setState({ comment: "" });
-    playlistCommentsFetch(playlist.id);
+    if (user) {
+      await playlistAddComment(playlist.id, this.state.comment);
+      this.setState({ comment: "" });
+      playlistCommentsFetch(playlist.id);
+    } else {
+      openLoginModal();
+    }
   }
 
   render() {
@@ -65,16 +72,8 @@ export default class PlaylistComments extends Component {
 
         <div className='u-margin-top-large'>
           {!isReady && <Loading />}
-          {isReady && comments.data.map((item, idx) => (
-            <div className='o-flag o-flag--small u-margin-top' key={`comment-${item.id}-${idx}`}>
-              <div className='o-flag__img'>
-                <img className='o-avatar o-avatar--large' src={require("../../../images/avatar-default.jpg")} />
-              </div>
-              <div className='o-flag__body'>
-                <span><b>{item.user?.alias}</b> <time className='c-time'>5h ago</time></span>
-                <p>{item.description}</p>
-              </div>
-            </div>
+          {isReady && comments.data.map((item) => (
+            <PlaylistCommentItem key={`comment-${item.id}`} {...item} />
           ))}
         </div>
       </div>
