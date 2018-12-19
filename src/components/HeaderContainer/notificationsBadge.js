@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { notificationsFetch } from "../../actions/notification";
+import UserMenu from "./userMenu";
+import DropdownMenu from "../DropdownMenu";
+import NotificationTemplateComment from "../../pages/notifications/components/comment_template";
 
 @connect((state) => ({
   notifications: state.notifications
@@ -32,13 +35,32 @@ export default class NotificationsBadge extends Component {
 
   render() {
     const { notifications } = this.props;
+    const unreadNotifications = notifications.data.filter(item => item.status === 'unread');
 
     return (
       <div>
-        <Link to='/notifications' className={`c-notification-badge ${notifications.data.filter(item => item.status === 'unread').length > 0 ? 'is-unread' : ''}`}>
-          <img className='c-notification-badge__icon' src={require("../../images/icons/bell.svg")} />
-          <img className='c-notification-badge__icon' src={require("../../images/icons/bell-active.svg")} />
-        </Link>
+        <DropdownMenu
+          wide
+          showArrow={false}
+          toggle={(
+            <div className={`c-notification-badge ${unreadNotifications.length > 0 ? 'is-unread' : ''}`}>
+              <img alt='' className='c-notification-badge__icon' src={require("../../images/icons/bell.svg")} />
+              <img alt='' className='c-notification-badge__icon' src={require("../../images/icons/bell-active.svg")} />
+            </div>
+          )}
+          // list={unreadNotifications.slice(0, 5).map(item => (
+          list={notifications.data.slice(0, 5).map(item => (
+            <NotificationTemplateComment key={`notification-${item.id}`} {...item} />
+          ))}
+          emptyList={(
+            <div>No unread notifications 😀</div>
+          )}
+          dropdownFooter={(
+            <div>
+              <Link to="/notifications">See all</Link>
+            </div>
+          )}
+        />
       </div>
     );
   }
