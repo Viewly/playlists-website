@@ -2,6 +2,7 @@ import * as actions from "../actions";
 import * as userActions from "../actions/user";
 import * as toastActions from "../actions/toast";
 import * as playlistActions from "../actions/playlist";
+import * as notificationActions from "../actions/notification";
 import { PENDING, LOADED, LOADING } from "../constants/status_types";
 import {
   getPlaylistProgress,
@@ -22,6 +23,7 @@ const initialState = {
   categories: { _status: PENDING, data: [] },
   hashtags: { _status: PENDING, data: [] },
   bookmarks: { _status: PENDING, data: [] },
+  notifications: { _status: PENDING, data: [] },
   comments: { _status: PENDING, data: [] },
   renderedPages: {},
   user: jwtCookie ? decodeJwt(jwtCookie) : false,
@@ -176,6 +178,9 @@ const rootReducer = (state = initialState, action) => {
     case playlistActions.PLAYLIST_REMOVE_VIDEO_SUCCESS:
       const videos = state.playlist.videos.filter(item => item.id !== action.video_id);
       return { ...state, playlist: { _status: LOADED, ...state.playlist, videos } }
+
+    case notificationActions.NOTIFICATIONS_FETCH_SUCCESS:
+      return { ...state, notifications: { _status: LOADED, data: action.data } }
 
     case playlistActions.PLAYLIST_COMMENTS_FETCH_SUCCESS:
       return { ...state, comments: { _status: LOADED, playlist_id: action.playlist_id, data: action.data } }

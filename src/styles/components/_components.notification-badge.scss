@@ -1,0 +1,42 @@
+/*------------------------------------*\
+    #NOTIFICATION BADGE
+\*------------------------------------*/
+
+.c-notification-badge {
+    display: block;
+    height: 1em;
+    font-size: 20px;
+    width: 1em;
+    position: relative;
+
+    &.is-unread {
+        animation: notification-badge-scale .25s ease;
+    }
+}
+
+    .c-notification-badge__icon {
+        height: 100%;
+        transition: $global-transition;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+
+        &:last-child {
+            opacity: 0;
+            z-index: 20;
+
+            .c-notification-badge.is-unread & {
+                opacity: 1;
+
+
+            }
+        }
+
+        @keyframes notification-badge-scale {
+            50% {
+                transform: scale(1.2);
+            }
+        }
+    }

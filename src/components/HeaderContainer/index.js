@@ -8,6 +8,7 @@ import { LOGOUT } from "../../actions/user";
 import DropdownMenu from "../DropdownMenu";
 import UserMenu from "./userMenu";
 import BookmarksBadge from "./bookmarksBadge";
+import NotificationsBadge from "./notificationsBadge";
 
 @withRouter
 @connect((state) => ({
@@ -103,6 +104,11 @@ class HeaderContainer extends Component {
                     <img className='c-header__btn-cta__icon o-icon o-icon--small' src={require("../../images/icons/create-playlist-hover.svg")} />
                     <span className='c-header__btn-cta__label'>Create playlist</span>
                   </Link>
+                </div>
+              )}
+              {user && (
+                <div className='o-grid__cell'>
+                  <NotificationsBadge />
                 </div>
               )}
               {user && (

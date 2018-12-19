@@ -19,6 +19,10 @@
         padding-right: ($arrow-size + $spacing-unit-small);
         position: relative;
 
+        @include mq($until: medium) {
+            padding-right: 0;
+        }
+
         &::after {
             border: $arrow-size solid transparent;
             border-top-color: rgba($arrow-color, .65);
@@ -31,6 +35,10 @@
             position: absolute;
             top: calc(50% - #{$arrow-size / 2});
             right: 0;
+
+            @include mq($until: medium) {
+                display: none;
+            }
         }
     }
 
