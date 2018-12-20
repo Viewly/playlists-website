@@ -27,7 +27,8 @@ const prepareActions = (dispatch) => ({
 })
 @connect((state) => ({
   playlists: state.playlists,
-  isSSR: !!state.renderedPages[HOME_PAGE]
+  isSSR: !!state.renderedPages[HOME_PAGE],
+  user: state.user
 }), prepareActions)
 class HomePage extends Component {
   static propTypes = {
@@ -54,25 +55,29 @@ class HomePage extends Component {
     const { playlists } = this.props;
     const isReady = isLoaded(playlists);
     const pickedPlaylists = playlists.data.filter(i => i.classification === "staff_picked").splice(0, 3);
+    const { user } = this.props;
 
     return (
       <>
         <SEO />
-        <div className='c-hero'>
-          <div className='o-wrapper'>
-            <div className='o-grid o-grid--middle o-grid--large'>
-              <div className='o-grid__cell c-hero__grid__cell'>
-                <h1 className="c-hero__title">Collaborative <br />YouTube playlists</h1>
-                <p>Discover playlists, create your own, and contribute to others.</p>
-                <Link to='/create-playlist' className='c-btn c-btn--primary c-btn--large'>Create your playlist</Link>
-              </div>
-              <div className='o-grid__cell c-hero__grid__cell'>
-                <img className='c-hero__graphic' src={require("../../images/hero-illustration.svg")} />
+        {!user && (
+          <div className='c-hero'>
+            <div className='o-wrapper'>
+              <div className='o-grid o-grid--middle o-grid--large'>
+                <div className='o-grid__cell c-hero__grid__cell'>
+                  <h1 className="c-hero__title">Collaborative <br />YouTube playlists</h1>
+                  <p>Discover playlists, create your own, and contribute to others.</p>
+                  <Link to='/create-playlist' className='c-btn c-btn--primary c-btn--large'>Create your playlist</Link>
+                </div>
+                <div className='o-grid__cell c-hero__grid__cell'>
+                  <img className='c-hero__graphic' src={require("../../images/hero-illustration.svg")} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className='o-wrapper'>
+        )}
+
+        <div className='o-wrapper u-margin-top-large u-margin-top-huge@large'>
           <div className='u-margin-bottom-large'>
             {pickedPlaylists.length > 0 && (
               <Playlist
