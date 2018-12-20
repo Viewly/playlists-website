@@ -573,7 +573,7 @@ $tweakpoint-category:   large;
 
 
 .c-alert {
-    border-radius: 2px;
+    border-radius: $input-border-radius;
     color: #fff;
     padding: $spacing-unit-small;
     padding-right: $spacing-unit-large;
@@ -621,6 +621,18 @@ $tweakpoint-category:   large;
 
         &:not(:last-child) {
             margin-bottom: $spacing-unit-tiny;
+        }
+    }
+
+    .c-alert__btn[class] {
+        border-bottom: 1px solid currentColor;
+        color: inherit;
+        display: inline;
+        line-height: inherit;
+        padding: 0;
+
+        &:hover {
+            border-bottom-color: transparent;
         }
     }
 
