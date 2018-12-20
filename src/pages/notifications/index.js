@@ -5,6 +5,7 @@ import { notificationsFetch, notificationsMarkRead } from "../../actions/notific
 import NotificationTemplateComment from "./components/comment_template";
 import { isLoaded } from "../../utils";
 import Loading from "../../components/loading";
+import SEO from "../../components/SEO";
 
 @connect((state) => ({
   notifications: state.notifications
@@ -38,6 +39,7 @@ export default class NotificationsPage extends Component {
 
     return (
       <div className='o-wrapper o-wrapper--middle u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+        <SEO title="My notifications" />
         <div className='o-grid o-grid--auto o-grid--middle o-grid--between u-margin-bottom'>
           <div className='o-grid__cell'>
             <h1 className='u-h3'>Notifications</h1>
