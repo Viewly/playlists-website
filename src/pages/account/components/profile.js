@@ -81,7 +81,7 @@ class UserProfile extends Component {
               </div>
               <div className='o-flag__body'>
                 <h4 className='c-alert__title'>Email not verified</h4>
-                <p>We've sent you an email with the confirmation link. It might take up to 5 minutes to arrive. If you don't see it yet check your spam or <button className='c-btn c-alert__btn' onClick={this.confirmationEmail}>send it again</button>.
+                <p>We've sent you an email with the confirmation link. It might take up to 5 minutes to arrive. If you don't see it yet check your spam{/* or <button className='c-btn c-alert__btn' onClick={this.confirmationEmail}>send it again</button>*/}.
                 </p>
               </div>
             </div>
