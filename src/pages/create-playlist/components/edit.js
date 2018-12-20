@@ -125,12 +125,21 @@ class EditPlaylist extends Component {
 
   /* hacky validation */
   validateSubmit = () => {
+    const { playlist } = this.props;
+
     if (!this.state.playlist_thumbnail_url) {
       return {
         success: false,
         message: "Thumbnail is required"
       }
     };
+
+    if (!playlist.videos?.length > 0) {
+      return {
+        success: false,
+        message: "Playlist needs to have at least one video"
+      }
+    }
 
     return {
       "success": true
