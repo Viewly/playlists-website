@@ -8,8 +8,11 @@ export default class PlaylistCommentItem extends Component {
   };
 
   render() {
-    const { review_id, user, description, created_at, canDelete, canVote, onVote, onDelete, likes_count, dislikes_count } = this.props;
+    const { review_id, user, description, created_at, canDelete, canVote, onVote, onDelete, likes_count, dislikes_count, like_status } = this.props;
     const timeAgo = moment(created_at).startOf("minute").fromNow();
+
+    const youUpvoted = like_status === 1;
+    const youDownvoted = like_status === -1;
 
     return (
       <div className='o-flag o-flag--small u-margin-top'>
@@ -29,8 +32,8 @@ export default class PlaylistCommentItem extends Component {
           </div>
           {canVote && (
             <div>
-              <button onClick={onVote(review_id, 'up')}>👍</button>
-              <button onClick={onVote(review_id, 'down')}>👎</button>
+              <button onClick={onVote(review_id, like_status, +1)} className={`c-btn c-btn--small ${youUpvoted ? 'c-btn--primary' : ''}`}>👍</button>
+              <button onClick={onVote(review_id, like_status, -1)} className={`c-btn c-btn--small ${youDownvoted ? 'c-btn--primary' : ''}`}>👎</button>
             </div>
           )}
           {canDelete && (

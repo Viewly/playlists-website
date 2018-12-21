@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { playlistAddComment, playlistCommentsFetch, playlistDeleteComment } from "../../../actions/playlist";
+import {
+  playlistAddComment,
+  playlistCommentsFetch,
+  playlistDeleteComment,
+  playlistVoteComment
+} from "../../../actions/playlist";
 import { isLoaded } from "../../../utils";
 import Loading from "../../../components/loading";
 import PlaylistCommentItem from "./comments_item";
@@ -16,6 +21,7 @@ import { OPEN_LOGIN_MODAL } from "../../../actions/user";
   playlistCommentsFetch: (playlist_id) => dispatch(playlistCommentsFetch({ playlist_id })),
   playlistAddComment: (playlist_id, description) => dispatch(playlistAddComment({ playlist_id, description })),
   playlistDeleteComment: (review_id) => dispatch(playlistDeleteComment({ review_id })),
+  playlistVoteComment: (playlist_id, review_id, status) => dispatch(playlistVoteComment({ playlist_id, review_id, status })),
   openLoginModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "login" } })
 }))
 export default class PlaylistComments extends Component {
@@ -64,8 +70,12 @@ export default class PlaylistComments extends Component {
     this.fetchComments();
   }
 
-  onVote = (id, type) => () => {
-    alert("VOTEEEE " + id + " " + type)
+  onVote = (review_id, current_status, new_status) => async () => {
+    const { playlist, playlistVoteComment } = this.props;
+
+    // if old status === new status - remove your vote
+    await playlistVoteComment(playlist.id, review_id, current_status === new_status ? 0 : new_status);
+    this.fetchComments();
   }
 
   render() {
@@ -92,8 +102,8 @@ export default class PlaylistComments extends Component {
           {!isReady && <Loading />}
           {isReady && comments.data.map((item) => {
             const isOwner = item.user.email === user.email;
-            const canDelete = isOwner || isPlaylistOwner;
-            const canVote = !isOwner;
+            const canDelete = user && (isOwner || isPlaylistOwner);
+            const canVote = !!user;
 
             return (
               <PlaylistCommentItem
