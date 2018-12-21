@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { notificationsFetch } from "../../actions/notification";
-import UserMenu from "./userMenu";
 import DropdownMenu from "../DropdownMenu";
 import NotificationTemplateComment from "../../pages/notifications/components/comment_template";
 
+const SMALL_SCREEN_WIDTH = 500;
+const NOTIFICATIONS_REFRESH_INTERVAL = 10000;
+
+@withRouter
 @connect((state) => ({
   notifications: state.notifications
 }), (dispatch) => ({
@@ -26,11 +29,22 @@ export default class NotificationsBadge extends Component {
 
     this.reloadInterval = setInterval(() => {
       notificationsFetch();
-    }, 10000)
+    }, NOTIFICATIONS_REFRESH_INTERVAL);
   }
 
   componentWillUnmount() {
     clearInterval(this.reloadInterval);
+  }
+
+  clickPhone = () => {
+    const { history } = this.props;
+
+    if (document?.body?.clientWidth < SMALL_SCREEN_WIDTH) {
+      history.push("/notifications");
+      return false;
+    }
+
+    return true;
   }
 
   render() {
@@ -42,6 +56,7 @@ export default class NotificationsBadge extends Component {
         <DropdownMenu
           wide
           showArrow={false}
+          onToggleClick={this.clickPhone}
           toggle={(
             <div className={`c-notification-badge ${unreadNotifications.length > 0 ? 'is-unread' : ''}`}>
               <img alt='' className='c-notification-badge__icon' src={require("../../images/icons/bell.svg")} />

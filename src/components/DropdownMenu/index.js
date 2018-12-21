@@ -14,6 +14,7 @@ class DropdownMenu extends Component {
     list: PropTypes.array,
     emptyList: PropTypes.node,
     dropdownFooter: PropTypes.node,
+    onToggleClick: PropTypes.func,
     history: PropTypes.object
   };
 
@@ -40,13 +41,20 @@ class DropdownMenu extends Component {
   };
 
   render() {
-    const { toggle, list, showArrow, wide, emptyList, dropdownFooter } = this.props;
+    const { toggle, list, showArrow, wide, emptyList, dropdownFooter, onToggleClick } = this.props;
     const { isOpen } = this.state;
 
     return (
       <div className='c-dropdown dd-menu'>
-        <div className={`c-dropdown__toggle dd-toggle ${showArrow ? "c-dropdown__toggle--with-arrow " : ""}`}
-             onClick={() => this.setState({ isOpen: !this.state.isOpen })}>
+        <div
+          className={`c-dropdown__toggle dd-toggle ${showArrow ? "c-dropdown__toggle--with-arrow " : ""}`}
+          onClick={() => {
+            if (onToggleClick) {
+              onToggleClick() && this.setState({ isOpen: !this.state.isOpen });
+            } else {
+              this.setState({ isOpen: !this.state.isOpen });
+            }
+          }}>
           {toggle}
         </div>
         {list && isOpen && (
