@@ -116,7 +116,7 @@ class RegisterModal extends Component {
           <ul className='c-form__list'>
             <li>
               <div className='o-grid'>
-                <div className='o-grid__cell u-1/2@medium u-margin-bottom-large u-margin-bottom-none@medium'>
+                <div className='o-grid__cell u-1/2@medium u-margin-bottom u-margin-bottom-none@medium'>
                   <label className='c-form__label'>First name</label>
                   <input className='c-input c-input--primary' type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
                 </div>
