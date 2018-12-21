@@ -47,9 +47,11 @@ export default class PlaylistComments extends Component {
     const { user, openLoginModal, playlistCommentsFetch, playlistAddComment, playlist } = this.props;
 
     if (user) {
-      await playlistAddComment(playlist.id, this.state.comment);
-      this.setState({ comment: "" });
-      playlistCommentsFetch(playlist.id);
+      if (this.state.comment.length > 0) {
+        await playlistAddComment(playlist.id, this.state.comment);
+        this.setState({ comment: "" });
+        playlistCommentsFetch(playlist.id);
+      }
     } else {
       openLoginModal();
     }
