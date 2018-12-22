@@ -161,3 +161,15 @@ export async function playlistAddComment (baseUrl, { authorization, playlist_id,
 
   return body;
 }
+
+export async function playlistDeleteComment (baseUrl, { authorization, review_id }) {
+  const { body } = await del(`${baseUrl}/review/${review_id}`, {}, { authorization });
+
+  return body;
+}
+
+export async function playlistVoteComment (baseUrl, { authorization, playlist_id, review_id, status }) {
+  const { body } = await post(`${baseUrl}/review-like`, { playlist_id, review_id, status }, { authorization });
+
+  return body;
+}
