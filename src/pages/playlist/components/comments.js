@@ -108,6 +108,7 @@ export default class PlaylistComments extends Component {
             return (
               <PlaylistCommentItem
                 key={`comment-${item.review_id}`}
+                key={`comment-${item.id}`}
                 canDelete={canDelete}
                 canVote={canVote}
                 onDelete={this.onDelete}

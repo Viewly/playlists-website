@@ -8,7 +8,7 @@ export default class PlaylistCommentItem extends Component {
   };
 
   render() {
-    const { review_id, user, description, created_at, canDelete, canVote, onVote, onDelete, likes_count, dislikes_count, like_status } = this.props;
+    const { id, user, description, created_at, canDelete, canVote, onVote, onDelete, likes_count, dislikes_count, like_status } = this.props;
     const timeAgo = moment(created_at).startOf("minute").fromNow();
 
     const youUpvoted = like_status === 1;
@@ -32,13 +32,13 @@ export default class PlaylistCommentItem extends Component {
           </div>
           {canVote && (
             <div>
-              <button onClick={onVote(review_id, like_status, +1)} className={`c-btn c-btn--small ${youUpvoted ? 'c-btn--primary' : ''}`}>👍</button>
-              <button onClick={onVote(review_id, like_status, -1)} className={`c-btn c-btn--small ${youDownvoted ? 'c-btn--primary' : ''}`}>👎</button>
+              <button onClick={onVote(id, like_status, +1)} className={`c-btn c-btn--small ${youUpvoted ? 'c-btn--primary' : ''}`}>👍</button>
+              <button onClick={onVote(id, like_status, -1)} className={`c-btn c-btn--small ${youDownvoted ? 'c-btn--primary' : ''}`}>👎</button>
             </div>
           )}
           {canDelete && (
             <div>
-              <button onClick={onDelete(review_id)}>❌</button>
+              <button onClick={onDelete(id)}>❌</button>
             </div>
           )}
         </div>
