@@ -25,6 +25,7 @@ export default class PlaylistCommentItem extends Component {
           <span><b>{user?.alias}</b> <time className='c-time'>{timeAgo}</time></span>
           <p className='u-white-space-pre-line'>{description}</p>
 
+          {/*
           <div>
             +{likes_count}
             /
@@ -41,6 +42,7 @@ export default class PlaylistCommentItem extends Component {
               <button onClick={onDelete(id)}>❌</button>
             </div>
           )}
+          */}
         </div>
 
       </div>
