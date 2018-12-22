@@ -10,7 +10,7 @@ module.exports = Object.assign(config, {
   output: {
     path: path.resolve(__dirname, "dist/"),
     filename: "[name]-[hash].js",
-    publicPath: isProduction ? "https://assets.vidflow.io/" : "/"
+    publicPath: isProduction ? "https://assets.vidflow.com/" : "/"
   },
   plugins: [
     new HtmlWebPackPlugin({
