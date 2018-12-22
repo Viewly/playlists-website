@@ -30,9 +30,9 @@ export default class SharePlaylist extends Component {
     const { playlist } = this.props;
     const shareTitle = playlist.title;
     // TODO move these somewhere else
-    const shareUrl = `https://www.vidflow.io/playlist/${playlist.url}`;
-    const twitterTitle = "Found this playlist on @vidflow_io";
-    const emailSubject = "Playlist from vidflow.io";
+    const shareUrl = `https://www.vidflow.com/playlist/${playlist.url}`;
+    const twitterTitle = "Found this playlist on @vidflow_com";
+    const emailSubject = "Playlist from vidflow.com";
 
     return (
       <div className={`c-share ${this.state.active ? "is-active" : ""}`}>
