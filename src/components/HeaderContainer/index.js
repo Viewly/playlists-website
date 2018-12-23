@@ -119,6 +119,7 @@ class HeaderContainer extends Component {
                       { label: "My playlists", url: "/my-playlists" },
                       { label: "Bookmarks", url: "/bookmarks" },
                       { label: "Profile settings", url: "/account" },
+                      { label: "Take the survey", url: "https://viewly.typeform.com/to/fRTC0m", highlight: true},
                       { label: "Logout", onClick: this.logOut },
                     ]}
                   />
