@@ -68,18 +68,18 @@
             transition: $global-transition;
             white-space: nowrap;
 
-            li:nth-child(4) & {
-                color: color('brand-secondary');
-                font-weight: 500;
-
-                &:hover {
-                    color: darken(color('brand-secondary'), 10%);
-                }
-            }
-
             &:hover {
                 color: #242424;
                 cursor: pointer;
                 text-decoration: none;
+            }
+        }
+
+        .c-dropdown__menu__link--highlighted {
+            color: color('brand-secondary');
+            font-weight: 500;
+
+            &:hover {
+                color: darken(color('brand-secondary'), 10%);
             }
         }
