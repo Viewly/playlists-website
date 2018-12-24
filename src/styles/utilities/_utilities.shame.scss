@@ -530,6 +530,10 @@ $tweakpoint-category:   large;
     }
 }
 
+.has-promotion-message {
+    padding-bottom: $promotion-message-height;
+}
+
 
 /* TOAST FADE STUFF */
 .fade-enter {
@@ -652,7 +656,7 @@ $tweakpoint-category:   large;
 .c-promotion-message {
     background-color: #1e1e1e;
     color: #fff;
-    height: $promo-message-height;
+    height: $promotion-message-height;
     position: fixed;
     bottom: 0;
     left: 0;
