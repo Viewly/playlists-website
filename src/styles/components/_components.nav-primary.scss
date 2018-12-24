@@ -21,6 +21,10 @@
         left: 0;
         right: 0;
         z-index: 100;
+
+        .has-promotion-message & {
+            top: ($promotion-message-height + $header-height);
+        }
     }
 
     @include mq($from: $tweakpoint-nav-primary-medium, $until: $tweakpoint-nav-primary-large) {

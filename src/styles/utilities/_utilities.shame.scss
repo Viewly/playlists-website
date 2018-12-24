@@ -113,10 +113,6 @@ dl {
 
     .has-promotion-message & {
         top: $promotion-message-height;
-
-        @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
-            top: 0;
-        }
     }
 
     @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
@@ -542,8 +538,7 @@ $tweakpoint-category:   large;
     padding-top: ($promotion-message-height + $header-height);
 
     @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
-        padding-top: ($header-height + $nav-height);
-        padding-bottom: $promotion-message-height;
+        padding-top: ($promotion-message-height + $header-height + $nav-height);
     }
 }
 
@@ -675,11 +670,6 @@ $tweakpoint-category:   large;
     left: 0;
     right: 0;
     z-index: 1100;
-
-    @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
-        bottom: 0;
-        top: auto;
-    }
 }
 
     .c-promotion-message__grid {
