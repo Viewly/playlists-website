@@ -74,3 +74,12 @@
                 text-decoration: none;
             }
         }
+
+        .c-dropdown__menu__link--highlighted {
+            color: color('brand-secondary');
+            font-weight: 500;
+
+            &:hover {
+                color: darken(color('brand-secondary'), 10%);
+            }
+        }

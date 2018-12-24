@@ -111,6 +111,14 @@ dl {
     right: 0;
     z-index: 1000;
 
+    .has-promotion-message & {
+        top: $promotion-message-height;
+
+        @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+            top: 0;
+        }
+    }
+
     @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
         border-bottom: none;
     }
@@ -530,6 +538,15 @@ $tweakpoint-category:   large;
     }
 }
 
+.has-promotion-message {
+    padding-top: ($promotion-message-height + $header-height);
+
+    @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+        padding-top: ($header-height + $nav-height);
+        padding-bottom: $promotion-message-height;
+    }
+}
+
 
 /* TOAST FADE STUFF */
 .fade-enter {
@@ -647,6 +664,82 @@ $tweakpoint-category:   large;
 
 .u-white-space-pre-line {
     white-space: pre-line;
+}
+
+.c-promotion-message {
+    background-color: #1e1e1e;
+    color: #fff;
+    height: $promotion-message-height;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+
+    @include mq($until: ($tweakpoint-nav-primary-medium - 1)) {
+        bottom: 0;
+        top: auto;
+    }
+}
+
+    .c-promotion-message__grid {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+    }
+
+    .c-promotion-message__text {
+        color: #e40e9d;
+        font-weight: 500;
+
+        @supports (background-clip: text) or (-webkit-background-clip: text) {
+            background: linear-gradient(to right, #6a5ac7 10%, #df474d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        a {
+            $color: #df474d;
+
+            border-radius: 40px;
+            border: 2px solid $color;
+            color: $color;
+            font-size: 13px;
+            display: inline-block;
+            margin-left: $spacing-unit-tiny;
+            padding: 0 $spacing-unit-tiny;
+            vertical-align: middle;
+
+            &:hover {
+                background-color: $color;
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .c-promotion-message__img {
+        margin-right: $spacing-unit-small;
+
+        @include mq($until: 400px) {
+            display: none;
+        }
+    }
+
+.c-article {
+    ul,
+    ol,
+    p {
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit;
+        }
+    }
+
+    ol {
+        list-style-position: inside;
+    }
 }
 
 /* AUTOCOMPLETE RELATED CODE */
