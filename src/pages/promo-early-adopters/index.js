@@ -32,9 +32,9 @@ class PromoPage extends Component {
             <li>Taking our short survey</li>
           </ol>
 
-          <p>Once you've created the account you'll find the link to the survey in the user menu dropdown.</p>
+          <p>Once you've created the account you'll find the link to the survey in your account dropdown menu.</p>
 
-          <img className='u-display-block u-horizontally-center u-2/3 u-3/5@medium u-1/2@large u-margin-top' src={require("../../images/take-the-survey-screenshot.jpg")} />
+          <img className='u-margin-top' src={require("../../images/screenshot-take-the-survey.jpg")} />
         </div>
       </div>
     );
