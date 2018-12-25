@@ -33,7 +33,7 @@ class PlyrComponent extends React.Component {
   componentWillUnmount() {
     const { logAction } = this.props;
 
-    logAction({ playback_state: 0, segment_start: this.player[0].currentTime });
+    logAction({ playback_state: 0, current_time: this.player[0].currentTime });
     if (this.player.length > 0) {
       for (const playerEl of this.player) {
         playerEl.destroy();
@@ -61,7 +61,7 @@ class PlyrComponent extends React.Component {
     switch (evnt.type) {
       case "statechange": {
         const code = evnt.detail.code;
-        logAction({ playback_state: code, segment_start: this.player[0].currentTime });
+        logAction({ playback_state: code, current_time: this.player[0].currentTime });
         code === VIDEO_ENDED && onVideoEnd();
         break;
       }
@@ -74,7 +74,7 @@ class PlyrComponent extends React.Component {
         this.player[0].play();
         if (resumeTime && percentage !== 100) {
           this.player[0].currentTime = resumeTime;
-          logAction({ segment_start: resumeTime });
+          logAction({ current_time: resumeTime });
         }
         break;
       }
