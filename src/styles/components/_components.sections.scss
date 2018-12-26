@@ -81,10 +81,24 @@
      * Section thumbnail
      */
     .c-section__thumbnail {
-        background-color: lighten(#000, 10%);
-        border-radius: 4px;
-        filter: grayscale(25%);
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+
+        @include mq(large) {
+            width: 100%;
+        }
     }
+
+        .c-section__thumbnail__img {
+            background-color: lighten(#000, 10%);
+            border-radius: 4px;
+            filter: grayscale(25%);
+
+            @include mq(large) {
+                width: 100%;
+            }
+        }
 
 
 /**
