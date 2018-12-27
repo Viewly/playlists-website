@@ -25,6 +25,27 @@ export function sumVideoDurations (videos = []) {
   return convertYoutubeDuration(start.toString());
 }
 
+export function setCommentCache(playlistId, comment) {
+  if (SERVER) {
+    return false;
+  }
+  const storageKey = `comment-${playlistId}`;
+  if (comment) {
+    localStorage.setItem(storageKey, comment);
+  } else {
+    localStorage.removeItem(storageKey);
+
+  }
+}
+
+export function getCommentCache(playlistId) {
+  if (SERVER) {
+    return "";
+  }
+  const storageKey = `comment-${playlistId}`;
+  return localStorage.getItem(storageKey) || "";
+}
+
 export function getPlaylistProgress(playlistId) {
   if (SERVER) {
     return {};

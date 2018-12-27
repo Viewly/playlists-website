@@ -8,7 +8,7 @@ import {
   playlistDeleteComment,
   playlistVoteComment
 } from "../../../actions/playlist";
-import { isLoaded } from "../../../utils";
+import { getCommentCache, isLoaded, setCommentCache } from "../../../utils";
 import Loading from "../../../components/loading";
 import PlaylistCommentItem from "./comments_item";
 import { OPEN_LOGIN_MODAL } from "../../../actions/user";
@@ -30,12 +30,22 @@ export default class PlaylistComments extends Component {
     match: PropTypes.object
   };
 
-  state = {
-    comment: ""
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      comment: getCommentCache(props.playlist.id) || ""
+    }
   }
 
   componentDidMount() {
     this.fetchComments();
+  }
+
+  componentWillUnmount() {
+    const { playlist } = this.props;
+
+    setCommentCache(playlist.id, this.state.comment);
   }
 
   fetchComments = () => {
