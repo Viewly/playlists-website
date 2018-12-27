@@ -81,7 +81,9 @@
      * Section thumbnail
      */
     .c-section__thumbnail {
+        border-radius: 4px;
         display: inline-block;
+        overflow: hidden;
         vertical-align: top;
         position: relative;
 
@@ -92,11 +94,27 @@
 
         .c-section__thumbnail__img {
             background-color: lighten(#000, 10%);
-            border-radius: 4px;
+            border-radius: inherit;
             filter: grayscale(25%);
 
             @include mq(large) {
                 width: 100%;
+            }
+        }
+
+        .c-section__thumbnail__btn[class] {
+            background-color: rgba(#000, .6);
+            color: #fff;
+            display: block;
+            text-align: center;
+            padding: $spacing-unit-small;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            &:hover {
+                background-color: color('brand-secondary');
             }
         }
 

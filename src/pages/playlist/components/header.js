@@ -13,8 +13,14 @@ const Header = ({ title, author, duration, category, poster, description, hashta
               ? <img className='c-section__thumbnail__img' src={`${THUMBNAIL_ROOT}/${poster}`} />
               : <img className='c-section__thumbnail__img' src={require("../../../images/playlist-thumbnail-default.jpg")} />
             }
+
+            <button className='c-btn c-btn--with-icon c-section__thumbnail__btn' onClick={playFirstVideo}>
+              <svg className='o-icon o-icon--small u-margin-right-tiny' width='16' height='22' viewBox='0 0 16 22' xmlns='http://www.w3.org/2000/svg'>
+                <path d='M14.837 11.818L1.575 21.142A1 1 0 0 1 0 20.324V1.676A1 1 0 0 1 1.575.858l13.262 9.324a1 1 0 0 1 0 1.636z' fill='currentColor' fillRule='evenodd'/>
+              </svg>
+              Play all
+            </button>
           </div>
-          <button onClick={playFirstVideo}>▶️</button>
         </div>
         <div className='o-grid__cell u-3/5@large'>
           <div className='c-section__intro'>
