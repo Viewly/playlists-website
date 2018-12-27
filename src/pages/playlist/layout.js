@@ -4,17 +4,14 @@ import { connect } from "react-redux";
 import { Link, Route, Switch } from "react-router-dom";
 
 import Header from "./components/header";
-import Video from "./components/video";
 import SharePlaylist from "./components/share";
 import SEO from "../../components/SEO";
 
 import { sumVideoDurations } from "../../utils";
-import Loading from "../../components/loading";
 import { LOADED, LOADING } from "../../constants/status_types";
 import { OPEN_LOGIN_MODAL, userAddBookmark, userRemoveBookmark } from "../../actions/user";
 import { OPEN_TOAST } from "../../actions/toast";
 import PlaylistTabs from "./components/tabs";
-import PlaylistSuggest from "./components/suggest";
 import PlaylistInfo from "./components/info";
 import PlaylistComments from "./components/comments";
 
@@ -49,6 +46,13 @@ export default class PlaylistLayout extends Component {
     }
   }
 
+  playFirstVideo = () => {
+    const { playlist, history } = this.props;
+    const firstVideo = playlist.videos.find(item => item.position === 1);
+
+    history.push(`/player/${playlist.url}/${firstVideo.id}`);
+  }
+
   isOwner = () => {
     const { user, playlist } = this.props;
     return user?.id === playlist?.user?.id;
@@ -68,6 +72,7 @@ export default class PlaylistLayout extends Component {
           duration={sumVideoDurations(playlist.videos)}
           poster={playlist.playlist_thumbnail_url}
           description={playlist.description}
+          playFirstVideo={this.playFirstVideo}
           hashtags={playlist.hashtags && playlist.hashtags.split(" ") || []}
           category={playlist.category} />
 
