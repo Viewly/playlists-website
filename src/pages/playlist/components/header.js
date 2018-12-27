@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { THUMBNAIL_ROOT } from "../../../constants";
 
-const Header = ({ title, author, duration, category, poster, description, hashtags }) => (
+const Header = ({ title, author, duration, category, poster, description, hashtags, playFirstVideo }) => (
   <div className='c-section'>
     <div className='o-wrapper'>
       <div className='o-grid o-grid--middle'>
@@ -14,6 +14,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
               : <img className='c-section__thumbnail__img' src={require("../../../images/playlist-thumbnail-default.jpg")} />
             }
           </div>
+          <button onClick={playFirstVideo}>▶️</button>
         </div>
         <div className='o-grid__cell u-3/5@large'>
           <div className='c-section__intro'>
