@@ -124,7 +124,7 @@ class PlayerPage extends Component {
 
   render() {
     const { playlist } = this.props;
-    const isLoaded = playlist._status === LOADED;
+    const isLoaded = (playlist._status === LOADED) && this.state.videoId;
     const currentVideo = isLoaded
       ? playlist.videos.find(item => item.id === this.state.videoId)
       : false;
