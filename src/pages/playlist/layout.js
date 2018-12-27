@@ -14,6 +14,7 @@ import { OPEN_TOAST } from "../../actions/toast";
 import PlaylistTabs from "./components/tabs";
 import PlaylistInfo from "./components/info";
 import PlaylistComments from "./components/comments";
+import { minBy } from "lodash";
 
 @connect((state) => ({
   playlist: state.playlist,
@@ -48,7 +49,7 @@ export default class PlaylistLayout extends Component {
 
   playFirstVideo = () => {
     const { playlist, history } = this.props;
-    const firstVideo = playlist.videos.find(item => item.position === 1);
+    const firstVideo = minBy(playlist.videos, item => item.position);
 
     history.push(`/player/${playlist.url}/${firstVideo.id}`);
   }
