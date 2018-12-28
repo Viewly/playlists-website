@@ -59,17 +59,15 @@ class LayoutWithHeader extends Component {
     const { user } = this.props;
 
     return (
-      <div className={`has-header ${!user ? 'has-promotion-message' : ''}`}>
-        {!user && (
-          <div className='c-promotion-message'>
-            <div className='o-wrapper c-promotion-message__grid'>
-              <img className='c-promotion-message__img' src={require("./images/stars-color.svg")} />
-              <div className='c-promotion-message__text'>
-                Help us make VidFlow better and earn 1 year free membership! <Link to='/promo-early-adopters'>Learn more</Link>
-              </div>
+      <div className='has-header has-promotion-message'>
+        <div className='c-promotion-message'>
+          <div className='o-wrapper c-promotion-message__grid'>
+            <img className='c-promotion-message__img' src={require("./images/stars-color.svg")} />
+            <div className='c-promotion-message__text'>
+              Help us make VidFlow better and earn 1 year free membership! <Link to='/promo-early-adopters'>Learn more</Link>
             </div>
           </div>
-        )}
+        </div>
         <HeaderContainer />
         <Toasts />
         <>
