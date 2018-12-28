@@ -52,7 +52,7 @@
          */
         .c-nav-primary__item {
             @include mq($until: ($tweakpoint-nav-primary - 1)) {
-                width: 25%;
+                //width: 25%;
             }
 
             &:not(:last-child) {
