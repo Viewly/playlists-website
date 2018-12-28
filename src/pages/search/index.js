@@ -93,14 +93,23 @@ class SearchPage extends Component {
     return (
       <Layout>
         <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
-          <div>
+          <div className='c-search-form c-search-form--mobile u-margin-bottom-large'>
             <input
-              type="text"
+              className='c-search-form__input c-input c-input--primary'
+              placeholder='Search playlists'
+              type='search'
               value={this.state.queryInput}
               onKeyUp={this.handleEnter}
               onChange={(e) => this.setState({ queryInput: e.target.value })}
             />
-            <button onClick={this.searchClicked}>Search</button>
+            <button type='submit' className='c-btn c-search-form__btn' onClick={this.searchClicked}>
+              <svg className='o-icon' width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(1 1)" stroke="#9EA0A3" strokeWidth="2" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="7.5" cy="7.5" r="7.5"/>
+                  <path d="M17 17l-4.2-4.2"/>
+                </g>
+              </svg>
+            </button>
           </div>
 
           {loading && (
@@ -111,7 +120,7 @@ class SearchPage extends Component {
             <div>
               {!playlists.data.length && (
                 <div className='c-no-results'>
-                  <img alt='' className='c-no-results__img' src={require("../../images/message-no-results.svg")} />
+                  <img alt='' className='c-no-results__img' src={require('../../images/message-no-results.svg')} />
                   <p>
                     Try searching again using different keywords, <br/> or
                     <Link to='/create-playlist'>create your playlist</Link>
