@@ -116,7 +116,7 @@ class SearchPage extends Component {
             <Loading />
           )}
 
-          {isReady && (
+          {isReady && this.state.query.length > 0 && (
             <div>
               {!playlists.data.length && (
                 <div className='c-no-results'>
