@@ -24,9 +24,9 @@ class PromoPage extends Component {
     return (
       <div className='o-wrapper o-wrapper--narrow u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <div className='c-article'>
-          <h1 className='u-h3'>Help us and earn 1 year free membership!</h1>
+          <h1 className='u-h3'>Help us and earn 1 year premium membership!</h1>
           <p>We're passionate about making VidFlow the best website to discover community curated videos and watch them distraction free!</p>
-          <p>In order to do so we need feedback from you, our early adopters. Help us and earn <b>1 year free membership</b> by taking these two simple steps:</p>
+          <p>In order to do so we need feedback from you, our early adopters. Help us and earn <b>1 year premium membership</b> by taking these two simple steps:</p>
           <ol>
             <li>Creating an account on VidFlow, and</li>
             <li>Taking our short survey</li>

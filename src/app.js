@@ -64,7 +64,7 @@ class LayoutWithHeader extends Component {
           <div className='o-wrapper c-promotion-message__grid'>
             <img className='c-promotion-message__img' src={require("./images/stars-color.svg")} />
             <div className='c-promotion-message__text'>
-              Help us make VidFlow better and earn 1 year free membership! <Link to='/promo-early-adopters'>Learn more</Link>
+              Help us make VidFlow better and earn 1 year premium membership! <Link to='/promo-early-adopters'>Learn more</Link>
             </div>
           </div>
         </div>
