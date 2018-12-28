@@ -41,7 +41,7 @@
         justify-content: space-between;
         list-style-type: none;
 
-        @include mq(medium) {
+        @include mq($tweakpoint-nav-primary) {
             justify-content: center;
         }
     }
