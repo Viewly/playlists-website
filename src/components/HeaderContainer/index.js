@@ -89,7 +89,7 @@ class HeaderContainer extends Component {
                     <span className='c-nav-primary__label'>Explore</span>
                   </NavLink>
                 </li>
-                <li className='c-nav-primary__item'>
+                <li className='c-nav-primary__item c-nav-primary__item--search'>
                   <NavLink to='/search' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
                     <div className='c-nav-primary__icon c-colored-icon'>
                       <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-search.svg")} />

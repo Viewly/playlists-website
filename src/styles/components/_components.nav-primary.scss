@@ -70,6 +70,12 @@
             }
         }
 
+            .c-nav-primary__item--search {
+                @include mq($tweakpoint-search-form-large + 1) {
+                    display: none;
+                }
+            }
+
         /**
          * 1. Since `$from:` is inclusive `min-width` boundary in sass-mq (as per
          *    https://github.com/sass-mq/sass-mq#responsive-mode-on-default), and we are
