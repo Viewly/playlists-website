@@ -51,10 +51,6 @@
          * 1. Remove outline for webkit browsers.
          */
         .c-nav-primary__item {
-            @include mq($until: ($tweakpoint-nav-primary - 1)) {
-                //width: 25%;
-            }
-
             &:not(:last-child) {
                 @include mq(medium) {
                     margin-right: $spacing-unit;
