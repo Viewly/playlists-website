@@ -2,10 +2,6 @@
     #SEARCH FORM
 \*------------------------------------*/
 
-$tweakpoint-search-form:                    640px;
-$tweakpoint-search-form-large:              890px;
-$tweakpoint-search-form-extralarge:         extralarge;
-
 $search-from-button-width:                  46px;
 
 
@@ -13,16 +9,7 @@ $search-from-button-width:                  46px;
 
 
 .c-search-form {
-    width: 200px;
     position: relative;
-
-    @include mq($until: $tweakpoint-search-form-large) {
-        display: none;
-    }
-
-    @include mq($tweakpoint-search-form-extralarge) {
-        width: 220px;
-    }
 }
 
     .c-search-form__input {
@@ -47,3 +34,28 @@ $search-from-button-width:                  46px;
             font-size: 18px;
         }
     }
+
+
+.c-search-form--header {
+    display: block;
+    width: 200px;
+
+    @include mq($until: $tweakpoint-search-form-large) {
+        display: none;
+    }
+
+    @include mq($tweakpoint-search-form-extralarge) {
+        width: 220px;
+    }
+}
+
+.c-search-form--mobile {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+    width: 100%;
+
+    @include mq($tweakpoint-search-form-large + 1) {
+        display: none;
+    }
+}

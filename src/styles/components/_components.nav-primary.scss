@@ -41,7 +41,7 @@
         justify-content: space-between;
         list-style-type: none;
 
-        @include mq(medium) {
+        @include mq($tweakpoint-nav-primary) {
             justify-content: center;
         }
     }
@@ -51,10 +51,6 @@
          * 1. Remove outline for webkit browsers.
          */
         .c-nav-primary__item {
-            @include mq($until: ($tweakpoint-nav-primary - 1)) {
-                width: 25%;
-            }
-
             &:not(:last-child) {
                 @include mq(medium) {
                     margin-right: $spacing-unit;
@@ -69,6 +65,12 @@
                 outline: none; /* [1] */
             }
         }
+
+            .c-nav-primary__item--search {
+                @include mq($tweakpoint-search-form-large + 1) {
+                    display: none;
+                }
+            }
 
         /**
          * 1. Since `$from:` is inclusive `min-width` boundary in sass-mq (as per
