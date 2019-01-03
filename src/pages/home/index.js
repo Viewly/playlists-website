@@ -10,6 +10,7 @@ import Playlist from "../../components/PlaylistContainer";
 import Categories from "./components/categories";
 import SEO from "../../components/SEO";
 import { HOME_PAGE } from "../../constants/pages";
+import { uniqBy } from "lodash";
 
 const prepareActions = (dispatch) => ({
   playlistsFetch: () => dispatch(playlistsFetch()),
@@ -54,7 +55,7 @@ class HomePage extends Component {
   render() {
     const { playlists } = this.props;
     const isReady = isLoaded(playlists);
-    const pickedPlaylists = playlists.data.filter(i => i.classification === "staff_picked").splice(0, 3);
+    const pickedPlaylists = uniqBy(playlists.data.filter(i => i.classification === "staff_picked"), item => item.id).splice(0, 3);
     const { user } = this.props;
 
     return (
