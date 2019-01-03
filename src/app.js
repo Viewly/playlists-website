@@ -13,6 +13,7 @@ import UploadModal from "./components/UploadModal";
 import RegisterModal from "./components/RegisterModal";
 import Toasts from "./components/Toasts";
 import CropModal from "./components/CropModal";
+import Promotion from "./components/promotion";
 
 @withRouter
 @connect((state) => ({
@@ -35,16 +36,16 @@ class App extends Component {
   render() {
     return (
       <>
-        <LoginModal />
-        <UploadModal />
-        <RegisterModal />
-        <CropModal />
+        <LoginModal/>
+        <UploadModal/>
+        <RegisterModal/>
+        <CropModal/>
 
         <Switch>
           {routes.filter(item => item.fullscreen).map((route, idx) => (
             <Route key={`fullscreen-route-${idx}`} {...route} />
           ))}
-          <Route component={LayoutWithHeader} />
+          <Route component={LayoutWithHeader}/>
         </Switch>
       </>
     );
@@ -52,24 +53,19 @@ class App extends Component {
 }
 
 @connect((state) => ({
-  user: state.user
+  user: state.user,
+  localStorage: state.localStorage
 }))
 class LayoutWithHeader extends Component {
   render() {
-    const { user } = this.props;
+    const { localStorage } = this.props;
+    const showPromotion = !localStorage.hidePromotion;
 
     return (
-      <div className='has-header has-promotion-message'>
-        <div className='c-promotion-message'>
-          <div className='o-wrapper c-promotion-message__grid'>
-            <img className='c-promotion-message__img' src={require("./images/stars-color.svg")} />
-            <div className='c-promotion-message__text'>
-              Help us make VidFlow better and earn 1 year premium membership! <Link to='/promo-early-adopters'>Learn more</Link>
-            </div>
-          </div>
-        </div>
-        <HeaderContainer />
-        <Toasts />
+      <div className={`has-header ${showPromotion ? "has-promotion-message" : ""}`}>
+        {showPromotion && <Promotion />}
+        <HeaderContainer/>
+        <Toasts/>
         <>
           {routes.map((route, idx) => (
             <Route key={`route-${idx}`} {...route} />
