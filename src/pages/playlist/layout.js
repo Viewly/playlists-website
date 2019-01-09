@@ -95,14 +95,11 @@ export default class PlaylistLayout extends Component {
 
                 <SharePlaylist playlist={playlist} />
 
-                {isOwner
-                  ? <Link to={`/create-playlist/${playlist.id}`} className='c-btn c-btn--secondary u-margin-left'>
+                {isOwner && (
+                  <Link to={`/create-playlist/${playlist.id}`} className='c-btn c-btn--secondary u-margin-left'>
                     Edit playlist
                   </Link>
-                  : <Link to={`/playlist/${playlist.id}/suggest`} className='c-btn c-btn--primary u-margin-left'>
-                    Suggest a video
-                  </Link>
-                }
+                )}
               </div>
             </div>
 
