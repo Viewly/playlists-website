@@ -187,3 +187,24 @@ export function slugUrl(id, title) {
     ? slugify(title).slice(0, 40) + "-" + id.slice(0,4)
     : "";
 }
+
+
+export function getLocalStorageConfig() {
+  if (SERVER) {
+    return {};
+  }
+
+  const storageKey = 'config-data';
+  return JSON.parse(localStorage.getItem(storageKey)) || {};
+}
+
+export function setLocalStorageConfig(field, value) {
+  if (SERVER) {
+    return {};
+  }
+
+  const storageKey = 'config-data';
+  const data = getLocalStorageConfig();
+  localStorage.setItem(storageKey, JSON.stringify({ ...data, [field]: value }));
+  return true;
+}
