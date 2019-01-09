@@ -3,7 +3,6 @@ const webpack = require("webpack");
 const config = require("./webpack.config");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const WebappWebpackPlugin = require('webapp-webpack-plugin')
 const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = Object.assign(config, {
@@ -15,13 +14,13 @@ module.exports = Object.assign(config, {
   plugins: [
     new HtmlWebPackPlugin({
       template: isProduction ? "./src/index-production.html" : "./src/index.html",
-      filename: "./index.html"
+      filename: "./index.html",
+      favicon: './src/favicons/favicon.ico'
     }),
     new MiniCssExtractPlugin({
       filename: "style-[hash].css",
       chunkFilename: "[id].css"
     }),
-    new WebappWebpackPlugin("./src/favicons/favicon.svg"),
     new webpack.DefinePlugin({
       DEVELOPMENT: true,
       PRODUCTION: isProduction,
