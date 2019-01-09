@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import Plyr from "./plyr";
+import Youtube from "./youtube";
 
 const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage, logAction }) => (
   <div className='c-player'>
     <div>
       <div className='c-player__container'>
-        {video && <Plyr videoId={video.video_id} logAction={logAction} percentage={video.percentage} resumeTime={video.currentTime} onVideoEnd={onVideoEnd} onPercentage={onPercentage} />}
+        {video && <Youtube videoId={video.video_id} logAction={logAction} percentage={video.percentage} resumeTime={video.currentTime} onVideoEnd={onVideoEnd} onPercentage={onPercentage} />}
       </div>
 
       <Link className='c-btn button-back' to={playlistUrl}><img className='o-icon o-icon--small' src={require("../../../images/icons/close.svg")} /></Link>
