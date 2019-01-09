@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = {
   entry: ["@babel/polyfill", "./src/index.js", "./src/styles/global.scss"],
@@ -62,13 +61,13 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",
-      filename: "./index.html"
+      filename: "./index.html",
+      favicon: './src/favicons/favicon.ico'
     }),
     new MiniCssExtractPlugin({
       filename: "style-[hash].css",
       chunkFilename: "[id].css"
     }),
-    new FaviconsWebpackPlugin("./src/favicons/favicon.png"),
     new webpack.DefinePlugin({
       DEVELOPMENT: true,
       PRODUCTION: false,
