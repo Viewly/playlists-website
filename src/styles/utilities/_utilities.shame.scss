@@ -661,10 +661,14 @@ $tweakpoint-category:   large;
     white-space: pre-line;
 }
 
+/**
+ * 1. Leave room for close button
+ */
 .c-promotion-message {
     background-color: #1e1e1e;
     color: #fff;
     height: $promotion-message-height;
+    padding-right: $spacing-unit-large; /* [1] */
     position: fixed;
     top: 0;
     left: 0;
@@ -677,6 +681,16 @@ $tweakpoint-category:   large;
         display: flex;
         height: 100%;
         justify-content: center;
+        padding-right: $spacing-unit;
+        padding-left:  $spacing-unit;
+
+        @include mq($until: medium) {
+            padding-left:  $spacing-unit-small;
+        }
+
+        @include mq($until: large) {
+            padding-right: 0;
+        }
     }
 
     .c-promotion-message__text {
@@ -715,6 +729,21 @@ $tweakpoint-category:   large;
 
         @include mq($until: 400px) {
             display: none;
+        }
+    }
+
+    .c-promotion-message__btn-close[class] {
+        color: color('dark-grey');
+        font-size: 22px;
+        font-weight: 700;
+        padding: 0;
+        position: absolute;
+        top: $spacing-unit-small;
+        right: $spacing-unit-small;
+
+        &:hover {
+            color: #fff;
+            cursor: pointer;
         }
     }
 
