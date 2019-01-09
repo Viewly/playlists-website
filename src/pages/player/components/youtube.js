@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import YouTube from "react-youtube";
+import KeyHandler, { KEYDOWN } from 'react-key-handler';
 
 import {
   VIDEO_ENDED,
+  VIDEO_PAUSED,
+  VIDEO_PLAYING,
   YOUTUBE_ERROR_INVALID_VIDEO,
   YOUTUBE_ERROR_NO_EMBED,
   YOUTUBE_ERROR_NO_EMBED_TOO,
@@ -110,6 +113,38 @@ class YoutubeComponent extends React.Component {
     return Math.round((current * 100) / max);
   };
 
+  handleKeydown = (evnt) => {
+    evnt.preventDefault();
+
+    switch (evnt.code) {
+      case "Space":
+        this.togglePlay();
+        break;
+      case "ArrowLeft":
+        this.videoSeek(-5);
+        break;
+      case "ArrowRight":
+        this.videoSeek(5);
+        break;
+    }
+  }
+
+  togglePlay = async () => {
+    const state = await this.ref.internalPlayer.getPlayerState();
+
+    if (state === VIDEO_PLAYING) {
+      this.ref.internalPlayer.pauseVideo();
+    } else if (state === VIDEO_PAUSED) {
+      this.ref.internalPlayer.playVideo();
+    }
+  }
+
+  videoSeek = async (amount) => {
+    const currentTime = await this.ref.internalPlayer.getCurrentTime();
+
+    this.ref.internalPlayer.seekTo(currentTime + amount, true);
+  }
+
   render() {
     const { videoId } = this.props;
 
@@ -121,16 +156,35 @@ class YoutubeComponent extends React.Component {
     };
 
     return (
-      <YouTube
-        ref={(ref) => window.PP = ref}
-        videoId={videoId}
-        opts={opts}
-        className="c-player__wrapper"
-        containerClassName="c-player__container"
-        onReady={this.onReady}
-        onStateChange={this.onStateChange}
-        onError={this.onError}
-      />
+      <>
+        <KeyHandler
+          keyEventName={KEYDOWN}
+          code="Space"
+          onKeyHandle={this.handleKeydown}
+        />
+        <KeyHandler
+          keyEventName={KEYDOWN}
+          code="ArrowLeft"
+          onKeyHandle={this.handleKeydown}
+        />
+        <KeyHandler
+          keyEventName={KEYDOWN}
+          code="ArrowRight"
+          onKeyHandle={this.handleKeydown}
+        />
+
+
+        <YouTube
+          ref={(ref) => this.ref = window.PP = ref}
+          videoId={videoId}
+          opts={opts}
+          className="c-player__wrapper"
+          containerClassName="c-player__container"
+          onReady={this.onReady}
+          onStateChange={this.onStateChange}
+          onError={this.onError}
+        />
+      </>
     );
   }
 }
