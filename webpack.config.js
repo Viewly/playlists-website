@@ -68,7 +68,7 @@ module.exports = {
       filename: "style-[hash].css",
       chunkFilename: "[id].css"
     }),
-    new WebappWebpackPlugin("./src/favicons/favicon.png"),
+    new WebappWebpackPlugin("./src/favicons/favicon.svg"),
     new webpack.DefinePlugin({
       DEVELOPMENT: true,
       PRODUCTION: false,
