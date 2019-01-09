@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { StaticRouter } from "react-router";
 import { matchPath } from "react-router-dom";
 import { MetaTagsContext } from "react-meta-tags";
+import favicon from "serve-favicon";
 import Cookies from "universal-cookie";
 import { LOGIN_SUCCESS_PERSIST } from "./actions/user";
 import { COOKIE_SESSION } from "./constants";
@@ -20,6 +21,7 @@ const port = 3000;
 
 const app = express();
 app.use(express.static(path.resolve(__dirname, "..", "dist"), { index: false }));
+app.use(favicon(path.join(__dirname, "..", "dist", "favicon.ico")));
 
 const indexPath = path.resolve(__dirname, "..", "dist", "index.html");
 const indexHtml = fs.readFileSync(indexPath, "utf8");
