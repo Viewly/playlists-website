@@ -31,11 +31,11 @@ class PlaylistPage extends Component {
     match: PropTypes.object,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { playlist, playlistFetch, playlistViews, match: { params: { playlistId } } } = this.props;
 
     if (!playlist.isServerRendered || (playlist.url !== playlistId)) {
-      playlistFetch(playlistId);
+      await playlistFetch(playlistId);
       playlistViews(playlistId);
     }
   }

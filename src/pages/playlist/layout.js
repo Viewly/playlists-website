@@ -73,6 +73,7 @@ export default class PlaylistLayout extends Component {
           duration={sumVideoDurations(playlist.videos)}
           poster={playlist.playlist_thumbnail_url}
           description={playlist.description}
+          views={playlist.views}
           playFirstVideo={this.playFirstVideo}
           hashtags={playlist.hashtags && playlist.hashtags.split(" ") || []}
           category={playlist.category} />
