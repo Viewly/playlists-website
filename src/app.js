@@ -14,6 +14,8 @@ import RegisterModal from "./components/RegisterModal";
 import Toasts from "./components/Toasts";
 import CropModal from "./components/CropModal";
 import Promotion from "./components/promotion";
+import { LOGOUT } from "./actions/user";
+import { LOAD_LOCALSTORAGE } from "./actions";
 
 @withRouter
 @connect((state) => ({
@@ -36,16 +38,16 @@ class App extends Component {
   render() {
     return (
       <>
-        <LoginModal/>
-        <UploadModal/>
-        <RegisterModal/>
-        <CropModal/>
+        <LoginModal />
+        <UploadModal />
+        <RegisterModal />
+        <CropModal />
 
         <Switch>
           {routes.filter(item => item.fullscreen).map((route, idx) => (
             <Route key={`fullscreen-route-${idx}`} {...route} />
           ))}
-          <Route component={LayoutWithHeader}/>
+          <Route component={LayoutWithHeader} />
         </Switch>
       </>
     );
@@ -55,8 +57,16 @@ class App extends Component {
 @connect((state) => ({
   user: state.user,
   localStorage: state.localStorage
+}), (dispatch) => ({
+  doLoadLocalstorage: () => dispatch({ type: LOAD_LOCALSTORAGE })
 }))
 class LayoutWithHeader extends Component {
+  componentDidMount() {
+    const { doLoadLocalstorage } = this.props;
+
+    doLoadLocalstorage();
+  }
+
   render() {
     const { localStorage } = this.props;
     const showPromotion = !localStorage.hidePromotion;
@@ -64,8 +74,8 @@ class LayoutWithHeader extends Component {
     return (
       <div className={`has-header ${showPromotion ? "has-promotion-message" : ""}`}>
         {showPromotion && <Promotion />}
-        <HeaderContainer/>
-        <Toasts/>
+        <HeaderContainer />
+        <Toasts />
         <>
           {routes.map((route, idx) => (
             <Route key={`route-${idx}`} {...route} />

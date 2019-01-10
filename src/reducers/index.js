@@ -149,6 +149,11 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, localStorage: { ...state.localStorage, hidePromotion: true } };
     }
 
+    case actions.LOAD_LOCALSTORAGE: {
+      const storage = getLocalStorageConfig();
+      return { ...state, localStorage: { ...state.localStorage, ...storage } };
+    }
+
     case userActions.USER_EMAIL_CONFIRM_SUCCESS:
       return { ...state, emailConfirmation: { _status: LOADED, success: action.data.success } };
 
