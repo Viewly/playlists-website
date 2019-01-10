@@ -70,7 +70,7 @@ class DropdownMenu extends Component {
               {list.length === 0 && emptyList && emptyList}
             </ul>
             {dropdownFooter && (
-              <div className='c-dropdown__menu__footer dd-footer'>
+              <div className='c-dropdown__menu__footer dd-footer'  onClick={this.onClick()}>
                 {dropdownFooter}
               </div>
             )}
