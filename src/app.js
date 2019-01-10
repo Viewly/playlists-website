@@ -16,6 +16,7 @@ import CropModal from "./components/CropModal";
 import Promotion from "./components/promotion";
 import { LOGOUT } from "./actions/user";
 import { LOAD_LOCALSTORAGE } from "./actions";
+import { isLoaded } from "./utils";
 
 @withRouter
 @connect((state) => ({
@@ -69,7 +70,7 @@ class LayoutWithHeader extends Component {
 
   render() {
     const { localStorage } = this.props;
-    const showPromotion = !localStorage.hidePromotion;
+    const showPromotion = isLoaded(localStorage) && localStorage.data.hidePromotion !== true;
 
     return (
       <div className={`has-header ${showPromotion ? "has-promotion-message" : ""}`}>
