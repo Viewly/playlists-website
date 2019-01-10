@@ -28,7 +28,7 @@ const initialState = {
   comments: { _status: PENDING, data: [] },
   renderedPages: {},
   user: jwtCookie ? decodeJwt(jwtCookie) : false,
-  localStorage: { ...getLocalStorageConfig() },
+  localStorage: { _status: PENDING, data: {} },
   emailConfirmation: { _status: PENDING },
   onboarding: false,
   jwt: jwtCookie,
@@ -146,12 +146,12 @@ const rootReducer = (state = initialState, action) => {
 
     case actions.PROMOTION_HIDE: {
       setLocalStorageConfig("hidePromotion", true);
-      return { ...state, localStorage: { ...state.localStorage, hidePromotion: true } };
+      return { ...state, localStorage: { ...state.localStorage, data: { ...state.localStorage.data, hidePromotion: true } } };
     }
 
     case actions.LOAD_LOCALSTORAGE: {
       const storage = getLocalStorageConfig();
-      return { ...state, localStorage: { ...state.localStorage, ...storage } };
+      return { ...state, localStorage: { _status: LOADED, data: { ...storage } } };
     }
 
     case userActions.USER_EMAIL_CONFIRM_SUCCESS:
