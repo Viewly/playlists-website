@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { THUMBNAIL_ROOT } from "../../../constants";
 
-const Header = ({ title, author, duration, category, poster, description, hashtags, playFirstVideo }) => (
+const Header = ({ title, author, duration, category, poster, description, hashtags, playFirstVideo, views }) => (
   <div className='c-section'>
     <div className='o-wrapper'>
       <div className='o-grid o-grid--middle'>
@@ -46,6 +46,14 @@ const Header = ({ title, author, duration, category, poster, description, hashta
                   <dd><Link to={`/category/${category.slug}`}>{category.name}</Link></dd>
                 </dl>
               </li>
+              {views > 10 && (
+                <li className='o-grid__cell u-margin-bottom'>
+                  <dl>
+                    <dt>Views</dt>
+                    <dd>{views}</dd>
+                  </dl>
+                </li>
+              )}
             </ul>
             <div className='c-section__description'>
               <p>{description}</p>
