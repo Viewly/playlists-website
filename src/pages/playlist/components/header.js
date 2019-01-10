@@ -46,7 +46,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
                   <dd><Link to={`/category/${category.slug}`}>{category.name}</Link></dd>
                 </dl>
               </li>
-              {views && (
+              {views > 10 && (
                 <li className='o-grid__cell u-margin-bottom'>
                   <dl>
                     <dt>Views</dt>
