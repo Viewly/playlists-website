@@ -58,10 +58,10 @@
         ul {
             list-style-type: none;
         }
+    }
 
-        &--wide {
-            min-width: 400px;
-        }
+    .c-dropdown__menu--wide {
+        min-width: 400px;
     }
 
         .c-dropdown__menu__link {
@@ -86,4 +86,9 @@
             &:hover {
                 color: darken(color('brand-secondary'), 10%);
             }
+        }
+
+        .c-dropdown__menu__footer {
+            margin-top: $spacing-unit-tiny;
+            text-align: right;
         }

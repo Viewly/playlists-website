@@ -71,7 +71,7 @@ export default class NotificationsBadge extends Component {
           )}
           dropdownFooter={(
             <div>
-              <Link to="/notifications">See all</Link>
+              <Link to="/notifications">View all</Link>
             </div>
           )}
         />
