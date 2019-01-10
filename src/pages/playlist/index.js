@@ -9,9 +9,11 @@ import PlaylistComments from "./components/comments";
 
 import { asyncLoad } from "../../utils";
 import { playlistFetch } from "../../actions";
+import { playlistViews } from "../../actions/playlist";
 
 const prepareActions = (dispatch) => ({
-  playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId }))
+  playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
+  playlistViews: (playlistId) => dispatch(playlistViews({ playlistId }))
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
@@ -30,10 +32,11 @@ class PlaylistPage extends Component {
   };
 
   componentDidMount() {
-    const { playlist, playlistFetch, match: { params: { playlistId } } } = this.props;
+    const { playlist, playlistFetch, playlistViews, match: { params: { playlistId } } } = this.props;
 
     if (!playlist.isServerRendered || (playlist.url !== playlistId)) {
       playlistFetch(playlistId);
+      playlistViews(playlistId);
     }
   }
 

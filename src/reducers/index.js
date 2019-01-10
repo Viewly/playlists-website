@@ -98,6 +98,10 @@ const rootReducer = (state = initialState, action) => {
 
       return { ...state, playlist: { _status: LOADED, ...action.data, isServerRendered: SERVER } };
     }
+    case playlistActions.PLAYLIST_FETCH_VIEWS_SUCCESS: {
+      return { ...state, playlist: { ...state.playlist, views: action.data.visitors }};
+    }
+
     case actions.CATEGORIES_FETCH_SUCCESS:
       return {
         ...state, categories: {

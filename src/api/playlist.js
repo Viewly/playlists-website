@@ -173,3 +173,9 @@ export async function playlistVoteComment (baseUrl, { authorization, playlist_id
 
   return body;
 }
+
+export async function playlistViews (baseUrl, { playlistId }) {
+  const { body } = await get(`https://vidflow-analytics-api.view.ly/daily_playlist_views/${playlistId}`);
+
+  return body;
+}
