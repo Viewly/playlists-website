@@ -49,7 +49,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
               {views > 10 && (
                 <li className='o-grid__cell u-margin-bottom'>
                   <dl>
-                    <dt>Views</dt>
+                    <dt>Views today</dt>
                     <dd>{views}</dd>
                   </dl>
                 </li>
