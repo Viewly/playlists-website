@@ -14,6 +14,13 @@ const Header = ({ title, author, duration, category, poster, description, hashta
               : <img className='c-section__thumbnail__img' src={require("../../../images/playlist-thumbnail-default.jpg")} />
             }
 
+            <div className='c-section__thumbnail__details'>
+              {views > 10 && (
+                <span>{views} views today</span>
+              )}
+              <span>{duration}</span>
+            </div>
+
             <button className='c-btn c-btn--with-icon c-section__thumbnail__btn' onClick={playFirstVideo}>
               <svg className='o-icon o-icon--small u-margin-right-tiny' width='16' height='22' viewBox='0 0 16 22' xmlns='http://www.w3.org/2000/svg'>
                 <path d='M14.837 11.818L1.575 21.142A1 1 0 0 1 0 20.324V1.676A1 1 0 0 1 1.575.858l13.262 9.324a1 1 0 0 1 0 1.636z' fill='currentColor' fillRule='evenodd'/>
@@ -24,37 +31,12 @@ const Header = ({ title, author, duration, category, poster, description, hashta
         </div>
         <div className='o-grid__cell u-3/5@large'>
           <div className='c-section__intro'>
+            <span className='c-link-category'>
+             <Link to={`/category/${category.slug}`}>{category.name}</Link>
+             </span>
             <h1 className='c-section__title'>{title}</h1>
-            <ul className='o-grid o-grid--auto'>
-              <li className='o-grid__cell u-margin-bottom'>
-                <dl>
-                  <dt>Author</dt>
-                  <dd>
-                    <Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link>
-                  </dd>
-                </dl>
-              </li>
-              <li className='o-grid__cell u-margin-bottom'>
-                <dl>
-                  <dt>Length</dt>
-                  <dd>{duration}</dd>
-                </dl>
-              </li>
-              <li className='o-grid__cell u-margin-bottom'>
-                <dl>
-                  <dt>Category</dt>
-                  <dd><Link to={`/category/${category.slug}`}>{category.name}</Link></dd>
-                </dl>
-              </li>
-              {views > 10 && (
-                <li className='o-grid__cell u-margin-bottom'>
-                  <dl>
-                    <dt>Views today</dt>
-                    <dd>{views}</dd>
-                  </dl>
-                </li>
-              )}
-            </ul>
+            <p className='c-section__details'><Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link> {/*&bull; <time className='c-section__details__time'>2 weeks ago</time>*/}</p>
+
             <div className='c-section__description'>
               <p>{description}</p>
             </div>

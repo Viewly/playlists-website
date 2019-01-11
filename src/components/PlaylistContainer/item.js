@@ -21,7 +21,7 @@ const PlaylistItem = ({ id, url, title, description, playlist_thumbnail_url, dur
           </div>
         )}
       </div>
-      <span className="c-video__category"><Link to={`/category/${category.slug}`}>{category.name}</Link></span>
+      <span className="c-link-category u-margin-top-small"><Link to={`/category/${category.slug}`}>{category.name}</Link></span>
       <h4 className='c-video__title c-video__title--large'><Link onClick={onPlaylistClick(url)} to={`/playlist/${url}`}>{title}</Link></h4>
     </div>
   </div>

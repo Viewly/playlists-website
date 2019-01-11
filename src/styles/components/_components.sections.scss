@@ -25,7 +25,7 @@
         }
 
         &:not(:only-child) {
-            margin-bottom: $spacing-unit;
+            margin-bottom: $spacing-unit-tiny;
         }
     }
 
@@ -40,6 +40,25 @@
             padding-left: $spacing-unit;
         }
     }
+
+        .c-section__details {
+            text-transform: lowercase;
+            margin-bottom: $spacing-unit;
+            font-weight: 500;
+
+            a {
+                color: #565656;
+
+                &:hover {
+                    color: color('brand-primary');
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .c-section__details__time {
+            color: #afb1b3;
+        }
 
         /**
          * Section description
@@ -85,10 +104,23 @@
         display: inline-block;
         overflow: hidden;
         vertical-align: top;
+        width: 100%;
         position: relative;
 
-        @include mq(large) {
-            width: 100%;
+        @include mq($from: 680px, $until: large) {
+            width: 65%;
+        }
+
+        &::before {
+            box-shadow:  inset 1px 1px 80px 0px rgba(#333, .08);
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+
         }
     }
 
@@ -96,14 +128,11 @@
             background-color: lighten(#000, 10%);
             border-radius: inherit;
             filter: grayscale(25%);
-
-            @include mq(large) {
-                width: 100%;
-            }
+            width: 100%;
         }
 
         .c-section__thumbnail__btn[class] {
-            background-color: rgba(#000, .6);
+            background-color: rgba(#000, .7);
             color: #fff;
             display: block;
             text-align: center;
@@ -112,9 +141,36 @@
             position: absolute;
             bottom: 0;
             left: 0;
+            z-index: 200;
 
             &:hover {
                 background-color: color('brand-secondary');
+            }
+        }
+
+        .c-section__thumbnail__details {
+            position: absolute;
+            top: $spacing-unit-small;
+            right: $spacing-unit-small;
+            z-index: 200;
+
+            span {
+                background-color: rgba(#000, .85);
+                border-radius: 2px;
+                color: #fff;
+                display: inline-block;
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 1.2;
+                opacity: .8;
+                padding: 2px 4px;
+                pointer-events: none;
+                transition: inherit;
+                vertical-align: middle;
+
+                &:not(:last-child) {
+                    margin-right: $spacing-unit-tiny;
+                }
             }
         }
 

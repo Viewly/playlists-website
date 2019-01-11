@@ -155,28 +155,6 @@ $tweakpoint-video-condensed:        medium;
     }
 
     /**
-     * Video category
-     */
-    .c-video__category {
-        color: #afb1b3;
-        display: block;
-        font-size: 12px;
-        font-weight: 700;
-        margin-bottom: 3px;
-        margin-top: $spacing-unit-small;
-        text-transform: uppercase;
-
-        a {
-            color: inherit;
-
-            &:hover {
-                color: color('brand-primary');
-                text-decoration: none;
-            }
-        }
-    }
-
-    /**
      * Video footer
      */
     .c-video__footer {
