@@ -498,6 +498,27 @@ $tweakpoint-category:   large;
     }
 }
 
+/**
+ * Category link
+ */
+.c-link-category {
+    color: #afb1b3;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+
+    a {
+        color: inherit;
+
+        &:hover {
+            color: color('brand-primary');
+            text-decoration: none;
+        }
+    }
+}
+
 .c-annotation {
     color: #afb1b3;
     display: block;

@@ -28,7 +28,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
         </div>
         <div className='o-grid__cell u-3/5@large'>
           <div className='c-section__intro'>
-            <span className='c-video__category'>
+            <span className='c-link-category'>
              <Link to={`/category/${category.slug}`}>{category.name}</Link>
              </span>
             <h1 className='c-section__title'>{title}</h1>
