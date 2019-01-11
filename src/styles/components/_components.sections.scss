@@ -106,6 +106,18 @@
         vertical-align: top;
         position: relative;
 
+        &::before {
+            box-shadow:  inset 1px 1px 80px 0px rgba(#333, .08);
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+
+        }
+
         @include mq(large) {
             width: 100%;
         }
@@ -131,6 +143,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
+            z-index: 200;
 
             &:hover {
                 background-color: color('brand-secondary');
@@ -141,14 +154,15 @@
             position: absolute;
             top: $spacing-unit-small;
             right: $spacing-unit-small;
-            z-index: 30;
+            z-index: 200;
 
             span {
-                background-color: rgba(#000, .8);
+                background-color: rgba(#000, .85);
                 border-radius: 2px;
                 color: #fff;
                 display: inline-block;
                 font-size: 12px;
+                font-weight: 500;
                 line-height: 1.2;
                 opacity: .8;
                 padding: 2px 4px;
