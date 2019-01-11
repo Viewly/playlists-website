@@ -35,7 +35,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
              <Link to={`/category/${category.slug}`}>{category.name}</Link>
              </span>
             <h1 className='c-section__title'>{title}</h1>
-            <p className='c-section__details'><Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link> &bull; <time className='c-section__details__time'>2 weeks ago</time></p>
+            <p className='c-section__details'><Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link> {/*&bull; <time className='c-section__details__time'>2 weeks ago</time>*/}</p>
 
             <div className='c-section__description'>
               <p>{description}</p>
