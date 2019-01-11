@@ -1,20 +1,24 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { notificationsMarkRead } from "../../../actions/notification";
+import { notificationsFetch, notificationsMarkRead } from "../../../actions/notification";
 import moment from "moment";
 
 @withRouter
 @connect(null, (dispatch) => ({
-  notificationsMarkRead: (id) => dispatch(notificationsMarkRead({ notifications_ids: [id] }))
+  notificationsMarkRead: (id) => dispatch(notificationsMarkRead({ notifications_ids: [id] })),
+  notificationsFetch: () => dispatch(notificationsFetch()),
 }))
 export default class NotificationTemplateComment extends Component {
   onClick = async () => {
-    const { id, metadata, history, notificationsMarkRead, onClick } = this.props;
+    const { id, status, metadata, history, notificationsMarkRead, notificationsFetch, onClick } = this.props;
 
-    await notificationsMarkRead(id)
-    onClick();
+    if (status === 'unread') {
+      await notificationsMarkRead(id);
+      await notificationsFetch();
+    }
     history.push(`/playlist/${metadata.playlist_url}/comments`);
+    onClick && onClick();
   };
 
   render() {
@@ -23,9 +27,8 @@ export default class NotificationTemplateComment extends Component {
     const timeAgo = moment(created_at).startOf("minute").fromNow();
 
     return (
-      <li className='c-notifications__item'>
+      <li onClick={this.onClick} className='c-notifications__item'>
         <div
-          onClick={this.onClick}
           className={`c-notifications__link ${isUnread ? 'is-unread' : ''}`}>
           <div className='o-flag o-flag--small'>
             <div className='o-flag__img u-align-top'>
