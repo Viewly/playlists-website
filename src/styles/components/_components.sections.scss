@@ -104,7 +104,12 @@
         display: inline-block;
         overflow: hidden;
         vertical-align: top;
+        width: 100%;
         position: relative;
+
+        @include mq($from: 680px, $until: large) {
+            width: 65%;
+        }
 
         &::before {
             box-shadow:  inset 1px 1px 80px 0px rgba(#333, .08);
@@ -117,20 +122,13 @@
             z-index: 100;
 
         }
-
-        @include mq(large) {
-            width: 100%;
-        }
     }
 
         .c-section__thumbnail__img {
             background-color: lighten(#000, 10%);
             border-radius: inherit;
             filter: grayscale(25%);
-
-            @include mq(large) {
-                width: 100%;
-            }
+            width: 100%;
         }
 
         .c-section__thumbnail__btn[class] {
