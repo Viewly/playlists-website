@@ -14,8 +14,11 @@ const Header = ({ title, author, duration, category, poster, description, hashta
               : <img className='c-section__thumbnail__img' src={require("../../../images/playlist-thumbnail-default.jpg")} />
             }
 
-            <div className='c-section__thumbnail__duration'>
-              {duration}
+            <div className='c-section__thumbnail__details'>
+              {views > 10 && (
+                <span>{views} views today</span>
+              )}
+              <span>{duration}</span>
             </div>
 
             <button className='c-btn c-btn--with-icon c-section__thumbnail__btn' onClick={playFirstVideo}>
@@ -32,9 +35,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
              <Link to={`/category/${category.slug}`}>{category.name}</Link>
              </span>
             <h1 className='c-section__title'>{title}</h1>
-            <p className='c-section__details'><Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link> &bull; <time className='c-section__details__time'>2 weeks ago</time> {views > 10 && (
-              <span>&bull; {views} views today</span>
-            )}</p>
+            <p className='c-section__details'><Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link> &bull; <time className='c-section__details__time'>2 weeks ago</time></p>
 
             <div className='c-section__description'>
               <p>{description}</p>
