@@ -9,6 +9,7 @@ const Header = ({ title, author, duration, category, poster, description, hashta
       <div className='o-grid o-grid--middle'>
         <div className='o-grid__cell u-margin-bottom u-margin-bottom-none@large u-2/5@large u-align-self-flex-start'>
           <div className='c-section__thumbnail'>
+          {duration}
             {poster
               ? <img className='c-section__thumbnail__img' src={`${THUMBNAIL_ROOT}/${poster}`} />
               : <img className='c-section__thumbnail__img' src={require("../../../images/playlist-thumbnail-default.jpg")} />
@@ -24,37 +25,14 @@ const Header = ({ title, author, duration, category, poster, description, hashta
         </div>
         <div className='o-grid__cell u-3/5@large'>
           <div className='c-section__intro'>
+            <span className='c-video__category'>
+             <Link to={`/category/${category.slug}`}>{category.name}</Link>
+             </span>
             <h1 className='c-section__title'>{title}</h1>
-            <ul className='o-grid o-grid--auto'>
-              <li className='o-grid__cell u-margin-bottom'>
-                <dl>
-                  <dt>Author</dt>
-                  <dd>
-                    <Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link>
-                  </dd>
-                </dl>
-              </li>
-              <li className='o-grid__cell u-margin-bottom'>
-                <dl>
-                  <dt>Length</dt>
-                  <dd>{duration}</dd>
-                </dl>
-              </li>
-              <li className='o-grid__cell u-margin-bottom'>
-                <dl>
-                  <dt>Category</dt>
-                  <dd><Link to={`/category/${category.slug}`}>{category.name}</Link></dd>
-                </dl>
-              </li>
-              {views > 10 && (
-                <li className='o-grid__cell u-margin-bottom'>
-                  <dl>
-                    <dt>Views today</dt>
-                    <dd>{views}</dd>
-                  </dl>
-                </li>
-              )}
-            </ul>
+            <p className='c-section__details'><Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link> &bull; <time className='c-section__details__time'>2 weeks ago</time> {views > 10 && (
+              <span>&bull; {views} views today</span>
+            )}</p>
+
             <div className='c-section__description'>
               <p>{description}</p>
             </div>

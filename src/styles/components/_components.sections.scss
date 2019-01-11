@@ -25,7 +25,7 @@
         }
 
         &:not(:only-child) {
-            margin-bottom: $spacing-unit;
+            margin-bottom: $spacing-unit-tiny;
         }
     }
 
@@ -40,6 +40,25 @@
             padding-left: $spacing-unit;
         }
     }
+
+        .c-section__details {
+            text-transform: lowercase;
+            margin-bottom: $spacing-unit;
+            font-weight: 500;
+
+            a {
+                color: #565656;
+
+                &:hover {
+                    color: color('brand-primary');
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .c-section__details__time {
+            color: #afb1b3;
+        }
 
         /**
          * Section description
