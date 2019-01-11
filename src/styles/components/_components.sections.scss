@@ -122,7 +122,7 @@
         }
 
         .c-section__thumbnail__btn[class] {
-            background-color: rgba(#000, .6);
+            background-color: rgba(#000, .7);
             color: #fff;
             display: block;
             text-align: center;
@@ -135,6 +135,23 @@
             &:hover {
                 background-color: color('brand-secondary');
             }
+        }
+
+        .c-section__thumbnail__duration {
+            background-color: rgba(#000, .8);
+            border-radius: 2px;
+            color: #fff;
+            display: block;
+            font-size: 12px;
+            line-height: 1.2;
+            opacity: .8;
+            padding: 2px 4px;
+            pointer-events: none;
+            transition: inherit;
+            position: absolute;
+            top: $spacing-unit-small;
+            right: $spacing-unit-small;
+            z-index: 30;
         }
 
 
