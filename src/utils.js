@@ -2,7 +2,7 @@ import moment from "moment";
 import "moment-duration-format";
 import Cookies from "universal-cookie";
 import jwtDecode from "jwt-decode";
-import { LOADED } from "./constants/status_types";
+import { LOADED, LOADING } from "./constants/status_types";
 import { COOKIE_SESSION } from "./constants";
 import getUserLocale from "get-user-locale";
 import guessTimezone from "guess-timezone";
@@ -23,6 +23,27 @@ export function sumVideoDurations (videos = []) {
     start.add(moment.duration(video.duration));
   });
   return convertYoutubeDuration(start.toString());
+}
+
+export function setCommentCache(playlistId, comment) {
+  if (SERVER) {
+    return false;
+  }
+  const storageKey = `comment-${playlistId}`;
+  if (comment) {
+    localStorage.setItem(storageKey, comment);
+  } else {
+    localStorage.removeItem(storageKey);
+
+  }
+}
+
+export function getCommentCache(playlistId) {
+  if (SERVER) {
+    return "";
+  }
+  const storageKey = `comment-${playlistId}`;
+  return localStorage.getItem(storageKey) || "";
 }
 
 export function getPlaylistProgress(playlistId) {
@@ -62,6 +83,10 @@ export function updateVideosWithProgresses(videos, progresses) {
 
 export function isLoaded(item) {
   return item && item._status === LOADED;
+}
+
+export function isLoading(item) {
+  return item && item._status === LOADING;
 }
 
 export function asyncLoad (asyncFunc) {
@@ -161,4 +186,25 @@ export function slugUrl(id, title) {
   return title
     ? slugify(title).slice(0, 40) + "-" + id.slice(0,4)
     : "";
+}
+
+
+export function getLocalStorageConfig() {
+  if (SERVER) {
+    return {};
+  }
+
+  const storageKey = 'config-data';
+  return JSON.parse(localStorage.getItem(storageKey)) || {};
+}
+
+export function setLocalStorageConfig(field, value) {
+  if (SERVER) {
+    return {};
+  }
+
+  const storageKey = 'config-data';
+  const data = getLocalStorageConfig();
+  localStorage.setItem(storageKey, JSON.stringify({ ...data, [field]: value }));
+  return true;
 }

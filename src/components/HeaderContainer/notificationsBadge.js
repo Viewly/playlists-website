@@ -67,11 +67,14 @@ export default class NotificationsBadge extends Component {
             <NotificationTemplateComment key={`notification-${item.id}`} {...item} />
           ))}
           emptyList={(
-            <div>No unread notifications 😀</div>
+            <div className='c-thank-you c-thank-you--small'>
+              <img alt='' className='c-thank-you__img' src={require("../../images/graphic-success.svg")} />
+              <p>You have no unread notifications.</p>
+            </div>
           )}
           dropdownFooter={(
             <div>
-              <Link to="/notifications">See all</Link>
+              <Link to="/notifications">View read notifications</Link>
             </div>
           )}
         />

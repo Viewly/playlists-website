@@ -26,7 +26,7 @@ class CropModal extends Component {
   }
 
   render() {
-    const { modal } = this.props;
+    const { modal, closeModal } = this.props;
 
     return (
       <Modal isOpen={modal.isOpen} showClose={false}>
@@ -39,6 +39,7 @@ class CropModal extends Component {
 
         <div className="u-text-right u-margin-top">
           <button className="c-btn c-btn--secondary" onClick={this.saveCroppedImage}>Upload</button>
+          <button className="c-btn" onClick={closeModal}>Cancel</button>
         </div>
       </Modal>
     );

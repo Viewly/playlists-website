@@ -6,6 +6,7 @@ import { playlistsFetch } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
+import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
   playlistsFetch: (query) => dispatch(playlistsFetch({ query })),
@@ -39,6 +40,7 @@ class ProfilePage extends Component {
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+        <SEO title={profileId} />
         <h1 className='u-h3'>All playlists by {profileId}</h1>
 
         <Playlist

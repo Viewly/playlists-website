@@ -81,10 +81,42 @@
      * Section thumbnail
      */
     .c-section__thumbnail {
-        background-color: lighten(#000, 10%);
         border-radius: 4px;
-        filter: grayscale(25%);
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: top;
+        position: relative;
+
+        @include mq(large) {
+            width: 100%;
+        }
     }
+
+        .c-section__thumbnail__img {
+            background-color: lighten(#000, 10%);
+            border-radius: inherit;
+            filter: grayscale(25%);
+
+            @include mq(large) {
+                width: 100%;
+            }
+        }
+
+        .c-section__thumbnail__btn[class] {
+            background-color: rgba(#000, .6);
+            color: #fff;
+            display: block;
+            text-align: center;
+            padding: $spacing-unit-small;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            &:hover {
+                background-color: color('brand-secondary');
+            }
+        }
 
 
 /**

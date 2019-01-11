@@ -90,7 +90,7 @@ class EditPlaylist extends Component {
     const response = await playlistUpdate({
       "id": this.state.id,
       "title": this.state.title,
-      "url": this.getSlug(),
+      "url": this.state.status === 'published' ? this.state.url : this.getSlug(),
       "description": this.state.description,
       "category": this.state.category,
       "hashtags": this.state.hashtags,
@@ -125,12 +125,21 @@ class EditPlaylist extends Component {
 
   /* hacky validation */
   validateSubmit = () => {
+    const { playlist } = this.props;
+
     if (!this.state.playlist_thumbnail_url) {
       return {
         success: false,
         message: "Thumbnail is required"
       }
     };
+
+    if (!playlist.videos?.length > 0) {
+      return {
+        success: false,
+        message: "Playlist needs to have at least one video"
+      }
+    }
 
     return {
       "success": true

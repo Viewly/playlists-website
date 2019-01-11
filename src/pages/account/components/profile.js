@@ -74,9 +74,17 @@ class UserProfile extends Component {
       <div>
 
         {!this.state.email_confirmed && (
-          <div className='u-margin-bottom-large'>
-            Email is NOT confirmed
-            <button onClick={this.confirmationEmail}>Send confirmation email</button>
+          <div className='c-alert c-alert--warning u-margin-bottom-large'>
+            <div className='o-flag o-flag--tiny'>
+              <div className='o-flag__img u-align-top'>
+                <img className='o-icon o-icon--small' src={require('../../../images/icons/alert/alert-warning.svg')} />
+              </div>
+              <div className='o-flag__body'>
+                <h4 className='c-alert__title'>Email not verified</h4>
+                <p>We've sent you an email with the confirmation link. It might take up to 5 minutes to arrive. If you don't see it yet check your spam{/* or <button className='c-btn c-alert__btn' onClick={this.confirmationEmail}>send it again</button>*/}.
+                </p>
+              </div>
+            </div>
           </div>
         )}
 

@@ -13,14 +13,10 @@ $tweakpoint-hero-extralarge:        1140px;
 
 .c-hero {
     font-size: 17px;
-    padding-bottom: $spacing-unit-large;
     padding-top: $spacing-unit-large;
     text-align: center;
 
-
     @include mq(medium) {
-        margin-bottom: $spacing-unit-large;
-        padding-top: $spacing-unit-large;
         padding-bottom: $spacing-unit-large;
     }
 

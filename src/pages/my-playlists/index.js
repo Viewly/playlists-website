@@ -35,11 +35,13 @@ class MyPlaylistsPage extends Component {
   }
 
   render() {
+    const { playlists } = this.props;
+    
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <h1 className='u-h3 u-margin-bottom-large'>My playlists</h1>
 
-        <PlaylistsTabs/>
+        <PlaylistsTabs playlists={playlists}/>
 
         <div className=''>
           <Route exact path='/my-playlists' component={MyPlaylistsPublished}/>

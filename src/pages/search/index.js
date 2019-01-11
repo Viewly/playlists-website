@@ -8,7 +8,7 @@ import VisibilitySensor from "react-visibility-sensor";
 import Layout from "./layout";
 
 import Playlist from "../../components/PlaylistContainer";
-import { isLoaded } from "../../utils";
+import { isLoaded, isLoading } from "../../utils";
 import { playlistsFetch, playlistsLoadMore } from "../../actions";
 import Loading from "../../components/loading";
 
@@ -26,19 +26,22 @@ class SearchPage extends Component {
     playlistsLoadMore: PropTypes.func.isRequired,
     playlists: PropTypes.object,
     location: PropTypes.object
-  }
+  };
 
   state = {
     query: "",
+    queryInput: "",
     page: 0,
     hasMore: true
-  }
+  };
 
   componentDidMount() {
     const parsed = queryString.parse(this.props.location.search);
 
-    this.setState({ query: parsed.query });
-    this.doSearch(parsed.query);
+    if (parsed.query) {
+      this.setState({ query: parsed.query });
+      this.doSearch(parsed.query);
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -46,7 +49,7 @@ class SearchPage extends Component {
       const parsed = queryString.parse(this.props.location.search);
 
       this.setState({ query: parsed.query, page: 0, hasMore: true });
-      this.doSearch(parsed.query);
+      parsed.query && this.doSearch(parsed.query);
     }
   }
 
@@ -54,7 +57,18 @@ class SearchPage extends Component {
     const { playlistsFetch } = this.props;
 
     query.length > 0 && playlistsFetch(`q=${encodeURIComponent(query)}`);
-  }
+  };
+
+  searchClicked = () => {
+    if (this.state.queryInput) {
+      this.setState({ query: this.state.queryInput });
+      this.doSearch(this.state.queryInput);
+    }
+  };
+
+  handleEnter = (evnt) => {
+    evnt.key === "Enter" && this.searchClicked();
+  };
 
   loadMore = async (visible) => {
     const { playlistsLoadMore } = this.props;
@@ -69,26 +83,48 @@ class SearchPage extends Component {
         this.setState({ hasMore: false });
       }
     });
-  }
+  };
 
   render() {
     const { playlists } = this.props;
     const isReady = isLoaded(playlists);
+    const loading = isLoading(playlists);
 
     return (
       <Layout>
         <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+          <div className='c-search-form c-search-form--mobile u-margin-bottom-large'>
+            <input
+              className='c-search-form__input c-input c-input--primary'
+              placeholder='Search playlists'
+              type='search'
+              value={this.state.queryInput}
+              onKeyUp={this.handleEnter}
+              onChange={(e) => this.setState({ queryInput: e.target.value })}
+            />
+            <button type='submit' className='c-btn c-search-form__btn' onClick={this.searchClicked}>
+              <svg className='o-icon' width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(1 1)" stroke="#9EA0A3" strokeWidth="2" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="7.5" cy="7.5" r="7.5"/>
+                  <path d="M17 17l-4.2-4.2"/>
+                </g>
+              </svg>
+            </button>
+          </div>
 
-          {!isReady && (
+          {loading && (
             <Loading />
           )}
 
-          {isReady && (
+          {isReady && this.state.query.length > 0 && (
             <div>
               {!playlists.data.length && (
                 <div className='c-no-results'>
-                  <img className='c-no-results__img' src={require("../../images/message-no-results.svg")} />
-                  <p>Try searching again using different keywords, <br />or <Link to='/create-playlist'>create your playlist</Link></p>
+                  <img alt='' className='c-no-results__img' src={require('../../images/message-no-results.svg')} />
+                  <p>
+                    Try searching again using different keywords, <br/> or
+                    <Link to='/create-playlist'>create your playlist</Link>
+                  </p>
                 </div>
               )}
 
@@ -103,7 +139,9 @@ class SearchPage extends Component {
                   {this.state.hasMore && (
                     <VisibilitySensor partialVisibility offset={{ bottom: -200 }} onChange={this.loadMore}>
                       <div className='u-text-center'>
-                        <button className='c-btn c-btn--secondary c-btn--small' onClick={this.loadMore}>Load more</button>
+                        <button className='c-btn c-btn--secondary c-btn--small' onClick={this.loadMore}>
+                          Load more
+                        </button>
                       </div>
                     </VisibilitySensor>
                   )}
@@ -117,4 +155,5 @@ class SearchPage extends Component {
     );
   }
 }
+
 export default SearchPage;

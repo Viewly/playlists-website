@@ -22,7 +22,7 @@ export default class NotificationTemplateComment extends Component {
   };
 
   render() {
-    const { title, status, created_at } = this.props;
+    const { title, status, created_at, metadata } = this.props;
     const isUnread = status === 'unread';
     const timeAgo = moment(created_at).startOf("minute").fromNow();
 
@@ -32,7 +32,8 @@ export default class NotificationTemplateComment extends Component {
           className={`c-notifications__link ${isUnread ? 'is-unread' : ''}`}>
           <div className='o-flag o-flag--small'>
             <div className='o-flag__img u-align-top'>
-              <img className='o-avatar o-avatar--large' src={require("../../../images/avatar-default.jpg")} />
+              {metadata.comment_owner_avatar_url && <img className='o-avatar o-avatar--large' src={metadata.comment_owner_avatar_url} />}
+              {!metadata.comment_owner_avatar_url && <img className='o-avatar o-avatar--large' src={require("../../../images/avatar-default.jpg")} />}
             </div>
             <div className='o-flag__body'>
               <p>{title}</p>

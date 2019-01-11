@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import { hot } from "react-hot-loader";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
@@ -13,6 +13,10 @@ import UploadModal from "./components/UploadModal";
 import RegisterModal from "./components/RegisterModal";
 import Toasts from "./components/Toasts";
 import CropModal from "./components/CropModal";
+import Promotion from "./components/promotion";
+import { LOGOUT } from "./actions/user";
+import { LOAD_LOCALSTORAGE } from "./actions";
+import { isLoaded } from "./utils";
 
 @withRouter
 @connect((state) => ({
@@ -51,10 +55,26 @@ class App extends Component {
   }
 }
 
+@connect((state) => ({
+  user: state.user,
+  localStorage: state.localStorage
+}), (dispatch) => ({
+  doLoadLocalstorage: () => dispatch({ type: LOAD_LOCALSTORAGE })
+}))
 class LayoutWithHeader extends Component {
+  componentDidMount() {
+    const { doLoadLocalstorage } = this.props;
+
+    doLoadLocalstorage();
+  }
+
   render() {
+    const { localStorage } = this.props;
+    const showPromotion = isLoaded(localStorage) && localStorage.data.hidePromotion !== true;
+
     return (
-      <div className='has-header'>
+      <div className={`has-header ${showPromotion ? "has-promotion-message" : ""}`}>
+        {showPromotion && <Promotion />}
         <HeaderContainer />
         <Toasts />
         <>

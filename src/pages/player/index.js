@@ -9,6 +9,8 @@ import { playlistFetch, updatePercentage } from "../../actions";
 import { LOADED } from "../../constants/status_types";
 import { TriggerPlayerEvent, TriggerPlayerError } from "../../analytics";
 
+const SEGMENT_LENGTH_SECONDS = 15;
+
 @connect((state) => ({
   playlist: state.playlist
 }), (dispatch) => ({
@@ -26,7 +28,8 @@ class PlayerPage extends Component {
 
   state = {
     videoId: null,
-    showPlaylist: false
+    showPlaylist: false,
+    lastSegmentTime: 0
   }
 
   componentDidMount() {
@@ -76,11 +79,28 @@ class PlayerPage extends Component {
   }
 
   onPercentage = (percentage, currentTime) => {
-    const { playlist, updatePercentage } = this.props;
+    const { playlist, updatePercentage, match: { params: { playlistId, videoId } } } = this.props;
     const currentVideo = playlist.videos.find(item => item.id === this.state.videoId);
 
     if ((percentage !== currentVideo.percentage) && (currentVideo.percentage !== 100)) {
       updatePercentage(playlist.id, this.state.videoId, percentage, currentTime);
+    }
+
+    if (this.state.lastSegmentTime === 0) {
+      this.setState({ lastSegmentTime: currentTime });
+    } else {
+      if (currentTime > this.state.lastSegmentTime + SEGMENT_LENGTH_SECONDS) {
+        TriggerPlayerEvent({
+          playback_state: 1,
+          segment_start: this.state.lastSegmentTime,
+          segment_end: currentTime,
+          playlist_id: playlistId,
+          video_id: videoId
+        });
+        this.setState({ lastSegmentTime: currentTime });
+      } else if (currentTime < this.state.lastSegmentTime) {
+        this.setState({ lastSegmentTime: currentTime });
+      }
     }
   }
 
@@ -92,16 +112,19 @@ class PlayerPage extends Component {
   logAction = (data) => {
     const { match: { params: { playlistId, videoId } } } = this.props;
 
+    const payload = { playback_state: data.playback_state || -1, segment_start: this.state.lastSegmentTime, segment_end: data.current_time };
+    data.current_time && this.setState({ lastSegmentTime: data.current_time });
+
     if (data.error) {
-      TriggerPlayerError({ ...data, playlist_id: playlistId, video_id: videoId });
+      TriggerPlayerError({ ...payload, playlist_id: playlistId, video_id: videoId });
     } else {
-      TriggerPlayerEvent({ ...data, playlist_id: playlistId, video_id: videoId });
+      TriggerPlayerEvent({ ...payload, playlist_id: playlistId, video_id: videoId });
     }
   }
 
   render() {
     const { playlist } = this.props;
-    const isLoaded = playlist._status === LOADED;
+    const isLoaded = (playlist._status === LOADED) && this.state.videoId;
     const currentVideo = isLoaded
       ? playlist.videos.find(item => item.id === this.state.videoId)
       : false;

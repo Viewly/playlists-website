@@ -11,13 +11,14 @@ import {
   setUserCookie,
   getUserCookie,
   unsetUserCookie,
-  generateUuid
+  generateUuid,
+  getLocalStorageConfig, setLocalStorageConfig
 } from "../utils";
 
 const jwtCookie = getUserCookie();
 
 const initialState = {
-  config: { apiUrl: "https://api.vidflow.io/v1/api" },
+  config: { apiUrl: "https://api.vidflow.com/v1/api" },
   playlists: { _status: PENDING, data: [] },
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
@@ -27,6 +28,7 @@ const initialState = {
   comments: { _status: PENDING, data: [] },
   renderedPages: {},
   user: jwtCookie ? decodeJwt(jwtCookie) : false,
+  localStorage: { _status: PENDING, data: {} },
   emailConfirmation: { _status: PENDING },
   onboarding: false,
   jwt: jwtCookie,
@@ -96,6 +98,10 @@ const rootReducer = (state = initialState, action) => {
 
       return { ...state, playlist: { _status: LOADED, ...action.data, isServerRendered: SERVER } };
     }
+    case playlistActions.PLAYLIST_FETCH_VIEWS_SUCCESS: {
+      return { ...state, playlist: { ...state.playlist, views: action.data.visitors }};
+    }
+
     case actions.CATEGORIES_FETCH_SUCCESS:
       return {
         ...state, categories: {
@@ -140,6 +146,16 @@ const rootReducer = (state = initialState, action) => {
     case userActions.LOGOUT: {
       unsetUserCookie();
       return { ...state, jwt: "", user: false };
+    }
+
+    case actions.PROMOTION_HIDE: {
+      setLocalStorageConfig("hidePromotion", true);
+      return { ...state, localStorage: { ...state.localStorage, data: { ...state.localStorage.data, hidePromotion: true } } };
+    }
+
+    case actions.LOAD_LOCALSTORAGE: {
+      const storage = getLocalStorageConfig();
+      return { ...state, localStorage: { _status: LOADED, data: { ...storage } } };
     }
 
     case userActions.USER_EMAIL_CONFIRM_SUCCESS:

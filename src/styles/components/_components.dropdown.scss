@@ -64,6 +64,10 @@
         }
     }
 
+    .c-dropdown__menu--wide {
+        min-width: 400px;
+    }
+
         .c-dropdown__menu__link {
             color: #9ea0a3;
             display: block;
@@ -77,4 +81,18 @@
                 cursor: pointer;
                 text-decoration: none;
             }
+        }
+
+        .c-dropdown__menu__link--highlighted {
+            color: color('brand-secondary');
+            font-weight: 500;
+
+            &:hover {
+                color: darken(color('brand-secondary'), 10%);
+            }
+        }
+
+        .c-dropdown__menu__footer {
+            margin-top: $spacing-unit-tiny;
+            text-align: center;
         }

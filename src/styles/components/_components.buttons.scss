@@ -172,6 +172,11 @@
     &.c-btn--secondary {
         color: color('brand-secondary');
     }
+
+    &.c-btn--small {
+        font-size: 13px;
+        font-weight: 500;
+    }
 }
 
 
@@ -205,6 +210,24 @@
         }
     }
 }
+
+
+/**
+ * Vote (like/dislike) buttons.
+ */
+.c-btn--vote {
+    color: #8a8a8a;
+    padding: 0;
+
+    &.is-active {
+        color: color('brand-secondary');
+    }
+
+    &:disabled {
+        opacity: 1;
+    }
+}
+
 
 
 /**
