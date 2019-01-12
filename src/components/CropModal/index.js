@@ -38,8 +38,8 @@ class CropModal extends Component {
           guides={false} />
 
         <div className="u-text-right u-margin-top">
+          <button className="c-btn c-btn--plain u-margin-right" onClick={closeModal}>Cancel</button>
           <button className="c-btn c-btn--secondary" onClick={this.saveCroppedImage}>Upload</button>
-          <button className="c-btn" onClick={closeModal}>Cancel</button>
         </div>
       </Modal>
     );
