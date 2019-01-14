@@ -47,11 +47,22 @@ export default class PlaylistLayout extends Component {
     }
   }
 
-  playFirstVideo = () => {
+  playVideo = () => {
     const { playlist, history } = this.props;
-    const firstVideo = minBy(playlist.videos, item => item.position);
 
-    history.push(`/player/${playlist.url}/${firstVideo.id}`);
+    if (playlist.percentage > 0 && playlist.percentage < 100) {
+      const sorted = playlist.videos.sort((a,b) => {
+        if (a.position < b.position) return -1
+        else if (a.position > b.position) return 1;
+        else return 0;
+      });
+
+      const videoToResume = sorted.find((item) => isNaN(item.percentage) || item.percentage < 100);
+      history.push(`/player/${playlist.url}/${videoToResume.id}`);
+    } else {
+      const firstVideo = minBy(playlist.videos, item => item.position);
+      history.push(`/player/${playlist.url}/${firstVideo.id}`);
+    }
   }
 
   isOwner = () => {
@@ -74,7 +85,8 @@ export default class PlaylistLayout extends Component {
           poster={playlist.playlist_thumbnail_url}
           description={playlist.description}
           views={playlist.views}
-          playFirstVideo={this.playFirstVideo}
+          playVideo={this.playVideo}
+          playVideoLabel={playlist.percentage > 0 && playlist.percentage < 100 ? "Resume" : "Play all"}
           hashtags={playlist.hashtags && playlist.hashtags.split(" ") || []}
           category={playlist.category} />
 
