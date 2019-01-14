@@ -91,6 +91,7 @@ class EditPlaylist extends Component {
       "id": this.state.id,
       "title": this.state.title,
       "url": this.state.status === 'published' ? this.state.url : this.getSlug(),
+      "publish_date": this.state.publish_date ? this.state.publish_date : new Date(),
       "description": this.state.description,
       "category": this.state.category,
       "hashtags": this.state.hashtags,
@@ -199,54 +200,53 @@ class EditPlaylist extends Component {
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
 
-        <form onSubmit={this.handleSubmit}>
-          <div className="o-grid o-grid--center o-grid--large">
+        <div className="o-grid o-grid--center o-grid--large">
 
-            <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
-              <ul className='c-form__list c-form__list--large'>
-                <PlaylistName value={this.state.title} onChange={this.handleChange}/>
-                <PlaylistCategory categories={categories.data} value={this.state.category.id || 0}
-                                  onChange={this.handleChange}/>
-                <PlaylistThumbnail onChange={this.updateThumbnail}
-                                   playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
-                <PlaylistDescription value={this.state.description} onChange={this.handleChange}/>
-                <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.changeHashtags}/>
-              </ul>
-            </div>
-
-
-            <div
-              className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge u-margin-top-large u-margin-top-none@large'>
-
-              <ul className='c-form__list c-form__list--large'>
-                <PlaylistAddVideos onAddVideo={this.onAddVideo} playlistId={playlistId}/>
-              </ul>
-
-              <ul className='u-margin-top-large c-form__list c-form__list--small'>
-                {isReady &&
-                <PlaylistVideosContainer playlistId={playlistId} videos={playlist.videos} onDelete={this.onDelete}/>}
-              </ul>
-            </div>
+          <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
+            <ul className='c-form__list c-form__list--large'>
+              <PlaylistName value={this.state.title} onChange={this.handleChange}/>
+              <PlaylistCategory categories={categories.data} value={this.state.category.id || 0}
+                                onChange={this.handleChange}/>
+              <PlaylistThumbnail onChange={this.updateThumbnail}
+                                 playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
+              <PlaylistDescription value={this.state.description} onChange={this.handleChange}/>
+              <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.changeHashtags}/>
+            </ul>
           </div>
+
 
           <div
-            className='u-horizontally-center u-margin-top u-margin-top-large@large u-4/5@medium u-1/1@large u-4/5@extralarge'>
-            <hr className='u-margin-bottom'/>
-            <div className='o-grid o-grid--auto o-grid--small o-grid--middle o-grid--between'>
-              <div onClick={this.deletePlaylist} className='o-grid__cell'>
-                <button className='c-btn c-btn--plain c-btn--danger c-btn--with-icon c-btn--delete-playlist'>
-                  <img className='o-icon o-icon--small u-margin-right-tiny' src={require("../../../images/icons/delete.svg")} />
-                  <span className='c-btn__label'>Delete playlist</span>
-                </button>
-              </div>
+            className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge u-margin-top-large u-margin-top-none@large'>
 
-              <div className='o-grid__cell'>
-                <button onClick={this.saveDraft} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
-                <button onClick={this.savePublish} className='c-btn c-btn--secondary'>Publish</button>
-              </div>
+            <ul className='c-form__list c-form__list--large'>
+              <PlaylistAddVideos onAddVideo={this.onAddVideo} playlistId={playlistId}/>
+            </ul>
+
+            <ul className='u-margin-top-large c-form__list c-form__list--small'>
+              {isReady &&
+              <PlaylistVideosContainer playlistId={playlistId} videos={playlist.videos} onDelete={this.onDelete}/>}
+            </ul>
+          </div>
+        </div>
+
+        <div
+          className='u-horizontally-center u-margin-top u-margin-top-large@large u-4/5@medium u-1/1@large u-4/5@extralarge'>
+          <hr className='u-margin-bottom'/>
+          <div className='o-grid o-grid--auto o-grid--small o-grid--middle o-grid--between'>
+            <div onClick={this.deletePlaylist} className='o-grid__cell'>
+              <button className='c-btn c-btn--plain c-btn--danger c-btn--with-icon c-btn--delete-playlist'>
+                <img className='o-icon o-icon--small u-margin-right-tiny' src={require("../../../images/icons/delete.svg")} />
+                <span className='c-btn__label'>Delete playlist</span>
+              </button>
+            </div>
+
+            <div className='o-grid__cell'>
+              <button onClick={this.saveDraft} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
+              <button onClick={this.savePublish} className='c-btn c-btn--secondary'>Publish</button>
             </div>
           </div>
-        </form>
+        </div>
+
 
 
       </div>
