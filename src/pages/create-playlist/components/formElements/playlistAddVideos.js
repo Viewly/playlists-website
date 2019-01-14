@@ -36,6 +36,7 @@ export default class PlaylistAddVideos extends Component {
               type="text"
               name="url"
               value={this.state.url}
+              onKeyPress={(e) => e.key === 'Enter' && this.getVideo()}
               onChange={(e) => this.setState({ url: e.target.value })}/>
           </div>
         </div>
