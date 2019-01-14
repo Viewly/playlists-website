@@ -108,6 +108,7 @@ export async function PlaylistEvent(data) {
   const time_on_page_seconds = getUnixTimestamp() - times[PLAYLIST_PAGE];
   let playlistData = {
     time_on_page_seconds,
+    referrer_url: document && document.referrer,
     playlist_id: data.fromRoute.params.playlistId
   };
 
@@ -127,6 +128,7 @@ export async function PlayerEvent(data) {
     time_on_page_seconds,
     playlist_id: data.fromRoute.params.playlistId,
     video_id: data.fromRoute.params.videoId,
+    referrer_url: document && document.referrer,
     playback_state: -1
   };
 
