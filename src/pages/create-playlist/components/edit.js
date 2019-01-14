@@ -91,6 +91,7 @@ class EditPlaylist extends Component {
       "id": this.state.id,
       "title": this.state.title,
       "url": this.state.status === 'published' ? this.state.url : this.getSlug(),
+      "publish_date": this.state.publish_date ? this.state.publish_date : new Date(),
       "description": this.state.description,
       "category": this.state.category,
       "hashtags": this.state.hashtags,
