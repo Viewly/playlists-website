@@ -36,6 +36,10 @@
         align-items: center;
         display: flex;
         justify-content: center;
+
+        &.c-input--active {
+            border: 3px dashed color('blue');
+        }
     }
 
     .c-file-input__input {

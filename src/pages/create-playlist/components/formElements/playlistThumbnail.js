@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuid from "uuid";
+import Dropzone from "react-dropzone";
+
 import { getUploadUrl, uploadFile } from "../../../../actions/upload";
 import { THUMBNAIL_ROOT } from "../../../../constants";
 import { OPEN_LOGIN_MODAL } from "../../../../actions/user";
@@ -60,25 +62,40 @@ export default class PlaylistThumbnail extends Component {
     }
   }
 
+  onDrop = (files) => {
+    this.handleSelectedFile({ target: { files } });
+  }
+
   render() {
     const { playlist_thumbnail_url } = this.props;
 
     return (
       <li>
-        <label className='c-form__label'>Playlist thumbnail</label>
-        <label className='c-file-input o-ratio o-ratio--16:9'>
-          <div className='c-file-input__container o-ratio__content'>
-            <input className='c-file-input__input' type="file" id="file" onChange={this.handleSelectedFile} />
-            <div className='c-file-input__content'>
-              <img className='c-file-input__graphic' src={require("../../../../images/graphic-add-photo.svg")}/>
-              <p>Drag and drop or <span>browse</span> <br/>for the thumbnail to upload</p>
-              <small className='c-file-input__annotation'>JPG, GIF or PNG. Max size 5mb</small>
-            </div>
-          </div>
-          {this.state.uploading && <span className='c-file-input__upload-progress' style={{ width: `${this.state.percentage}%` }}/>}
 
-          {playlist_thumbnail_url && <img alt='' className='o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />}
-        </label>
+        <label className='c-form__label'>Playlist thumbnail</label>
+        <div className='c-file-input o-ratio o-ratio--16:9'>
+          <Dropzone
+            onDrop={this.onDrop}
+            multiple={false}
+          >
+            {({getRootProps, getInputProps, isDragActive }) => (
+              <>
+                <div {...getRootProps()} className={`c-file-input__container o-ratio__content ${isDragActive ? 'c-input--active' : ''}`}>
+                  <input {...getInputProps()}  className='c-file-input__input' type="file" id="file" />
+                  <div className='c-file-input__content'>
+                    <img alt='' className='c-file-input__graphic' src={require("../../../../images/graphic-add-photo.svg")}/>
+                    <p>Drag and drop or <span>browse</span> <br/>for the thumbnail to upload</p>
+                    <small className='c-file-input__annotation'>JPG, GIF or PNG. Max size 5mb</small>
+                  </div>
+                </div>
+                {this.state.uploading && <span className='c-file-input__upload-progress' style={{ width: `${this.state.percentage}%` }}/>}
+                {playlist_thumbnail_url && <img alt='' className='o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />}
+              </>
+            )}
+          </Dropzone>
+
+
+        </div>
       </li>
     );
   }
