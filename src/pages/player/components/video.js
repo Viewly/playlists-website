@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 import Youtube from "./youtube";
 
-const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage, logAction }) => (
-  <div className='c-player'>
+const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage, logAction, focusMode }) => (
+  <div className={`c-player ${focusMode ? 'c-player--focus-mode' : ''}`}>
     <div>
       <div className='c-player__container'>
         {video && <Youtube videoId={video.video_id} logAction={logAction} percentage={video.percentage} resumeTime={video.currentTime} onVideoEnd={onVideoEnd} onPercentage={onPercentage} />}
