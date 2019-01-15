@@ -13,6 +13,7 @@ import { userProfileFetch } from "../../actions/user";
 import { asyncLoad } from "../../utils";
 
 import { ACCOUNT_PAGE } from "../../constants/pages";
+import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
   userProfileFetch: () => dispatch(userProfileFetch()),
@@ -60,6 +61,7 @@ class AccountPage extends Component {
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+        <SEO title="My account" />
         <div className='o-grid o-grid--center o-grid--huge o-grid--auto'>
           <div className='o-grid__cell'>
             <UserTabs />
