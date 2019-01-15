@@ -41,10 +41,12 @@ export default class Playlist extends Component {
     if (customClickHandler) {
       customClickHandler(evnt, selectedPlaylist);
     } else {
-      evnt.preventDefault();
-      injectPlaylist(selectedPlaylist);
-      onPlaylistClick && onPlaylistClick(selectedPlaylist.id);
-      history.push(`/playlist/${url}`);
+      if (!evnt.ctrlKey && !evnt.metaKey) {
+        evnt.preventDefault();
+        injectPlaylist(selectedPlaylist);
+        onPlaylistClick && onPlaylistClick(selectedPlaylist.id);
+        history.push(`/playlist/${url}`);
+      }
     }
   }
 

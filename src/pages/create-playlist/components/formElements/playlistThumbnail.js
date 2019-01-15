@@ -76,6 +76,7 @@ export default class PlaylistThumbnail extends Component {
         <div className='c-file-input o-ratio o-ratio--16:9'>
           <Dropzone
             onDrop={this.onDrop}
+            accept="image/*"
             multiple={false}
           >
             {({getRootProps, getInputProps, isDragActive }) => (
