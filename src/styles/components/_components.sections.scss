@@ -42,15 +42,14 @@
     }
 
         .c-section__details {
-            text-transform: lowercase;
             margin-bottom: $spacing-unit;
-            font-weight: 500;
 
             a {
                 color: #565656;
+                font-weight: 500;
 
                 &:hover {
-                    color: color('brand-primary');
+                    color: color('brand-secondary');
                     text-decoration: none;
                 }
             }
@@ -72,6 +71,16 @@
                     margin-bottom: $spacing-unit;
                 }
             }
+
+            a {
+                color: #565656;
+                font-weight: 500;
+
+                &:hover {
+                    color: color('brand-secondary');
+                    text-decoration: none;
+                }
+            }
         }
 
         /**
@@ -90,7 +99,7 @@
                 }
 
                 &:hover {
-                    color: color('brand-primary');
+                    color: color('brand-secondary');
                     text-decoration: none;
                 }
             }
