@@ -23,7 +23,7 @@ export default class PlaylistCommentItem extends Component {
           </Link>
         </div>
         <div className='o-flag__body'>
-          <span><b><Link to={`/profile/${user?.alias}`}>{user?.alias}</Link></b> <time className='c-time'>{timeAgo}</time></span>
+          <span><b><Link className='c-link-inherit-color' to={`/profile/${user?.alias}`}>{user?.alias}</Link></b> <time className='c-time'>{timeAgo}</time></span>
           <p className='u-white-space-pre-line u-margin-top-tiny'>{description}</p>
           <div className='o-grid o-grid--auto o-grid--middle u-margin-top-tiny'>
             <div className='o-grid__cell'>

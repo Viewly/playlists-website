@@ -478,6 +478,16 @@ $tweakpoint-category:   large;
     }
 }
 
+.c-link-inherit-color {
+    color: inherit;
+    font-weight: 500;
+
+    &:hover {
+        color: color('brand-secondary');
+        text-decoration: none;
+    }
+}
+
 /**
  * Category link
  */
