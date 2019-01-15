@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import Linkify from "react-linkify";
 
@@ -18,12 +19,12 @@ export default class PlaylistCommentItem extends Component {
     return (
       <div className='o-flag o-flag--small u-margin-top-large'>
         <div className='o-flag__img u-align-top'>
-          {user.avatar_url && <img alt='' className='o-avatar o-avatar--large' src={user.avatar_url}/>}
-          {!user.avatar_url &&
-          <img alt='' className='o-avatar o-avatar--large' src={require("../../../images/avatar-default.jpg")}/>}
+          <Link to={`/profile/${user?.alias}`}>
+            <img alt='' className='o-avatar o-avatar--large' src={user.avatar_url || require("../../../images/avatar-default.jpg")}/>
+          </Link>
         </div>
         <div className='o-flag__body'>
-          <span><b>{user?.alias}</b> <time className='c-time'>{timeAgo}</time></span>
+          <span><b><Link className='c-link-inherit-color' to={`/profile/${user?.alias}`}>{user?.alias}</Link></b> <time className='c-time'>{timeAgo}</time></span>
           <p className='u-white-space-pre-line u-margin-top-tiny'><Linkify properties={{target: '_blank', rel: "nofollow" }}>{description}</Linkify></p>
           <div className='o-grid o-grid--auto o-grid--middle u-margin-top-tiny'>
             <div className='o-grid__cell'>
