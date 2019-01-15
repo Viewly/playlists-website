@@ -179,3 +179,9 @@ export async function playlistViews (baseUrl, { playlistId }) {
 
   return body;
 }
+
+export async function playlistImportPlaylist (baseUrl, { authorization, yt_url, playlist_id }) {
+  const { body } = await post(`${baseUrl}/playlist-import`, { yt_url, playlist_id }, { authorization });
+
+  return body;
+}
