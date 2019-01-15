@@ -122,8 +122,8 @@ class SearchPage extends Component {
                 <div className='c-no-results'>
                   <img alt='' className='c-no-results__img' src={require('../../images/message-no-results.svg')} />
                   <p>
-                    Try searching again using different keywords, <br/> or
-                    <Link to='/create-playlist'>create your playlist</Link>
+                    Try searching again using different keywords, <br/>
+                    or <Link to='/create-playlist'>create your playlist</Link>
                   </p>
                 </div>
               )}

@@ -81,26 +81,6 @@ hr {
     margin-bottom: $spacing-unit;
 }
 
-dl {
-    font-size: 13px;
-    font-weight: 700;
-
-    dt {
-        color: #afb1b3;
-        font-size: 11px;
-        text-transform: uppercase;
-    }
-
-    a {
-        color: inherit;
-
-        &:hover {
-            color: color('brand-primary');
-            text-decoration: none;
-        }
-    }
-}
-
 .c-header {
     background-color: #fff;
     border-bottom: 1px solid color('grey');
@@ -313,7 +293,7 @@ dl {
         }
     }
 
-    a {
+    a:not(.c-btn) {
         color: color('brand-secondary');
         font-weight: 700;
     }
@@ -349,7 +329,7 @@ dl {
     }
 
     a:not(.c-btn) {
-        color: color('brand-primary');
+        color: color('brand-secondary');
         font-weight: 700;
     }
 }
@@ -493,7 +473,7 @@ $tweakpoint-category:   large;
     font-weight: 500;
 
     &:hover {
-        color: color('brand-primary');
+        color: color('brand-secondary');
         text-decoration: none;
     }
 }
@@ -513,7 +493,7 @@ $tweakpoint-category:   large;
         color: inherit;
 
         &:hover {
-            color: color('brand-primary');
+            color: color('brand-secondary');
             text-decoration: none;
         }
     }
