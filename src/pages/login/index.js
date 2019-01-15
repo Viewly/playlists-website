@@ -54,7 +54,7 @@ class LoginPage extends Component {
     return (
       <div className='c-auth'>
         <AuthSidebar />
-        <SEO title="Welcome to VidFlow" />
+        <SEO title="Welcome to Vidflow" />
 
         <div className='c-auth__main'>
 
