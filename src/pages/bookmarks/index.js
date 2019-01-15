@@ -9,6 +9,7 @@ import { isLoaded, asyncLoad } from "../../utils";
 
 import Playlist from "../../components/PlaylistContainer";
 import { BOOKMARKS_PAGE } from "../../constants/pages";
+import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
   userGetBookmarks: () => dispatch(userGetBookmarks()),
@@ -55,6 +56,7 @@ class BookmarksPage extends Component {
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+        <SEO title="Bookmarks" />
 
         <Playlist
           title="Bookmarks"

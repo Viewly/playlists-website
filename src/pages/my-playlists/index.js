@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import MyPlaylistsPublished from "./components/published";
 import PlaylistsTabs from "./components/playlistsTabs";
 import MyPlaylistsDrafts from "./components/drafts";
+import SEO from "../../components/SEO";
 
 const prepareActions = (dispatch) => ({
   fetchMyPlaylists: () => dispatch(fetchMyPlaylists()),
@@ -39,6 +40,7 @@ class MyPlaylistsPage extends Component {
     
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+        <SEO title="My playlists" />
         <h1 className='u-h3 u-margin-bottom-large'>My playlists</h1>
 
         <PlaylistsTabs playlists={playlists}/>
