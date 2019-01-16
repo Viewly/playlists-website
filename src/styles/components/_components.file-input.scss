@@ -31,6 +31,10 @@
     }
 }
 
+    /**
+     * 1. After the image has been uploaded apply a more prominent visual que
+     *    for drop area.
+     */
     .c-file-input__container {
         border: 1px solid rgba(color('brand-secondary'), 0);
         border-radius: inherit;
@@ -62,6 +66,13 @@
         &.is-drag-and-drop-target {
             &::before {
                 @include visible;
+            }
+        }
+
+        .c-file-input__uploaded-img ~ & { /* [1] */
+            &::before {
+                background-color: rgba(color('brand-secondary'), .5);
+                background-clip: padding-box;
             }
         }
     }
