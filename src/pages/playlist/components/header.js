@@ -48,14 +48,14 @@ export default class Header extends Component {
             </div>
             <div className='o-grid__cell u-3/5@large'>
               <div className='c-section__intro'>
-            <span className='c-link-category'>
-             <Link to={`/category/${category.slug}`}>{category.name}</Link>
-             </span>
+                <span className='c-link-category'>
+                  <Link to={`/category/${category.slug}`}>{category.name}</Link>
+                </span>
                 <h1 className='c-section__title'>{title}</h1>
                 <p className='c-section__details'>By <Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link> {/*&bull; <time className='c-section__details__time'>2 weeks ago</time>*/}</p>
 
                 <div className='c-section__description'>
-                  <p><Linkify properties={{target: '_blank', rel: "nofollow" }}>{description}</Linkify></p>
+                  <p><Linkify className='c-linkified' properties={{target: '_blank', rel: "nofollow" }}>{description}</Linkify></p>
                 </div>
                 <div className='c-section__hashtags'>
                   {hashtags.map((item, idx) => (
