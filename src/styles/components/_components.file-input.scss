@@ -33,12 +33,14 @@
 }
 
     .c-file-input__container {
+        border: 2px dashed rgba(color('brand-secondary'), 0);
         align-items: center;
         display: flex;
         justify-content: center;
+        transition: border .15s ease;
 
-        &.c-input--active {
-            border: 3px dashed color('blue');
+        &.is-drag-and-drop-target {
+            border-color: rgba(color('brand-secondary'), .5);
         }
     }
 

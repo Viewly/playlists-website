@@ -81,7 +81,7 @@ export default class PlaylistThumbnail extends Component {
           >
             {({getRootProps, getInputProps, isDragActive }) => (
               <>
-                <div {...getRootProps()} className={`c-file-input__container o-ratio__content ${isDragActive ? 'c-input--active' : ''}`}>
+                <div {...getRootProps()} className={`c-file-input__container o-ratio__content ${isDragActive ? 'is-drag-and-drop-target' : ''}`}>
                   <input {...getInputProps()}  className='c-file-input__input' type="file" id="file" />
                   <div className='c-file-input__content'>
                     <img alt='' className='c-file-input__graphic' src={require("../../../../images/graphic-add-photo.svg")}/>
