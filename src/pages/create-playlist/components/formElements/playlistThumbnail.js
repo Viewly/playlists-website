@@ -67,7 +67,7 @@ export default class PlaylistThumbnail extends Component {
   }
 
   render() {
-    const { playlist_thumbnail_url } = this.props;
+    const { playlist_thumbnail_url, onChange } = this.props;
 
     return (
       <li>
@@ -90,7 +90,12 @@ export default class PlaylistThumbnail extends Component {
                   </div>
                 </div>
                 {this.state.uploading && <span className='c-file-input__upload-progress' style={{ width: `${this.state.percentage}%` }}/>}
-                {playlist_thumbnail_url && <img alt='' className='o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />}
+                {playlist_thumbnail_url && (
+                  <>
+                    <img alt='' className='o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
+                    <button onClick={() => onChange("")} style={{zIndex: 999, position: 'absolute', top: 0, right: 0}}>X</button>
+                  </>
+                )}
               </>
             )}
           </Dropzone>
