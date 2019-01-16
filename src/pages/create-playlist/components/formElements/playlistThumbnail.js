@@ -81,7 +81,8 @@ export default class PlaylistThumbnail extends Component {
           >
             {({getRootProps, getInputProps, isDragActive }) => (
               <>
-                <div {...getRootProps()} className={`c-file-input__container o-ratio__content ${isDragActive ? 'c-input--active' : ''}`}>
+                {playlist_thumbnail_url && <img alt='' className='c-file-input__uploaded-img o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />}
+                <div {...getRootProps()} className={`c-file-input__container o-ratio__content ${isDragActive ? 'is-drag-and-drop-target' : ''}`}>
                   <input {...getInputProps()}  className='c-file-input__input' type="file" id="file" />
                   <div className='c-file-input__content'>
                     <img alt='' className='c-file-input__graphic' src={require("../../../../images/graphic-add-photo.svg")}/>
@@ -90,7 +91,6 @@ export default class PlaylistThumbnail extends Component {
                   </div>
                 </div>
                 {this.state.uploading && <span className='c-file-input__upload-progress' style={{ width: `${this.state.percentage}%` }}/>}
-                {playlist_thumbnail_url && <img alt='' className='o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />}
               </>
             )}
           </Dropzone>
