@@ -496,11 +496,24 @@ $tweakpoint-category:   large;
     display: block;
     font-size: 12px;
     font-weight: 700;
+    letter-spacing: .5px;
     margin-bottom: 3px;
     text-transform: uppercase;
 
     a {
         color: inherit;
+
+        &:hover {
+            color: color('brand-secondary');
+            text-decoration: none;
+        }
+    }
+}
+
+.c-linkified {
+    a {
+        color: inherit;
+        font-weight: 500;
 
         &:hover {
             color: color('brand-secondary');

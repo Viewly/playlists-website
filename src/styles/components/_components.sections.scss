@@ -45,7 +45,7 @@
             margin-bottom: $spacing-unit;
 
             a {
-                color: #565656;
+                color: inherit;
                 font-weight: 500;
 
                 &:hover {
@@ -69,16 +69,6 @@
             p {
                 &:not(:last-child) {
                     margin-bottom: $spacing-unit;
-                }
-            }
-
-            a {
-                color: #565656;
-                font-weight: 500;
-
-                &:hover {
-                    color: color('brand-secondary');
-                    text-decoration: none;
                 }
             }
         }
