@@ -59,7 +59,7 @@ class CropModal extends Component {
     return (
       <Modal isOpen={modal.isOpen} showClose={false}>
         <Cropper
-          ref={(ref) => this.ref = window.cropper = ref}
+          ref={(ref) => this.ref = ref}
           src={modal.thumbnail_url}
           style={{height: 400, width: '100%'}}
           aspectRatio={modal.aspectRatio || ASPECT_RATIO}
