@@ -14,6 +14,7 @@ import {
   generateUuid,
   getLocalStorageConfig, setLocalStorageConfig
 } from "../utils";
+import { uniqBy } from "lodash";
 
 const jwtCookie = getUserCookie();
 
@@ -62,8 +63,13 @@ const rootReducer = (state = initialState, action) => {
     case actions.PLAYLISTS_FETCH_SUCCESS:
       return { ...state, playlists: { data: action.data, _status: LOADED } };
 
-    case playlistActions.PLAYLISTS_FETCH_NEW_SUCCESS:
-      return { ...state, playlists_new: { data: [ ...state.playlists_new.data, ...action.data ], _status: LOADED } };
+    case playlistActions.PLAYLISTS_FETCH_NEW_START:
+      return { ...state, playlists_new: { ...state.playlists_new, _status: LOADING } }
+
+    case playlistActions.PLAYLISTS_FETCH_NEW_SUCCESS: {
+      const newPlaylists = uniqBy([ ...state.playlists_new.data, ...action.data ], item => item.id);
+      return { ...state, playlists_new: { data: newPlaylists, _status: LOADED } };
+    }
 
     case playlistActions.PLAYLISTS_FETCH_PICKED_SUCCESS:
       return { ...state, playlists_picked: { data: action.data, _status: LOADED } };

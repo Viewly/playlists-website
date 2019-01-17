@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Playlist from "../../../components/PlaylistContainer";
-import { isLoaded } from "../../../utils";
+import { isLoading, isPending } from "../../../utils";
 import VisibilitySensor from "react-visibility-sensor";
 import { playlistsFetchNew } from "../../../actions/playlist";
 
@@ -35,7 +35,7 @@ export default class NewPlaylists extends Component {
 
   render() {
     const { playlists } = this.props;
-    const isReady = isLoaded(playlists);
+    const isReady = !isPending(playlists);
 
     return (
       <div>
@@ -46,7 +46,7 @@ export default class NewPlaylists extends Component {
           playlists={playlists?.data.slice(0, LIMIT * (this.state.page + 1))}
         />
 
-        {isReady && this.state.hasMore && (
+        {!isLoading(playlists) && playlists.data.length > 0 && this.state.hasMore && (
           <VisibilitySensor partialVisibility offset={{ bottom: -200 }} onChange={this.loadMore}>
             <div className='u-text-center'>
               <button className='c-btn c-btn--secondary c-btn--small' onClick={this.loadMore}>Load more</button>

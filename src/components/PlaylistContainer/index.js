@@ -86,10 +86,10 @@ export default class Playlist extends Component {
         )}
 
         <div className='o-grid'>
-          {isLoaded && playlists.map((item, idx) => (
+          {isLoaded && playlists.map((item) => (
             <PlaylistItem
               big={big}
-              key={`playlistitem-${idx}`}
+              key={`playlistitem-${item.id}`}
               onPlaylistClick={this.onPlaylistClick}
               {...item}
             />
