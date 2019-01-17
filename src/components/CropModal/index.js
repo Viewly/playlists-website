@@ -7,6 +7,7 @@ import Modal from "../modal";
 import { CLOSE_LOGIN_MODAL } from "../../actions/user";
 
 const ASPECT_RATIO = 16/9;
+const JPEG_QUALITY = .9;
 
 @connect((state) => ({
   modal: state.modals.crop,
@@ -23,7 +24,7 @@ class CropModal extends Component {
   saveCroppedImage = () => {
     const { modal, closeModal } = this.props;
 
-    this.ref.getCroppedCanvas().toBlob((data) => modal.callback(data));
+    this.ref.getCroppedCanvas({ width: 800 }).toBlob((data) => modal.callback(data), 'image/jpeg', JPEG_QUALITY);
     closeModal();
   }
 
