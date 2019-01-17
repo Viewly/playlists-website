@@ -67,7 +67,7 @@ export default class PlaylistThumbnail extends Component {
   }
 
   render() {
-    const { playlist_thumbnail_url } = this.props;
+    const { playlist_thumbnail_url, onChange } = this.props;
 
     return (
       <li>
@@ -81,7 +81,14 @@ export default class PlaylistThumbnail extends Component {
           >
             {({getRootProps, getInputProps, isDragActive }) => (
               <>
-                {playlist_thumbnail_url && <img alt='' className='c-file-input__uploaded-img o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />}
+                {playlist_thumbnail_url && (
+                  <>
+                    <img alt='' className='c-file-input__uploaded-img o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
+                    <button className='c-btn c-file-input__btn-remove-img' onClick={() => onChange("")}>
+                      <img className='o-icon o-icon--tiny' src={require("../../../../images/icons/close.svg")} />
+                    </button>
+                  </>
+                )}
                 <div {...getRootProps()} className={`c-file-input__container o-ratio__content ${isDragActive ? 'is-drag-and-drop-target' : ''}`}>
                   <input {...getInputProps()}  className='c-file-input__input' type="file" id="file" />
                   <div className='c-file-input__content'>
