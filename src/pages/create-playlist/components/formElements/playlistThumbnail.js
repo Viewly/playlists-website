@@ -81,7 +81,14 @@ export default class PlaylistThumbnail extends Component {
           >
             {({getRootProps, getInputProps, isDragActive }) => (
               <>
-                {playlist_thumbnail_url && <img alt='' className='c-file-input__uploaded-img o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />}
+                {playlist_thumbnail_url && (
+                  <>
+                    <img alt='' className='c-file-input__uploaded-img o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
+                    <button className='c-btn c-file-input__btn-remove-img' onClick={() => onChange("")}>
+                      <img className='o-icon o-icon--tiny' src={require("../../../../images/icons/close.svg")} />
+                    </button>
+                  </>
+                )}
                 <div {...getRootProps()} className={`c-file-input__container o-ratio__content ${isDragActive ? 'is-drag-and-drop-target' : ''}`}>
                   <input {...getInputProps()}  className='c-file-input__input' type="file" id="file" />
                   <div className='c-file-input__content'>
@@ -91,12 +98,6 @@ export default class PlaylistThumbnail extends Component {
                   </div>
                 </div>
                 {this.state.uploading && <span className='c-file-input__upload-progress' style={{ width: `${this.state.percentage}%` }}/>}
-                {playlist_thumbnail_url && (
-                  <>
-                    <img alt='' className='o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
-                    <button onClick={() => onChange("")} style={{zIndex: 999, position: 'absolute', top: 0, right: 0}}>X</button>
-                  </>
-                )}
               </>
             )}
           </Dropzone>

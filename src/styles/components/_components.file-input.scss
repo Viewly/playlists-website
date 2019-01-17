@@ -134,6 +134,22 @@
         z-index: 30;
     }
 
+    .c-file-input__btn-remove-img {
+        background-color: rgba(#000, .85);
+        border-radius: 2px;
+        color: #fff;
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 700;
+        opacity: .8;
+        text-transform: uppercase;
+        padding: 3px 4px;
+        position: absolute;
+        top: $spacing-unit-tiny;
+        right: $spacing-unit-tiny;
+        z-index: 200;
+    }
+
     /**
      * 1. Enable drag and drop after the image has been uploaded. Since the image
      *    is higher on z-axis than the `.c-file-input__container` we need to
