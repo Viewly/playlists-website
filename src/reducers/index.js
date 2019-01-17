@@ -63,7 +63,7 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, playlists: { data: action.data, _status: LOADED } };
 
     case playlistActions.PLAYLISTS_FETCH_NEW_SUCCESS:
-      return { ...state, playlists_new: { data: action.data, _status: LOADED } };
+      return { ...state, playlists_new: { data: [ ...state.playlists_new.data, ...action.data ], _status: LOADED } };
 
     case playlistActions.PLAYLISTS_FETCH_PICKED_SUCCESS:
       return { ...state, playlists_picked: { data: action.data, _status: LOADED } };
