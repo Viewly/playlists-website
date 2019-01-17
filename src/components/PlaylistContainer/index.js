@@ -18,7 +18,7 @@ import Loading from "../loading";
 }))
 export default class Playlist extends Component {
   static propTypes = {
-    injectPlaylist: PropTypes.func.isRequired,
+    injectPlaylist: PropTypes.func,
     playlists: PropTypes.array,
     title: PropTypes.node,
     moreButton: PropTypes.oneOfType([
@@ -86,10 +86,10 @@ export default class Playlist extends Component {
         )}
 
         <div className='o-grid'>
-          {isLoaded && playlists.map((item, idx) => (
+          {isLoaded && playlists.map((item) => (
             <PlaylistItem
               big={big}
-              key={`playlistitem-${idx}`}
+              key={`playlistitem-${item.id}`}
               onPlaylistClick={this.onPlaylistClick}
               {...item}
             />
