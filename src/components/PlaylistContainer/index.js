@@ -18,7 +18,7 @@ import Loading from "../loading";
 }))
 export default class Playlist extends Component {
   static propTypes = {
-    injectPlaylist: PropTypes.func.isRequired,
+    injectPlaylist: PropTypes.func,
     playlists: PropTypes.array,
     title: PropTypes.node,
     moreButton: PropTypes.oneOfType([

@@ -179,3 +179,28 @@ export async function playlistViews (baseUrl, { playlistId }) {
 
   return body;
 }
+
+export async function playlistsFetchNew (baseUrl, params) {
+  let url = `${baseUrl}/playlists?status=published&order=publish_date`;
+
+  if (params && params.page) {
+    url += `&page=${params.page}`;
+  }
+
+  if (params && params.limit) {
+    url += `&limit=${params.limit}`;
+  }
+
+  const { body } = await get(url, {}, { authorization: params.authorization });
+
+  return body;
+}
+
+export async function playlistsFetchPicked (baseUrl, params) {
+  const url = `${baseUrl}/playlists?status=published&order=publish_date&classification=staff_picked&page=0&limit=3`;
+
+  const { body } = await get(url, {}, { authorization: params.authorization });
+
+  return body;
+}
+
