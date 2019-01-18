@@ -11,7 +11,14 @@ class ScrollToTop extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 0);
+      // temporary/dirty hack to prevent page jump on playlist page when switching tabs
+      const prevLoc = prevProps.location.pathname.substring(0, 10);
+      const thisLoc= this.props.location.pathname.substring(0, 10);
+
+      if (prevLoc !== thisLoc) {
+        window.scrollTo(0, 0);
+      }
+      // end hack :( 
     }
   }
 
