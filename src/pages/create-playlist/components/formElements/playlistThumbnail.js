@@ -19,6 +19,14 @@ export default class PlaylistThumbnail extends Component {
     percentage: 0,
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.injectImageBlob !== this.props.injectImageBlob && this.props.injectImageBlob) {
+      this.setState({ selectedFile: { name: 'inject.jpg' } }, () => {
+        this.onUpload(this.props.injectImageBlob);
+      });
+    }
+  }
+
   onUpload = async (croppedImageURL) => {
     const { getUploadUrl, uploadFile, onChange } = this.props;
 

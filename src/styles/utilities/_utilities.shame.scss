@@ -58,6 +58,28 @@
 
     .c-video-link-preview__thumbnail {
         border-radius: $global-border-radius;
+        overflow: hidden;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .c-video-link-preview__thumbnail__btn[class] {
+        background-color: rgba(#000, .7);
+        color: #fff;
+        display: block;
+        text-align: center;
+        padding: $spacing-unit-tiny 2px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 200;
+
+        &:hover {
+            background-color: color('brand-secondary');
+        }
     }
 
 .c-faux-link {
