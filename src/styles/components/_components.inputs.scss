@@ -103,7 +103,15 @@
 }
 
 .c-input--textarea {
-    height: 104px;
+    min-height: 144px;
+    height: 144px;
     line-height: 1.4;
     resize: none;
+}
+
+.c-input--textare--resizable {
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    resize: vertical;
 }
