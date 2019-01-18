@@ -116,7 +116,6 @@ export default class PlaylistComments extends Component {
     const isReady = comments.playlist_id === playlist.id && isLoaded(comments);
     const isPlaylistOwner = playlist.user.id === user.id;
     const selectedComment = this.getSelectedComment();
-    console.log("sele", selectedComment);
 
     return (
       <div className='u-3/4@medium u-3/5@large u-1/2@extralarge u-horizontally-center u-padding-top@large'>
