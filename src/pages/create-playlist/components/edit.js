@@ -84,7 +84,7 @@ class EditPlaylist extends Component {
   };
 
   handleSubmit = async (evnt, customData = {}) => {
-    const { playlistUpdate } = this.props;
+    const { playlist, playlistUpdate } = this.props;
     evnt && evnt.preventDefault();
 
     const response = await playlistUpdate({
@@ -96,31 +96,45 @@ class EditPlaylist extends Component {
       "category": this.state.category,
       "hashtags": this.state.hashtags,
       "playlist_thumbnail_url": this.state.playlist_thumbnail_url,
+      "videos": playlist.videos,
       ...customData
     });
 
     return response;
   };
 
-  saveDraft = async (evnt) => {
+  saveDraft = (force) => async (evnt) => {
     const { history, openToast } = this.props;
 
-    await this.handleSubmit(evnt, { status: 'draft' });
-    openToast({ type: "info", message: "Playlist saved to drafts" });
-    history.push(`/my-playlists/drafts`);
+    const confirmation = force || confirm('Your playlist will be unpublished and moved back to drafts, are you sure?');
+
+    if (confirmation) {
+      await this.handleSubmit(evnt, { status: 'draft' });
+      openToast({ type: "info", message: "Playlist saved to drafts" });
+      history.push(`/my-playlists/drafts`);
+    }
   }
 
-  savePublish = async (evnt) => {
+  savePublish = (updateOnly) => async (evnt) => {
     const { history, openToast } = this.props;
 
-    const validation = this.validateSubmit();
+    const confirmation = updateOnly || confirm('Your playlist will go live immediately, are you sure?');
 
-    if (validation.success) {
-      const response = await this.handleSubmit(evnt, { status: 'published' });
-      openToast({ type: "success", title: "Congratulations", message: "Your playlist is now live " });
-      history.push(`/playlist/${response.url}`);
-    } else {
-      openToast({ type: "error", message: validation.message });
+    if (confirmation) {
+      const validation = this.validateSubmit();
+
+      if (validation.success) {
+        const response = await this.handleSubmit(evnt, { status: 'published' });
+
+        if (!updateOnly) {
+          openToast({ type: "success", title: "Congratulations", message: "Your playlist is now live " });
+          history.push(`/playlist/${response.url}`);
+        } else {
+          openToast({ type: "success", title: "Congratulations", message: "Your changes have been saved" });
+        }
+      } else {
+        openToast({ type: "error", message: validation.message });
+      }
     }
   }
 
@@ -241,8 +255,17 @@ class EditPlaylist extends Component {
             </div>
 
             <div className='o-grid__cell'>
-              <button onClick={this.saveDraft} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
-              <button onClick={this.savePublish} className='c-btn c-btn--secondary'>Publish</button>
+              {this.state.status === 'published' ? (
+                <>
+                  <button onClick={this.saveDraft(false)} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Unpublish</button>
+                  <button onClick={this.savePublish(true)} className='c-btn c-btn--secondary'>Save</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={this.saveDraft(true)} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
+                  <button onClick={this.savePublish(false)} className='c-btn c-btn--secondary'>Publish</button>
+                </>
+              )}
             </div>
           </div>
         </div>
