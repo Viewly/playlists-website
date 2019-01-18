@@ -59,6 +59,10 @@
     .c-video-link-preview__thumbnail {
         border-radius: $global-border-radius;
         overflow: hidden;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     .c-video-link-preview__thumbnail__btn[class] {
