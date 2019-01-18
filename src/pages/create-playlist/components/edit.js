@@ -257,7 +257,7 @@ class EditPlaylist extends Component {
                 <PlaylistVideosContainer
                   playlistId={playlistId}
                   videos={playlist.videos}
-                  showSetThumbnail={this.state.playlist_thumbnail_url.length === 0}
+                  showSetThumbnail={this.state.playlist_thumbnail_url?.length === 0}
                   onSetThumbnail={this.onSetThumbnail}
                   onDelete={this.onDelete}/>
               )}
