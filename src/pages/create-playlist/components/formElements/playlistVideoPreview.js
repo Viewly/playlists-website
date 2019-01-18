@@ -34,11 +34,9 @@ export default class PlaylistVideoPreview extends Component {
         <div className='o-grid o-grid--auto o-grid--nowrap o-grid--middle o-grid--small'>
 
           <div className='o-grid__cell'>
-            <div className='c-faux-link'>
-              <img
-                className='o-icon o-icon--small'
-                src={require("../../../../images/icons/reorder.svg")}/>
-            </div>
+            <img
+              className='o-icon o-icon--small'
+              src={require("../../../../images/icons/reorder.svg")}/>
           </div>
           <div className='o-grid__cell o-grid__cell--grow'>
             <div className='o-grid o-grid--small o-grid--auto o-grid--nowrap o-grid--middle'>
