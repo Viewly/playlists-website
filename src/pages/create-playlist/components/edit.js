@@ -18,7 +18,7 @@ import PlaylistDescription from "./formElements/playlistDescription";
 import PlaylistHashtags from "./formElements/playlistHashtags";
 import PlaylistAddVideos from "./formElements/playlistAddVideos";
 import { set } from "lodash";
-import { isLoaded, slugUrl } from "../../../utils";
+import { getImageFormUrl, isLoaded, slugUrl } from "../../../utils";
 import { OPEN_TOAST } from "../../../actions/toast";
 import PlaylistVideosContainer from "./formElements/playlistVideosContainer";
 
@@ -50,7 +50,8 @@ class EditPlaylist extends Component {
     category: { id: 0 },
     playlist_thumbnail_url: "",
     hashtags: "",
-    youtube_url: ""
+    youtube_url: "",
+    injectImageBlob: false
   };
 
   componentDidMount() {
@@ -186,6 +187,19 @@ class EditPlaylist extends Component {
     }
   };
 
+  // TODO - very dirty, uses external CORS workaround that might go down any time
+  onSetThumbnail = (thumbnail_url) => () => {
+    const { openToast } = this.props;
+
+    getImageFormUrl(`https://cors-anywhere.herokuapp.com/${thumbnail_url}`, async (err, blob) => {
+      if (err) {
+        openToast({ type: 'error', message: "Error with fetching Youtube's thumbnail. CORS proxy is down."});
+      } else {
+        this.setState({ injectImageBlob: blob });
+      }
+    })
+  }
+
   getSlug = () => {
     return slugUrl(this.state.id, this.state.title);
   };
@@ -207,8 +221,10 @@ class EditPlaylist extends Component {
               <PlaylistName value={this.state.title} onChange={this.handleChange}/>
               <PlaylistCategory categories={categories.data} value={this.state.category.id || 0}
                                 onChange={this.handleChange}/>
-              <PlaylistThumbnail onChange={this.updateThumbnail}
-                                 playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
+              <PlaylistThumbnail
+                onChange={this.updateThumbnail}
+                injectImageBlob={this.state.injectImageBlob}
+                playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
               <PlaylistDescription value={this.state.description} onChange={this.handleChange}/>
               <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.changeHashtags}/>
             </ul>
@@ -223,8 +239,14 @@ class EditPlaylist extends Component {
             </ul>
 
             <ul className='u-margin-top-large c-form__list c-form__list--small'>
-              {isReady &&
-              <PlaylistVideosContainer playlistId={playlistId} videos={playlist.videos} onDelete={this.onDelete}/>}
+              {isReady && (
+                <PlaylistVideosContainer
+                  playlistId={playlistId}
+                  videos={playlist.videos}
+                  showSetThumbnail={this.state.playlist_thumbnail_url.length === 0}
+                  onSetThumbnail={this.onSetThumbnail}
+                  onDelete={this.onDelete}/>
+              )}
             </ul>
           </div>
         </div>

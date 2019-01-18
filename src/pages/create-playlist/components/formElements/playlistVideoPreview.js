@@ -27,7 +27,7 @@ export default class PlaylistVideoPreview extends Component {
   }
 
   render() {
-    const { id, thumbnail_url, onDelete } = this.props;
+    const { id, thumbnail_url, onDelete, showSetThumbnail, onSetThumbnail } = this.props;
 
     return (
       <div className='c-video-link-preview'>
@@ -43,7 +43,9 @@ export default class PlaylistVideoPreview extends Component {
               <div className='o-grid__cell u-1/1 u-1/3@medium'>
                 <span className='c-video-link-preview__thumbnail o-ratio o-ratio--16:9'>
                   <img className='o-ratio__content' src={thumbnail_url}/>
-                  <button className='c-btn c-btn--plain c-btn--tiny c-video-link-preview__thumbnail__btn' href='/'>set as thumbnail</button>
+                  {showSetThumbnail && (
+                    <button onClick={onSetThumbnail(thumbnail_url)} className='c-btn c-btn--plain c-btn--tiny c-video-link-preview__thumbnail__btn'>set as thumbnail</button>
+                  )}
                 </span>
               </div>
               <div className='o-grid__cell u-1/1 u-2/3@medium u-margin-top-small u-margin-top-none@medium'>
