@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Linkify from "react-linkify";
+import ReactMarkdown from "react-markdown";
 import { THUMBNAIL_ROOT } from "../../../constants";
 
 export default class Header extends Component {
@@ -55,8 +55,9 @@ export default class Header extends Component {
                 <p className='c-section__details'>By <Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link> {/*&bull; <time className='c-section__details__time'>2 weeks ago</time>*/}</p>
 
                 <div className='c-section__description'>
-                  <p><Linkify className='c-linkified' properties={{target: '_blank', rel: "nofollow" }}>{description}</Linkify></p>
+                  <ReactMarkdown source={description} linkTarget="_blank" />
                 </div>
+
                 <div className='c-section__hashtags'>
                   {hashtags.map((item, idx) => (
                     <Link key={`hash-${idx}`} to={`/search/?query=${encodeURIComponent(item)}`}>{item}</Link>

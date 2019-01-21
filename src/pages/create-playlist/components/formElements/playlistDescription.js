@@ -1,13 +1,24 @@
 import React from "react";
+import ReactMde from "react-mde";
+import ReactMarkdown from "react-markdown";
+
+import { renderToString } from "react-dom/server";
 
 const PlaylistDescription = ({ value, onChange }) => (
   <li>
     <label className='c-form__label'>Description</label>
-    <textarea
-      className='c-input c-input--primary c-input--textarea c-input--textare--resizable'
-      name="description"
-      value={value}
-      onChange={onChange} />
+    {value && (
+      <ReactMde
+        onChange={onChange}
+        value={value}
+        name="description"
+        generateMarkdownPreview={description => (
+          Promise.resolve(renderToString(
+            <ReactMarkdown source={description} linkTarget="_blank" />
+          ))
+        )}
+    />
+    )}
   </li>
 );
 

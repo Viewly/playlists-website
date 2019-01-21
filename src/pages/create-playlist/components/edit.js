@@ -84,6 +84,10 @@ class EditPlaylist extends Component {
     this.setState(state);
   };
 
+  handleDescriptionChange = (description) => {
+    this.setState({ description });
+  }
+
   handleSubmit = async (evnt, customData = {}) => {
     const { playlist, playlistUpdate } = this.props;
     evnt && evnt.preventDefault();
@@ -239,7 +243,7 @@ class EditPlaylist extends Component {
                 onChange={this.updateThumbnail}
                 injectImageBlob={this.state.injectImageBlob}
                 playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
-              <PlaylistDescription value={this.state.description} onChange={this.handleChange}/>
+              <PlaylistDescription value={this.state.description} onChange={this.handleDescriptionChange}/>
               <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.changeHashtags}/>
             </ul>
           </div>
