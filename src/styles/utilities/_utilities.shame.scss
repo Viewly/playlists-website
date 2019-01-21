@@ -937,3 +937,23 @@ $tweakpoint-category:   large;
     cursor: auto;
 }
 /* END AUTOCOMPLETE RELATED CODE */
+
+/* hack which splits markdown editor icons into new line */
+.mde-tabs {
+    width: 100%;
+    height: 40px;
+}
+/* hack which correctly positions grip icon */
+.react-mde .grip .icon {
+    margin-top: -11px;
+}
+/* tweaks to improve markdown preview style */
+.mde-preview-content {
+    padding: 10px;
+    white-space: pre-line;
+
+    p, blockquote, ul, ol, dl, table, pre {
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+}
