@@ -73,13 +73,18 @@ $colors: (
 // Header
 $header-height:                             62px;
 
+
 // Promo message height
 $promotion-message-height:                  52px;
 
 
+// Tweakpoint small mobile
+$tweakpoint-small-mobile:                   395px;
+
+
 // Primary navigation
 $tweakpoint-nav-primary:                    505px;
-$tweakpoint-nav-primary-medium:             650px;
+$tweakpoint-nav-primary-medium:             700px;
 $tweakpoint-nav-primary-large:              1160px;
 
 $nav-height:                                50px;
@@ -87,7 +92,7 @@ $nav-height:                                50px;
 
 // Search form
 $tweakpoint-search-form:                    640px;
-$tweakpoint-search-form-large:              808px;
+$tweakpoint-search-form-large:              888px;
 $tweakpoint-search-form-extralarge:         extralarge;
 
 

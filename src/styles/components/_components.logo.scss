@@ -14,6 +14,10 @@
     &:active {
         transform: translateY(1px);
     }
+
+    @include mq($until: $tweakpoint-small-mobile) {
+        height: 26px;
+    }
 }
 
     .c-logo__img {

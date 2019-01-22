@@ -117,6 +117,13 @@ class HeaderContainer extends Component {
               )}
               {user && (
                 <div className='o-grid__cell'>
+                  <Link to='/bookmarks' className='has-colored-icon'>
+                      <img className='c-header__icon-bookmark o-icon o-icon--small' src={require("../../images/icons/bookmark-header.svg")} />
+                    </Link>
+                </div>
+              )}
+              {user && (
+                <div className='o-grid__cell'>
                   <NotificationsBadge />
                 </div>
               )}
@@ -126,7 +133,6 @@ class HeaderContainer extends Component {
                     toggle={<UserMenu user={user} />}
                     list={[
                       { label: "My playlists", url: "/my-playlists" },
-                      { label: "Bookmarks", url: "/bookmarks" },
                       { label: "Profile settings", url: "/account" },
                       { label: "Take the survey", url: "https://viewly.typeform.com/to/fRTC0m", external: true, classNames: 'c-dropdown__menu__link--highlighted'},
                       { label: "Logout", onClick: this.logOut },
