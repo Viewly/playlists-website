@@ -51,14 +51,15 @@ class EditPlaylist extends Component {
     playlist_thumbnail_url: "",
     hashtags: "",
     youtube_url: "",
-    injectImageBlob: false
+    injectImageBlob: false,
+    ready: false
   };
 
   componentDidMount() {
     const { categoriesFetch, playlist, playlistFetch, match: { params: { playlistId } } } = this.props;
 
     if (playlist.id === playlistId) {
-      this.setState({ ...this.state, ...playlist });
+      this.setState({ ...this.state, ...playlist, ready: true });
     }
 
     categoriesFetch();
@@ -68,7 +69,7 @@ class EditPlaylist extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.playlist.id !== this.props.playlist.id) {
-      this.setState({ ...this.state, ...this.props.playlist });
+      this.setState({ ...this.state, ...this.props.playlist, ready: true });
     }
   }
 
@@ -243,7 +244,7 @@ class EditPlaylist extends Component {
                 onChange={this.updateThumbnail}
                 injectImageBlob={this.state.injectImageBlob}
                 playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
-              <PlaylistDescription value={this.state.description} onChange={this.handleDescriptionChange}/>
+              <PlaylistDescription isReady={this.state.ready} value={this.state.description} onChange={this.handleDescriptionChange}/>
               <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.changeHashtags}/>
             </ul>
           </div>
