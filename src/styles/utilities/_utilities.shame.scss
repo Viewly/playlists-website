@@ -136,7 +136,7 @@ hr {
             &:not(:last-child) {
                 margin-right: $spacing-unit;
 
-                @include mq($until: 395px) {
+                @include mq($until: $tweakpoint-small-mobile) {
                     margin-right: 0;
                 }
             }
@@ -148,13 +148,13 @@ hr {
         }
 
         .c-header__avatar[class] {
-            @include mq($until: 395px) {
+            @include mq($until: $tweakpoint-small-mobile) {
                 font-size: 32px;
             }
         }
 
         .c-header__hide-on-extrasmallscreen {
-            @include mq($until: 395px) {
+            @include mq($until: $tweakpoint-small-mobile) {
                 display: none;
             }
         }

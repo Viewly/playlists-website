@@ -15,7 +15,7 @@
         transform: translateY(1px);
     }
 
-    @include mq($until: 395px) {
+    @include mq($until: $tweakpoint-small-mobile) {
         height: 26px;
     }
 }
