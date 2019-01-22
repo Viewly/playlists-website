@@ -135,11 +135,22 @@ hr {
 
             &:not(:last-child) {
                 margin-right: $spacing-unit;
+
+                @include mq($until: 395px) {
+                    margin-right: 0;
+                }
             }
+
         }
 
         .c-header__grid__item--right {
             margin-left: auto;
+        }
+
+        .c-header__avatar[class] {
+            @include mq($until: 395px) {
+                font-size: 32px;
+            }
         }
 
         .c-header__hide-on-extrasmallscreen {
@@ -159,6 +170,13 @@ hr {
 
             @include mq($until: medium) {
                 display: none;
+            }
+        }
+
+        .c-header__icon-bookmark,
+        .c-header__icon-notification {
+            @include mq($until: medium) {
+                font-size: 22px;
             }
         }
 

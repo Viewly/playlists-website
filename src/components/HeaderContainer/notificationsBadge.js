@@ -58,7 +58,7 @@ export default class NotificationsBadge extends Component {
           showArrow={false}
           onToggleClick={this.clickPhone}
           toggle={(
-            <div className={`c-notification-badge ${unreadNotifications.length > 0 ? 'is-unread' : ''}`}>
+            <div className={`c-header__icon-notification c-notification-badge ${unreadNotifications.length > 0 ? 'is-unread' : ''}`}>
               <img alt='' className='c-notification-badge__icon' src={require("../../images/icons/bell.svg")} />
               <img alt='' className='c-notification-badge__icon' src={require("../../images/icons/bell-active.svg")} />
             </div>

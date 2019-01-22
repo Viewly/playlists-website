@@ -118,7 +118,7 @@ class HeaderContainer extends Component {
               {user && (
                 <div className='o-grid__cell'>
                   <Link to='/bookmarks' className='has-colored-icon'>
-                      <img className='o-icon o-icon--small' src={require("../../images/icons/bookmark-header.svg")} />
+                      <img className='c-header__icon-bookmark o-icon o-icon--small' src={require("../../images/icons/bookmark-header.svg")} />
                     </Link>
                 </div>
               )}
