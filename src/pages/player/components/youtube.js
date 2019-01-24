@@ -178,7 +178,8 @@ class YoutubeComponent extends React.Component {
           ref={(ref) => this.ref = window.PP = ref}
           videoId={videoId}
           opts={opts}
-          className="c-player__video"
+          className="o-ratio__content"
+          containerClassName="c-player__video o-ratio o-ratio--16:9"
           onReady={this.onReady}
           onStateChange={this.onStateChange}
           onError={this.onError}
