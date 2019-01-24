@@ -82,8 +82,7 @@ class HomePage extends Component {
         <div className='o-wrapper u-margin-top-large u-margin-top-huge@large'>
           <div className='u-margin-bottom-large'>
             <Playlist
-              big
-              title="Our picks"
+              title="Picks of the week"
               isLoaded={isReady}
               playlists={playlists_picked.data}
             />
