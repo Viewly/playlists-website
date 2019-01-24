@@ -16,6 +16,7 @@ import ResetPasswordPage from "./pages/reset-password";
 import AuthyPage from "./pages/authy";
 import OnboardingPage from "./pages/onboarding";
 import BookmarksPage from "./pages/bookmarks";
+import GiveawayPage from "./pages/giveaway";
 import PromoPage from "./pages/promo-early-adopters";
 import TestPage from "./pages/test";
 import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE, PLAYER_PAGE } from "./constants/pages";
@@ -101,6 +102,10 @@ export const routes = [
   {
     path: "/bookmarks",
     component: BookmarksPage
+  },
+  {
+    path: "/giveaway",
+    component: GiveawayPage
   },
   {
     path: "/_test",
