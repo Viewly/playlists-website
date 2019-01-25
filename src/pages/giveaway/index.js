@@ -15,7 +15,7 @@ export default class GiveawayPage extends Component {
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <SEO title="Giveaway" />
-        
+
         <a className="e-widget no-button generic-loader" href="https://gleam.io/K1ioX/iberleezy-x-vidflow-giveaway" rel="nofollow">iBerleezy x Vidflow Giveaway</a>
       </div>
     );

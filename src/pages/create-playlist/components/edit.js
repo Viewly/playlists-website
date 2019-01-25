@@ -21,6 +21,7 @@ import { set } from "lodash";
 import { getImageFormUrl, isLoaded, slugUrl } from "../../../utils";
 import { OPEN_TOAST } from "../../../actions/toast";
 import PlaylistVideosContainer from "./formElements/playlistVideosContainer";
+import { PlaylistcreateEvent } from "../../../gleam";
 
 @withRouter
 @connect((state) => ({
@@ -122,7 +123,7 @@ class EditPlaylist extends Component {
   }
 
   savePublish = (updateOnly) => async (evnt) => {
-    const { history, openToast } = this.props;
+    const { history, openToast, playlist } = this.props;
 
     const confirmation = updateOnly || confirm('Your playlist will go live immediately, are you sure?');
 
@@ -133,6 +134,10 @@ class EditPlaylist extends Component {
         const response = await this.handleSubmit(evnt, { status: 'published' });
 
         if (!updateOnly) {
+          if (playlist.videos.length >= 5) {
+            PlaylistcreateEvent(playlist.url);
+          }
+
           openToast({ type: "success", title: "Congratulations", message: "Your playlist is now live " });
           history.push(`/playlist/${response.url}`);
         } else {

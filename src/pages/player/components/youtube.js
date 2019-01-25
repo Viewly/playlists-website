@@ -13,6 +13,7 @@ import {
   YOUTUBE_ERROR_REMOVED,
   YOUTUBE_ERROR_UNPLAYABLE
 } from "../../../constants/youtube_status";
+import { WatchTimeEvent } from "../../../gleam";
 
 class YoutubeComponent extends React.Component {
   static propTypes = {
@@ -29,13 +30,23 @@ class YoutubeComponent extends React.Component {
     currentTime: 0
   };
 
+  componentDidMount() {
+    this.watchInterval = setInterval(this.watchTrigger, 5000);
+  }
+
   componentWillUnmount() {
     const { logAction } = this.props;
 
+    this.watchInterval && clearInterval(this.watchInterval);
     this.timeUpdater && clearInterval(this.timeUpdater);
     logAction({ playback_state: 0, current_time: this.state.currentTime });
   }
 
+  watchTrigger = () => {
+    if (this.state.currentState === 1) {
+      WatchTimeEvent();
+    }
+  }
 
   updateTime = (player) => {
     const oldTime = this.state.currentTime;
