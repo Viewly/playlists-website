@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import AuthSidebar from "../../components/authSidebar";
 import { userRegister, LOGIN_SUCCESS_PERSIST, getSocialLoginUrl } from "../../actions/user";
 import SEO from "../../components/SEO";
+import { RegistrationEvent } from "../../gleam";
 
 @connect(null, (dispatch) => ({
   userRegister: (first_name, last_name, email, password) => dispatch(userRegister({ first_name, last_name, email, password })),
@@ -42,6 +43,7 @@ class RegistrationPage extends Component {
 
     if (response.success) {
       loginSuccess(response.user);
+      RegistrationEvent(response.user.email);
       history.push("/onboarding");
     } else {
       this.setState({
