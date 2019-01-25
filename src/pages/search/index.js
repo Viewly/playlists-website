@@ -96,7 +96,7 @@ class SearchPage extends Component {
           <div className='c-search-form c-search-form--mobile u-margin-bottom-large'>
             <input
               className='c-search-form__input c-input c-input--primary'
-              placeholder='Search playlists'
+              placeholder='Search'
               type='search'
               value={this.state.queryInput}
               onKeyUp={this.handleEnter}
