@@ -159,6 +159,17 @@ hr {
     z-index: 800;
 }
 
+.button-focus {
+    background-color: rgba(#000, .6);
+    color: #fff;
+    font-size: 24px;
+    padding: $spacing-unit-small 14px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 800;
+}
+
 
 .c-share {
     display: inline-flex;

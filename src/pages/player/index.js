@@ -154,9 +154,10 @@ class PlayerPage extends Component {
               videos={playlist.videos} />
 
             <button
-              style={{ position: 'absolute', bottom: 10, left: 200, zIndex: 9999}}
+              className='c-btn button-focus'
               onClick={() => this.setState({ focusMode: !this.state.focusMode })}>
-              PRETTY FOCUS ({this.state.focusMode ? 'on' : 'off)'}
+              {/*PRETTY FOCUS ({this.state.focusMode ? 'on' : 'off)'}*/}
+              <img className='o-icon' src={require("../../images/icons/fullscreen.svg")} />
             </button>
           </div>
         )}

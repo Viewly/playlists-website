@@ -11,7 +11,7 @@ const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage, logAction, 
       {video && <Youtube videoId={video.video_id} logAction={logAction} percentage={video.percentage} resumeTime={video.currentTime} onVideoEnd={onVideoEnd} onPercentage={onPercentage} />}
     </div>
 
-    <Link className='c-btn button-back' to={playlistUrl}><img className='o-icon o-icon--small' src={require("../../../images/icons/close.svg")} /></Link>
+    <Link className='c-btn button-back' to={playlistUrl}><img className='o-icon o-icon--small' src={require("../../../images/icons/chevron-left.svg")} /></Link>
   </div>
 );
 
