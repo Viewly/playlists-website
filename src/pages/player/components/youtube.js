@@ -151,7 +151,8 @@ class YoutubeComponent extends React.Component {
     const opts = {
       playerVars: {
         autoplay: 1,
-        rel: 0
+        rel: 0,
+        modestbranding: 1
       }
     };
 
@@ -178,8 +179,8 @@ class YoutubeComponent extends React.Component {
           ref={(ref) => this.ref = window.PP = ref}
           videoId={videoId}
           opts={opts}
-          className="c-player__wrapper"
-          containerClassName="c-player__container"
+          className="o-ratio__content"
+          containerClassName="c-player__video o-ratio o-ratio--16:9"
           onReady={this.onReady}
           onStateChange={this.onStateChange}
           onError={this.onError}
