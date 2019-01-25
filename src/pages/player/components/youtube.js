@@ -152,7 +152,6 @@ class YoutubeComponent extends React.Component {
       playerVars: {
         autoplay: 1,
         rel: 0,
-        fs: 0,
         modestbranding: 1
       }
     };

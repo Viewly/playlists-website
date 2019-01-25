@@ -153,12 +153,12 @@ class PlayerPage extends Component {
               percentage={playlist.percentage}
               videos={playlist.videos} />
 
-            <button
+            {/*<button
               className='c-btn button-focus'
               onClick={() => this.setState({ focusMode: !this.state.focusMode })}>
-              {/*PRETTY FOCUS ({this.state.focusMode ? 'on' : 'off)'}*/}
+              PRETTY FOCUS ({this.state.focusMode ? 'on' : 'off)'}
               <img className='o-icon' src={require("../../images/icons/fullscreen.svg")} />
-            </button>
+            </button>*/}
           </div>
         )}
       </>
