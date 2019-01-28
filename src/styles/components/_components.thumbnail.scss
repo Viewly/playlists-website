@@ -32,13 +32,10 @@ $thumbnail-progress-bar-height:     3px;
 
             .c-thumbnail__description,
             .c-thumbnail__play-icon,
+            .c-thumbnail__total-videos,
+            .c-thumbnail__duration-indicator,
             .c-thumbnail__edit {
                 @include visible;
-            }
-
-            .c-thumbnail__total-videos,
-            .c-thumbnail__duration-indicator {
-                opacity: 1;
             }
         }
     }
@@ -107,7 +104,6 @@ $thumbnail-progress-bar-height:     3px;
         display: block;
         font-size: 12px;
         line-height: 1.2;
-        opacity: .8;
         padding: 2px 4px;
         pointer-events: none;
         transition: inherit;
@@ -116,12 +112,17 @@ $thumbnail-progress-bar-height:     3px;
         z-index: 30;
 
         @include mq($tweakpoint-thumbnail) {
-            opacity: 0;
+            @include invisible;
         }
     }
 
     .c-thumbnail__total-videos {
-        left: $spacing-unit-tiny;
+        right: $spacing-unit-tiny;
+
+        @include mq($tweakpoint-thumbnail) {
+            top: $spacing-unit-tiny;
+            bottom: auto;
+        }
     }
 
     .c-thumbnail__duration-indicator {
@@ -172,13 +173,21 @@ $thumbnail-progress-bar-height:     3px;
     }
 
     .c-thumbnail__bookmark {
+        background-color: rgba(#000, .8);
+        border-radius: 2px;
         display: block;
+        padding: 3px;
         pointer-events: none;
         transition: inherit;
         position: absolute;
-        top: $spacing-unit-tiny;
-        right: $spacing-unit-tiny;
+        bottom: $spacing-unit-tiny;
+        left: $spacing-unit-tiny;
         z-index: 30;
+
+        @include mq($tweakpoint-thumbnail) {
+            top: $spacing-unit-tiny;
+            bottom: auto;
+        }
     }
 
     .c-thumbnail__play-icon {
@@ -210,14 +219,22 @@ $thumbnail-progress-bar-height:     3px;
     }
 
     .c-thumbnail__description {
+        $font-size: 13px;
+        $line-height: 1.45;
+        $max-number-of-lines: 3;
+        $max-height: $font-size * ($line-height) * $max-number-of-lines;
+
         @include invisible;
         color: #fff;
         display: block;
+        font-size: $font-size;
+        max-height: round($max-height);
+        overflow: hidden;
         padding: 2px 4px;
         pointer-events: none;
         transition: inherit;
         position: absolute;
-        bottom: $spacing-unit * 2;
+        bottom: $spacing-unit-small;
         right: $spacing-unit-tiny;
         left: $spacing-unit-tiny;
         z-index: 30;
