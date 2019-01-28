@@ -278,26 +278,26 @@ class EditPlaylist extends Component {
         <div
           className='u-horizontally-center u-margin-top u-margin-top-large@large u-4/5@medium u-1/1@large u-4/5@extralarge'>
           <hr className='u-margin-bottom'/>
-          <div className='o-grid o-grid--auto o-grid--small o-grid--middle o-grid--between'>
-            <div onClick={this.deletePlaylist} className='o-grid__cell'>
-              <button className='c-btn c-btn--plain c-btn--danger c-btn--with-icon c-btn--delete-playlist'>
-                <img className='o-icon o-icon--small u-margin-right-tiny' src={require("../../../images/icons/delete.svg")} />
-                <span className='c-btn__label'>Delete playlist</span>
-              </button>
-            </div>
+          <div className='o-grid o-grid--auto o-grid--tiny o-grid--middle o-grid--between o-grid--reverse'>
 
             <div className='o-grid__cell'>
               {this.state.status === 'published' ? (
                 <>
-                  <button onClick={this.saveDraft(false)} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Unpublish</button>
-                  <button onClick={this.savePublish(true)} className='c-btn c-btn--secondary'>Save</button>
+                  <button onClick={this.savePublish(true)} className='c-btn c-btn--secondary u-margin-right-small'>Save changes</button>
+                  <button onClick={this.saveDraft(false)} className='c-btn c-btn--secondary c-btn--hollow'>Unpublish</button>
                 </>
               ) : (
                 <>
-                  <button onClick={this.saveDraft(true)} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
-                  <button onClick={this.savePublish(false)} className='c-btn c-btn--secondary'>Publish</button>
+                  <button onClick={this.saveDraft(true)} className='c-btn c-btn--secondary  u-margin-right-small'>Save as draft</button>
+                  <button onClick={this.savePublish(false)} className='c-btn c-btn--secondary c-btn--hollow'>Publish</button>
                 </>
               )}
+            </div>
+            <div className='o-grid__cell'>
+              <button onClick={this.deletePlaylist} className='c-btn c-btn--plain c-btn--danger c-btn--with-icon c-btn--delete-playlist'>
+                <img className='o-icon o-icon--small u-margin-right-tiny' src={require("../../../images/icons/delete.svg")} />
+                <span className='c-btn__label'>Delete playlist</span>
+              </button>
             </div>
           </div>
         </div>
