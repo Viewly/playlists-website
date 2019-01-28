@@ -718,10 +718,16 @@ $tweakpoint-category:   large;
 
 
 .c-btn--delete-playlist {
-    @include mq($until: 560px) {
+    $tweakpoint: 365px;
+
+    @include mq($from: $tweakpoint, $until: 560px) {
         .c-btn__label {
             display: none;
         }
+    }
+
+    @include mq($until: $tweakpoint - 1) {
+        margin-top: $spacing-unit;
     }
 }
 
