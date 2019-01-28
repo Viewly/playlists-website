@@ -30,7 +30,6 @@ export const routes = [
     exact: true,
     analytics: {
       pageName: HOME_PAGE,
-      pageEnter: "HomepageEvent",
       pageLeave: "HomepageEvent"
     }
   },
