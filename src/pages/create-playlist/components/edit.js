@@ -289,13 +289,13 @@ class EditPlaylist extends Component {
             <div className='o-grid__cell'>
               {this.state.status === 'published' ? (
                 <>
-                  <button onClick={this.saveDraft(false)} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Unpublish</button>
-                  <button onClick={this.savePublish(true)} className='c-btn c-btn--secondary'>Save</button>
+                  <button onClick={this.savePublish(true)} className='c-btn c-btn--secondary u-margin-right-small'>Save changes</button>
+                  <button onClick={this.saveDraft(false)} className='c-btn c-btn--secondary c-btn--hollow'>Unpublish</button>
                 </>
               ) : (
                 <>
-                  <button onClick={this.saveDraft(true)} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
-                  <button onClick={this.savePublish(false)} className='c-btn c-btn--secondary'>Publish</button>
+                  <button onClick={this.saveDraft(true)} className='c-btn c-btn--secondary  u-margin-right-small'>Save as draft</button>
+                  <button onClick={this.savePublish(false)} className='c-btn c-btn--secondary c-btn--hollow'>Publish</button>
                 </>
               )}
             </div>
