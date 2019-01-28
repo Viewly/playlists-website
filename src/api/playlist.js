@@ -197,7 +197,7 @@ export async function playlistsFetchNew (baseUrl, params) {
 }
 
 export async function playlistsFetchPicked (baseUrl, params) {
-  const url = `${baseUrl}/playlists?status=published&order=publish_date&classification=staff_picked&page=0&limit=4`;
+  const url = `${baseUrl}/playlists?status=published&order=publish_date&classification=staff_picked&page=0&limit=3`;
 
   const { body } = await get(url, {}, { authorization: params.authorization });
 
