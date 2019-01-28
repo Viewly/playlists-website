@@ -19,7 +19,7 @@ export async function WatchEvent(data) {
 export async function WatchTimeEvent() {
   const storageKey = "watchtime";
   const incrementSeconds = 5;
-  const watchRequirement = 60; // 1 minute - 60, 1 hour - 3600
+  const watchRequirement = 3600; // 1 minute - 60, 1 hour - 3600
   const time = parseInt(localStorage.getItem(storageKey) || 0, 10);
 
   if (time + incrementSeconds >= watchRequirement) {
