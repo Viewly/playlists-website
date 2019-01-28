@@ -12,7 +12,6 @@
         background-color: #000;
         border-radius: 3px;
         box-shadow: 0 15px 30px rgba(10,10,10, .65);
-        max-width: 1400px;
         overflow: hidden;
         transform: translate(-50%, -50%);
         width: 100%;
@@ -30,6 +29,16 @@
         }
     }
 
+        /**
+         * 1. Prevent our UI controls overlapping with YouTube player's on
+         *    mobile phones in landscape mode. TODO: current number (double of
+         *    `$spacing-unit-large`) is arbitrary, in the future base this
+         *    number on the actual size of our control bars.
+         */
         .c-player__video {
             max-height: 100vh;
+
+            @include mq($until: large, $and: '(orientation: landscape)') {
+                max-height: calc(100vh - #{$spacing-unit-large * 2}); /* [1] */
+            }
         }
