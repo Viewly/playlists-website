@@ -2,142 +2,147 @@
     #REACT TAGS
 \*------------------------------------*/
 
-/* AUTOCOMPLETE RELATED CODE */
-.c-react-tags[class] {
-    position: relative;
-    //padding: 6px 0 0 6px;
+$react-tags-spacing:                $spacing-unit-tiny;
 
-    /* shared font styles */
-    //font-size: 1em;
+
+
+
+/**
+ * 1. Bump up specificity to override `c-input` styles
+ * 2. Clicking anywhere will focus the input
+ * 3. Override `c-input` styles
+ * 4. Parent context for the autocomplete dropdown
+ */
+.c-react-tags[class] { /* [1] */
+    cursor: text; /* [2] */
     line-height: 1.2;
-    padding-top: $spacing-unit-tiny;
-    padding-bottom: $spacing-unit-tiny;
+    padding-top: $react-tags-spacing;
+    padding-bottom: 0; /* [3] */
+    position: relative; /* [4] */
 
-    /* clicking anywhere will focus the input */
-    cursor: text;
-
-    &.is-focused {
+    &.is-focused[class] { /* [1] */
         background-color: lighten($input-background-color, 4%);
         border-color: rgba(color('brand-secondary'), .5);
         color: $global-text-color;
     }
 }
 
-.c-react-tags__selected {
-    display: inline;
-}
+    .c-react-tags__selected {
+        display: inline;
+    }
 
-.c-react-tags__selected-tag {
-    display: inline-block;
-    margin: 0 6px 6px 0;
-    padding: 6px 8px;
-    border: 1px solid #D1D1D1;
-    border-radius: 2px;
-    background: #F1F1F1;
+    .c-react-tags__selected-tag {
+        display: inline-block;
+        margin: 0 $react-tags-spacing $react-tags-spacing 0;
+        padding: $react-tags-spacing 8px;
+        border: 1px solid #D1D1D1;
+        border-radius: 2px;
+        background: #F1F1F1;
 
-    /* match the font styles */
-    font-size: inherit;
-    line-height: inherit;
-}
+        /* match the font styles */
+        font-size: inherit;
+        line-height: inherit;
+    }
 
-.c-react-tags__selected-tag:after {
-    content: '\2715';
-    color: #AAA;
-    margin-left: 8px;
-}
+    .c-react-tags__selected-tag:after {
+        content: '\2715';
+        color: #AAA;
+        margin-left: 8px;
+    }
 
-.c-react-tags__selected-tag:hover,
-.c-react-tags__selected-tag:focus {
-    border-color: #B1B1B1;
-}
-
-.c-react-tags__search {
-    display: inline-block;
-
-    /* match tag layout */
-    padding: 7px 2px;
-    margin-bottom: 6px;
-
-    /* prevent autoresize overflowing the container */
-    max-width: 100%;
-}
-
-@media screen and (min-width: 30em) {
+    .c-react-tags__selected-tag:hover,
+    .c-react-tags__selected-tag:focus {
+        border-color: #B1B1B1;
+    }
 
     .c-react-tags__search {
-        /* this will become the offsetParent for suggestions */
-        position: relative;
+        display: inline-block;
+
+        /* match tag layout */
+        padding: 7px 2px;
+        margin-bottom: $react-tags-spacing;
+
+        /* prevent autoresize overflowing the container */
+        max-width: 100%;
     }
 
-}
+    @media screen and (min-width: 30em) {
 
-.c-react-tags__search input {
-    /* prevent autoresize overflowing the container */
-    max-width: 100%;
+        .c-react-tags__search {
+            /* this will become the offsetParent for suggestions */
+            position: relative;
+        }
 
-    /* remove styles and layout from this element */
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: none;
+    }
 
-    /* match the font styles */
-    font-size: inherit;
-    line-height: inherit;
-}
+    .c-react-tags__search input {
 
-.c-react-tags__search input::-ms-clear {
-    display: none;
-}
+        /* prevent autoresize overflowing the container */
+        max-width: 100%;
 
-.c-react-tags__suggestions {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    z-index: 900;
-}
+        /* remove styles and layout from this element */
+        background-color: transparent;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: none;
 
-@media screen and (min-width: 30em) {
+        /* match the font styles */
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    .c-react-tags__search input::-ms-clear {
+        display: none;
+    }
 
     .c-react-tags__suggestions {
-        width: 240px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        z-index: 900;
     }
 
-}
+    @media screen and (min-width: 30em) {
 
-.c-react-tags__suggestions ul {
-    margin: 4px -1px;
-    padding: 0;
-    list-style: none;
-    background: white;
-    border: 1px solid #D1D1D1;
-    border-radius: 2px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
+        .c-react-tags__suggestions {
+            width: 240px;
+        }
 
-.c-react-tags__suggestions li {
-    border-bottom: 1px solid #ddd;
-    padding: 6px 8px;
-}
+    }
 
-.c-react-tags__suggestions li mark {
-    text-decoration: underline;
-    background: none;
-    font-weight: 600;
-}
+    .c-react-tags__suggestions ul {
+        margin: 4px -1px;
+        padding: 0;
+        list-style: none;
+        background: white;
+        border: 1px solid #D1D1D1;
+        border-radius: 2px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
 
-.c-react-tags__suggestions li:hover {
-    cursor: pointer;
-    background: #eee;
-}
+    .c-react-tags__suggestions li {
+        border-bottom: 1px solid #ddd;
+        padding: 6px 8px;
+    }
 
-.c-react-tags__suggestions li.is-active {
-    background: #b7cfe0;
-}
+    .c-react-tags__suggestions li mark {
+        text-decoration: underline;
+        background: none;
+        font-weight: 600;
+    }
 
-.c-react-tags__suggestions li.is-disabled {
-    opacity: 0.5;
-    cursor: auto;
-}
-/* END AUTOCOMPLETE RELATED CODE */
+    .c-react-tags__suggestions li:hover {
+        cursor: pointer;
+        background: #eee;
+    }
+
+    .c-react-tags__suggestions li.is-active {
+        background: #b7cfe0;
+    }
+
+    .c-react-tags__suggestions li.is-disabled {
+        opacity: 0.5;
+        cursor: auto;
+    }
