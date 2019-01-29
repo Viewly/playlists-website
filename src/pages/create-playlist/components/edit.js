@@ -117,8 +117,13 @@ class EditPlaylist extends Component {
 
     if (confirmation) {
       await this.handleSubmit(evnt, { status: 'draft' });
-      openToast({ type: "info", message: "Playlist saved to drafts" });
-      history.push(`/my-playlists/drafts`);
+
+      if (force) {
+        openToast({ type: "info", message: "Draft successfully saved" });
+      } else {
+        openToast({ type: "info", message: "Playlist unpublished and moved to drafts" });
+        history.push(`/my-playlists/drafts`);
+      }
     }
   }
 
