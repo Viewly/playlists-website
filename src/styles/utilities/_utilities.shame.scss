@@ -292,7 +292,7 @@ hr {
     .c-form__list {
         list-style-type: none;
 
-        li {
+        > li {
             &:not(:last-child) {
                 margin-bottom: $spacing-unit;
             }
@@ -300,7 +300,7 @@ hr {
     }
 
     .c-form__list--small {
-        li {
+        > li {
             &:not(:last-child) {
                 margin-bottom: $spacing-unit-small;
             }
@@ -308,7 +308,7 @@ hr {
     }
 
     .c-form__list--large {
-        li {
+        > li {
             &:not(:last-child) {
                 margin-bottom: $spacing-unit-large;
             }
