@@ -41,7 +41,14 @@ class ProfilePage extends Component {
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <SEO title={profileId} />
-        <h1 className='u-h3'>All playlists by {profileId}</h1>
+        <div className='o-flag o-flag--small u-margin-bottom'>
+          <div className='o-flag__img'>
+            <img className='o-avatar o-avatar--large' src={require('../../images/avatar-default.jpg')}/>
+          </div>
+          <div className='o-flag__body'>
+            <b>{profileId}</b>
+          </div>
+         </div>
 
         <Playlist
           isLoaded={isReady}
