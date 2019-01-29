@@ -41,7 +41,17 @@ class MyPlaylistsPage extends Component {
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <SEO title="My profile" />
-        <h1 className='u-h3 u-margin-bottom-large'>My profile</h1>
+        <div className='o-flag o-flag--small u-margin-bottom'>
+          <div className='o-flag__img'>
+            <img className='o-avatar o-avatar--large' src={require('../../images/avatar-default.jpg')}/>
+          </div>
+          <div className='o-flag__body'>
+            <dl className='c-list-definition'>
+              <dt>Johnny Sanders</dt>
+              <dd>johnny_s</dd>
+            </dl>
+          </div>
+         </div>
 
         <PlaylistsTabs playlists={playlists}/>
 
