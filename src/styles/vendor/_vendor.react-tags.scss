@@ -4,7 +4,7 @@
 
 $tweakpoint-react-tags:             medium;
 
-$react-tags-spacing:                $spacing-unit-tiny;
+$react-tags-spacing:                $spacing-unit-tiny + 2;
 
 
 
@@ -38,25 +38,35 @@ $react-tags-spacing:                $spacing-unit-tiny;
      * Selected tag
      */
     .c-react-tags__selected-tag {
-        background: #F1F1F1;
+        $background: color('grey');
+        $color: $global-text-color;
+
+        background-color: $background;
         border-radius: 2px;
-        border: 1px solid #D1D1D1;
+        border: none;
+        color: $color;
         display: inline-block;
         font-size: inherit;
         line-height: inherit;
-        margin-right: $react-tags-spacing;
-        margin-bottom: $react-tags-spacing;
+        margin-bottom: $react-tags-spacing - 2;
+        margin-right: $react-tags-spacing - 2;
         padding: ($react-tags-spacing - 2) $react-tags-spacing;
+        transition: $global-transition;
+        vertical-align: top;
 
         &::after {
             content: '\2715';
-            color: #AAA;
+            color: rgba($color, .8);
             margin-left: $react-tags-spacing;
+        }
+
+        &:hover {
+            cursor: pointer;
         }
 
         &:hover,
         &:focus {
-            border-color: #B1B1B1;
+            background-color: darken($background, 4%);
         }
     }
 
