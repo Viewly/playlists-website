@@ -70,6 +70,18 @@ export default class PlaylistHashtags extends Component {
   render() {
     const { hashtags } = this.props;
     const suggestions = hashtags.data.map(item => ({ id: item.hashtag, name: item.hashtag }));
+    const styles = {
+      root: 'c-react-tags c-input c-input--primary',
+      rootFocused: 'is-focused',
+      selected: 'c-react-tags__selected',
+      selectedTag: 'c-react-tags__selected-tag',
+      selectedTagName: 'c-react-tags__selected-tag-name',
+      search: 'c-react-tags__search',
+      searchInput: 'c-react-tags__search-input',
+      suggestions: 'c-react-tags__suggestions',
+      suggestionActive: 'is-active',
+      suggestionDisabled: 'is-disabled'
+    }
 
     return (
       <li>
@@ -80,6 +92,7 @@ export default class PlaylistHashtags extends Component {
           tags={this.state.tags}
           ref={(ref) => window.ref = ref}
           suggestions={suggestions}
+          classNames={styles}
           placeholder={"#hashtags"}
           delimiterChars={[',', ' ']}
           handleDelete={this.handleDelete.bind(this)}
