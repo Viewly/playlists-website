@@ -46,7 +46,11 @@ class ProfilePage extends Component {
             <img className='o-avatar o-avatar--large' src={require('../../images/avatar-default.jpg')}/>
           </div>
           <div className='o-flag__body'>
-            <b>{profileId}</b>
+
+            <dl className='c-list-definition'>
+              <dt>Johnny Sanders</dt>
+              <dd>{profileId}</dd>
+            </dl>
           </div>
          </div>
 
