@@ -114,37 +114,41 @@ $react-tags-spacing:                $spacing-unit-tiny + 2;
         }
 
         ul {
-            margin: 4px -1px;
-            padding: 0;
-            list-style: none;
-            background: white;
-            border: 1px solid #D1D1D1;
+            background-color: #fff;
             border-radius: 2px;
-            box-shadow: 0 2px 6px rgba(#000, .2);
+            box-shadow: 0 2px 6px rgba(#333, .2);
+            list-style: none;
+            margin: 4px -1px;
+            overflow: hidden;
+            padding: 0;
         }
 
         li {
-            border-bottom: 1px solid #ddd;
+            $background: darken($input-background-color, 7%);
+            $color: $global-text-color;
+
             padding: $react-tags-spacing $react-tags-spacing;
 
             &:hover {
+                background-color: $background;
+                color: $color;
                 cursor: pointer;
-                background: #eee;
             }
 
             &.is-active {
-                background: #b7cfe0;
+                background-color: color('brand-secondary');
+                color: #fff;
             }
 
             &.is-disabled {
-                opacity: .5;
                 cursor: auto;
+                opacity: .5;
             }
         }
 
         mark {
-            text-decoration: underline;
             background: none;
-            font-weight: 600;
+            color: inherit;
+            font-weight: 700;
         }
     }
