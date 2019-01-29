@@ -250,12 +250,12 @@ class EditPlaylist extends Component {
               <PlaylistName value={this.state.title} onChange={this.handleChange}/>
               <PlaylistCategory categories={categories.data} value={this.state.category.id || 0}
                                 onChange={this.handleChange}/>
+              <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.changeHashtags}/>
               <PlaylistThumbnail
                 onChange={this.updateThumbnail}
                 injectImageBlob={this.state.injectImageBlob}
                 playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
               <PlaylistDescription isReady={this.state.ready} value={this.state.description} onChange={this.handleDescriptionChange}/>
-              <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.changeHashtags}/>
             </ul>
           </div>
 
