@@ -38,7 +38,7 @@ $react-tags-spacing:                $spacing-unit-tiny + 2;
      * Selected tag
      */
     .c-react-tags__selected-tag {
-        $background: color('grey');
+        $background: darken($input-background-color, 7%);
         $color: $global-text-color;
 
         background-color: $background;
@@ -92,6 +92,7 @@ $react-tags-spacing:                $spacing-unit-tiny + 2;
         input {
             background-color: transparent; /* [4] */
             border: 0; /* [4] */
+            color: $input-color;
             font-size: inherit;
             line-height: inherit;
             margin: 0; /* [4] */
