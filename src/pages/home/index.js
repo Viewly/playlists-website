@@ -96,10 +96,11 @@ class HomePage extends Component {
           </div>
 
           <div className='u-margin-bottom-large'>
+            <span className="c-featured">Featured topic</span>
             <Playlist
-              title="Hashtag of the week (#GAMING)"
+              title="The world of gaming"
               size="medium"
-              moreButton={{ title: "View all #GAMING", url: "/search/?query=%23gaming" }}
+              moreButton={{ title: "View all", url: "/search/?query=%23gaming" }}
               isLoaded={isLoaded(playlists_hashtag)}
               playlists={playlists_hashtag.data}
             />
