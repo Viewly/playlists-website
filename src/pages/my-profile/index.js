@@ -21,9 +21,10 @@ const prepareActions = (dispatch) => ({
   await fetchMyPlaylists();
 })
 @connect((state) => ({
-  playlists: state.playlists
+  playlists: state.playlists,
+  user: state.user
 }), prepareActions)
-class MyPlaylistsPage extends Component {
+export default class MyProfilePage extends Component {
   static propTypes = {
     fetchMyPlaylists: PropTypes.func.isRequired,
     playlists: PropTypes.object,
@@ -36,19 +37,20 @@ class MyPlaylistsPage extends Component {
   }
 
   render() {
-    const { playlists } = this.props;
+    const { playlists, user } = this.props;
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <SEO title="My profile" />
         <div className='o-flag o-flag--small u-margin-bottom'>
           <div className='o-flag__img'>
-            <img className='o-avatar o-avatar--large' src={require('../../images/avatar-default.jpg')}/>
+            {user.avatar_url && <img className='o-avatar o-avatar--large' src={user.avatar_url}/>}
+            {!user.avatar_url && <img className='o-avatar o-avatar--large' src={require('../../images/avatar-default.jpg')}/>}
           </div>
           <div className='o-flag__body'>
             <dl className='c-list-definition'>
-              <dt>Johnny Sanders</dt>
-              <dd>johnny_s</dd>
+              <dt>{user.first_name} {user.last_name}</dt>
+              <dd>{user.alias}</dd>
             </dl>
           </div>
          </div>
@@ -56,13 +58,11 @@ class MyPlaylistsPage extends Component {
         <PlaylistsTabs playlists={playlists}/>
 
         <div className=''>
-          <Route exact path='/my-playlists' component={MyPlaylistsPublished}/>
-          <Route path='/my-playlists/drafts' component={MyPlaylistsDrafts}/>
+          <Route exact path='/my-profile' component={MyPlaylistsPublished}/>
+          <Route path='/my-profile/drafts' component={MyPlaylistsDrafts}/>
         </div>
 
       </div>
     );
   }
 }
-
-export default MyPlaylistsPage;
