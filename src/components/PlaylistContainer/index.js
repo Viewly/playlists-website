@@ -25,7 +25,7 @@ export default class Playlist extends Component {
       PropTypes.object,
       PropTypes.bool
     ]),
-    big: PropTypes.bool,
+    size: PropTypes.string,
     isLoaded: PropTypes.bool,
     history: PropTypes.object,
   }
@@ -67,8 +67,20 @@ export default class Playlist extends Component {
     );
   }
 
+  getSizeClass = (size) => {
+    switch (size) {
+      case "big":
+        return "u-1/2@medium u-1/3@large u-margin-bottom-large";
+      case "medium":
+        return "u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom-large";
+      default:
+        return "u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom-large";
+    }
+  }
+
   render() {
-    const { isLoaded, playlists, title, moreButton, big } = this.props;
+    const { isLoaded, playlists, title, moreButton, size } = this.props;
+    const customClass = this.getSizeClass(size)
 
     return (
       <div>
@@ -88,7 +100,7 @@ export default class Playlist extends Component {
         <div className='o-grid'>
           {isLoaded && playlists.map((item) => (
             <PlaylistItem
-              big={big}
+              customClass={customClass}
               key={`playlistitem-${item.id}`}
               onPlaylistClick={this.onPlaylistClick}
               {...item}

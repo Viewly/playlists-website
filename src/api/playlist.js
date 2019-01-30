@@ -204,3 +204,11 @@ export async function playlistsFetchPicked (baseUrl, params) {
   return body;
 }
 
+export async function playlistsFetchHashtag (baseUrl, params) {
+  const url = `${baseUrl}/playlists?status=published&order=publish_date&page=0&limit=${params.limit}&q=${params.query}`;
+
+  const { body } = await get(url, {}, { authorization: params.authorization });
+
+  return body;
+}
+
