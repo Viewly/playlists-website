@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { playlistsFetch } from "../../actions";
 import { isLoaded, asyncLoad } from "../../utils";
@@ -18,7 +19,8 @@ const prepareActions = (dispatch) => ({
   await playlistsFetch(`alias=${params.profileId}`);
 })
 @connect((state) => ({
-  playlists: state.playlists
+  playlists: state.playlists,
+  user: state.user
 }), prepareActions)
 class ProfilePage extends Component {
   static propTypes = {
@@ -35,8 +37,12 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { playlists, match: { params: { profileId } } } = this.props;
+    const { playlists, user, match: { params: { profileId } } } = this.props;
     const isReady = isLoaded(playlists);
+
+    if (user?.alias === profileId) {
+      return <Redirect to="/my-profile"/>;
+    }
 
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
@@ -47,7 +53,7 @@ class ProfilePage extends Component {
           </div>
           <div className='o-flag__body'>
             <dl className='c-list-definition'>
-              <dt>Johnny Sanders</dt>
+              {/*<dt>Johnny Sanders</dt>*/}
               <dd>{profileId}</dd>
             </dl>
           </div>
