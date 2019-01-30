@@ -72,7 +72,7 @@ export default class Playlist extends Component {
       case "big":
         return "u-1/2@medium u-1/3@large u-margin-bottom-large";
       case "medium":
-        return "u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom-large";
+        return "u-1/2@medium u-1/4@extralarge u-margin-bottom-large";
       default:
         return "u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom-large";
     }
