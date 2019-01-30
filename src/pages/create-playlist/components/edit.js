@@ -183,7 +183,7 @@ class EditPlaylist extends Component {
       const resp = await playlistRemove(playlistId);
 
       if (resp.success) {
-        history.push("/my-playlists");
+        history.push("/my-profile");
       } else {
         openToast({ type: "error", message: "An error occurred while trying to delete playlist" });
       }

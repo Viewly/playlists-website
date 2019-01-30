@@ -11,12 +11,12 @@ class PlaylistsTabs extends Component {
       <nav className='c-nav-tabs u-margin-bottom-large'>
         <ul>
           <li className='c-nav-tabs__item'>
-            <NavLink exact activeClassName='is-current' className='c-nav-tabs__link' to='/my-playlists'>
+            <NavLink exact activeClassName='is-current' className='c-nav-tabs__link' to='/my-profile'>
               {numPublished} Published
             </NavLink>
           </li>
           <li className='c-nav-tabs__item'>
-            <NavLink activeClassName='is-current' className='c-nav-tabs__link' to='/my-playlists/drafts'>
+            <NavLink activeClassName='is-current' className='c-nav-tabs__link' to='/my-profile/drafts'>
               {numDrafts} Drafts
             </NavLink>
           </li>

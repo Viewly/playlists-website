@@ -132,9 +132,8 @@ class HeaderContainer extends Component {
                   <DropdownMenu
                     toggle={<UserMenu user={user} />}
                     list={[
-                      { label: "My playlists", url: "/my-playlists" },
-                      { label: "Profile settings", url: "/account" },
-                      { label: "Take the survey", url: "https://viewly.typeform.com/to/fRTC0m", external: true, classNames: 'c-dropdown__menu__link--highlighted'},
+                      { label: "My profile", url: "/my-profile" },
+                      { label: "Settings", url: "/account" },
                       { label: "Logout", onClick: this.logOut },
                     ]}
                   />

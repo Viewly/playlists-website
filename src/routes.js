@@ -20,7 +20,7 @@ import GiveawayPage from "./pages/giveaway";
 import PromoPage from "./pages/promo-early-adopters";
 import TestPage from "./pages/test";
 import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE, PLAYER_PAGE } from "./constants/pages";
-import MyPlaylistsPage from "./pages/my-playlists";
+import MyProfilePage from "./pages/my-profile";
 import NotificationsPage from "./pages/notifications";
 
 export const routes = [
@@ -83,8 +83,8 @@ export const routes = [
     fullscreen: true,
   },
   {
-    path: "/my-playlists",
-    component: MyPlaylistsPage,
+    path: "/my-profile",
+    component: MyProfilePage,
   },
   {
     path: "/notifications",
