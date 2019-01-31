@@ -105,6 +105,13 @@ export async function fetchMyPlaylists(baseUrl, { authorization }) {
   return body;
 }
 
+export async function fetchUserProfile(baseUrl, { authorization, alias }) {
+  const url = `${baseUrl}/user/info?alias=${alias}`;
+  const { body } = await get(url, {}, { authorization });
+
+  return body;
+}
+
 export async function getSocialLoginUrl(baseUrl, { platform = 'google' }) {
   return `${baseUrl}/user/auth?platform=${platform}`;
 }
