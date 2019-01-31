@@ -32,6 +32,7 @@ const initialState = {
   comments: { _status: PENDING, data: [] },
   renderedPages: {},
   user: jwtCookie ? decodeJwt(jwtCookie) : false,
+  user_profile: { _status: PENDING, playlists: [] },
   localStorage: { _status: PENDING, data: {} },
   emailConfirmation: { _status: PENDING },
   onboarding: false,
@@ -83,6 +84,9 @@ const rootReducer = (state = initialState, action) => {
 
     case actions.PLAYLIST_INJECT_DATA:
       return { ...state, playlist: { ...action.data, videos: [] } };
+
+    case userActions.USER_GET_PROFILE_SUCCESS:
+      return { ...state, user_profile: { ...action.data, _status: LOADED } };
 
     case actions.SET_SERVER_RENDERED:
       return { ...state, renderedPages: { ...state.renderedPages, [action.data]: true } };
