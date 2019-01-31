@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Linkify from "react-linkify";
+import ReactMarkdown from "react-markdown";
 import { THUMBNAIL_ROOT } from "../../../constants";
+
+const DESCRIPTION_SHOW_MORE_HEIGHT = 200;
 
 export default class Header extends Component {
   static propTypes = {
@@ -16,6 +18,16 @@ export default class Header extends Component {
     playVideo: PropTypes.func,
     category: PropTypes.object.isRequired
   };
+
+  state = {
+    tooLong: false
+  }
+
+  componentDidMount() {
+    if (this.descriptionDiv.clientHeight > DESCRIPTION_SHOW_MORE_HEIGHT) {
+      this.setState({ tooLong: true });
+    }
+  }
 
   render() {
     const { title, author, duration, category, poster, description, hashtags, playVideo, playVideoLabel, views } = this.props;
@@ -48,15 +60,18 @@ export default class Header extends Component {
             </div>
             <div className='o-grid__cell u-3/5@large'>
               <div className='c-section__intro'>
-            <span className='c-link-category'>
-             <Link to={`/category/${category.slug}`}>{category.name}</Link>
-             </span>
+                <span className='c-link-category'>
+                  <Link to={`/category/${category.slug}`}>{category.name}</Link>
+                </span>
                 <h1 className='c-section__title'>{title}</h1>
                 <p className='c-section__details'>By <Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link> {/*&bull; <time className='c-section__details__time'>2 weeks ago</time>*/}</p>
 
-                <div className='c-section__description'>
-                  <p><Linkify properties={{target: '_blank', rel: "nofollow" }}>{description}</Linkify></p>
+                <div ref={(ref) => this.descriptionDiv = ref} className={`c-section__description ${this.state.tooLong ? 'c-section__description--long' : ''}`}>
+                  <ReactMarkdown source={description} linkTarget="_blank" />
                 </div>
+
+                {this.state.tooLong && <span className='description--expand' onClick={() => this.setState({ tooLong: false })}>Show more</span>}
+
                 <div className='c-section__hashtags'>
                   {hashtags.map((item, idx) => (
                     <Link key={`hash-${idx}`} to={`/search/?query=${encodeURIComponent(item)}`}>{item}</Link>

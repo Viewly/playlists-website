@@ -42,7 +42,7 @@ export default class PlaylistVideosContainer extends Component {
   }
 
   render() {
-    const { videos, onDelete } = this.props;
+    const { videos, onDelete, showSetThumbnail, onSetThumbnail } = this.props;
 
     if (!videos) {
       return null;
@@ -68,6 +68,8 @@ export default class PlaylistVideosContainer extends Component {
                       <PlaylistVideoPreview
                         {...video}
                         onUpdateTitle={this.onUpdateTitle}
+                        onSetThumbnail={onSetThumbnail}
+                        showSetThumbnail={showSetThumbnail}
                         onDelete={onDelete}/>
                     </li>
                   )}

@@ -19,6 +19,14 @@ export default class PlaylistThumbnail extends Component {
     percentage: 0,
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.injectImageBlob !== this.props.injectImageBlob && this.props.injectImageBlob) {
+      this.setState({ selectedFile: { name: 'inject.jpg' } }, () => {
+        this.onUpload(this.props.injectImageBlob);
+      });
+    }
+  }
+
   onUpload = async (croppedImageURL) => {
     const { getUploadUrl, uploadFile, onChange } = this.props;
 
@@ -67,7 +75,7 @@ export default class PlaylistThumbnail extends Component {
   }
 
   render() {
-    const { playlist_thumbnail_url } = this.props;
+    const { playlist_thumbnail_url, onChange } = this.props;
 
     return (
       <li>
@@ -76,11 +84,20 @@ export default class PlaylistThumbnail extends Component {
         <div className='c-file-input o-ratio o-ratio--16:9'>
           <Dropzone
             onDrop={this.onDrop}
+            accept="image/*"
             multiple={false}
           >
             {({getRootProps, getInputProps, isDragActive }) => (
               <>
-                <div {...getRootProps()} className={`c-file-input__container o-ratio__content ${isDragActive ? 'c-input--active' : ''}`}>
+                {playlist_thumbnail_url && (
+                  <>
+                    <img alt='' className='c-file-input__uploaded-img o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />
+                    <button className='c-btn c-file-input__btn-remove-img' onClick={() => onChange("")}>
+                      <img className='o-icon o-icon--tiny' src={require("../../../../images/icons/close.svg")} />
+                    </button>
+                  </>
+                )}
+                <div {...getRootProps()} className={`c-file-input__container o-ratio__content ${isDragActive ? 'is-drag-and-drop-target' : ''}`}>
                   <input {...getInputProps()}  className='c-file-input__input' type="file" id="file" />
                   <div className='c-file-input__content'>
                     <img alt='' className='c-file-input__graphic' src={require("../../../../images/graphic-add-photo.svg")}/>
@@ -89,7 +106,6 @@ export default class PlaylistThumbnail extends Component {
                   </div>
                 </div>
                 {this.state.uploading && <span className='c-file-input__upload-progress' style={{ width: `${this.state.percentage}%` }}/>}
-                {playlist_thumbnail_url && <img alt='' className='o-ratio__content' src={`${THUMBNAIL_ROOT}/${playlist_thumbnail_url}`} />}
               </>
             )}
           </Dropzone>

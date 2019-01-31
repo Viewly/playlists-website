@@ -25,6 +25,9 @@ export async function upload(url, formData, callback) {
     onUploadProgress: evnt => {
       const percentage = Math.round(100 * evnt.loaded / evnt.total);
       callback && callback(percentage);
+    },
+    headers: {
+      'Content-Type': formData.type
     }
   }
   const response = await axios.put(url, formData, config);

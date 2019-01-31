@@ -32,17 +32,15 @@ export default class PlaylistLayout extends Component {
   }
 
   onBookmarkClick = () => {
-    const { openRegisterModal, user, openToast, playlist, userAddBookmark, userRemoveBookmark } = this.props;
+    const { openRegisterModal, user, playlist, userAddBookmark, userRemoveBookmark } = this.props;
 
     if (!user) {
       openRegisterModal();
     } else {
       if (playlist.bookmarked) {
         userRemoveBookmark(playlist.id);
-        openToast({ type: "info", message: "Playlist removed from bookmarks" });
       } else {
         userAddBookmark(playlist.id);
-        openToast({ type: "info", message: "Playlist added to bookmarks" });
       }
     }
   }

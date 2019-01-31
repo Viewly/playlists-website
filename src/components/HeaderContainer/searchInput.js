@@ -42,7 +42,7 @@ class SearchInput extends Component {
     return (
       <Fragment>
         <div className='c-search-form c-search-form--header'>
-          <input className='c-search-form__input c-input c-input--primary' placeholder="Search playlists" name="" autoComplete="off" value={this.state.searchText} onChange={(e) => this.setState({ searchText: e.target.value })} onKeyUp={this.handleEnter} />
+          <input className='c-search-form__input c-input c-input--primary' placeholder="Search" name="" autoComplete="off" value={this.state.searchText} onChange={(e) => this.setState({ searchText: e.target.value })} onKeyUp={this.handleEnter} />
           <button type='submit' className='c-btn c-search-form__btn' onClick={this.doSearch}>
             <svg className='o-icon' width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
               <g transform="translate(1 1)" stroke="#9EA0A3" strokeWidth="2" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">

@@ -2,7 +2,7 @@ import moment from "moment";
 import "moment-duration-format";
 import Cookies from "universal-cookie";
 import jwtDecode from "jwt-decode";
-import { LOADED, LOADING } from "./constants/status_types";
+import { LOADED, LOADING, PENDING } from "./constants/status_types";
 import { COOKIE_SESSION } from "./constants";
 import getUserLocale from "get-user-locale";
 import guessTimezone from "guess-timezone";
@@ -83,6 +83,10 @@ export function updateVideosWithProgresses(videos, progresses) {
 
 export function isLoaded(item) {
   return item && item._status === LOADED;
+}
+
+export function isPending(item) {
+  return item && item._status === PENDING;
 }
 
 export function isLoading(item) {
@@ -207,4 +211,45 @@ export function setLocalStorageConfig(field, value) {
   const data = getLocalStorageConfig();
   localStorage.setItem(storageKey, JSON.stringify({ ...data, [field]: value }));
   return true;
+}
+
+/**
+ * @source https://stackoverflow.com/questions/39592752/read-image-from-url-upload
+ */
+export function getImageFormUrl(url, callback) {
+  var img = new Image();
+  img.setAttribute('crossOrigin', 'anonymous');
+  img.onload = function (a) {
+    var canvas = document.createElement("canvas");
+    canvas.width = this.width;
+    canvas.height = this.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(this, 0, 0);
+
+    var dataURI = canvas.toDataURL("image/jpg");
+
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(dataURI.split(',')[1]);
+    else
+      byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return callback(false, new Blob([ia], { type: mimeString }));
+  }
+
+  img.onerror = function () {
+    return callback(true);
+  }
+
+  img.src = url;
 }

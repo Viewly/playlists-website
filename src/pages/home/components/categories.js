@@ -6,12 +6,12 @@ export default class Categories extends Component {
 
   render() {
     const categories = [
-      { slug: "gaming", name: "Gaming"},
-      { slug: "how-to-and-style", name: "How to & Style"},
       { slug: "education", name: "Education"},
+      { slug: "science-and-technology", name: "Science & Technology"},
+      { slug: "how-to-and-style", name: "How to & Style"},
+      { slug: "gaming", name: "Gaming"},
       { slug: "comedy", name: "Comedy"},
       { slug: "music", name: "Music"},
-      { slug: "sports", name: "Sports"},
     ];
 
     return (

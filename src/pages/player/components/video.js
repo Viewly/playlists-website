@@ -4,16 +4,14 @@ import { Link } from "react-router-dom";
 
 import Youtube from "./youtube";
 
-const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage, logAction }) => (
-  <div className='c-player'>
-    <div>
-      <div className='c-player__container'>
-        {video && <Youtube videoId={video.video_id} logAction={logAction} percentage={video.percentage} resumeTime={video.currentTime} onVideoEnd={onVideoEnd} onPercentage={onPercentage} />}
-      </div>
+const VideoPlayer = ({ playlistUrl, video, onVideoEnd, onPercentage, logAction, focusMode }) => (
+  <div className={`c-player ${focusMode ? 'c-player--focus-mode' : ''}`}>
 
-      <Link className='c-btn button-back' to={playlistUrl}><img className='o-icon o-icon--small' src={require("../../../images/icons/close.svg")} /></Link>
+    <div className='c-player__container'>
+      {video && <Youtube videoId={video.video_id} logAction={logAction} percentage={video.percentage} resumeTime={video.currentTime} onVideoEnd={onVideoEnd} onPercentage={onPercentage} />}
     </div>
 
+    <Link className='c-btn button-back' to={playlistUrl}><img className='o-icon o-icon--small' src={require("../../../images/icons/chevron-left.svg")} /></Link>
   </div>
 );
 

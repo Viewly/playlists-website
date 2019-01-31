@@ -14,12 +14,16 @@ import {
   generateUuid,
   getLocalStorageConfig, setLocalStorageConfig
 } from "../utils";
+import { uniqBy } from "lodash";
 
 const jwtCookie = getUserCookie();
 
 const initialState = {
   config: { apiUrl: "https://api.vidflow.com/v1/api" },
   playlists: { _status: PENDING, data: [] },
+  playlists_new: { _status: PENDING, data: [] },
+  playlists_picked: { _status: PENDING, data: [] },
+  playlists_hashtag: { _status: PENDING, data: [] },
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
   hashtags: { _status: PENDING, data: [] },
@@ -59,6 +63,20 @@ const rootReducer = (state = initialState, action) => {
     case userActions.USER_MY_PLAYLISTS_FETCH_SUCCESS:
     case actions.PLAYLISTS_FETCH_SUCCESS:
       return { ...state, playlists: { data: action.data, _status: LOADED } };
+
+    case playlistActions.PLAYLISTS_FETCH_NEW_START:
+      return { ...state, playlists_new: { ...state.playlists_new, _status: LOADING } }
+
+    case playlistActions.PLAYLISTS_FETCH_NEW_SUCCESS: {
+      const newPlaylists = uniqBy([ ...state.playlists_new.data, ...action.data ], item => item.id);
+      return { ...state, playlists_new: { data: newPlaylists, _status: LOADED } };
+    }
+
+    case playlistActions.PLAYLISTS_FETCH_PICKED_SUCCESS:
+      return { ...state, playlists_picked: { data: action.data, _status: LOADED } };
+
+    case playlistActions.PLAYLISTS_FETCH_HASHTAG_SUCCESS:
+      return { ...state, playlists_hashtag: { data: action.data, _status: LOADED } };
 
     case actions.PLAYLISTS_LOAD_MORE_SUCCESS:
       return { ...state, playlists: { data: [...state.playlists.data, ...action.data], _status: LOADED } };

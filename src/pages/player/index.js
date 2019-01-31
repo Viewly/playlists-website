@@ -29,7 +29,8 @@ class PlayerPage extends Component {
   state = {
     videoId: null,
     showPlaylist: false,
-    lastSegmentTime: 0
+    lastSegmentTime: 0,
+    focusMode: false
   }
 
   componentDidMount() {
@@ -132,12 +133,13 @@ class PlayerPage extends Component {
     return (
       <>
         {isLoaded && (
-          <>
+          <div className={`${this.state.focusMode ? 'container--focus-mode' : ''}`}>
             <SEO playlist={playlist} />
             <VideoPlayer
               togglePlaylist={this.togglePlaylist}
               playlistUrl={`/playlist/${playlist.url}`}
               video={currentVideo}
+              focusMode={this.state.focusMode}
               onVideoEnd={this.onVideoEnd}
               logAction={this.logAction}
               onPercentage={this.onPercentage} />
@@ -150,7 +152,14 @@ class PlayerPage extends Component {
               url={playlist.url}
               percentage={playlist.percentage}
               videos={playlist.videos} />
-          </>
+
+            {/*<button
+              className='c-btn button-focus'
+              onClick={() => this.setState({ focusMode: !this.state.focusMode })}>
+              PRETTY FOCUS ({this.state.focusMode ? 'on' : 'off)'}
+              <img className='o-icon' src={require("../../images/icons/fullscreen.svg")} />
+            </button>*/}
+          </div>
         )}
       </>
     );

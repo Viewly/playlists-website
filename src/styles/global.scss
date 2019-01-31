@@ -45,6 +45,16 @@
 @import 'objects/objects.avatars';
 
 
+// Vendor
+@import 'vendor/vendor.react-tags';
+@import 'vendor/vendor.markdown-editor';
+@import '../../node_modules/cropperjs/dist/cropper.css';
+@import '../../node_modules/draft-js/dist/Draft.css';
+@import '../../node_modules/react-mde/lib/styles/scss/react-mde';
+@import '../../node_modules/react-mde/lib/styles/scss/react-mde-editor';
+@import '../../node_modules/react-mde/lib/styles/scss/react-mde-toolbar';
+
+
 // Components
 @import 'components/components.logo';
 @import 'components/components.nav-primary';
@@ -66,6 +76,7 @@
 @import 'components/components.colored-icon';
 @import 'components/components.player';
 @import 'components/components.player-playlist';
+@import 'components/components.playlist-builder';
 @import 'components/components.file-input';
 
 
@@ -73,7 +84,6 @@
 @import '../../node_modules/inuitcss/utilities/utilities.widths';
 @import '../../node_modules/inuitcss/utilities/utilities.spacings';
 @import '../../node_modules/inuitcss/utilities/utilities.hide';
-@import '../../node_modules/cropperjs/dist/cropper.css';
 @import 'utilities/utilities.headings';
 @import 'utilities/utilities.spacings-responsive';
 @import 'utilities/utilities.type';

@@ -17,7 +17,7 @@ export default class NotificationTemplateComment extends Component {
       await notificationsMarkRead(id);
       await notificationsFetch();
     }
-    history.push(`/playlist/${metadata.playlist_url}/comments`);
+    history.push(`/playlist/${metadata.playlist_url}/comments#${metadata.comment_id}`);
     onClick && onClick();
   };
 

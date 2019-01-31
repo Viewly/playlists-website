@@ -19,9 +19,10 @@ import PlaylistDescription from "./formElements/playlistDescription";
 import PlaylistHashtags from "./formElements/playlistHashtags";
 import PlaylistAddVideos from "./formElements/playlistAddVideos";
 import { set } from "lodash";
-import { isLoaded, slugUrl } from "../../../utils";
+import { getImageFormUrl, isLoaded, slugUrl } from "../../../utils";
 import { OPEN_TOAST } from "../../../actions/toast";
 import PlaylistVideosContainer from "./formElements/playlistVideosContainer";
+import { PlaylistcreateEvent } from "../../../gleam";
 
 @withRouter
 @connect((state) => ({
@@ -52,14 +53,16 @@ class EditPlaylist extends Component {
     category: { id: 0 },
     playlist_thumbnail_url: "",
     hashtags: "",
-    youtube_url: ""
+    youtube_url: "",
+    injectImageBlob: false,
+    ready: false
   };
 
   componentDidMount() {
     const { categoriesFetch, playlist, playlistFetch, match: { params: { playlistId } } } = this.props;
 
     if (playlist.id === playlistId) {
-      this.setState({ ...this.state, ...playlist });
+      this.setState({ ...this.state, ...playlist, ready: true });
     }
 
     categoriesFetch();
@@ -69,7 +72,7 @@ class EditPlaylist extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.playlist.id !== this.props.playlist.id) {
-      this.setState({ ...this.state, ...this.props.playlist });
+      this.setState({ ...this.state, ...this.props.playlist, ready: true });
     }
   }
 
@@ -85,8 +88,12 @@ class EditPlaylist extends Component {
     this.setState(state);
   };
 
+  handleDescriptionChange = (description) => {
+    this.setState({ description });
+  }
+
   handleSubmit = async (evnt, customData = {}) => {
-    const { playlistUpdate } = this.props;
+    const { playlist, playlistUpdate } = this.props;
     evnt && evnt.preventDefault();
 
     const response = await playlistUpdate({
@@ -98,31 +105,54 @@ class EditPlaylist extends Component {
       "category": this.state.category,
       "hashtags": this.state.hashtags,
       "playlist_thumbnail_url": this.state.playlist_thumbnail_url,
+      "videos": playlist.videos,
       ...customData
     });
 
     return response;
   };
 
-  saveDraft = async (evnt) => {
+  saveDraft = (force) => async (evnt) => {
     const { history, openToast } = this.props;
 
-    await this.handleSubmit(evnt, { status: 'draft' });
-    openToast({ type: "info", message: "Playlist saved to drafts" });
-    history.push(`/my-playlists/drafts`);
+    const confirmation = force || confirm('Your playlist will be unpublished and moved back to drafts, are you sure?');
+
+    if (confirmation) {
+      await this.handleSubmit(evnt, { status: 'draft' });
+
+      if (force) {
+        openToast({ type: "info", message: "Draft successfully saved" });
+      } else {
+        openToast({ type: "info", message: "Playlist unpublished and moved to drafts" });
+        history.push(`/my-playlists/drafts`);
+      }
+    }
   }
 
-  savePublish = async (evnt) => {
-    const { history, openToast } = this.props;
+  savePublish = (updateOnly) => async (evnt) => {
+    const { history, openToast, playlist } = this.props;
 
-    const validation = this.validateSubmit();
+    const confirmation = updateOnly || confirm('Your playlist will go live immediately, are you sure?');
 
-    if (validation.success) {
-      const response = await this.handleSubmit(evnt, { status: 'published' });
-      openToast({ type: "success", title: "Congratulations", message: "Your playlist is now live " });
-      history.push(`/playlist/${response.url}`);
-    } else {
-      openToast({ type: "error", message: validation.message });
+    if (confirmation) {
+      const validation = this.validateSubmit();
+
+      if (validation.success) {
+        const response = await this.handleSubmit(evnt, { status: 'published' });
+
+        if (!updateOnly) {
+          if (playlist.videos.length >= 5) {
+            PlaylistcreateEvent(playlist.url);
+          }
+
+          openToast({ type: "success", title: "Congratulations", message: "Your playlist is now live " });
+          history.push(`/playlist/${response.url}`);
+        } else {
+          openToast({ type: "success", title: "Congratulations", message: "Your changes have been saved" });
+        }
+      } else {
+        openToast({ type: "error", message: validation.message });
+      }
     }
   }
 
@@ -155,7 +185,7 @@ class EditPlaylist extends Component {
       const resp = await playlistRemove(playlistId);
 
       if (resp.success) {
-        history.push("/my-playlists");
+        history.push("/my-profile");
       } else {
         openToast({ type: "error", message: "An error occurred while trying to delete playlist" });
       }
@@ -199,6 +229,19 @@ class EditPlaylist extends Component {
     }
   };
 
+  // TODO - very dirty, uses external CORS workaround that might go down any time
+  onSetThumbnail = (thumbnail_url) => () => {
+    const { openToast } = this.props;
+
+    getImageFormUrl(`https://cors-anywhere.herokuapp.com/${thumbnail_url}`, async (err, blob) => {
+      if (err) {
+        openToast({ type: 'error', message: "Error with fetching Youtube's thumbnail. CORS proxy is down."});
+      } else {
+        this.setState({ injectImageBlob: blob });
+      }
+    })
+  }
+
   getSlug = () => {
     return slugUrl(this.state.id, this.state.title);
   };
@@ -211,57 +254,73 @@ class EditPlaylist extends Component {
     const { playlist, categories, match: { params: { playlistId } } } = this.props;
     const isReady = isLoaded(playlist);
     return (
-      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
+      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large'>
 
-        <div className="o-grid o-grid--center o-grid--large">
+        <div className="c-playlist-builder">
+          <div className="o-grid o-grid--center o-grid--large">
 
-          <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
-            <ul className='c-form__list c-form__list--large'>
-              <PlaylistName value={this.state.title} onChange={this.handleChange}/>
-              <PlaylistCategory categories={categories.data} value={this.state.category.id || 0}
-                                onChange={this.handleChange}/>
-              <PlaylistThumbnail onChange={this.updateThumbnail}
-                                 playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
-              <PlaylistDescription value={this.state.description} onChange={this.handleChange}/>
-              <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.changeHashtags}/>
-            </ul>
-          </div>
-
-
-          <div
-            className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge u-margin-top-large u-margin-top-none@large'>
-
-            <ul className='c-form__list c-form__list--large'>
-              <PlaylistAddVideos onAddPlaylist={this.onAddPlaylist} onAddVideo={this.onAddVideo} playlistId={playlistId}/>
-            </ul>
-
-            <ul className='u-margin-top-large c-form__list c-form__list--small'>
-              {isReady &&
-              <PlaylistVideosContainer playlistId={playlistId} videos={playlist.videos} onDelete={this.onDelete}/>}
-            </ul>
-          </div>
-        </div>
-
-        <div
-          className='u-horizontally-center u-margin-top u-margin-top-large@large u-4/5@medium u-1/1@large u-4/5@extralarge'>
-          <hr className='u-margin-bottom'/>
-          <div className='o-grid o-grid--auto o-grid--small o-grid--middle o-grid--between'>
-            <div onClick={this.deletePlaylist} className='o-grid__cell'>
-              <button className='c-btn c-btn--plain c-btn--danger c-btn--with-icon c-btn--delete-playlist'>
-                <img className='o-icon o-icon--small u-margin-right-tiny' src={require("../../../images/icons/delete.svg")} />
-                <span className='c-btn__label'>Delete playlist</span>
-              </button>
+            <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
+              <ul className='c-form__list c-form__list--large'>
+                <PlaylistName value={this.state.title} onChange={this.handleChange}/>
+                <PlaylistCategory categories={categories.data} value={this.state.category.id || 0}
+                                  onChange={this.handleChange}/>
+                <PlaylistHashtags value={this.state.hashtags || ""} onChange={this.changeHashtags}/>
+                <PlaylistThumbnail
+                  onChange={this.updateThumbnail}
+                  injectImageBlob={this.state.injectImageBlob}
+                  playlist_thumbnail_url={this.state.playlist_thumbnail_url}/>
+                <PlaylistDescription isReady={this.state.ready} value={this.state.description} onChange={this.handleDescriptionChange}/>
+              </ul>
             </div>
+            
+            <div
+              className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge u-margin-top-large u-margin-top-none@large'>
 
-            <div className='o-grid__cell'>
-              <button onClick={this.saveDraft} className='c-btn c-btn--secondary c-btn--hollow u-margin-right-small'>Save as draft</button>
-              <button onClick={this.savePublish} className='c-btn c-btn--secondary'>Publish</button>
+              <ul className='c-form__list c-form__list--large'>
+                <PlaylistAddVideos onAddPlaylist={this.onAddPlaylist} onAddVideo={this.onAddVideo} playlistId={playlistId}/>
+              </ul>
+
+              <ul className='u-margin-top-large c-form__list c-form__list--small'>
+                {isReady && (
+                  <PlaylistVideosContainer
+                    playlistId={playlistId}
+                    videos={playlist.videos}
+                    showSetThumbnail={this.state.playlist_thumbnail_url?.length === 0}
+                    onSetThumbnail={this.onSetThumbnail}
+                    onDelete={this.onDelete}/>
+                )}
+              </ul>
             </div>
           </div>
+
+          <div className='c-playlist-builder__footer'>
+            <div className="o-wrapper c-playlist-builder__wrapper">
+              <div className='o-grid o-grid--auto o-grid--tiny o-grid--middle o-grid--between o-grid--reverse'>
+
+                <div className='o-grid__cell'>
+                  {this.state.status === 'published' ? (
+                    <>
+                      <button onClick={this.savePublish(true)} className='c-btn c-btn--secondary u-margin-right-small'>Save changes</button>
+                      <button onClick={this.saveDraft(false)} className='c-btn c-btn--secondary c-btn--hollow'>Unpublish</button>
+                    </>
+                  ) : (
+                    <>
+                      <button onClick={this.saveDraft(true)} className='c-btn c-btn--secondary  u-margin-right-small'>Save as draft</button>
+                      <button onClick={this.savePublish(false)} className='c-btn c-btn--secondary c-btn--hollow'>Publish</button>
+                    </>
+                  )}
+                </div>
+                <div className='o-grid__cell'>
+                  <button onClick={this.deletePlaylist} className='c-btn c-btn--plain c-btn--danger c-btn--with-icon c-btn--delete-playlist'>
+                    <img className='o-icon o-icon--small u-margin-right-tiny' src={require("../../../images/icons/delete.svg")} />
+                    <span className='c-btn__label'>Delete playlist</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-
-
-
       </div>
     );
   }

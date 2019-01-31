@@ -2,19 +2,43 @@
     #PLAYER
 \*------------------------------------*/
 
-.c-player {}
-
-    .c-player__wrapper {
-        width: 100%;
-        height: 100%;
-    }
+.c-player {
+    background-color: #000;
+    height: 100vh;
+    position: relative;
+}
 
     .c-player__container {
         background-color: #000;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        border-radius: 3px;
+        box-shadow: 0 15px 30px rgba(10,10,10, .65);
+        overflow: hidden;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
         z-index: 100;
+
+        @include mq(large) {
+            width: 90%;
+        }
+
+        @include mq(extralarge) {
+            width: 73%;
+        }
     }
+
+        /**
+         * 1. Prevent our UI controls overlapping with YouTube player's on
+         *    mobile phones in landscape mode. TODO: current number (double of
+         *    `$spacing-unit-large`) is arbitrary, in the future base this
+         *    number on the actual size of our control bars.
+         */
+        .c-player__video {
+            max-height: 100vh;
+
+            @include mq($until: large, $and: '(orientation: landscape)') {
+                max-height: calc(100vh - #{$spacing-unit-large * 2}); /* [1] */
+            }
+        }

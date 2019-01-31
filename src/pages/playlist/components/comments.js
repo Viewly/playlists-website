@@ -34,18 +34,33 @@ export default class PlaylistComments extends Component {
     super(props)
 
     this.state = {
-      comment: getCommentCache(props.playlist.id) || ""
+      comment: getCommentCache(props.playlist.id) || "",
+      hash: ""
     }
   }
 
   componentDidMount() {
+    const { location } = this.props;
+
     this.fetchComments();
+
+    if (location.hash.length > 0) {
+      this.setState({ hash: location.hash.substring(1, location.hash.length )});
+    }
   }
 
   componentWillUnmount() {
     const { playlist } = this.props;
 
     setCommentCache(playlist.id, this.state.comment);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.hash !== this.state.hash) {
+      setTimeout(() => {
+        this.selectedComment?.scrollIntoView({ behavior: "smooth" });
+      }, 200)
+    }
   }
 
   fetchComments = () => {
@@ -88,10 +103,19 @@ export default class PlaylistComments extends Component {
     this.fetchComments();
   }
 
+  getSelectedComment = () => {
+    if (this.state.hash) {
+      return parseInt(this.state.hash, 10);
+    }
+
+    return false;
+  }
+
   render() {
     const { playlist, comments, user } = this.props;
     const isReady = comments.playlist_id === playlist.id && isLoaded(comments);
     const isPlaylistOwner = playlist.user.id === user.id;
+    const selectedComment = this.getSelectedComment();
 
     return (
       <div className='u-3/4@medium u-3/5@large u-1/2@extralarge u-horizontally-center u-padding-top@large'>
@@ -116,13 +140,21 @@ export default class PlaylistComments extends Component {
             const canVote = !!user;
 
             return (
-              <PlaylistCommentItem
+              <div
                 key={`comment-${item.id}`}
-                canDelete={canDelete}
-                canVote={canVote}
-                onDelete={this.onDelete}
-                onVote={this.onVote}
-                {...item} />
+                ref={(ref) => {
+                  if (item.id === selectedComment) {
+                    this.selectedComment = ref;
+                  }
+                }}
+              >
+                <PlaylistCommentItem
+                  canDelete={canDelete}
+                  canVote={canVote}
+                  onDelete={this.onDelete}
+                  onVote={this.onVote}
+                  {...item} />
+              </div>
             )
           })}
         </div>

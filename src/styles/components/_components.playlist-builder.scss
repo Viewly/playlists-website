@@ -1,0 +1,31 @@
+/*------------------------------------*\
+    #PLAYLIST BUILDER PAGE
+\*------------------------------------*/
+
+/**
+ * Playlist builder
+ *
+ * 1. Make room for `c-playlist-builder__footer`.
+ */
+.c-playlist-builder {
+    padding-bottom: $spacing-unit-huge * 2; /* [1] */
+}
+
+    /**
+     * Playlist builder footer
+     */
+    .c-playlist-builder__footer {
+        background-color: $global-background-color;
+        border-top: 1px solid color('grey');
+        padding-top: $spacing-unit-small;
+        padding-bottom: $spacing-unit-small;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+
+    .c-playlist-builder__wrapper {
+        max-width: 1400px;
+    }

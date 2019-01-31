@@ -73,13 +73,18 @@ $colors: (
 // Header
 $header-height:                             62px;
 
+
 // Promo message height
 $promotion-message-height:                  52px;
 
 
+// Tweakpoint small mobile
+$tweakpoint-small-mobile:                   395px;
+
+
 // Primary navigation
 $tweakpoint-nav-primary:                    505px;
-$tweakpoint-nav-primary-medium:             650px;
+$tweakpoint-nav-primary-medium:             700px;
 $tweakpoint-nav-primary-large:              1160px;
 
 $nav-height:                                50px;
@@ -87,7 +92,7 @@ $nav-height:                                50px;
 
 // Search form
 $tweakpoint-search-form:                    640px;
-$tweakpoint-search-form-large:              808px;
+$tweakpoint-search-form-large:              888px;
 $tweakpoint-search-form-extralarge:         extralarge;
 
 
@@ -98,6 +103,6 @@ $player-playlist-content-padding:           $inuit-global-spacing-unit;
 // Inputs
 $input-background-color:                    #f7f7f7;
 $input-border-radius:                       4px;
-$input-color:                               #8a8a8a;
+$input-color:                               #545454;
 $input-font-size:                           $global-font-size;
 $input-padding:                             $inuit-global-spacing-unit-small + 3;
