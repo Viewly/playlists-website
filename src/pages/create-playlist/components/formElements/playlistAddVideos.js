@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import queryString from "query-string";
 import { playlistAddVideo, videoPrefil } from "../../../../actions/playlist";
 
 @connect(null, (dispatch) => ({
@@ -13,11 +13,17 @@ export default class PlaylistAddVideos extends Component {
   };
 
   getVideo = async () => {
-    const { videoPrefil, onAddVideo } = this.props;
-    const response = await videoPrefil(this.state.url);
+    const { videoPrefil, onAddVideo, onAddPlaylist } = this.props;
+    const parsed = queryString.parseUrl(this.state.url);
+
+    if (parsed?.query?.list && confirm("URL you pasted contains a playlist. Do you want us to import all videos?")) {
+      await onAddPlaylist(this.state.url);
+    } else {
+      const response = await videoPrefil(this.state.url);
+      onAddVideo(response);
+    }
 
     this.setState({ url: "" });
-    onAddVideo(response);
   };
 
   render() {
@@ -27,7 +33,7 @@ export default class PlaylistAddVideos extends Component {
         <div className='o-flag o-flag--small o-flag--reverse'>
           <div className='o-flag__img'>
             <button type="button" onClick={this.getVideo} className='c-btn c-btn--secondary c-btn--square'>
-              <img className='o-icon o-icon--small' src={require("../../../../images/icons/plus.svg")}/>
+              <img alt='' className='o-icon o-icon--small' src={require("../../../../images/icons/plus.svg")} />
             </button>
           </div>
           <div className='o-flag__body'>

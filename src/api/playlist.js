@@ -180,6 +180,12 @@ export async function playlistViews (baseUrl, { playlistId }) {
   return body;
 }
 
+export async function playlistImportPlaylist (baseUrl, { authorization, yt_url, playlist_id }) {
+  const { body } = await post(`${baseUrl}/playlist-import`, { yt_url, playlist_id }, { authorization });
+
+  return body;
+}
+
 export async function playlistsFetchNew (baseUrl, params) {
   let url = `${baseUrl}/playlists?status=published&order=publish_date`;
 
@@ -211,4 +217,3 @@ export async function playlistsFetchHashtag (baseUrl, params) {
 
   return body;
 }
-

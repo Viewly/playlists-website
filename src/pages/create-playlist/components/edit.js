@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { categoriesFetch, playlistFetch } from "../../../actions";
 import {
   playlistAddVideo,
+  playlistImportPlaylist,
   playlistRemove,
   playlistRemoveVideo,
   playlistUpdate,
@@ -36,6 +37,7 @@ import { PlaylistcreateEvent } from "../../../gleam";
   playlistUpdate: (data) => dispatch(playlistUpdate(data)),
   playlistAddVideo: (data) => dispatch(playlistAddVideo(data)),
   playlistRemoveVideo: (video_id, playlist_id) => dispatch(playlistRemoveVideo({ video_id, playlist_id })),
+  playlistImportPlaylist: (yt_url, playlist_id) => dispatch(playlistImportPlaylist({ yt_url, playlist_id })),
 }))
 class EditPlaylist extends Component {
   static propTypes = {
@@ -208,6 +210,17 @@ class EditPlaylist extends Component {
     }
   };
 
+  onAddPlaylist = async (yt_url) => {
+    const { playlistImportPlaylist, playlistVideosFetch, openToast, match: { params: { playlistId } } } = this.props;
+    const resp = await playlistImportPlaylist(yt_url, playlistId);
+
+    if (resp.success) {
+      playlistVideosFetch(playlistId);
+    } else {
+      openToast({ type: "error", message: response.reason });
+    }
+  }
+
   onDelete = (videoId) => async () => {
     const { playlistRemoveVideo, match: { params: { playlistId } } } = this.props;
 
@@ -259,13 +272,12 @@ class EditPlaylist extends Component {
                 <PlaylistDescription isReady={this.state.ready} value={this.state.description} onChange={this.handleDescriptionChange}/>
               </ul>
             </div>
-
-
+            
             <div
               className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge u-margin-top-large u-margin-top-none@large'>
 
               <ul className='c-form__list c-form__list--large'>
-                <PlaylistAddVideos onAddVideo={this.onAddVideo} playlistId={playlistId}/>
+                <PlaylistAddVideos onAddPlaylist={this.onAddPlaylist} onAddVideo={this.onAddVideo} playlistId={playlistId}/>
               </ul>
 
               <ul className='u-margin-top-large c-form__list c-form__list--small'>
