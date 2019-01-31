@@ -2,12 +2,6 @@
     #PLAYLIST BUILDER PAGE
 \*------------------------------------*/
 
-$tweakpoint-playlist-builder:                       920px;
-
-
-
-
-
 /**
  * Playlist builder
  *
@@ -21,10 +15,8 @@ $tweakpoint-playlist-builder:                       920px;
      * Playlist builder footer
      */
     .c-playlist-builder__footer {
-        background-color: #fff;
+        background-color: $global-background-color;
         border-top: 1px solid color('grey');
-        color: #afb1b3;
-        font-size: 13px;
         padding-top: $spacing-unit-small;
         padding-bottom: $spacing-unit-small;
         position: fixed;
