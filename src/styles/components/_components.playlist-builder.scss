@@ -13,12 +13,20 @@
 
     /**
      * Playlist builder footer
+     *
+     * 1. Use css custom property so that we can use `calc` in 2. (as per
+     *    https://medium.com/@draganeror/iphone-x-layout-features-with-css-environment-variables-d57423433dec)
+     * 2. On iPhones with gesture navigation (starting with iPhone X), don't
+     *    "glue" the bottom part of footer with iPhone's home button
      */
     .c-playlist-builder__footer {
+        --safe-area-inset-bottom: env(safe-area-inset-bottom); /* [1] */
+
         background-color: $global-background-color;
         border-top: 1px solid color('grey');
         padding-top: $spacing-unit-small;
         padding-bottom: $spacing-unit-small;
+        padding-bottom: calc(#{$spacing-unit-small} + var(--safe-area-inset-bottom)); /* [2] */
         position: fixed;
         bottom: 0;
         left: 0;
