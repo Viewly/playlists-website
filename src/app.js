@@ -13,6 +13,7 @@ import UploadModal from "./components/UploadModal";
 import RegisterModal from "./components/RegisterModal";
 import Toasts from "./components/Toasts";
 import CropModal from "./components/CropModal";
+import Promotion from "./components/promotion";
 import { LOGOUT } from "./actions/user";
 import { LOAD_LOCALSTORAGE } from "./actions";
 import { isLoaded } from "./utils";
@@ -63,15 +64,16 @@ class App extends Component {
 class LayoutWithHeader extends Component {
   componentDidMount() {
     const { doLoadLocalstorage } = this.props;
-
     doLoadLocalstorage();
   }
 
   render() {
     const { localStorage } = this.props;
+    const showPromotion = isLoaded(localStorage) && localStorage.data.hidePromotion !== true;
 
     return (
-      <div className='has-header'>
+      <div className={`has-header ${showPromotion ? "has-promotion-message" : ""}`}>
+        {showPromotion && <Promotion />}
         <HeaderContainer />
         <Toasts />
         <>
