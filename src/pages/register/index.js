@@ -41,9 +41,10 @@ class RegistrationPage extends Component {
     evnt.preventDefault();
     const response = await userRegister(this.state.first_name, this.state.last_name, this.state.email, this.state.password);
 
+
     if (response.success) {
-      loginSuccess(response.user);
       RegistrationEvent(response.user.email);
+      loginSuccess(response.user);
       history.push("/onboarding");
     } else {
       this.setState({

@@ -29,10 +29,9 @@ class AuthyPage extends Component {
     console.log("RESPONSE", response);
 
     if (response && response.user) {
+      RegistrationEvent(response.user.email);
       loginSuccess(response.user);
-
       if (response.registered) {
-        RegistrationEvent(response.user.email);
         history.push("/onboarding");
       } else {
         history.push("/");
