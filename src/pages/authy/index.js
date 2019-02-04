@@ -5,6 +5,7 @@ import queryString from "query-string";
 
 import { LOGIN_SUCCESS_PERSIST, doSocialLogin } from "../../actions/user";
 import Loading from "../../components/loading";
+import { RegistrationEvent } from "../../gleam";
 
 @connect(null, (dispatch) => ({
   doSocialLogin: (platform, params) => dispatch(doSocialLogin({ platform, params })),
@@ -31,6 +32,7 @@ class AuthyPage extends Component {
       loginSuccess(response.user);
 
       if (response.registered) {
+        RegistrationEvent(response.user.email);
         history.push("/onboarding");
       } else {
         history.push("/");
