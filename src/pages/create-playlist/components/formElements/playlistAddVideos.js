@@ -16,7 +16,7 @@ export default class PlaylistAddVideos extends Component {
     const { videoPrefil, onAddVideo, onAddPlaylist } = this.props;
     const parsed = queryString.parseUrl(this.state.url);
 
-    if (parsed?.query?.list && confirm("URL you pasted contains a playlist. Do you want us to import all videos?")) {
+    if (parsed?.query?.list && parsed?.query?.list !== 'WL' && confirm("URL you pasted contains a playlist. Do you want us to import all videos?")) {
       await onAddPlaylist(this.state.url);
     } else {
       const response = await videoPrefil(this.state.url);
