@@ -124,6 +124,12 @@
                     display: none;
                 }
 
+                .is-logged-out & {
+                    @include mq($from: 315px, $until: ($tweakpoint-nav-primary - 1)) {
+                        display: block;
+                    }
+                }
+
                 @include mq($from: $tweakpoint-nav-primary-medium, $until: $tweakpoint-nav-primary-large) {
                     display: none;
                 }

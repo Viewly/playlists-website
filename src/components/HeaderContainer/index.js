@@ -41,7 +41,7 @@ class HeaderContainer extends Component {
     const { user } = this.props;
 
     return (
-      <header className='c-header'>
+      <header className={`c-header ${!user ? 'is-logged-out' : ''}`}>
         <div className='o-wrapper c-header__grid'>
           <div className='c-header__grid__item'>
             <Link to='/' className='c-logo'>
