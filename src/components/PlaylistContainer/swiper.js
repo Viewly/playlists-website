@@ -79,6 +79,23 @@ export default class PlaylistSwiper extends Component {
       },
       spaceBetween: 20,
       slidesPerView: 4,
+      breakpoints: {
+        400: {
+          slidesPerView: 1
+        },
+        660: {
+          slidesPerView: 2,
+          spaceBetween: 15
+        },
+        960: {
+          slidesPerView: 3,
+          spaceBetween: 15
+
+        },
+        1025: {
+          slidesPerView: 4
+        }
+      },
       ...swiper
     }
 
