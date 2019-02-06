@@ -172,7 +172,7 @@ hr {
         }
 
         .c-header__btn-cta__icon {
-            @include mq($until: medium) {
+            @include mq($until: $tweakpoint-nav-primary-extralarge) {
                 font-size: 22px;
             }
         }
@@ -180,12 +180,11 @@ hr {
         .c-header__btn-cta__label {
             margin-left: $spacing-unit-tiny;
 
-            @include mq($until: medium) {
+            @include mq($until: $tweakpoint-nav-primary-extralarge) {
                 display: none;
             }
         }
 
-        .c-header__icon-bookmark,
         .c-header__icon-notification {
             @include mq($until: medium) {
                 font-size: 22px;

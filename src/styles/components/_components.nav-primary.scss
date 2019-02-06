@@ -27,12 +27,12 @@
         }
     }
 
-    @include mq($from: $tweakpoint-nav-primary-medium, $until: $tweakpoint-nav-primary-large) {
+    @include mq($from: $tweakpoint-nav-primary-medium, $until: $tweakpoint-nav-primary-extralarge) {
         background-color: transparent;
         margin-left: $spacing-unit;
     }
 
-    @include mq($from: $tweakpoint-nav-primary-large) {
+    @include mq($tweakpoint-nav-primary-extralarge) {
         margin-left: $spacing-unit-large;
     }
 
