@@ -1,4 +1,6 @@
 export const HOME_PAGE = "HOME_PAGE";
+export const FEED_PAGE = "FEED_PAGE";
+export const EXPLORE_PAGE = "EXPLORE_PAGE";
 export const NEW_PAGE = "NEW_PAGE";
 export const PLAYLIST_PAGE = "PLAYLIST_PAGE";
 export const PLAYER_PAGE = "PLAYER_PAGE";

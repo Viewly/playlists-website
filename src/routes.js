@@ -1,5 +1,6 @@
 import HomePage from "./pages/home";
 import ExplorePage from "./pages/explore";
+import FeedPage from "./pages/feed";
 import PlaylistPage from "./pages/playlist";
 import PlayerPage from "./pages/player";
 import CreatePlaylist from "./pages/create-playlist";
@@ -37,6 +38,10 @@ export const routes = [
   {
     path: "/explore",
     component: ExplorePage
+  },
+  {
+    path: "/feed",
+    component: FeedPage
   },
   {
     path: "/promo-early-adopters",
