@@ -74,8 +74,8 @@ export default class PlaylistSwiper extends Component {
 
     const params = {
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+        prevEl: '.c-swiper-nav.c-swiper-nav--previous',
+        nextEl: '.c-swiper-nav.c-swiper-nav--next'
       },
       spaceBetween: 20,
       slidesPerView: 4,

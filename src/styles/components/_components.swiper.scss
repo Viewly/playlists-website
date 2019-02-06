@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    #SWIPER
+\*------------------------------------*/
+
+.c-swiper {
+    position: relative;
+}
+
+    .c-swiper-nav {
+        background-color: rgba(#000, .85);
+        border-radius: 50%;
+        box-shadow: 0 3px 5px 0 rgba(17,18,20, .20);
+        color: #333;
+        cursor: pointer;
+        height: 1em;
+        font-size: 50px;
+        width: 1em;
+        position: absolute;
+        top: 38%;
+        z-index: 300;
+
+        &[aria-disabled=true] {
+            cursor: default;
+            opacity: .65;
+        }
+    }
+
+    .c-swiper-nav--previous {
+        transform: translateX(50%) translateY(-50%);
+        right: 100%;
+    }
+
+    .c-swiper-nav--next {
+        transform: translateX(-50%) translateY(-50%);
+        left: 100%;
+    }
