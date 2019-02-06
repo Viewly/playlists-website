@@ -76,7 +76,7 @@ export default class ExplorePage extends Component {
             />
           </div>
         </div>*/}
-        
+
         <div className='o-wrapper u-margin-top-large u-margin-top-huge@large'>
           <div className='u-margin-bottom-large'>
             <PlaylistSwiper
