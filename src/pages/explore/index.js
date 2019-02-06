@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { playlistsFetchHashtag, playlistsFetchNew, playlistsFetchPicked } from "../../actions/playlist";
 import { isLoaded, asyncLoad, isPending } from "../../utils";
-import { HOME_PAGE } from "../../constants/pages";
+import { EXPLORE_PAGE } from "../../constants/pages";
 
 import Playlist from "../../components/PlaylistContainer";
 import PlaylistSwiper from "../../components/PlaylistContainer/swiper";
@@ -19,8 +19,8 @@ const prepareActions = (dispatch) => ({
   playlistsFetchPicked: (params) => dispatch(playlistsFetchPicked(params)),
   playlistsFetchNew: (params) => dispatch(playlistsFetchNew(params)),
   playlistsFetchHashtag: (params) => dispatch(playlistsFetchHashtag(params)),
-  setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: HOME_PAGE }),
-  setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: HOME_PAGE }),
+  setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: EXPLORE_PAGE }),
+  setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: EXPLORE_PAGE }),
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
@@ -35,7 +35,7 @@ const prepareActions = (dispatch) => ({
   playlists_picked: state.playlists_picked,
   playlists_new: state.playlists_new,
   playlists_hashtag: state.playlists_hashtag,
-  isSSR: !!state.renderedPages[HOME_PAGE],
+  isSSR: !!state.renderedPages[EXPLORE_PAGE],
   user: state.user
 }), prepareActions)
 export default class ExplorePage extends Component {

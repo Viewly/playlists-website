@@ -55,7 +55,7 @@ class HeaderContainer extends Component {
                 <nav className='c-nav-primary'>
                   <ul>
                     <li className='c-nav-primary__item'>
-                      <NavLink to='/' exact activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
+                      <NavLink to='/feed' exact activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
                         <div className='c-nav-primary__icon c-colored-icon'>
                           <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-home.svg")} />
                           <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-home-active.svg")} />
