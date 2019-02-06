@@ -67,7 +67,7 @@
         }
 
             .c-nav-primary__item--search {
-                @include mq($tweakpoint-search-form-large + 1) {
+                @include mq($tweakpoint-search-form + 1) {
                     display: none;
                 }
             }

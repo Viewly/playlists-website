@@ -61,7 +61,7 @@ class HeaderContainer extends Component {
                           <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-home-active.svg")} />
                         </div>
 
-                        <span className='c-nav-primary__label'>Home</span>
+                        <span className='c-nav-primary__label'>For you</span>
                       </NavLink>
                     </li>
                     <li className='c-nav-primary__item'>
