@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
+import Swiper from 'react-id-swiper';
 
 import { PLAYLIST_INJECT_DATA } from "../../actions";
 import { userAddBookmark, userRemoveBookmark } from "../../actions/user";
@@ -16,7 +17,7 @@ import Loading from "../loading";
   userAddBookmark: (playlist_id) => dispatch(userAddBookmark({ playlist_id })),
   userRemoveBookmark: (playlist_id) => dispatch(userRemoveBookmark({ playlist_id })),
 }))
-export default class Playlist extends Component {
+export default class PlaylistSwiper extends Component {
   static propTypes = {
     injectPlaylist: PropTypes.func,
     playlists: PropTypes.array,
@@ -60,27 +61,26 @@ export default class Playlist extends Component {
     return (
       <div className='o-grid__cell u-1/1'>
         <div className='c-no-results'>
-          <img className='c-no-results__img' src={require("../../images/message-no-playlists-yet.svg")} />
+          <img alt='' className='c-no-results__img' src={require("../../images/message-no-playlists-yet.svg")} />
           <p>There are no playlists in this category yet. <br />Try browsing other categories or <Link to='/create-playlist'>create a playlist</Link> <br />in this one.</p>
         </div>
       </div>
     );
   }
 
-  getSizeClass = (size) => {
-    switch (size) {
-      case "big":
-        return "o-grid__cell u-1/2@medium u-1/3@large u-margin-bottom-large";
-      case "medium":
-        return "o-grid__cell u-1/2@medium u-1/4@extralarge u-margin-bottom-large";
-      default:
-        return "o-grid__cell u-1/2@medium u-1/3@large u-1/4@extralarge u-margin-bottom-large";
-    }
-  }
-
   render() {
-    const { isLoaded, playlists, title, moreButton, size } = this.props;
-    const customClass = this.getSizeClass(size)
+    const { isLoaded, playlists, title, moreButton, size, swiper } = this.props;
+    const customClass = "swiper-slide";
+
+    const params = {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      spaceBetween: 20,
+      slidesPerView: 4,
+      ...swiper
+    }
 
     return (
       <div>
@@ -97,18 +97,20 @@ export default class Playlist extends Component {
           </div>
         )}
 
-        <div className='o-grid'>
-          {isLoaded && playlists.map((item) => (
-            <PlaylistItem
-              customClass={customClass}
-              key={`playlistitem-${item.id}`}
-              onPlaylistClick={this.onPlaylistClick}
-              {...item}
-            />
-          ))}
-          {!isLoaded && <Loading />}
-          {isLoaded && playlists.length === 0 && this.renderNoPlaylists()}
-        </div>
+        {isLoaded && (
+          <Swiper {...params}>
+            {playlists.map((item) => (
+              <PlaylistItem
+                customClass={customClass}
+                key={`playlistitem-${item.id}`}
+                onPlaylistClick={this.onPlaylistClick}
+                {...item}
+                />
+            ))}
+          </Swiper>
+        )}
+        {!isLoaded && <Loading />}
+        {isLoaded && playlists.length === 0 && this.renderNoPlaylists()}
       </div>
     );
   }

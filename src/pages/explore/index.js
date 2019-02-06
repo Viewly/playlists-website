@@ -9,13 +9,14 @@ import { isLoaded, asyncLoad, isPending } from "../../utils";
 import { HOME_PAGE } from "../../constants/pages";
 
 import Playlist from "../../components/PlaylistContainer";
+import PlaylistSwiper from "../../components/PlaylistContainer/swiper";
 import Categories from "./components/categories";
 import SEO from "../../components/SEO";
 
 const hashtagPicked = "%23gaming"; // %23 is #
 
 const prepareActions = (dispatch) => ({
-  playlistsFetchPicked: () => dispatch(playlistsFetchPicked()),
+  playlistsFetchPicked: (params) => dispatch(playlistsFetchPicked(params)),
   playlistsFetchNew: (params) => dispatch(playlistsFetchNew(params)),
   playlistsFetchHashtag: (params) => dispatch(playlistsFetchHashtag(params)),
   setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: HOME_PAGE }),
@@ -25,7 +26,7 @@ const prepareActions = (dispatch) => ({
 @asyncLoad(async (params = {}, query = {}, store) => {
   const { playlistsFetchPicked, playlistsFetchNew, playlistsFetchHashtag, setServerRendered } = prepareActions(store.dispatch);
 
-  await playlistsFetchPicked();
+  await playlistsFetchPicked({ limit: 10 });
   await playlistsFetchNew({ page: 0, limit: 4 });
   await playlistsFetchHashtag({ limit: 3, query: hashtagPicked });
   setServerRendered();
@@ -50,9 +51,9 @@ export default class ExplorePage extends Component {
     const { playlists_picked, playlists_new, playlists_hashtag, playlistsFetchPicked, playlistsFetchNew, playlistsFetchHashtag, isSSR, setClientRendered } = this.props;
 
     if (!isSSR) {
-      isPending(playlists_picked) && await playlistsFetchPicked();
-      isPending(playlists_new) && playlistsFetchNew({ page: 0, limit: 4 });
-      isPending(playlists_hashtag) && playlistsFetchHashtag({ limit: 3, query: hashtagPicked });
+      isPending(playlists_picked) && await playlistsFetchPicked({ limit: 10 });
+      isPending(playlists_new) && playlistsFetchNew({ page: 0, limit: 12 });
+      isPending(playlists_hashtag) && playlistsFetchHashtag({ limit: 6, query: hashtagPicked });
     } else {
       setClientRendered();
     }
@@ -61,31 +62,24 @@ export default class ExplorePage extends Component {
 
   render() {
     const { playlists_picked, playlists_hashtag, playlists_new } = this.props;
-    const { user } = this.props;
 
     return (
       <>
         <SEO />
-        {!user && (
-          <div className='c-hero'>
-            <div className='o-wrapper'>
-              <div className='o-grid o-grid--middle o-grid--large'>
-                <div className='o-grid__cell c-hero__grid__cell'>
-                  <h1 className="c-hero__title">Collaborative <br />YouTube playlists</h1>
-                  <p>Discover playlists, create your own, and contribute to others.</p>
-                  <Link to='/register' className='c-btn c-btn--primary c-btn--large'>Create your playlist</Link>
-                </div>
-                <div className='o-grid__cell c-hero__grid__cell'>
-                  <img alt='' className='c-hero__graphic' src={require("../../images/hero-illustration.svg")} />
-                </div>
-              </div>
-            </div>
+
+        {/*<div className='c-hero'>
+          <div className='o-wrapper'>
+            <Playlist
+              title="Featured playlists"
+              isLoaded={isLoaded(playlists_picked)}
+              playlists={playlists_picked.data.slice(0, 1)}
+            />
           </div>
-        )}
+        </div>*/}
 
         <div className='o-wrapper u-margin-top-large u-margin-top-huge@large'>
           <div className='u-margin-bottom-large'>
-            <Playlist
+            <PlaylistSwiper
               title="Pick of the week"
               isLoaded={isLoaded(playlists_picked)}
               playlists={playlists_picked.data}
@@ -93,7 +87,7 @@ export default class ExplorePage extends Component {
           </div>
 
           <div className='u-margin-bottom-large'>
-            <Playlist
+            <PlaylistSwiper
               title="New playlist"
               isLoaded={isLoaded(playlists_new)}
               playlists={playlists_new.data}
@@ -102,9 +96,9 @@ export default class ExplorePage extends Component {
 
           <div className='u-margin-bottom-large'>
             <span className="c-featured">Featured topic</span>
-            <Playlist
+            <PlaylistSwiper
               title="The world of gaming"
-              size="big"
+              swiper={{ slidesPerView: 3 }}
               moreButton={{ title: "View all", url: "/search/?query=%23gaming" }}
               isLoaded={isLoaded(playlists_hashtag)}
               playlists={playlists_hashtag.data}
