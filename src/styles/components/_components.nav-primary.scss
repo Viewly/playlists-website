@@ -52,7 +52,7 @@
          */
         .c-nav-primary__item {
             &:not(:last-child) {
-                @include mq(medium) {
+                @include mq($tweakpoint-nav-primary) {
                     margin-right: $spacing-unit;
                 }
 
@@ -89,6 +89,7 @@
             height: $header-height - 1;
             padding-left: 3px;
             padding-right: 3px;
+            white-space: nowrap;
 
             @include mq($until: ($tweakpoint-nav-primary - 1)) { /* [1] */
                 justify-content: center;
