@@ -61,36 +61,29 @@ class HeaderContainer extends Component {
                           <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-home-active.svg")} />
                         </div>
 
-                        <span className='c-nav-primary__label'>Home</span>
-                      </NavLink>
-                    </li>
-                    <li className='c-nav-primary__item'>
-                      <NavLink to='/new' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
-                        <div className='c-nav-primary__icon c-colored-icon'>
-                          <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-new.svg")} />
-                          <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-new-active.svg")} />
-                        </div>
-                        <span className='c-nav-primary__label'>New</span>
-                      </NavLink>
-                    </li>
-                    <li className='c-nav-primary__item'>
-                      <NavLink to='/categories' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
-                        <div className='c-nav-primary__icon c-colored-icon'>
-                          <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-category.svg")} />
-                          <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-category-active.svg")} />
-                        </div>
-                        <span className='c-nav-primary__label'>Categories</span>
+                        <span className='c-nav-primary__label'>For you</span>
                       </NavLink>
                     </li>
                     <li className='c-nav-primary__item'>
                       <NavLink to='/hashtags' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
                         <div className='c-nav-primary__icon c-colored-icon'>
-                          <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-hashtag.svg")} />
-                          <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-hashtag-active.svg")} />
+                          <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-new.svg")} />
+                          <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-new-active.svg")} />
                         </div>
                         <span className='c-nav-primary__label'>Explore</span>
                       </NavLink>
                     </li>
+                    {user && (
+                      <li className='c-nav-primary__item'>
+                        <NavLink to='/bookmarks' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
+                          <div className='c-nav-primary__icon c-colored-icon'>
+                            <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-bookmark.svg")} />
+                            <img className='c-colored-icon__icon' src={require("../../images/icons/nav-primary/nav-bookmark-hover.svg")} />
+                          </div>
+                          <span className='c-nav-primary__label'>Bookmarks</span>
+                        </NavLink>
+                      </li>
+                    )}
                     <li className='c-nav-primary__item c-nav-primary__item--search'>
                       <NavLink to='/search' activeClassName='is-current' className='c-nav-primary__link has-colored-icon'>
                         <div className='c-nav-primary__icon c-colored-icon'>
@@ -117,13 +110,6 @@ class HeaderContainer extends Component {
                     <img className='c-header__btn-cta__icon o-icon o-icon--small' src={require("../../images/icons/create-playlist-hover.svg")} />
                     <span className='c-header__btn-cta__label'>Create playlist</span>
                   </Link>
-                </div>
-              )}
-              {user && (
-                <div className='o-grid__cell'>
-                  <Link to='/bookmarks' className='has-colored-icon'>
-                      <img className='c-header__icon-bookmark o-icon o-icon--small' src={require("../../images/icons/bookmark-header.svg")} />
-                    </Link>
                 </div>
               )}
               {user && (

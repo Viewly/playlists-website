@@ -40,7 +40,7 @@ $search-from-button-width:                  46px;
     display: block;
     width: 200px;
 
-    @include mq($until: $tweakpoint-search-form-large) {
+    @include mq($until: $tweakpoint-search-form) {
         display: none;
     }
 
@@ -55,7 +55,7 @@ $search-from-button-width:                  46px;
     max-width: 400px;
     width: 100%;
 
-    @include mq($tweakpoint-search-form-large + 1) {
+    @include mq($tweakpoint-search-form + 1) {
         display: none;
     }
 }
