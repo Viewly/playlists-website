@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { THUMBNAIL_ROOT, NO_THUMBNAIL } from "../../constants";
 
 const PlaylistItem = ({ id, url, title, description, playlist_thumbnail_url, duration, noVideos, category, onPlaylistClick, bookmarked, customClass }) => (
-  <div className={`o-grid__cell ${customClass ? customClass : "u-1/2@medium u-1/3@large u-margin-bottom-large"}`} onClick={() => onPlaylistClick(url)}>
+  <div className={`${customClass ? customClass : "o-grid__cell u-1/2@medium u-1/3@large u-margin-bottom-large"}`} onClick={() => onPlaylistClick(url)}>
     <div className='c-video'>
       <div className='c-thumbnail'>
         <Link onClick={onPlaylistClick(url)} className='c-thumbnail__link' to={`/playlist/${url}`} />
