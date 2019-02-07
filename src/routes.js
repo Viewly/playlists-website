@@ -1,6 +1,7 @@
 import HomePage from "./pages/home";
 import ExplorePage from "./pages/explore";
 import FeedPage from "./pages/feed";
+import FeedCreatePage from "./pages/feed_create";
 import PlaylistPage from "./pages/playlist";
 import PlayerPage from "./pages/player";
 import CreatePlaylist from "./pages/create-playlist";
@@ -40,7 +41,12 @@ export const routes = [
     component: ExplorePage
   },
   {
+    path: "/feed/create",
+    component: FeedCreatePage
+  },
+  {
     path: "/feed",
+    exact: true,
     component: FeedPage
   },
   {
