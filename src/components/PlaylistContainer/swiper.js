@@ -73,10 +73,10 @@ export default class PlaylistSwiper extends Component {
     const customClass = "swiper-slide";
 
     const params = {
-      navigation: {
-        prevEl: '.c-swiper-nav.c-swiper-nav--previous',
-        nextEl: '.c-swiper-nav.c-swiper-nav--next'
-      },
+      // navigation: {
+      //   prevEl: '.c-swiper-nav.c-swiper-nav--previous',
+      //   nextEl: '.c-swiper-nav.c-swiper-nav--next'
+      // },
       spaceBetween: 20,
       slidesPerView: 4,
       breakpoints: {
@@ -115,16 +115,20 @@ export default class PlaylistSwiper extends Component {
         )}
 
         {isLoaded && (
-          <Swiper {...params}>
-            {playlists.map((item) => (
-              <PlaylistItem
-                customClass={customClass}
-                key={`playlistitem-${item.id}`}
-                onPlaylistClick={this.onPlaylistClick}
-                {...item}
-                />
-            ))}
-          </Swiper>
+          <div className='c-slider'>
+            <Swiper {...params}>
+              {playlists.map((item) => (
+                <PlaylistItem
+                  customClass={customClass}
+                  key={`playlistitem-${item.id}`}
+                  onPlaylistClick={this.onPlaylistClick}
+                  {...item}
+                  />
+              ))}
+            </Swiper>
+            <button className='c-btn c-slider-nav-btn c-slider-nav-btn--previous'><img className='c-slider-nav-btn__icon o-icon o-icon--small' src={require("../../images/icons/chevron-dark-left.svg")} /></button>
+            <button className='c-btn c-slider-nav-btn c-slider-nav-btn--next'><img className='c-slider-nav-btn__icon o-icon o-icon--small' src={require("../../images/icons/chevron-dark-right.svg")} /></button>
+          </div>
         )}
         {!isLoaded && <Loading />}
         {isLoaded && playlists.length === 0 && this.renderNoPlaylists()}
