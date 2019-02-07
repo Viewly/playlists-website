@@ -25,22 +25,16 @@ function getMeta() {
 }
 
 async function sendEvent(event_type, data) {
-  // if (PRODUCTION) {
-
+  if (PRODUCTION) {
     const meta = getMeta();
 
     if (!navigator.sendBeacon) {
       return await put(EVENT_URL, { event_type, data, meta });
     } else {
       const requestData = JSON.stringify({ event_type, data, meta });
-      const status = navigator.sendBeacon(EVENT_URL, requestData);
-
-      console.log("Beacon status", status);
-      return status;
+      return navigator.sendBeacon(EVENT_URL, requestData);
     }
-
-
-  // }
+  }
 }
 
 export async function pageLoad(page) {
