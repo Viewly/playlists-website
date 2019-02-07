@@ -17,6 +17,8 @@ class AnalyticsWrapper extends Component {
 
     this.pageLoad(route);
     this.pageEnter(route);
+
+    window.addEventListener('beforeunload', this.handleWindowClose);
   }
 
   componentDidUpdate(prevProps) {
@@ -39,6 +41,21 @@ class AnalyticsWrapper extends Component {
     } else if (this.props.location.search !== prevProps.location.search) {
       this.pageEnter(toRoute);
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.handleWindowClose);
+  }
+
+  handleWindowClose = () => {
+    const fromRoute = this.getRoute(this.props.location.pathname);
+
+    this.pageLeave(fromRoute, {
+      toUrl: this.props.location.pathname,
+      // location: this.props.location,
+      prevLocation: this.props.location,
+      fromRoute
+    });
   }
 
   getRoute = (path) => {

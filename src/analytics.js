@@ -27,9 +27,13 @@ function getMeta() {
 async function sendEvent(event_type, data) {
   if (PRODUCTION) {
     const meta = getMeta();
-    const response = await put(EVENT_URL, { event_type, data, meta });
 
-    return response;
+    if (!navigator.sendBeacon) {
+      return await put(EVENT_URL, { event_type, data, meta });
+    } else {
+      const requestData = JSON.stringify({ event_type, data, meta });
+      return navigator.sendBeacon(EVENT_URL, requestData);
+    }
   }
 }
 
