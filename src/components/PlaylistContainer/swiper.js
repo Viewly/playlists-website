@@ -31,6 +31,11 @@ export default class PlaylistSwiper extends Component {
     history: PropTypes.object,
   }
 
+  state = {
+    isBeginning: true,
+    isEnd: false
+  }
+
   static defaultProps = {
     moreButton: false
   }
@@ -50,6 +55,27 @@ export default class PlaylistSwiper extends Component {
       }
     }
   }
+
+  checkEdges = () => {
+    if (this.swiper) {
+      this.setState({ isBeginning: this.swiper.isBeginning, isEnd: this.swiper.isEnd });
+    }
+  }
+
+  goNext = () => {
+    if (this.swiper) {
+      this.swiper.slideNext();
+      this.checkEdges();
+    }
+  }
+
+  goPrev = () => {
+    if (this.swiper) {
+      this.swiper.slidePrev();
+      this.checkEdges();
+    }
+  }
+
 
   renderNoPlaylists = () => {
     const { customEmptyContainer } = this.props;
@@ -114,9 +140,15 @@ export default class PlaylistSwiper extends Component {
           </div>
         )}
 
+
         {isLoaded && (
           <div className='c-slider'>
-            <Swiper {...params}>
+            <Swiper {...params} ref={ref => {
+              if (ref) {
+                this.swiper = ref.swiper;
+                this.swiper.on('slideChange', () => this.checkEdges());
+              }
+            }}>
               {playlists.map((item) => (
                 <PlaylistItem
                   customClass={customClass}
@@ -126,10 +158,11 @@ export default class PlaylistSwiper extends Component {
                   />
               ))}
             </Swiper>
-            <button className='c-btn c-slider-nav-btn c-slider-nav-btn--previous'><img className='c-slider-nav-btn__icon o-icon o-icon--small' src={require("../../images/icons/chevron-dark-left.svg")} /></button>
-            <button className='c-btn c-slider-nav-btn c-slider-nav-btn--next'><img className='c-slider-nav-btn__icon o-icon o-icon--small' src={require("../../images/icons/chevron-dark-right.svg")} /></button>
+            <button onClick={this.goPrev} aria-disabled={this.state.isBeginning} className='c-btn c-slider-nav-btn c-slider-nav-btn--previous'><img alt='' className='c-slider-nav-btn__icon o-icon o-icon--small' src={require("../../images/icons/chevron-dark-left.svg")} /></button>
+            <button onClick={this.goNext} aria-disabled={this.state.isEnd} className='c-btn c-slider-nav-btn c-slider-nav-btn--next'><img alt='' className='c-slider-nav-btn__icon o-icon o-icon--small' src={require("../../images/icons/chevron-dark-right.svg")} /></button>
           </div>
         )}
+
         {!isLoaded && <Loading />}
         {isLoaded && playlists.length === 0 && this.renderNoPlaylists()}
       </div>
