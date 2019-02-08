@@ -1,25 +1,25 @@
 /*------------------------------------*\
-    #PLAYLIST BUILDER PAGE
+    #FIXED FOOTER LAYOUT
 \*------------------------------------*/
 
 /**
- * Playlist builder
+ * Sticky footer layout holder/container
  *
- * 1. Make room for `c-playlist-builder__footer`.
+ * 1. Make room for `c-fixed-footer-layout__footer`.
  */
-.c-playlist-builder {
+.c-fixed-footer-layout {
     padding-bottom: $spacing-unit-huge * 2; /* [1] */
 }
 
     /**
-     * Playlist builder footer
+     * Sticky footer layout footer
      *
      * 1. Use css custom property so that we can use `calc` in 2. (as per
      *    https://medium.com/@draganeror/iphone-x-layout-features-with-css-environment-variables-d57423433dec)
      * 2. On iPhones with gesture navigation (starting with iPhone X), don't
      *    "glue" the bottom part of footer with iPhone's home button
      */
-    .c-playlist-builder__footer {
+    .c-fixed-footer-layout__footer {
         --safe-area-inset-bottom: env(safe-area-inset-bottom); /* [1] */
 
         background-color: $global-background-color;
@@ -34,6 +34,6 @@
         z-index: 1000;
     }
 
-    .c-playlist-builder__wrapper {
+    .c-fixed-footer-layout__wrapper {
         max-width: 1400px;
     }

@@ -256,7 +256,7 @@ class EditPlaylist extends Component {
     return (
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large'>
 
-        <div className="c-playlist-builder">
+        <div className="c-fixed-footer-layout">
           <div className="o-grid o-grid--center o-grid--large">
 
             <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
@@ -272,7 +272,7 @@ class EditPlaylist extends Component {
                 <PlaylistDescription isReady={this.state.ready} value={this.state.description} onChange={this.handleDescriptionChange}/>
               </ul>
             </div>
-            
+
             <div
               className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge u-margin-top-large u-margin-top-none@large'>
 
@@ -293,8 +293,8 @@ class EditPlaylist extends Component {
             </div>
           </div>
 
-          <div className='c-playlist-builder__footer'>
-            <div className="o-wrapper c-playlist-builder__wrapper">
+          <div className='c-fixed-footer-layout__footer'>
+            <div className="o-wrapper c-fixed-footer-layout__wrapper">
               <div className='o-grid o-grid--auto o-grid--tiny o-grid--middle o-grid--between o-grid--reverse'>
 
                 <div className='o-grid__cell'>

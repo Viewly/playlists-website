@@ -51,16 +51,14 @@ export default class FeedCreatePage extends Component {
     const isReady = isLoaded(categories);
 
     return (
-      <div className='c-auth'>
+      <div className='o-wrapper u-padding-top-large u-padding-top-huge@large'>
         <SEO />
 
-        <div className='c-auth__main c-auth__main--full'>
+        <div className='c-fixed-footer-layout'>
 
-          <div className='c-auth__main__content'>
-            <div className='c-auth__main__header'>
-              <h1 className='u-h3 u-margin-bottom-tiny'>Pick your interests</h1>
-              <p>Choose at least 3 categories lolol</p>
-            </div>
+          <div className='c-fixed-footer-layout__header'>
+            <h1 className='u-h3 u-margin-bottom-tiny'>Pick your interests</h1>
+            <p>Choose at least 3 categories</p>
 
             <div className="c-categories-grid">
               {categories.data.map((item, idx) => (
@@ -75,9 +73,12 @@ export default class FeedCreatePage extends Component {
 
           </div>
 
-          <div className='c-auth__footer u-text-right'>
-            {/*{isReady && <SubmitCounter selected={this.getSelectedIds().length} onSave={this.saveOnboarding} />}*/}
-            <button>Next</button>
+          <div className='c-fixed-footer-layout__footer'>
+            <div className='o-wrapper c-fixed-footer-layout__wrapper  u-text-right'>
+
+              {/*{isReady && <SubmitCounter selected={this.getSelectedIds().length} onSave={this.saveOnboarding} />}*/}
+              <button className='c-btn c-btn--secondary' disabled>Choose 3 categories to continue</button>
+            </div>
           </div>
 
         </div>
