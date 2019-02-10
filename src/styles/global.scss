@@ -53,6 +53,7 @@
 @import '../../node_modules/react-mde/lib/styles/scss/react-mde';
 @import '../../node_modules/react-mde/lib/styles/scss/react-mde-editor';
 @import '../../node_modules/react-mde/lib/styles/scss/react-mde-toolbar';
+@import '../../node_modules/swiper/dist/css/swiper';
 
 
 // Components
@@ -76,8 +77,9 @@
 @import 'components/components.colored-icon';
 @import 'components/components.player';
 @import 'components/components.player-playlist';
-@import 'components/components.playlist-builder';
+@import 'components/components.fixed-footer-layout';
 @import 'components/components.file-input';
+@import 'components/components.slider';
 
 
 // Utilities

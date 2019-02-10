@@ -1,0 +1,48 @@
+/*------------------------------------*\
+    #SLIDER
+\*------------------------------------*/
+
+.c-slider {
+    position: relative;
+}
+
+    .c-slider-nav-btn[class] {
+        background-color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 3px 5px 0 rgba(17,18,20, .20);
+        color: #333;
+        cursor: pointer;
+        font-size: 34px;
+        height: 1em;
+        padding: 0;
+        width: 1em;
+        position: absolute;
+        top: 38%;
+        z-index: 300;
+
+        @include mq($inuit-wrapper-width + $spacing-unit-huge) {
+            font-size: 50px;
+        }
+
+        &[aria-disabled=true] {
+            cursor: default;
+            opacity: .65;
+        }
+    }
+
+    .c-slider-nav-btn--previous[class] {
+        transform: translateX(50%) translateX(-1px) translateY(-50%);
+        right: 100%;
+    }
+
+    .c-slider-nav-btn--next[class] {
+        transform: translateX(-50%) translateX(1px) translateY(-50%);
+        left: 100%;
+    }
+
+        .c-slider-nav-btn__icon {
+            transform: translate(-50%, -50%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }

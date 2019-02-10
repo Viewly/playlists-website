@@ -15,6 +15,7 @@ import {
   getLocalStorageConfig, setLocalStorageConfig
 } from "../utils";
 import { uniqBy } from "lodash";
+import moment from "moment";
 
 const jwtCookie = getUserCookie();
 
@@ -24,6 +25,7 @@ const initialState = {
   playlists_new: { _status: PENDING, data: [] },
   playlists_picked: { _status: PENDING, data: [] },
   playlists_hashtag: { _status: PENDING, data: [] },
+  playlists_watch_history: { _status: PENDING, data: [] },
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
   hashtags: { _status: PENDING, data: [] },
@@ -78,6 +80,16 @@ const rootReducer = (state = initialState, action) => {
 
     case playlistActions.PLAYLISTS_FETCH_HASHTAG_SUCCESS:
       return { ...state, playlists_hashtag: { data: action.data, _status: LOADED } };
+
+    case playlistActions.PLAYLISTS_FETCH_WATCH_HISTORY_SUCCESS: {
+      const newPlaylists = action.data.map(item => {
+        const secs = moment.duration(item.duration).asSeconds();
+        console.log("secds", secs, item.watch_time);
+        return { ...item, percentage: Math.round(100 * item.watch_time / secs) };
+      });
+
+      return { ...state, playlists_watch_history: { data: newPlaylists, _status: LOADED } };
+    }
 
     case actions.PLAYLISTS_LOAD_MORE_SUCCESS:
       return { ...state, playlists: { data: [...state.playlists.data, ...action.data], _status: LOADED } };

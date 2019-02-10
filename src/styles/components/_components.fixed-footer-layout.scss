@@ -1,0 +1,78 @@
+/*------------------------------------*\
+    #FIXED FOOTER LAYOUT
+\*------------------------------------*/
+
+/**
+ * Sticky footer layout holder/container
+ *
+ * 1. Make room for `c-fixed-footer-layout__footer`.
+ */
+.c-fixed-footer-layout {
+    padding-bottom: $spacing-unit-huge * 2; /* [1] */
+}
+
+    .c-fixed-footer-layout__header {
+        $padding-vertical: $spacing-unit-huge;
+
+        background-color: #f1f3f4;
+        color: #575757;
+        font-size: 15px;
+        padding-top: $padding-vertical;
+        padding-bottom: $padding-vertical + $spacing-unit-large;
+        margin-bottom: -$padding-vertical;
+
+        @include mq() {
+            padding-top: $spacing-unit-huge;
+        }
+
+        p {
+            &:not(:last-child) {
+                margin-bottom: $spacing-unit;
+            }
+
+            @include mq($until: medium) {
+                br {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .c-fixed-footer-layout__title {
+        font-size: 32px;
+
+        @include mq(medium) {
+            font-size: 44px;
+        }
+
+        @include mq(large) {
+            font-size: 48px;
+        }
+    }
+
+    /**
+     * Sticky footer layout footer
+     *
+     * 1. Use css custom property so that we can use `calc` in 2. (as per
+     *    https://medium.com/@draganeror/iphone-x-layout-features-with-css-environment-variables-d57423433dec)
+     * 2. On iPhones with gesture navigation (starting with iPhone X), don't
+     *    "glue" the bottom part of footer with iPhone's home button
+     */
+    .c-fixed-footer-layout__footer {
+        --safe-area-inset-bottom: env(safe-area-inset-bottom); /* [1] */
+
+        background-color: $global-background-color;
+        border-top: 1px solid color('grey');
+        padding-top: $spacing-unit-small;
+        padding-bottom: $spacing-unit-small;
+        padding-bottom: calc(#{$spacing-unit-small} + var(--safe-area-inset-bottom)); /* [2] */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+
+    .c-fixed-footer-layout__wrapper {
+        max-width: 1400px;
+    }

@@ -203,7 +203,7 @@ export async function playlistsFetchNew (baseUrl, params) {
 }
 
 export async function playlistsFetchPicked (baseUrl, params) {
-  const url = `${baseUrl}/playlists?status=published&order=publish_date&classification=staff_picked&page=0&limit=6`;
+  const url = `${baseUrl}/playlists?status=published&order=publish_date&classification=staff_picked&page=0&limit=${params.limit || 6}`;
 
   const { body } = await get(url, {}, { authorization: params.authorization });
 
@@ -212,6 +212,14 @@ export async function playlistsFetchPicked (baseUrl, params) {
 
 export async function playlistsFetchHashtag (baseUrl, params) {
   const url = `${baseUrl}/playlists?status=published&order=publish_date&page=0&limit=${params.limit}&q=${params.query}`;
+
+  const { body } = await get(url, {}, { authorization: params.authorization });
+
+  return body;
+}
+
+export async function playlistsFetchWatchHistory (baseUrl, params) {
+  const url = `${baseUrl}/playlists?status=published&type=watch_history&page=0&limit=${params.limit}`;
 
   const { body } = await get(url, {}, { authorization: params.authorization });
 
