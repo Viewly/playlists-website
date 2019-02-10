@@ -68,12 +68,9 @@ class LayoutWithHeader extends Component {
   }
 
   render() {
-    const { localStorage } = this.props;
-    const showPromotion = isLoaded(localStorage) && localStorage.data.hidePromotion !== true;
 
     return (
-      <div className={`has-header ${showPromotion ? "has-promotion-message" : ""}`}>
-        {showPromotion && <Promotion />}
+      <div className={`has-header`}>
         <HeaderContainer />
         <Toasts />
         <>
