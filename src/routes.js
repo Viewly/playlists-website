@@ -95,7 +95,7 @@ export const routes = [
     component: SearchPage,
     analytics: {
       pageName: SEARCH_PAGE,
-      pageEnter: "SearchEvent",
+      // pageEnter: "SearchEvent",
       pageLeave: "SearchEvent"
     }
   },
