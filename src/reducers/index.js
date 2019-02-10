@@ -20,11 +20,12 @@ import moment from "moment";
 const jwtCookie = getUserCookie();
 
 const initialState = {
-  config: { apiUrl: "https://api.vidflow.com/v1/api" },
+  config: { apiUrl: "http://localhost:3001/v1/api" },
   playlists: { _status: PENDING, data: [] },
   playlists_new: { _status: PENDING, data: [] },
   playlists_picked: { _status: PENDING, data: [] },
   playlists_hashtag: { _status: PENDING, data: [] },
+  playlists_toptopic: { _status: PENDING, data: [] },
   playlists_watch_history: { _status: PENDING, data: [] },
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
@@ -80,6 +81,9 @@ const rootReducer = (state = initialState, action) => {
 
     case playlistActions.PLAYLISTS_FETCH_HASHTAG_SUCCESS:
       return { ...state, playlists_hashtag: { data: action.data, _status: LOADED } };
+
+    case playlistActions.PLAYLISTS_FETCH_PITOPTOPIC_SUCCESS:
+      return { ...state, playlists_toptopic: { data: action.data, _status: LOADED } };
 
     case playlistActions.PLAYLISTS_FETCH_WATCH_HISTORY_SUCCESS: {
       const newPlaylists = action.data.map(item => {
