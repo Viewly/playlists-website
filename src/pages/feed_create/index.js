@@ -37,14 +37,9 @@ export default class FeedCreatePage extends Component {
   }
 
   saveOnboarding = async () => {
-    alert('yay');
-    // const { userSaveOnboarding, history } = this.props;
+    const { history } = this.props;
 
-    // const response = await userSaveOnboarding(this.getSelectedIds());
-    //
-    // if (response.success) {
-    //   history.push("/");
-    // }
+    history.push("/register");
   }
 
   render() {
@@ -79,8 +74,7 @@ export default class FeedCreatePage extends Component {
         <div className='c-fixed-footer-layout__footer'>
           <div className='o-wrapper c-fixed-footer-layout__wrapper  u-text-right'>
 
-            {/*{isReady && <SubmitCounter selected={this.getSelectedIds().length} onSave={this.saveOnboarding} />}*/}
-            <button className='c-btn c-btn--secondary' disabled>Choose 3 categories to continue</button>
+            {isReady && <SubmitCounter selected={this.getSelectedIds().length} onSave={this.saveOnboarding} />}
           </div>
         </div>
 
