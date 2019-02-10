@@ -20,7 +20,7 @@ import moment from "moment";
 const jwtCookie = getUserCookie();
 
 const initialState = {
-  config: { apiUrl: "http://localhost:3001/v1/api" },
+  config: { apiUrl: "https://api.vidflow.com/v1/api" },
   playlists: { _status: PENDING, data: [] },
   playlists_new: { _status: PENDING, data: [] },
   playlists_picked: { _status: PENDING, data: [] },
