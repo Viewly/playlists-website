@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
 import { playlistsFetchHashtag, playlistsFetchNew, playlistsFetchPicked } from "../../actions/playlist";
@@ -64,6 +64,12 @@ class HomePage extends Component {
     const { playlists_picked, playlists_hashtag } = this.props;
     const isReady = isLoaded(playlists_picked);
     const { user } = this.props;
+
+    if (user) {
+      return <Redirect to='/feed' />;
+    } else {
+      return <Redirect to='/explore' />;
+    }
 
     return (
       <>

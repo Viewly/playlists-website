@@ -9,6 +9,7 @@ import { FEED_PAGE } from "../../constants/pages";
 import NewPlaylists from "./components/new";
 
 import SEO from "../../components/SEO";
+import { Redirect } from "react-router-dom";
 
 const prepareActions = (dispatch) => ({
   playlistsFetchNew: (params) => dispatch(playlistsFetchNew(params)),
@@ -47,7 +48,11 @@ export default class FeedPage extends Component {
 
 
   render() {
-    const { playlists_new } = this.props;
+    const { user } = this.props;
+    
+    if (!user) {
+      return <Redirect to='/feed/create' />;
+    }
 
     return (
       <>
