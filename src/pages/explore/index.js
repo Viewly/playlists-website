@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { SET_SERVER_RENDERED, SET_CLIENT_RENDERED } from "../../actions";
-import { playlistsFetchHashtag, playlistsFetchNew, playlistsFetchPicked } from "../../actions/playlist";
+import { playlistsFetchToptopic, playlistsFetchNew, playlistsFetchPicked } from "../../actions/playlist";
 import { isLoaded, asyncLoad, isPending } from "../../utils";
 import { EXPLORE_PAGE } from "../../constants/pages";
 
@@ -18,23 +18,23 @@ const hashtagPicked = "%23gaming"; // %23 is #
 const prepareActions = (dispatch) => ({
   playlistsFetchPicked: (params) => dispatch(playlistsFetchPicked(params)),
   playlistsFetchNew: (params) => dispatch(playlistsFetchNew(params)),
-  playlistsFetchHashtag: (params) => dispatch(playlistsFetchHashtag(params)),
+  playlistsFetchToptopic: (params) => dispatch(playlistsFetchToptopic(params)),
   setServerRendered: () => dispatch({ type: SET_SERVER_RENDERED, data: EXPLORE_PAGE }),
   setClientRendered: () => dispatch({ type: SET_CLIENT_RENDERED, data: EXPLORE_PAGE }),
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
-  const { playlistsFetchPicked, playlistsFetchNew, playlistsFetchHashtag, setServerRendered } = prepareActions(store.dispatch);
+  const { playlistsFetchPicked, playlistsFetchNew, playlistsFetchToptopic, setServerRendered } = prepareActions(store.dispatch);
 
   await playlistsFetchPicked({ limit: 10 });
   await playlistsFetchNew({ page: 0, limit: 4 });
-  await playlistsFetchHashtag({ limit: 3, query: hashtagPicked });
+  await playlistsFetchToptopic({ tag: 'machine-learning', limit: 3 });
   setServerRendered();
 })
 @connect((state) => ({
   playlists_picked: state.playlists_picked,
   playlists_new: state.playlists_new,
-  playlists_hashtag: state.playlists_hashtag,
+  playlists_toptopic: state.playlists_toptopic,
   isSSR: !!state.renderedPages[EXPLORE_PAGE],
   user: state.user
 }), prepareActions)
@@ -48,12 +48,12 @@ export default class ExplorePage extends Component {
   }
 
   async componentDidMount() {
-    const { playlists_picked, playlists_new, playlists_hashtag, playlistsFetchPicked, playlistsFetchNew, playlistsFetchHashtag, isSSR, setClientRendered } = this.props;
+    const { playlists_picked, playlists_new, playlists_toptopic, playlistsFetchPicked, playlistsFetchNew, playlistsFetchToptopic, isSSR, setClientRendered } = this.props;
 
     if (!isSSR) {
       isPending(playlists_picked) && await playlistsFetchPicked({ limit: 10 });
       isPending(playlists_new) && playlistsFetchNew({ page: 0, limit: 12 });
-      isPending(playlists_hashtag) && playlistsFetchHashtag({ limit: 6, query: hashtagPicked });
+      isPending(playlists_toptopic) && playlistsFetchToptopic({ tag: 'machine-learning', limit: 6 });
     } else {
       setClientRendered();
     }
@@ -61,7 +61,7 @@ export default class ExplorePage extends Component {
 
 
   render() {
-    const { playlists_picked, playlists_hashtag, playlists_new } = this.props;
+    const { playlists_picked, playlists_toptopic, playlists_new } = this.props;
 
     return (
       <>
@@ -97,11 +97,11 @@ export default class ExplorePage extends Component {
           <div className='u-margin-bottom-large'>
             <span className="c-featured">Featured topic</span>
             <PlaylistSwiper
-              title="The world of gaming"
+              title="The world of machine learning"
               swiper={{ slidesPerView: 3 }}
-              moreButton={{ title: "View all", url: "/search/?query=%23gaming" }}
-              isLoaded={isLoaded(playlists_hashtag)}
-              playlists={playlists_hashtag.data}
+              moreButton={{ title: "View all", url: "/search/?query=%23machine-learning" }}
+              isLoaded={isLoaded(playlists_toptopic)}
+              playlists={playlists_toptopic.data}
             />
           </div>
 
