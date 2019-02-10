@@ -217,3 +217,11 @@ export async function playlistsFetchHashtag (baseUrl, params) {
 
   return body;
 }
+
+export async function playlistsFetchWatchHistory (baseUrl, params) {
+  const url = `${baseUrl}/playlists?status=published&type=watch_history&page=0&limit=${params.limit}`;
+
+  const { body } = await get(url, {}, { authorization: params.authorization });
+
+  return body;
+}
