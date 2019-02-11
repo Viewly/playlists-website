@@ -63,8 +63,14 @@ export default class FeedPage extends Component {
       <>
         <SEO />
 
-        <div className='o-wrapper u-margin-top-large u-margin-top-huge@large'>
-          {playlists_watch_history.data.length > 0 && <WatchHistory />}
+        {playlists_watch_history.data.length > 0 && (
+          <div className="c-section c-section--grey u-margin-bottom-large">
+            <div className='o-wrapper'>
+              <WatchHistory />
+            </div>
+          </div>
+        )}
+        <div className='o-wrapper'>
           <NewPlaylists />
         </div>
       </>
