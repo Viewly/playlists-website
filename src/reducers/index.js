@@ -233,8 +233,10 @@ const rootReducer = (state = initialState, action) => {
       const videos = state.playlist.videos.filter(item => item.id !== action.video_id);
       return { ...state, playlist: { _status: LOADED, ...state.playlist, videos } }
 
-    case notificationActions.NOTIFICATIONS_FETCH_SUCCESS:
-      return { ...state, notifications: { _status: LOADED, data: action.data } }
+    case notificationActions.NOTIFICATIONS_FETCH_SUCCESS: {
+      const notifications = action.data.error ? [] : action.data;
+      return { ...state, notifications: { _status: LOADED, data: notifications } }
+    }
 
     case playlistActions.PLAYLIST_COMMENTS_FETCH_SUCCESS:
       return { ...state, comments: { _status: LOADED, playlist_id: action.playlist_id, data: action.data } }
