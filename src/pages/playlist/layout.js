@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link, Route, Switch } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
 
 import Header from "./components/header";
 import SharePlaylist from "./components/share";
@@ -68,6 +69,10 @@ export default class PlaylistLayout extends Component {
     return user?.id === playlist?.user?.id;
   }
 
+  onStripe = (args) => {
+    console.log('stripe args', args);
+  }
+
   render() {
     const { playlist, match: { params: { playlistId } } } = this.props;
     const isLoaded = (playlist._status === LOADED) || (playlist.id === playlistId) || (playlist.url === playlistId);
@@ -89,6 +94,7 @@ export default class PlaylistLayout extends Component {
           category={playlist.category} />
 
         <SEO playlist={playlist} />
+
         <div className='c-section c-section--grey'>
           <div className='o-wrapper'>
             <div className='o-grid o-grid--small o-grid--auto o-grid--middle o-grid--between u-margin-bottom u-margin-bottom-small@large'>
@@ -111,6 +117,11 @@ export default class PlaylistLayout extends Component {
                     Edit playlist
                   </Link>
                 )}
+
+                <StripeCheckout
+                  token={this.onStripe}
+                  stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
+                />
               </div>
             </div>
 
