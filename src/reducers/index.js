@@ -135,6 +135,16 @@ const rootReducer = (state = initialState, action) => {
 
       return { ...state, playlist: { _status: LOADED, ...action.data, isServerRendered: SERVER } };
     }
+    case actions.PLAYLIST_INJECT_WATCH_TIME: {
+      let update = {};
+      const playlist = getPlaylistProgress(state.playlist.id);
+      update.videos = updateVideosWithProgresses(state.playlist.videos, playlist);
+      const watchedVideos = state.playlist.videos.filter(item => item.percentage > 0);
+      const sumProgresses = watchedVideos.reduce((acc, curr) => (acc + curr.percentage), 0);
+      update.percentage = Math.round(sumProgresses / state.playlist.videos.length);
+
+      return { ...state, playlist: { ...state.playlist, ...update } };
+    }
     case playlistActions.PLAYLIST_FETCH_VIEWS_SUCCESS: {
       return { ...state, playlist: { ...state.playlist, views: action.data.visitors }};
     }
