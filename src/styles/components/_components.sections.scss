@@ -12,6 +12,13 @@
     }
 }
 
+.c-section--small {
+    @include mq(medium) {
+        padding-bottom: $spacing-unit-large;
+        padding-top: $spacing-unit-large;
+    }
+}
+
     /**
      * Section title
      */

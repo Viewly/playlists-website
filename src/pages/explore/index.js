@@ -84,7 +84,7 @@ export default class ExplorePage extends Component {
           </div>
         )}
 
-        <div className='o-wrapper u-margin-top-large u-margin-top-huge@large u-padding-bottom'>
+        <div className='o-wrapper u-margin-top-large u-margin-top-huge@large'>
           <div className='u-margin-bottom-huge'>
             <PlaylistSwiper
               title="Pick of the week"
@@ -92,8 +92,10 @@ export default class ExplorePage extends Component {
               playlists={playlists_picked.data}
             />
           </div>
+        </div>
 
-          <div className='u-margin-bottom-huge'>
+        <div className="c-section c-section--grey c-section--small u-margin-bottom-large">
+          <div className='o-wrapper'>
             <span className="c-featured">Featured topic</span>
             <PlaylistSwiper
               title="The world of machine learning"
@@ -103,6 +105,9 @@ export default class ExplorePage extends Component {
               playlists={playlists_toptopic.data}
             />
           </div>
+        </div>
+
+        <div className='o-wrapper'>
 
           <div className='u-margin-bottom-huge'>
             <Categories />
