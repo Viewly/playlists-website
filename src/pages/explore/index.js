@@ -61,21 +61,28 @@ export default class ExplorePage extends Component {
 
 
   render() {
-    const { playlists_picked, playlists_toptopic, playlists_new } = this.props;
+    const { playlists_picked, playlists_toptopic, playlists_new, user } = this.props;
 
     return (
       <>
         <SEO />
 
-        {/*<div className='c-hero'>
-          <div className='o-wrapper'>
-            <Playlist
-              title="Featured playlists"
-              isLoaded={isLoaded(playlists_picked)}
-              playlists={playlists_picked.data.slice(0, 1)}
-            />
+        {!user && (
+          <div className='c-hero'>
+            <div className='o-wrapper'>
+              <div className='o-grid o-grid--middle o-grid--large'>
+                <div className='o-grid__cell c-hero__grid__cell'>
+                  <h1 className="c-hero__title">Collaborative <br />YouTube playlists</h1>
+                  <p>Discover playlists, create your own, and contribute to others.</p>
+                  <Link to='/register' className='c-btn c-btn--primary c-btn--large'>Create your playlist</Link>
+                </div>
+                <div className='o-grid__cell c-hero__grid__cell'>
+                  <img alt='' className='c-hero__graphic' src={require("../../images/hero-illustration.svg")} />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>*/}
+        )}
 
         <div className='o-wrapper u-margin-top-large u-margin-top-huge@large u-padding-bottom'>
           <div className='u-margin-bottom-huge'>
