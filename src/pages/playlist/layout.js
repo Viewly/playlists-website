@@ -119,6 +119,7 @@ export default class PlaylistLayout extends Component {
                 )}
 
                 <StripeCheckout
+                  className='u-margin-left'
                   token={this.onStripe}
                   stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
                 />
