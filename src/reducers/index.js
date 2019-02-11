@@ -88,7 +88,6 @@ const rootReducer = (state = initialState, action) => {
     case playlistActions.PLAYLISTS_FETCH_WATCH_HISTORY_SUCCESS: {
       const newPlaylists = action.data.map(item => {
         const secs = moment.duration(item.duration).asSeconds();
-        console.log("secds", secs, item.watch_time);
         return { ...item, percentage: Math.round(100 * item.watch_time / secs) };
       });
 
