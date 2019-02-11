@@ -12,7 +12,7 @@ export default class WatchHistory extends Component {
     const isReady = !isPending(playlists_watch_history);
 
     return (
-      <div className='u-margin-bottom-huge'>
+      <div className='u-margin-bottom'>
         <Playlist
           title="Continue watching"
           // moreButton={{ title: "View All", url: "/new" }}
