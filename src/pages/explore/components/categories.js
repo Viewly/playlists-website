@@ -18,7 +18,7 @@ export default class Categories extends Component {
       <div>
         <div className='o-grid o-grid--auto o-grid--middle o-grid--between u-margin-bottom'>
           <div className='o-grid__cell'>
-            <h2 className='u-h3'>Top categories</h2>
+            <h2 className='u-h4'>Top categories</h2>
           </div>
           <div className='o-grid__cell'>
             <Link className='c-link-secondary' to='/categories'>View All</Link>

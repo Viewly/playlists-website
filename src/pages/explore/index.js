@@ -77,8 +77,8 @@ export default class ExplorePage extends Component {
           </div>
         </div>*/}
 
-        <div className='o-wrapper u-margin-top-large u-margin-top-huge@large'>
-          <div className='u-margin-bottom-large'>
+        <div className='o-wrapper u-margin-top-large u-margin-top-huge@large u-padding-bottom'>
+          <div className='u-margin-bottom-huge'>
             <PlaylistSwiper
               title="Pick of the week"
               isLoaded={isLoaded(playlists_picked)}
@@ -86,16 +86,7 @@ export default class ExplorePage extends Component {
             />
           </div>
 
-          <div className='u-margin-bottom-large'>
-            <PlaylistSwiper
-              title="New playlists"
-              moreButton={{ title: "View All", url: "/new" }}
-              isLoaded={isLoaded(playlists_new)}
-              playlists={playlists_new.data}
-            />
-          </div>
-
-          <div className='u-margin-bottom-large'>
+          <div className='u-margin-bottom-huge'>
             <span className="c-featured">Featured topic</span>
             <PlaylistSwiper
               title="The world of machine learning"
@@ -106,8 +97,17 @@ export default class ExplorePage extends Component {
             />
           </div>
 
-          <div className='u-margin-bottom-large u-padding-bottom-large'>
+          <div className='u-margin-bottom-huge'>
             <Categories />
+          </div>
+
+          <div className='u-margin-bottom-huge'>
+            <PlaylistSwiper
+              title="New playlists"
+              moreButton={{ title: "View All", url: "/new" }}
+              isLoaded={isLoaded(playlists_new)}
+              playlists={playlists_new.data}
+            />
           </div>
 
         </div>

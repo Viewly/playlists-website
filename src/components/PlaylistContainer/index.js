@@ -87,7 +87,7 @@ export default class Playlist extends Component {
         {title && (
           <div className='o-grid o-grid--auto o-grid--middle o-grid--between u-margin-bottom'>
             <div className='o-grid__cell'>
-              <h2 className='u-h3'>{title}</h2>
+              <h2 className='u-h4'>{title}</h2>
             </div>
             {moreButton && (
               <div className='o-grid__cell'>

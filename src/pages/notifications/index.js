@@ -42,7 +42,7 @@ export default class NotificationsPage extends Component {
         <SEO title="My notifications" />
         <div className='o-grid o-grid--auto o-grid--middle o-grid--between u-margin-bottom'>
           <div className='o-grid__cell'>
-            <h1 className='u-h3'>Notifications</h1>
+            <h1 className='u-h4'>Notifications</h1>
           </div>
           <div className='o-grid__cell'>
             {notifications.data.length !== 0 && (
