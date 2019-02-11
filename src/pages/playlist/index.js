@@ -8,12 +8,13 @@ import PlaylistSuggest from "./components/suggest";
 import PlaylistComments from "./components/comments";
 
 import { asyncLoad } from "../../utils";
-import { playlistFetch } from "../../actions";
+import { PLAYLIST_INJECT_WATCH_TIME, playlistFetch } from "../../actions";
 import { playlistViews } from "../../actions/playlist";
 
 const prepareActions = (dispatch) => ({
   playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
-  playlistViews: (playlistId) => dispatch(playlistViews({ playlistId }))
+  playlistViews: (playlistId) => dispatch(playlistViews({ playlistId })),
+  updateWatchTime: () => dispatch({ type: PLAYLIST_INJECT_WATCH_TIME })
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
@@ -32,11 +33,13 @@ class PlaylistPage extends Component {
   };
 
   async componentDidMount() {
-    const { playlist, playlistFetch, playlistViews, match: { params: { playlistId } } } = this.props;
+    const { playlist, updateWatchTime, playlistFetch, playlistViews, match: { params: { playlistId } } } = this.props;
 
     if (!playlist.isServerRendered || (playlist.url !== playlistId)) {
       await playlistFetch(playlistId);
       playlistViews(playlistId);
+    } else if (playlist.isServerRendered) {
+      updateWatchTime();
     }
   }
 

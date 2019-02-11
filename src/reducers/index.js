@@ -88,7 +88,6 @@ const rootReducer = (state = initialState, action) => {
     case playlistActions.PLAYLISTS_FETCH_WATCH_HISTORY_SUCCESS: {
       const newPlaylists = action.data.map(item => {
         const secs = moment.duration(item.duration).asSeconds();
-        console.log("secds", secs, item.watch_time);
         return { ...item, percentage: Math.round(100 * item.watch_time / secs) };
       });
 
@@ -135,6 +134,16 @@ const rootReducer = (state = initialState, action) => {
       action.data.percentage = Math.round(sumProgresses / action.data.videos.length);
 
       return { ...state, playlist: { _status: LOADED, ...action.data, isServerRendered: SERVER } };
+    }
+    case actions.PLAYLIST_INJECT_WATCH_TIME: {
+      let update = {};
+      const playlist = getPlaylistProgress(state.playlist.id);
+      update.videos = updateVideosWithProgresses(state.playlist.videos, playlist);
+      const watchedVideos = state.playlist.videos.filter(item => item.percentage > 0);
+      const sumProgresses = watchedVideos.reduce((acc, curr) => (acc + curr.percentage), 0);
+      update.percentage = Math.round(sumProgresses / state.playlist.videos.length);
+
+      return { ...state, playlist: { ...state.playlist, ...update } };
     }
     case playlistActions.PLAYLIST_FETCH_VIEWS_SUCCESS: {
       return { ...state, playlist: { ...state.playlist, views: action.data.visitors }};
