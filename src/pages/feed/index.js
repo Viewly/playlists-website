@@ -20,8 +20,9 @@ const prepareActions = (dispatch) => ({
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
-  const { playlistsFetchNew, setServerRendered } = prepareActions(store.dispatch);
+  const { playlistsFetchNew, playlistsFetchWatchHistory, setServerRendered } = prepareActions(store.dispatch);
 
+  await playlistsFetchWatchHistory({ page: 0, limit: 12 });
   await playlistsFetchNew({ page: 0, limit: 12 });
   setServerRendered();
 })
