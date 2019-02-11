@@ -88,7 +88,8 @@ export default class ExplorePage extends Component {
 
           <div className='u-margin-bottom-large'>
             <PlaylistSwiper
-              title="New playlist"
+              title="New playlists"
+              moreButton={{ title: "View All", url: "/new" }}
               isLoaded={isLoaded(playlists_new)}
               playlists={playlists_new.data}
             />
