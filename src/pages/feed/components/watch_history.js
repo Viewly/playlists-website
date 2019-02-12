@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PlaylistSwiper from "../../../components/PlaylistContainer/swiper";
+import Playlist from "../../../components/PlaylistContainer";
 import { isLoading, isPending } from "../../../utils";
 
 @connect((state) => ({
@@ -13,7 +13,7 @@ export default class WatchHistory extends Component {
 
     return (
       <div>
-        <PlaylistSwiper
+        <Playlist
           title="Continue watching"
           // moreButton={{ title: "View All", url: "/new" }}
           isLoaded={isReady}
