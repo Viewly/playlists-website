@@ -42,7 +42,6 @@ export default class NewPlaylists extends Component {
       <div>
         <Playlist
           title="New playlists"
-          moreButton={{ title: "View All", url: "/new" }}
           isLoaded={isReady}
           customEmptyContainer={<Loading />}
           playlists={playlists?.data.slice(0, LIMIT * (this.state.page + 1))}

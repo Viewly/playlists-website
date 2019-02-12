@@ -39,7 +39,7 @@ class HashtagsPage extends Component {
       <div className='o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom'>
         <SEO title="Discover popular hashtags" />
 
-        <h1 className='u-h3'>Explore hashtags</h1>
+        <h1 className='u-h4'>Explore hashtags</h1>
         <div className='c-categories-grid c-categories-grid--hashtags'>
           {hashtags.data.map((item, idx) => <HashtagItem key={`category-${idx}`} {...item} />)}
         </div>

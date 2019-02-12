@@ -61,40 +61,41 @@ export default class ExplorePage extends Component {
 
 
   render() {
-    const { playlists_picked, playlists_toptopic, playlists_new } = this.props;
+    const { playlists_picked, playlists_toptopic, playlists_new, user } = this.props;
 
     return (
       <>
         <SEO />
 
-        {/*<div className='c-hero'>
-          <div className='o-wrapper'>
-            <Playlist
-              title="Featured playlists"
-              isLoaded={isLoaded(playlists_picked)}
-              playlists={playlists_picked.data.slice(0, 1)}
-            />
+        {!user && (
+          <div className='c-hero'>
+            <div className='o-wrapper'>
+              <div className='o-grid o-grid--middle o-grid--large'>
+                <div className='o-grid__cell c-hero__grid__cell'>
+                  <h1 className="c-hero__title">Collaborative <br />YouTube playlists</h1>
+                  <p>Discover playlists, create your own, and contribute to others.</p>
+                  <Link to='/register' className='c-btn c-btn--primary c-btn--large'>Create your playlist</Link>
+                </div>
+                <div className='o-grid__cell c-hero__grid__cell'>
+                  <img alt='' className='c-hero__graphic' src={require("../../images/hero-illustration.svg")} />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>*/}
+        )}
 
         <div className='o-wrapper u-margin-top-large u-margin-top-huge@large'>
-          <div className='u-margin-bottom-large'>
+          <div className='u-margin-bottom-huge'>
             <PlaylistSwiper
               title="Pick of the week"
               isLoaded={isLoaded(playlists_picked)}
               playlists={playlists_picked.data}
             />
           </div>
+        </div>
 
-          <div className='u-margin-bottom-large'>
-            <PlaylistSwiper
-              title="New playlist"
-              isLoaded={isLoaded(playlists_new)}
-              playlists={playlists_new.data}
-            />
-          </div>
-
-          <div className='u-margin-bottom-large'>
+        <div className="c-section c-section--grey c-section--small u-margin-bottom-large">
+          <div className='o-wrapper'>
             <span className="c-featured">Featured topic</span>
             <PlaylistSwiper
               title="The world of machine learning"
@@ -104,9 +105,21 @@ export default class ExplorePage extends Component {
               playlists={playlists_toptopic.data}
             />
           </div>
+        </div>
 
-          <div className='u-margin-bottom-large u-padding-bottom-large'>
+        <div className='o-wrapper'>
+
+          <div className='u-margin-bottom-huge'>
             <Categories />
+          </div>
+
+          <div className='u-margin-bottom-huge'>
+            <PlaylistSwiper
+              title="New playlists"
+              moreButton={{ title: "View All", url: "/new" }}
+              isLoaded={isLoaded(playlists_new)}
+              playlists={playlists_new.data}
+            />
           </div>
 
         </div>

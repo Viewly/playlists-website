@@ -50,7 +50,7 @@ class CategoriesPage extends Component {
       <div className="o-wrapper u-padding-top-large u-padding-top-huge@large u-padding-bottom">
         <SEO title="Browse categories" />
 
-        <h1 className="u-h3">Browse categories</h1>
+        <h1 className="u-h4">Browse categories</h1>
         <div className="c-categories-grid">
           {categories.data.map((item, idx) => <CategoryItem key={`category-${idx}`} {...item} />)}
         </div>
