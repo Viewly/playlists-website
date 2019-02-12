@@ -65,6 +65,7 @@ class NewPlaylist extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="o-grid o-grid--center o-grid--large">
             <div className='o-grid__cell u-4/5@medium u-1/2@large u-2/5@extralarge'>
+              <h1 className='u-h4 u-margin-bottom-large'>Create a playlist</h1>
               <ul className='c-form__list c-form__list--large'>
                 <PlaylistName value={this.state.title} onChange={this.handleChange} />
                 <PlaylistCategory categories={categories.data} value={this.state.category.id} onChange={this.handleChange} />
