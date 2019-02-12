@@ -16,6 +16,7 @@ $thumbnail-progress-bar-height:     3px;
     border-radius: $thumbnail-border-radius;
     display: block;
     margin-bottom: $spacing-unit-tiny;
+    overflow: hidden;
     transform-origin: 50% 100%;
     transition: $global-transition;
     will-change: transform;
@@ -24,10 +25,8 @@ $thumbnail-progress-bar-height:     3px;
     @include mq($tweakpoint-thumbnail) {
         &:hover {
 
-            .c-thumbnail__img,
-            .c-thumbnail__link,
-            .c-thumbnail__progress-bar {
-                transform: scale(1.02);
+            .c-thumbnail__img {
+                transform: scale(1.04);
             }
 
             .c-thumbnail__description,
@@ -233,11 +232,16 @@ $thumbnail-progress-bar-height:     3px;
         padding: 2px 4px;
         pointer-events: none;
         transition: inherit;
+        transform: translateY($spacing-unit-tiny);
         position: absolute;
         bottom: $spacing-unit-small;
         right: $spacing-unit-tiny;
         left: $spacing-unit-tiny;
         z-index: 30;
+
+        .c-thumbnail:hover & {
+            transform: translateY(0);
+        }
     }
 
     .c-thumbnail__edit {
