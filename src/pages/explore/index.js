@@ -110,16 +110,16 @@ export default class ExplorePage extends Component {
         <div className='o-wrapper'>
 
           <div className='u-margin-bottom-huge'>
-            <Categories />
-          </div>
-
-          <div className='u-margin-bottom-huge'>
             <PlaylistSwiper
               title="New playlists"
               moreButton={{ title: "View All", url: "/new" }}
               isLoaded={isLoaded(playlists_new)}
               playlists={playlists_new.data}
             />
+          </div>
+
+          <div className='u-margin-bottom-huge'>
+            <Categories />
           </div>
 
         </div>
