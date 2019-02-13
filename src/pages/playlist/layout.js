@@ -118,11 +118,14 @@ export default class PlaylistLayout extends Component {
                   </Link>
                 )}
 
-                <StripeCheckout
-                  className='u-margin-left'
-                  token={this.onStripe}
-                  stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
-                />
+                {!isOwner && (
+                  <StripeCheckout
+                    token={this.onStripe}
+                    stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
+                    >
+                      <button className="c-btn c-btn--secondary c-btn--small u-margin-left">Unlock for $9.99</button>
+                  </StripeCheckout>
+                )}
               </div>
             </div>
 
