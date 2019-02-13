@@ -29,6 +29,30 @@
     }
 }
 
+.c-premium-playlist-overlay {
+    position: relative;
+}
+
+    .c-premium-playlist-overlay__content {
+        background-color: rgba(color('light-grey'), .93);
+        font-size: 15px;
+        padding-top: $spacing-unit-huge;
+        padding-bottom: $spacing-unit-huge;
+        padding-left: $spacing-unit;
+        padding-right: $spacing-unit;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+
+        p {
+            margin-bottom: $spacing-unit;
+        }
+    }
+
 .c-list-definition {
     dt {
         font-weight: 700;
