@@ -41,7 +41,7 @@ export default class PlaylistInfo extends Component {
             <p>This is a premium playlist.</p>
             <StripeCheckout
               token={this.onStripe}
-              stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
+              stripeKey="pk_test_pW1Uy3lOn1vPQfzQMHsJgdxw"
               >
                 <button className="c-btn c-btn--secondary">Unlock for $0.99</button>
             </StripeCheckout>
