@@ -19,10 +19,13 @@ export default class PlaylistInfo extends Component {
     match: PropTypes.object
   }
 
-  onStripe = (args) => {
+  onStripe = async (args) => {
     const { playlistPurchase, playlist } = this.props;
 
-    playlistPurchase(playlist.id, 0.99, args);
+    await playlistPurchase(playlist.id, 0.99, args);
+
+    // TROLOLO
+    window.location.reload();
   }
 
   render() {
@@ -31,22 +34,31 @@ export default class PlaylistInfo extends Component {
     const isLoading = playlist._status === LOADING;
     if (!isLoaded) return <div>Loading ...</div>;
 
-    return (
-      <div className='c-premium-playlist-overlay'>
-        <div className="c-premium-playlist-overlay__content">
-          <p>This is a premium playlist.</p>
-          <StripeCheckout
-            token={this.onStripe}
-            stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
-            >
-              <button className="c-btn c-btn--secondary">Unlock for $0.99</button>
-          </StripeCheckout>
+    if (playlist.premium && !playlist.purchased) {
+      return (
+        <div className='c-premium-playlist-overlay'>
+          <div className="c-premium-playlist-overlay__content">
+            <p>This is a premium playlist.</p>
+            <StripeCheckout
+              token={this.onStripe}
+              stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
+              >
+                <button className="c-btn c-btn--secondary">Unlock for $0.99</button>
+            </StripeCheckout>
+          </div>
+          <div className='o-grid'>
+            {!isLoading && playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} url={playlist.url} {...item} />)}
+            {isLoading && <Loading />}
+          </div>
         </div>
-        <div className='blocked o-grid'>
+      );
+    } else {
+      return (
+        <div className='o-grid'>
           {!isLoading && playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} url={playlist.url} {...item} />)}
           {isLoading && <Loading />}
         </div>
-      </div>
-    );
+      )
+    }
   }
 }
