@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link, Route, Switch } from "react-router-dom";
-import StripeCheckout from "react-stripe-checkout";
 
 import Header from "./components/header";
 import SharePlaylist from "./components/share";
@@ -75,7 +74,6 @@ export default class PlaylistLayout extends Component {
     const { playlistPurchase, playlist } = this.props;
 
     playlistPurchase(playlist.id, 0.99, args);
-    // console.log('stripe args', args);
   }
 
   render() {
@@ -122,12 +120,6 @@ export default class PlaylistLayout extends Component {
                     Edit playlist
                   </Link>
                 )}
-
-                <StripeCheckout
-                  className='u-margin-left'
-                  token={this.onStripe}
-                  stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
-                />
               </div>
             </div>
 
