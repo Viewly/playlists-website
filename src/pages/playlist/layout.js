@@ -89,6 +89,7 @@ export default class PlaylistLayout extends Component {
           category={playlist.category} />
 
         <SEO playlist={playlist} />
+
         <div className='c-section c-section--grey'>
           <div className='o-wrapper'>
             <div className='o-grid o-grid--small o-grid--auto o-grid--middle o-grid--between u-margin-bottom u-margin-bottom-small@large'>
