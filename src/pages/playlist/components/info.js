@@ -6,9 +6,12 @@ import StripeCheckout from "react-stripe-checkout";
 import Video from "./video";
 import Loading from "../../../components/loading";
 import { LOADED, LOADING } from "../../../constants/status_types";
+import { playlistPurchase } from "../../../actions/playlist";
 
 @connect((state) => ({
   playlist: state.playlist,
+}), (dispatch) => ({
+  playlistPurchase: (playlist_id, price, stripeData) => dispatch(playlistPurchase({ playlist_id, price, stripeData }))
 }))
 export default class PlaylistInfo extends Component {
   static propTypes = {
@@ -17,7 +20,9 @@ export default class PlaylistInfo extends Component {
   }
 
   onStripe = (args) => {
-    console.log('stripe args', args);
+    const { playlistPurchase, playlist } = this.props;
+
+    playlistPurchase(playlist.id, 0.99, args);
   }
 
   render() {
@@ -34,7 +39,7 @@ export default class PlaylistInfo extends Component {
             token={this.onStripe}
             stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
             >
-              <button className="c-btn c-btn--secondary">Unlock for $9.99</button>
+              <button className="c-btn c-btn--secondary">Unlock for $0.99</button>
           </StripeCheckout>
         </div>
         <div className='blocked o-grid'>
