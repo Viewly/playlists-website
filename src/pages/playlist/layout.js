@@ -16,6 +16,7 @@ import PlaylistTabs from "./components/tabs";
 import PlaylistInfo from "./components/info";
 import PlaylistComments from "./components/comments";
 import { minBy } from "lodash";
+import { playlistPurchase } from "../../actions/playlist";
 
 @connect((state) => ({
   playlist: state.playlist,
@@ -23,6 +24,7 @@ import { minBy } from "lodash";
 }), (dispatch) => ({
   userAddBookmark: (playlist_id) => dispatch(userAddBookmark({ playlist_id })),
   userRemoveBookmark: (playlist_id) => dispatch(userRemoveBookmark({ playlist_id })),
+  playlistPurchase: (playlist_id, price, stripeData) => dispatch(playlistPurchase({ playlist_id, price, stripeData })),
   openToast: (data) => dispatch({ type: OPEN_TOAST, data }),
   openRegisterModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "register" } }),
 }))
@@ -70,7 +72,10 @@ export default class PlaylistLayout extends Component {
   }
 
   onStripe = (args) => {
-    console.log('stripe args', args);
+    const { playlistPurchase, playlist } = this.props;
+
+    playlistPurchase(playlist.id, 0.99, args);
+    // console.log('stripe args', args);
   }
 
   render() {

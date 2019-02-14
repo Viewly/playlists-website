@@ -228,3 +228,9 @@ export async function playlistsFetchWatchHistory (baseUrl, params) {
 
   return body;
 }
+
+export async function playlistPurchase (baseUrl, { authorization, price, playlist_id, stripeData }) {
+  const { body } = await post(`${baseUrl}/payment/charge`, { price, playlist_id, stripeData }, { authorization });
+
+  return body;
+}
