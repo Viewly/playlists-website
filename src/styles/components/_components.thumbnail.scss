@@ -171,7 +171,8 @@ $thumbnail-progress-bar-height:     3px;
         }
     }
 
-    .c-thumbnail__bookmark {
+    .c-thumbnail__bookmark,
+    .c-thumbnail__premium {
         background-color: rgba(#000, .65);
         border-radius: 2px;
         display: block;
@@ -186,6 +187,15 @@ $thumbnail-progress-bar-height:     3px;
         @include mq($tweakpoint-thumbnail) {
             top: $spacing-unit-tiny;
             bottom: auto;
+        }
+    }
+
+    .c-thumbnail__premium {
+        padding-left: 6px;
+        padding-right: 6px;
+
+        .c-thumbnail__bookmark ~ & {
+            left: $spacing-unit-large;
         }
     }
 
