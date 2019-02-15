@@ -7,11 +7,17 @@ import Video from "./video";
 import Loading from "../../../components/loading";
 import { LOADED, LOADING } from "../../../constants/status_types";
 import { playlistPurchase } from "../../../actions/playlist";
+import { playlistFetch } from "../../../actions";
+import { getRandomPrice } from "../../../utils";
+
+const PLAYLIST_PRICE = getRandomPrice();
 
 @connect((state) => ({
   playlist: state.playlist,
+  user: state.user
 }), (dispatch) => ({
-  playlistPurchase: (playlist_id, price, stripeData) => dispatch(playlistPurchase({ playlist_id, price, stripeData }))
+  playlistPurchase: (playlist_id, price, stripeData) => dispatch(playlistPurchase({ playlist_id, price, stripeData })),
+  playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
 }))
 export default class PlaylistInfo extends Component {
   static propTypes = {
@@ -20,16 +26,15 @@ export default class PlaylistInfo extends Component {
   }
 
   onStripe = async (args) => {
-    const { playlistPurchase, playlist } = this.props;
+    const { playlistFetch, playlistPurchase, playlist } = this.props;
 
-    await playlistPurchase(playlist.id, 0.99, args);
+    await playlistPurchase(playlist.id, PLAYLIST_PRICE, args);
 
-    // TROLOLO
-    window.location.reload();
+    playlistFetch(playlist.id);
   }
 
   render() {
-    const { playlist, match: { params: { playlistId } } } = this.props;
+    const { playlist, user, match: { params: { playlistId } } } = this.props;
     const isLoaded = (playlist._status === LOADED) || (playlist.id === playlistId) || (playlist.url === playlistId);
     const isLoading = playlist._status === LOADING;
     if (!isLoaded) return <div>Loading ...</div>;
@@ -41,9 +46,11 @@ export default class PlaylistInfo extends Component {
             <p>This is a premium playlist.</p>
             <StripeCheckout
               token={this.onStripe}
+              email={user.email}
+              amount={PLAYLIST_PRICE * 100}
               stripeKey="pk_test_pW1Uy3lOn1vPQfzQMHsJgdxw"
               >
-                <button className="c-btn c-btn--secondary">Unlock for $0.99</button>
+                <button className="c-btn c-btn--secondary">Unlock for ${PLAYLIST_PRICE}</button>
             </StripeCheckout>
           </div>
           <div className='o-grid'>
