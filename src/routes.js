@@ -25,6 +25,7 @@ import TestPage from "./pages/test";
 import { HOME_PAGE, PLAYLIST_PAGE, SEARCH_PAGE, PLAYER_PAGE } from "./constants/pages";
 import MyProfilePage from "./pages/my-profile";
 import NotificationsPage from "./pages/notifications";
+import PurchasesPage from "./pages/purchases";
 
 export const routes = [
   {
@@ -118,6 +119,10 @@ export const routes = [
   {
     path: "/bookmarks",
     component: BookmarksPage
+  },
+  {
+    path: "/purchases",
+    component: PurchasesPage
   },
   {
     path: "/giveaway",

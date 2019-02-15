@@ -27,6 +27,7 @@ const initialState = {
   playlists_hashtag: { _status: PENDING, data: [] },
   playlists_toptopic: { _status: PENDING, data: [] },
   playlists_watch_history: { _status: PENDING, data: [] },
+  playlists_purchases: { _status: PENDING, data: [] },
   playlist: { _status: PENDING },
   categories: { _status: PENDING, data: [] },
   hashtags: { _status: PENDING, data: [] },
@@ -81,6 +82,9 @@ const rootReducer = (state = initialState, action) => {
 
     case playlistActions.PLAYLISTS_FETCH_HASHTAG_SUCCESS:
       return { ...state, playlists_hashtag: { data: action.data, _status: LOADED } };
+
+    case playlistActions.PLAYLIST_FETCH_PURCHASES_SUCCESS:
+      return { ...state, playlists_purchases: { data: action.data, _status: LOADED } };
 
     case playlistActions.PLAYLISTS_FETCH_PITOPTOPIC_SUCCESS:
       return { ...state, playlists_toptopic: { data: action.data, _status: LOADED } };
