@@ -123,6 +123,7 @@ class HeaderContainer extends Component {
                     toggle={<UserMenu user={user} />}
                     list={[
                       { label: "My profile", url: "/my-profile" },
+                      { label: "My purchases", url: "/purchases" },
                       { label: "Settings", url: "/account" },
                       { label: "Logout", onClick: this.logOut },
                     ]}

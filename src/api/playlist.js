@@ -220,6 +220,14 @@ export async function playlistsFetchHashtag (baseUrl, params) {
   return body;
 }
 
+export async function fetchPurchases (baseUrl, params) {
+  const url = `${baseUrl}/playlists?status=published&order=publish_date&purchased=true`;
+
+  const { body } = await get(url, {}, { authorization: params.authorization });
+
+  return body;
+}
+
 export async function playlistsFetchWatchHistory (baseUrl, params) {
   const url = `${baseUrl}/playlists?status=published&type=watch_history&page=0&limit=${params.limit}`;
 
