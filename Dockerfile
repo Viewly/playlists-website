@@ -2,8 +2,7 @@ FROM ubuntu:18.04
 
 # install node.js
 RUN apt-get update
-RUN apt-get install -y nodejs npm
-
+RUN apt-get install -y git nodejs npm
 # install curl for redeployments
 RUN apt-get install -y curl --fix-missing
 
