@@ -24,6 +24,10 @@ const PlaylistItem = ({ id, url, title, description, playlist_thumbnail_url, per
             <img src={require("../../images/icons/bookmarked-indicator.svg")} />
           </div>
         )}
+
+        <div className="c-thumbnail__premium">
+          <img src={require("../../images/icons/lock.svg")} />
+        </div>
       </div>
       <span className="c-link-category u-margin-top-small"><Link to={`/category/${category.slug}`}>{category.name}</Link></span>
       <h4 className='c-video__title c-video__title--large'><Link onClick={onPlaylistClick(url)} to={`/playlist/${url}`}>{title}</Link></h4>
