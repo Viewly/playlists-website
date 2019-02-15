@@ -205,7 +205,6 @@ export async function playlistsFetchNew (baseUrl, params) {
 export async function playlistsFetchPicked (baseUrl, params) {
   let url = `${baseUrl}/playlists?type=featured_monthly&page=0&limit=${params.limit || 6}`;
   if (params.category_id) { url += `&category_id=${params.category_id}` }
-  debugger;
   if (params.tag) { url += `&tag=${params.tag}` }
 
   const { body } = await get(encodeURI(url), {}, { authorization: params.authorization });
