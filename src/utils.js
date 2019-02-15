@@ -105,6 +105,20 @@ export function decodeJwt(jwt) {
   }
 }
 
+export function getRandomPrice () {
+  const PRICE_COOKIE = "price";
+  const cookies = new Cookies();
+
+  let price = cookies.get(PRICE_COOKIE);
+  if (price) {
+    return price;
+  }
+
+  price = Math.floor(Math.random() * 10) + 0.99;
+  cookies.set(PRICE_COOKIE, price, { path: "/" });
+  return price;
+}
+
 export function setUserCookie (jwt) {
   const cookies = new Cookies();
 
