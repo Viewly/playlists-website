@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { THUMBNAIL_ROOT, NO_THUMBNAIL } from "../../constants";
 
-const PlaylistItem = ({ id, url, title, description, playlist_thumbnail_url, percentage, duration, noVideos, category, onPlaylistClick, bookmarked, customClass }) => (
+const PlaylistItem = ({ id, url, title, description, playlist_thumbnail_url, percentage, duration, noVideos, category, onPlaylistClick, bookmarked, customClass, premium }) => (
   <div className={`${customClass ? customClass : "o-grid__cell u-1/2@medium u-1/3@large u-margin-bottom-large"}`} onClick={() => onPlaylistClick(url)}>
     <div className='c-video'>
       <div className='c-thumbnail'>
@@ -25,9 +25,11 @@ const PlaylistItem = ({ id, url, title, description, playlist_thumbnail_url, per
           </div>
         )}
 
-        <div className="c-thumbnail__premium">
-          <img src={require("../../images/icons/lock.svg")} />
-        </div>
+        {premium && (
+          <div className="c-thumbnail__premium">
+            <img src={require("../../images/icons/lock.svg")} />
+          </div>
+        )}
       </div>
       <span className="c-link-category u-margin-top-small"><Link to={`/category/${category.slug}`}>{category.name}</Link></span>
       <h4 className='c-video__title c-video__title--large'><Link onClick={onPlaylistClick(url)} to={`/playlist/${url}`}>{title}</Link></h4>
