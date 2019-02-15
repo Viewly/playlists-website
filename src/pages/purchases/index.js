@@ -65,8 +65,8 @@ export default class PurchasesPage extends Component {
           customEmptyContainer={(
             <div className='o-grid__cell u-1/1'>
               <div className='c-no-results'>
-                {/*<img className='c-no-results__img' src={require("../../images/message-no-bookmarks-yet.svg")} />*/}
-                <p>No purchases on your account</p>
+                <img className='c-no-results__img' src={require("../../images/graphic-error.svg")} />
+                <p>You have no purchases yet.</p>
               </div>
             </div>
           )}
