@@ -84,6 +84,7 @@ export default class PlaylistLayout extends Component {
           description={playlist.description}
           views={playlist.views}
           playVideo={this.playVideo}
+          mustPurchase={playlist.premium && !playlist.purchased}
           playVideoLabel={playlist.percentage > 0 && playlist.percentage < 100 ? "Resume" : "Play all"}
           hashtags={playlist.hashtags && playlist.hashtags.split(" ") || []}
           category={playlist.category} />

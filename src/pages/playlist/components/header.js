@@ -14,6 +14,7 @@ export default class Header extends Component {
     hashtags: PropTypes.array,
     poster: PropTypes.string,
     description: PropTypes.string,
+    mustPurchase: PropTypes.bool,
     playVideoLabel: PropTypes.string,
     playVideo: PropTypes.func,
     category: PropTypes.object.isRequired
@@ -30,7 +31,7 @@ export default class Header extends Component {
   }
 
   render() {
-    const { title, author, duration, category, poster, description, hashtags, playVideo, playVideoLabel, views } = this.props;
+    const { title, author, duration, category, poster, description, hashtags, playVideo, playVideoLabel, views, mustPurchase } = this.props;
 
     return (
       <div className='c-section'>
@@ -49,13 +50,14 @@ export default class Header extends Component {
                   )}
                   <span>{duration}</span>
                 </div>
-
-                <button className='c-btn c-btn--with-icon c-section__thumbnail__btn' onClick={playVideo}>
-                  <svg className='o-icon o-icon--small u-margin-right-tiny' width='16' height='22' viewBox='0 0 16 22' xmlns='http://www.w3.org/2000/svg'>
-                    <path d='M14.837 11.818L1.575 21.142A1 1 0 0 1 0 20.324V1.676A1 1 0 0 1 1.575.858l13.262 9.324a1 1 0 0 1 0 1.636z' fill='currentColor' fillRule='evenodd'/>
-                  </svg>
-                  {playVideoLabel}
-                </button>
+                {!mustPurchase && (
+                  <button className='c-btn c-btn--with-icon c-section__thumbnail__btn' onClick={playVideo}>
+                    <svg className='o-icon o-icon--small u-margin-right-tiny' width='16' height='22' viewBox='0 0 16 22' xmlns='http://www.w3.org/2000/svg'>
+                      <path d='M14.837 11.818L1.575 21.142A1 1 0 0 1 0 20.324V1.676A1 1 0 0 1 1.575.858l13.262 9.324a1 1 0 0 1 0 1.636z' fill='currentColor' fillRule='evenodd'/>
+                    </svg>
+                    {playVideoLabel}
+                  </button>
+                )}
               </div>
             </div>
             <div className='o-grid__cell u-3/5@large'>
