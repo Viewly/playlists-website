@@ -119,6 +119,18 @@ export function getRandomPrice () {
   return price;
 }
 
+export function getGuestPurchase (playlistId) {
+  const PURCHASE_KEY = `purchased-${playlistId}`;
+
+  return localStorage.getItem(PURCHASE_KEY) === 'true' || false;
+}
+
+export function setGuestPurchase (playlistId) {
+  const PURCHASE_KEY = `purchased-${playlistId}`;
+
+  return localStorage.setItem(PURCHASE_KEY, 'true');
+}
+
 export function setUserCookie (jwt) {
   const cookies = new Cookies();
 
