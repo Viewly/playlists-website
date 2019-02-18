@@ -10,8 +10,6 @@ import { playlistPurchase } from "../../../actions/playlist";
 import { playlistFetch } from "../../../actions";
 import { getRandomPrice } from "../../../utils";
 
-const PLAYLIST_PRICE = getRandomPrice();
-
 @connect((state) => ({
   playlist: state.playlist,
   user: state.user
@@ -25,10 +23,19 @@ export default class PlaylistInfo extends Component {
     match: PropTypes.object
   }
 
+  state = {
+    price: 0
+  }
+
+  componentDidMount() {
+    const price = getRandomPrice();
+    this.setState({ price });
+  }
+
   onStripe = async (args) => {
     const { playlistFetch, playlistPurchase, playlist } = this.props;
 
-    await playlistPurchase(playlist.id, PLAYLIST_PRICE, args);
+    await playlistPurchase(playlist.id, this.state.price, args);
 
     playlistFetch(playlist.id);
   }
@@ -47,10 +54,11 @@ export default class PlaylistInfo extends Component {
             <StripeCheckout
               token={this.onStripe}
               email={user.email}
-              amount={PLAYLIST_PRICE * 100}
+              amount={this.state.price * 100}
               stripeKey="pk_test_pW1Uy3lOn1vPQfzQMHsJgdxw"
               >
-                <button className="c-btn c-btn--secondary">Unlock for ${PLAYLIST_PRICE}</button>
+              {this.state.price > 0 && <button className="c-btn c-btn--secondary">Unlock for ${this.state.price}</button>}
+              {this.state.price === 0 && <button className="c-btn c-btn--secondary">Loading</button>}
             </StripeCheckout>
           </div>
           <div className='o-grid'>
