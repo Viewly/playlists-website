@@ -8,7 +8,7 @@ import Loading from "../../../components/loading";
 import { LOADED, LOADING } from "../../../constants/status_types";
 import { playlistPurchase } from "../../../actions/playlist";
 import { playlistFetch } from "../../../actions";
-import { getRandomPrice } from "../../../utils";
+import { getGuestPurchase, getRandomPrice, setGuestPurchase } from "../../../utils";
 
 @connect((state) => ({
   playlist: state.playlist,
@@ -24,18 +24,27 @@ export default class PlaylistInfo extends Component {
   }
 
   state = {
-    price: 0
+    price: 0,
+    isPurchased: false
   }
 
   componentDidMount() {
+    const { match: { params: { playlistId } } } = this.props;
+
     const price = getRandomPrice();
-    this.setState({ price });
+    const isPurchased = getGuestPurchase(playlistId);
+    this.setState({ price, isPurchased });
   }
 
   onStripe = async (args) => {
-    const { playlistFetch, playlistPurchase, playlist } = this.props;
+    const { user, playlistFetch, playlistPurchase, playlist, match: { params: { playlistId } } } = this.props;
 
     await playlistPurchase(playlist.id, this.state.price, args);
+
+    if (!user) {
+      setGuestPurchase(playlistId);
+      this.setState({ isPurchased: true });
+    }
 
     playlistFetch(playlist.id);
   }
@@ -46,14 +55,14 @@ export default class PlaylistInfo extends Component {
     const isLoading = playlist._status === LOADING;
     if (!isLoaded) return <div>Loading ...</div>;
 
-    if (playlist.premium && !playlist.purchased) {
+    if (!this.state.isPurchased && (playlist.premium && !playlist.purchased)) {
       return (
         <div className='c-premium-playlist-overlay'>
           <div className="c-premium-playlist-overlay__content">
             <p>This is a premium playlist.</p>
             <StripeCheckout
               token={this.onStripe}
-              email={user.email}
+              email={user?.email}
               amount={this.state.price * 100}
               stripeKey="pk_test_pW1Uy3lOn1vPQfzQMHsJgdxw"
               >
