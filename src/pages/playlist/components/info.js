@@ -9,12 +9,14 @@ import { LOADED, LOADING } from "../../../constants/status_types";
 import { playlistPurchase } from "../../../actions/playlist";
 import { playlistFetch } from "../../../actions";
 import { getGuestPurchase, getRandomPrice, setGuestPurchase } from "../../../utils";
+import { OPEN_TOAST } from "../../../actions/toast";
 
 @connect((state) => ({
   playlist: state.playlist,
   user: state.user
 }), (dispatch) => ({
   playlistPurchase: (playlist_id, price, stripeData) => dispatch(playlistPurchase({ playlist_id, price, stripeData })),
+  openToast: (data) => dispatch({ type: OPEN_TOAST, data }),
   playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
 }))
 export default class PlaylistInfo extends Component {
@@ -25,7 +27,8 @@ export default class PlaylistInfo extends Component {
 
   state = {
     price: 0,
-    isPurchased: false
+    isPurchased: false,
+    isLoading: false
   }
 
   componentDidMount() {
@@ -37,16 +40,35 @@ export default class PlaylistInfo extends Component {
   }
 
   onStripe = async (args) => {
-    const { user, playlistFetch, playlistPurchase, playlist, match: { params: { playlistId } } } = this.props;
+    const { openToast, user, playlistFetch, playlistPurchase, playlist, match: { params: { playlistId } } } = this.props;
 
-    await playlistPurchase(playlist.id, this.state.price, args);
+    this.setState({ isLoading: true });
+    const response = await playlistPurchase(playlist.id, this.state.price, args);
 
-    if (!user) {
-      setGuestPurchase(playlistId);
-      this.setState({ isPurchased: true });
+    if (response.success) {
+      if (!user) {
+        setGuestPurchase(playlistId);
+        this.setState({ isPurchased: true });
+      }
+
+      playlistFetch(playlist.id);
+    } else {
+      openToast({ type: "error", message: `Payment failed with code "${response.error.code}"`});
+      console.log("ERR", response);
     }
 
-    playlistFetch(playlist.id);
+    this.setState({ isLoading: false });
+
+  }
+
+  renderButton = () => {
+    if (this.state.isLoading) {
+      return <button className="c-btn c-btn--secondary">Please wait</button>
+    } else if(this.state.price === 0) {
+      return <button className="c-btn c-btn--secondary">Loading</button>
+    } else {
+      return <button className="c-btn c-btn--secondary">Unlock for ${this.state.price}</button>;
+    }
   }
 
   render() {
@@ -65,9 +87,9 @@ export default class PlaylistInfo extends Component {
               email={user?.email}
               amount={this.state.price * 100}
               stripeKey="pk_live_aUa4E0B0lfrIj0pQHYg6odz1"
+              // stripeKey="pk_test_pW1Uy3lOn1vPQfzQMHsJgdxw"
               >
-              {this.state.price > 0 && <button className="c-btn c-btn--secondary">Unlock for ${this.state.price}</button>}
-              {this.state.price === 0 && <button className="c-btn c-btn--secondary">Loading</button>}
+              {this.renderButton()}
             </StripeCheckout>
           </div>
           <div className='o-grid'>
