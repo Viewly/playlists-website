@@ -64,7 +64,7 @@ export default class PlaylistInfo extends Component {
               token={this.onStripe}
               email={user?.email}
               amount={this.state.price * 100}
-              stripeKey="pk_test_pW1Uy3lOn1vPQfzQMHsJgdxw"
+              stripeKey="pk_live_aUa4E0B0lfrIj0pQHYg6odz1"
               >
               {this.state.price > 0 && <button className="c-btn c-btn--secondary">Unlock for ${this.state.price}</button>}
               {this.state.price === 0 && <button className="c-btn c-btn--secondary">Loading</button>}
