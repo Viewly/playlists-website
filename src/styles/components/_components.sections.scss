@@ -49,7 +49,7 @@
     }
 
         .c-section__details {
-            margin-bottom: $spacing-unit;
+            margin-bottom: $spacing-unit-tiny;
 
             a {
                 color: inherit;
@@ -64,6 +64,10 @@
 
         .c-section__details__time {
             color: #afb1b3;
+        }
+
+        .c-section__rate {
+            margin-bottom: $spacing-unit;
         }
 
         /**

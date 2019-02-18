@@ -68,6 +68,21 @@ export default class Header extends Component {
                 <h1 className='c-section__title'>{title}</h1>
                 <p className='c-section__details'>By <Link to={`/profile/${author?.alias}`}>{author?.alias ? author?.alias : `${author?.first_name} ${author?.last_name}`}</Link> {/*&bull; <time className='c-section__details__time'>2 weeks ago</time>*/}</p>
 
+                <div className="c-section__rate">
+                  <div className="o-grid o-grid--middle o-grid--auto o-grid--small">
+                    <div className="o-grid__cell">
+                      <img src={require("../../../images/icons/star-filled.svg")} />
+                      <img src={require("../../../images/icons/star-filled.svg")} />
+                      <img src={require("../../../images/icons/star-filled.svg")} />
+                      <img src={require("../../../images/icons/star-filled.svg")} />
+                      <img src={require("../../../images/icons/star-half-filled.svg")} />
+                    </div>
+                    <div className="o-grid__cell">
+                      <div className="c-annotation">4.5 (18,754 ratings)</div>
+                    </div>
+                  </div>
+                </div>
+
                 <div ref={(ref) => this.descriptionDiv = ref} className={`c-section__description ${this.state.tooLong ? 'c-section__description--long' : ''}`}>
                   <ReactMarkdown source={description} linkTarget="_blank" />
                 </div>
