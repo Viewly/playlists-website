@@ -106,7 +106,7 @@ export function decodeJwt(jwt) {
 }
 
 export function getRandomPrice () {
-  const PRICE_COOKIE = "price";
+  const PRICE_COOKIE = "discount_price";
   const cookies = new Cookies();
 
   let price = cookies.get(PRICE_COOKIE);
@@ -114,7 +114,9 @@ export function getRandomPrice () {
     return price;
   }
 
-  price = Math.floor(Math.random() * 10) + 0.99;
+  const items = [4.99, 7.99, 9.99, 14.99, 19.99];
+  price = items[Math.floor(Math.random()*items.length)];
+
   cookies.set(PRICE_COOKIE, price, { path: "/" });
   return price;
 }

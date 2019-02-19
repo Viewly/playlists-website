@@ -11,6 +11,13 @@ import { playlistFetch } from "../../../actions";
 import { getGuestPurchase, getRandomPrice, setGuestPurchase } from "../../../utils";
 import { OPEN_TOAST } from "../../../actions/toast";
 
+const discountedPrices = {
+  "4.99" : "24.99",
+  "7.99" : "29.99",
+  "9.99" : "39.99",
+  "14.99": "49.99",
+  "19.99": "99.99"
+}
 @connect((state) => ({
   playlist: state.playlist,
   user: state.user
@@ -27,6 +34,7 @@ export default class PlaylistInfo extends Component {
 
   state = {
     price: 0,
+    bigPrice: 0,
     isPurchased: false,
     isLoading: false
   }
@@ -36,7 +44,7 @@ export default class PlaylistInfo extends Component {
 
     const price = getRandomPrice();
     const isPurchased = getGuestPurchase(playlistId);
-    this.setState({ price, isPurchased });
+    this.setState({ price, isPurchased, bigPrice: discountedPrices[price] });
   }
 
   onStripe = async (args) => {
@@ -82,7 +90,7 @@ export default class PlaylistInfo extends Component {
         <div className='c-premium-playlist-overlay'>
           <div className="c-premium-playlist-overlay__content">
             <h4>This is a premium playlist.</h4>
-            <p>Unlock it for <del className='c-del'>${this.state.price * 3}</del> ${this.state.price}.</p>
+            <p>Unlock it for <del className='c-del'>${this.state.bigPrice}</del> ${this.state.price}.</p>
             <StripeCheckout
               token={this.onStripe}
               email={user?.email}
