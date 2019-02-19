@@ -72,6 +72,7 @@ export default class PlaylistLayout extends Component {
     const { playlist, match: { params: { playlistId } } } = this.props;
     const isLoaded = (playlist._status === LOADED) || (playlist.id === playlistId) || (playlist.url === playlistId);
     const isOwner = this.isOwner();
+    const { user } = this.props;
     if (!isLoaded) return <div>Loading ...</div>;
 
     return (
@@ -98,16 +99,19 @@ export default class PlaylistLayout extends Component {
                 <PlaylistTabs comments={playlist?.comment_count} videos={playlist?.videos?.length} url={playlist.url} />
               </div>
               <div className='o-grid__cell u-margin-bottom'>
-
-                <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-none has-colored-icon c-tooltip ${playlist.bookmarked ? "is-active" : ""}`}>
-                  <div className='c-colored-icon o-icon'>
-                    <img alt='' className='c-colored-icon__icon' src={require("../../images/icons/bookmark.svg")} />
-                    <img alt='' className='c-colored-icon__icon' src={require("../../images/icons/bookmark-hover.svg")} />
-                  </div>
-                  <div className="c-tooltip__content">
-                    Get notified when new videos <br/>are added to this playlist
-                  </div>
-                </button>
+                <span className='c-tooltip'>
+                  <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-none has-colored-icon ${playlist.bookmarked ? "is-active" : ""}`}>
+                    <div className='c-colored-icon o-icon'>
+                      <img alt='' className='c-colored-icon__icon' src={require("../../images/icons/bookmark.svg")} />
+                      <img alt='' className='c-colored-icon__icon' src={require("../../images/icons/bookmark-hover.svg")} />
+                    </div>
+                  </button>
+                  {!user && (
+                    <div className="c-tooltip__content">
+                      Get notified when new videos <br/>are added to this playlist
+                    </div>
+                  )}
+                </span>
 
                 <SharePlaylist playlist={playlist} />
 
