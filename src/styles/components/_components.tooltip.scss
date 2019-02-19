@@ -6,7 +6,11 @@
     position: relative;
 }
 
+    /**
+     * 1. Leave room for close button
+     */
     .c-tooltip__content {
+        @include invisible;
         background-color: #242264;
         border-radius: 14px;
         border-bottom-right-radius: 0;
@@ -15,11 +19,34 @@
         line-height: 1.2;
         font-weight: 500;
         padding: $spacing-unit-small;
+        padding-right: $spacing-unit + $spacing-unit-tiny; /* [1] */
         text-align: left;
-        transform: translate(5px, -10px);
+        transform: translate(5px, 5px);
         white-space: nowrap;
         position: absolute;
         bottom: 100%;
         right: 100%;
         z-index: 300;
+
+        .c-tooltip.is-active & {
+            @include visible;
+            transform: translate(5px, -10px);
+            transition: $global-transition;
+        }
+    }
+
+    .c-tooltip__btn-dismiss[class] {
+        color: rgba(#fff, .9);
+        font-size: 16px;
+        font-weight: 700;
+        padding: $spacing-unit-tiny;
+        text-transform: uppercase;
+        position: absolute;
+        top: 3px;
+        right: $spacing-unit-tiny;
+
+        &:hover {
+            color: #fff;
+            cursor: pointer;
+        }
     }

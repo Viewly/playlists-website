@@ -99,7 +99,7 @@ export default class PlaylistLayout extends Component {
                 <PlaylistTabs comments={playlist?.comment_count} videos={playlist?.videos?.length} url={playlist.url} />
               </div>
               <div className='o-grid__cell u-margin-bottom'>
-                <span className='c-tooltip'>
+                <span className='c-tooltip is-active'>
                   <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-none has-colored-icon ${playlist.bookmarked ? "is-active" : ""}`}>
                     <div className='c-colored-icon o-icon'>
                       <img alt='' className='c-colored-icon__icon' src={require("../../images/icons/bookmark.svg")} />
@@ -109,6 +109,9 @@ export default class PlaylistLayout extends Component {
                   {!user && (
                     <div className="c-tooltip__content">
                       Get notified when new videos <br/>are added to this playlist
+                      <div className="u-text-right u-margin-top-tiny">
+                        <button className='c-btn c-tooltip__btn-dismiss'>&times;</button>
+                      </div>
                     </div>
                   )}
                 </span>
