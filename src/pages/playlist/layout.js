@@ -99,10 +99,13 @@ export default class PlaylistLayout extends Component {
               </div>
               <div className='o-grid__cell u-margin-bottom'>
 
-                <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-left-none u-padding-right-none has-colored-icon ${playlist.bookmarked ? "is-active" : ""}`}>
+                <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-none has-colored-icon c-tooltip ${playlist.bookmarked ? "is-active" : ""}`}>
                   <div className='c-colored-icon o-icon'>
                     <img alt='' className='c-colored-icon__icon' src={require("../../images/icons/bookmark.svg")} />
                     <img alt='' className='c-colored-icon__icon' src={require("../../images/icons/bookmark-hover.svg")} />
+                  </div>
+                  <div className="c-tooltip__content">
+                    Get notified when new videos <br/>are added to this playlist
                   </div>
                 </button>
 

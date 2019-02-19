@@ -1,0 +1,24 @@
+/*------------------------------------*\
+    #TOOLTIP
+\*------------------------------------*/
+
+.c-tooltip {
+    position: relative;
+}
+
+    .c-tooltip__content {
+        background-color: #242264;
+        border-radius: 14px;
+        border-bottom-right-radius: 0;
+        color: #fff;
+        font-size: 13px;
+        line-height: 1.2;
+        font-weight: 500;
+        padding: $spacing-unit-small;
+        text-align: left;
+        transform: translate(5px, -10px);
+        position: absolute;
+        bottom: 100%;
+        right: 100%;
+        z-index: 300;
+    }
