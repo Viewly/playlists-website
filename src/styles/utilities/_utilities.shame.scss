@@ -616,6 +616,14 @@ $tweakpoint-category:   large;
     font-weight: 500;
 }
 
+.c-annotation--dark {
+    color: color('dark-grey');
+}
+
+.c-del {
+    color: color('dark-grey');
+}
+
 .c-time {
     color: #afb1b3;
     display: inline;

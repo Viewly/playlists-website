@@ -11,6 +11,13 @@ import { playlistFetch } from "../../../actions";
 import { getGuestPurchase, getRandomPrice, setGuestPurchase } from "../../../utils";
 import { OPEN_TOAST } from "../../../actions/toast";
 
+const discountedPrices = {
+  "4.99" : "24.99",
+  "7.99" : "29.99",
+  "9.99" : "39.99",
+  "14.99": "49.99",
+  "19.99": "99.99"
+}
 @connect((state) => ({
   playlist: state.playlist,
   user: state.user
@@ -27,6 +34,7 @@ export default class PlaylistInfo extends Component {
 
   state = {
     price: 0,
+    bigPrice: 0,
     isPurchased: false,
     isLoading: false
   }
@@ -36,7 +44,7 @@ export default class PlaylistInfo extends Component {
 
     const price = getRandomPrice();
     const isPurchased = getGuestPurchase(playlistId);
-    this.setState({ price, isPurchased });
+    this.setState({ price, isPurchased, bigPrice: discountedPrices[price] });
   }
 
   onStripe = async (args) => {
@@ -67,7 +75,7 @@ export default class PlaylistInfo extends Component {
     } else if(this.state.price === 0) {
       return <button className="c-btn c-btn--secondary">Loading</button>
     } else {
-      return <button className="c-btn c-btn--secondary">Unlock for ${this.state.price}</button>;
+      return <button className="c-btn c-btn--secondary">Unlock now</button>;
     }
   }
 
@@ -81,7 +89,8 @@ export default class PlaylistInfo extends Component {
       return (
         <div className='c-premium-playlist-overlay'>
           <div className="c-premium-playlist-overlay__content">
-            <p>This is a premium playlist.</p>
+            <h4>This is a premium playlist.</h4>
+            <p>Unlock it for <del className='c-del'>${this.state.bigPrice}</del> ${this.state.price}.</p>
             <StripeCheckout
               token={this.onStripe}
               email={user?.email}
@@ -91,6 +100,9 @@ export default class PlaylistInfo extends Component {
               >
               {this.renderButton()}
             </StripeCheckout>
+            <p>
+              <small className='c-annotation c-annotation--dark u-margin-top-tiny'>3 days left at this price!</small>
+            </p>
           </div>
           <div className='o-grid'>
             {!isLoading && playlist.videos && playlist.videos.map((item, idx) => <Video key={`video-${idx}`} url={playlist.url} {...item} />)}
