@@ -108,7 +108,8 @@ export default class PlaylistLayout extends Component {
                   </button>
                   {!user && (
                     <div className="c-tooltip__content">
-                      Get notified when new videos <br/>are added to this playlist
+                      <h6 className='c-tooltip__heading'>Bookmark now!</h6>
+                      <p>Get notified when new videos <br/>are added to this playlist</p>
                       <div className="u-text-right u-margin-top-tiny">
                         <button className='c-btn c-tooltip__btn-dismiss'>&times;</button>
                       </div>

@@ -14,7 +14,7 @@
         background-color: #242264;
         border-radius: 14px;
         border-bottom-right-radius: 0;
-        color: #fff;
+        color: rgba(#fff, .9);
         font-size: 13px;
         line-height: 1.2;
         font-weight: 500;
@@ -32,6 +32,14 @@
             @include visible;
             transform: translate(5px, -10px);
             transition: $global-transition;
+        }
+    }
+
+    .c-tooltip__heading {
+        color: #fff;
+
+        &:not(:last-child) {
+            margin-bottom: $spacing-unit-tiny;
         }
     }
 
