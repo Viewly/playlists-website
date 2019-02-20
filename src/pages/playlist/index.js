@@ -19,9 +19,10 @@ const prepareActions = (dispatch) => ({
 });
 
 @asyncLoad(async (params = {}, query = {}, store) => {
-  const { playlistFetch } = prepareActions(store.dispatch);
+  const { playlistFetch, playlistFetchProgresses } = prepareActions(store.dispatch);
 
   await playlistFetch(params.playlistId);
+  await playlistFetchProgresses(params.playlistId);
 })
 @connect((state) => ({
   playlist: state.playlist
@@ -41,7 +42,8 @@ class PlaylistPage extends Component {
       playlistFetchProgresses(playlistId);
       playlistViews(playlistId);
     } else if (playlist.isServerRendered) {
-      updateWatchTime();
+      // updateWatchTime();
+      playlistFetchProgresses(playlistId);
     }
   }
 
