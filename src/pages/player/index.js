@@ -8,6 +8,7 @@ import SEO from "../../components/SEO";
 import { playlistFetch, updatePercentage } from "../../actions";
 import { LOADED } from "../../constants/status_types";
 import { TriggerPlayerEvent, TriggerPlayerError } from "../../analytics";
+import { playlistFetchProgresses } from "../../actions/playlist";
 
 const SEGMENT_LENGTH_SECONDS = 15;
 
@@ -15,6 +16,7 @@ const SEGMENT_LENGTH_SECONDS = 15;
   playlist: state.playlist
 }), (dispatch) => ({
   playlistFetch: (playlistId) => dispatch(playlistFetch({ playlistId })),
+  playlistFetchProgresses: (playlistId) => dispatch(playlistFetchProgresses({ playlistId })),
   updatePercentage: (playlistId, videoId, percentage, currentTime) => dispatch(updatePercentage({ playlistId, videoId, percentage, currentTime }))
 }))
 class PlayerPage extends Component {
@@ -33,11 +35,14 @@ class PlayerPage extends Component {
     focusMode: false
   }
 
-  componentDidMount() {
-    const { playlist, playlistFetch, match: { params: { playlistId, videoId } } } = this.props;
+  async componentDidMount() {
+    const { playlist, playlistFetch, playlistFetchProgresses, match: { params: { playlistId, videoId } } } = this.props;
 
     document && document.documentElement.classList.add("is-overflow-y-hidden");
-    playlist.id !== playlistId && playlistFetch(playlistId);
+    if (playlist.id !== playlistId) {
+      await playlistFetch(playlistId);
+      await playlistFetchProgresses(playlistId);
+    }
     this.setState({ videoId: parseInt(videoId, 10) });
   }
 

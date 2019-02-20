@@ -16,7 +16,7 @@ function getUnixTimestamp() {
   return Math.round(+(new Date())/1000);
 }
 
-function getMeta() {
+export function getMeta() {
   const analyticsCookie = cookies.get(ANALYTICS_COOKIE);
   return {
     cookie_id: analyticsCookie,

@@ -17,6 +17,12 @@ export function convertYoutubeDuration (duration) {
     .padStart(4, "0:0");
 }
 
+export function youtubeDurationToSeconds (duration) {
+  return moment
+    .duration(duration)
+    .asSeconds();
+}
+
 export function sumVideoDurations (videos = []) {
   const start = moment.duration();
   videos.forEach(video => {

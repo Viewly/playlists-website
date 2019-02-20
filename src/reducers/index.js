@@ -12,7 +12,9 @@ import {
   getUserCookie,
   unsetUserCookie,
   generateUuid,
-  getLocalStorageConfig, setLocalStorageConfig
+  getLocalStorageConfig,
+  setLocalStorageConfig,
+  youtubeDurationToSeconds
 } from "../utils";
 import { uniqBy } from "lodash";
 import moment from "moment";
@@ -131,26 +133,46 @@ const rootReducer = (state = initialState, action) => {
     case actions.PLAYLIST_FETCH_START:
       return { ...state, playlist: { ...state.playlist, _status: LOADING } };
     case actions.PLAYLIST_FETCH_SUCCESS: {
-      const playlist = getPlaylistProgress(action.data.id);
-      action.data.videos = updateVideosWithProgresses(action.data.videos, playlist);
-      const watchedVideos = action.data.videos.filter(item => item.percentage > 0);
-      const sumProgresses = watchedVideos.reduce((acc, curr) => (acc + curr.percentage), 0);
-      action.data.percentage = Math.round(sumProgresses / action.data.videos.length);
+      // const playlist = getPlaylistProgress(action.data.id);
+      // action.data.videos = updateVideosWithProgresses(action.data.videos, playlist);
+      // const watchedVideos = action.data.videos.filter(item => item.percentage > 0);
+      // const sumProgresses = watchedVideos.reduce((acc, curr) => (acc + curr.percentage), 0);
+      // action.data.percentage = Math.round(sumProgresses / action.data.videos.length);
 
       return { ...state, playlist: { _status: LOADED, ...action.data, isServerRendered: SERVER } };
     }
     case actions.PLAYLIST_INJECT_WATCH_TIME: {
       let update = {};
-      const playlist = getPlaylistProgress(state.playlist.id);
-      update.videos = updateVideosWithProgresses(state.playlist.videos, playlist);
-      const watchedVideos = state.playlist.videos.filter(item => item.percentage > 0);
-      const sumProgresses = watchedVideos.reduce((acc, curr) => (acc + curr.percentage), 0);
-      update.percentage = Math.round(sumProgresses / state.playlist.videos.length);
+      // const playlist = getPlaylistProgress(state.playlist.id);
+      // update.videos = updateVideosWithProgresses(state.playlist.videos, playlist);
+      // const watchedVideos = state.playlist.videos.filter(item => item.percentage > 0);
+      // const sumProgresses = watchedVideos.reduce((acc, curr) => (acc + curr.percentage), 0);
+      // update.percentage = Math.round(sumProgresses / state.playlist.videos.length);
 
       return { ...state, playlist: { ...state.playlist, ...update } };
     }
     case playlistActions.PLAYLIST_FETCH_VIEWS_SUCCESS: {
       return { ...state, playlist: { ...state.playlist, views: action.data.visitors }};
+    }
+    case playlistActions.PLAYLIST_FETCH_PROGRESSES_SUCCESS: {
+      const progresses = action.data;
+      const videos = state.playlist.videos;
+      let formatted = {};
+
+      progresses.forEach(item => {
+        const video = videos.find(video => video.id === +item.video_id);
+        const percentage = Math.round(100 * item.last_time_seconds / youtubeDurationToSeconds(video.duration));
+
+        formatted[item.video_id] = {
+          currentTime: item.last_time_seconds,
+          percentage
+        };
+      });
+
+      let update = state.playlist;
+      update.videos = updateVideosWithProgresses(state.playlist.videos, formatted);
+
+      return { ...state, playlist: { ...update } };
     }
 
     case actions.CATEGORIES_FETCH_SUCCESS:

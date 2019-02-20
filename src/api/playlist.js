@@ -1,4 +1,5 @@
 import { del, get, post, put } from "./request";
+import { getMeta } from "../analytics";
 
 export async function playlistFetch (baseUrl, { authorization, playlistId }) {
   const url = `${baseUrl}/playlist/${playlistId}`;
@@ -176,6 +177,13 @@ export async function playlistVoteComment (baseUrl, { authorization, playlist_id
 
 export async function playlistViews (baseUrl, { playlistId }) {
   const { body } = await get(`https://vidflow-analytics-api.view.ly/daily_playlist_views/${playlistId}`);
+
+  return body;
+}
+
+export async function playlistFetchProgresses (baseUrl, { playlistId }) {
+  const analyticsMeta = getMeta();
+  const { body } = await get(`https://vidflow-analytics-api.view.ly/playlist_handoff/${playlistId}/${analyticsMeta.user_id || analyticsMeta.cookie_id}`);
 
   return body;
 }
