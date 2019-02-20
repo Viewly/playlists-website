@@ -204,6 +204,11 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, localStorage: { ...state.localStorage, data: { ...state.localStorage.data, hidePromotion: true } } };
     }
 
+    case actions.BOOKMARK_TOOLTIP_HIDE: {
+      setLocalStorageConfig("hideBookmark", true);
+      return { ...state, localStorage: { ...state.localStorage, data: { ...state.localStorage.data, hideBookmark: true } } };
+    }
+
     case actions.LOAD_LOCALSTORAGE: {
       const storage = getLocalStorageConfig();
       return { ...state, localStorage: { _status: LOADED, data: { ...storage } } };

@@ -7,7 +7,7 @@ import Header from "./components/header";
 import SharePlaylist from "./components/share";
 import SEO from "../../components/SEO";
 
-import { sumVideoDurations } from "../../utils";
+import { isLoaded, sumVideoDurations } from "../../utils";
 import { LOADED, LOADING } from "../../constants/status_types";
 import { OPEN_LOGIN_MODAL, userAddBookmark, userRemoveBookmark } from "../../actions/user";
 import { OPEN_TOAST } from "../../actions/toast";
@@ -15,20 +15,43 @@ import PlaylistTabs from "./components/tabs";
 import PlaylistInfo from "./components/info";
 import PlaylistComments from "./components/comments";
 import { minBy } from "lodash";
+import { BOOKMARK_TOOLTIP_HIDE } from "../../actions";
 
 @connect((state) => ({
   playlist: state.playlist,
-  user: state.user
+  user: state.user,
+  localStorage: state.localStorage
 }), (dispatch) => ({
   userAddBookmark: (playlist_id) => dispatch(userAddBookmark({ playlist_id })),
   userRemoveBookmark: (playlist_id) => dispatch(userRemoveBookmark({ playlist_id })),
   openToast: (data) => dispatch({ type: OPEN_TOAST, data }),
+  hideBookmark: (data) => dispatch({ type: BOOKMARK_TOOLTIP_HIDE, data }),
   openRegisterModal: () => dispatch({ type: OPEN_LOGIN_MODAL, data: { name: "register" } }),
 }))
 export default class PlaylistLayout extends Component {
   static propTypes = {
     playlist: PropTypes.object,
     match: PropTypes.object
+  }
+
+  state = {
+    bookmarkActive: false
+  }
+
+  componentDidMount() {
+    const { localStorage } = this.props;
+
+    if (isLoaded(localStorage) && !localStorage.data.hideBookmark) {
+      setTimeout(() => this.setState({ bookmarkActive: true }), 1000);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { localStorage } = this.props;
+
+    if (!isLoaded(prevProps.localStorage) && isLoaded(localStorage) && !localStorage.data.hideBookmark) {
+      setTimeout(() => this.setState({ bookmarkActive: true }), 1000);
+    }
   }
 
   onBookmarkClick = () => {
@@ -69,7 +92,7 @@ export default class PlaylistLayout extends Component {
   }
 
   render() {
-    const { playlist, match: { params: { playlistId } } } = this.props;
+    const { playlist, localStorage, hideBookmark, match: { params: { playlistId } } } = this.props;
     const isLoaded = (playlist._status === LOADED) || (playlist.id === playlistId) || (playlist.url === playlistId);
     const isOwner = this.isOwner();
     const { user } = this.props;
@@ -99,7 +122,7 @@ export default class PlaylistLayout extends Component {
                 <PlaylistTabs comments={playlist?.comment_count} videos={playlist?.videos?.length} url={playlist.url} />
               </div>
               <div className='o-grid__cell u-margin-bottom'>
-                <span className='c-tooltip is-active'>
+                <span className={`c-tooltip ${this.state.bookmarkActive ? 'is-active' : ''}`}>
                   <button onClick={this.onBookmarkClick} className={`c-btn u-margin-right u-padding-none has-colored-icon ${playlist.bookmarked ? "is-active" : ""}`}>
                     <div className='c-colored-icon o-icon'>
                       <img alt='' className='c-colored-icon__icon' src={require("../../images/icons/bookmark.svg")} />
@@ -111,7 +134,10 @@ export default class PlaylistLayout extends Component {
                       <h6 className='c-tooltip__heading'>Bookmark now!</h6>
                       <p>Get notified when new videos <br/>are added to this playlist</p>
                       <div className="u-text-right u-margin-top-tiny">
-                        <button className='c-btn c-tooltip__btn-dismiss'>&times;</button>
+                        <button className='c-btn c-tooltip__btn-dismiss' onClick={() => {
+                          hideBookmark();
+                          this.setState({ bookmarkActive: false });
+                        }}>&times;</button>
                       </div>
                     </div>
                   )}
