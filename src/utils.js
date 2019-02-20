@@ -154,7 +154,8 @@ export function getUserCookie() {
 export function unsetUserCookie() {
   const cookies = new Cookies();
 
-  cookies.remove(COOKIE_SESSION);
+  cookies.set(COOKIE_SESSION, "", { path: "/" });
+  cookies.remove(COOKIE_SESSION, { path: "/" });
 }
 
 export function getLocale() {
