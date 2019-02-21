@@ -288,3 +288,25 @@ export function getImageFormUrl(url, callback) {
 
   img.src = url;
 }
+
+function strToNum(input) {
+  let output = 0;
+  for (let i = 0; i < input.length; i++) {
+    output += input[i].charCodeAt(0);
+  }
+
+  return output;
+}
+/**
+ * Source: http://indiegamr.com/generate-repeatable-random-numbers-in-js/
+ */
+export function seededRandom(max, min, seed = "seed") {
+  let seedNumber = strToNum(seed);
+  max = max || 1;
+  min = min || 0;
+
+  seedNumber = (seedNumber * 9301 + 49297) % 233280;
+  var rnd = seedNumber / 233280;
+
+  return min + rnd * (max - min);
+}

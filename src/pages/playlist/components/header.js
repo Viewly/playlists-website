@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { THUMBNAIL_ROOT } from "../../../constants";
+import { seededRandom } from "../../../utils";
 
 const DESCRIPTION_SHOW_MORE_HEIGHT = 200;
 
@@ -31,7 +32,7 @@ export default class Header extends Component {
   }
 
   render() {
-    const { title, author, duration, category, poster, description, hashtags, playVideo, playVideoLabel, views, mustPurchase } = this.props;
+    const { id, title, author, duration, category, poster, description, hashtags, playVideo, playVideoLabel, views, mustPurchase } = this.props;
 
     return (
       <div className='c-section'>
@@ -78,7 +79,7 @@ export default class Header extends Component {
                       <img src={require("../../../images/icons/star-half-filled.svg")} />
                     </div>
                     <div className="o-grid__cell">
-                      <div className="c-annotation">4.5 (18,754 ratings)</div>
+                      <div className="c-annotation">{Math.round(seededRandom(40, 50, id))/10} ({Math.round(seededRandom(300, 5000, id))} ratings)</div>
                     </div>
                   </div>
                 </div>
