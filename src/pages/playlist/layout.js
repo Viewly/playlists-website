@@ -101,6 +101,7 @@ export default class PlaylistLayout extends Component {
     return (
       <div>
         <Header
+          id={playlist.id}
           title={playlist.title}
           author={playlist.user}
           duration={sumVideoDurations(playlist.videos)}
